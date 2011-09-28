@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @group.name %>
+</p>
+<p>
+  <b>Founder:</b>
+  <%= @group.founder %>
+</p>
+
+<p><b>Members:</b>
+<ul>
+  <% for user in @group.users %>
+    <li><%=h user.username %></li>
+  <% end %>
+</ul>
+</p>
+<%= link_to "Create New Kite", new_kite_path %></td>
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>
