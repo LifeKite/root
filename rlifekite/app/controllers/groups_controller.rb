@@ -41,7 +41,8 @@ class GroupsController < ApplicationController
   # POST /groups.xml
   def create
     @group = Group.new(params[:group])
-    @group.founder = current_user
+
+    @group.users << current_user
    
     respond_to do |format|
       if @group.save

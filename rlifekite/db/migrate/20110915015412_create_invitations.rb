@@ -2,6 +2,7 @@ class CreateInvitations < ActiveRecord::Migration
   def self.up
     create_table :invitations do |t|
       t.string :email
+      t.integer :user_id
       t.integer :group_id
       t.date :initiated
       t.timestamps

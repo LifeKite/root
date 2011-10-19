@@ -15,10 +15,15 @@ class KitesController < ApplicationController
   def show
     @kite = Kite.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @kite }
+    if(current_user = @kite.user)
+      render :action => 'owner_show'
+    else
+      render :action => 'shared_show'
     end
+#    respond_to do |format|
+#      format.html # show.html.erb
+#      format.xml  { render :xml => @kite }
+#    end
   end
 
   # GET /kites/new

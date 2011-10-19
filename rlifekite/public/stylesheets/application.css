@@ -7,3 +7,9 @@ ul.hmenu {
 ul.hmenu li {
 	display: inline;
 }
+
+#thumbnail {
+	padding: 1em;
+	background: #ddd;
+	border: thin solid #333;
+}

@@ -6,16 +6,18 @@
 </p>
 <p>
   <b>Founder:</b>
-  <%= @group.founder %>
+  <%= User.find(@group.founder_id).username %>
 </p>
 
 <p><b>Members:</b>
 <ul>
   <% for user in @group.users %>
-    <li><%=h user.username %></li>
+    <li><%=h link_to user.username, user %></li>
   <% end %>
 </ul>
+<%=h link_to "Invite new members to the group", new_invitation_path(:group => @group) %>
 </p>
-<%= link_to "Create New Kite", new_kite_path %></td>
+
 <%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+
+
