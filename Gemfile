@@ -34,7 +34,7 @@ end
 # group :development, :test do
 #   gem 'webrat'
 # end
-group :test do
+group :production do
 	gem 'heroku'
 	gem 'pg'
 end
