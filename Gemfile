@@ -5,7 +5,7 @@ gem 'rails', '3.0.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
+
 gem 'devise', '1.2.rc'
 gem 'friendly_id', '3.2.1'
 
@@ -19,6 +19,7 @@ gem 'friendly_id', '3.2.1'
 # gem 'ruby-debug'
 group :development do
 	gem 'ruby-debug19'
+	gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 # Bundle the extra gems:
 # gem 'bj'
