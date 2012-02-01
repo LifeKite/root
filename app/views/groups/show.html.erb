@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @group.name %>
+</p>
+<p>
+  <b>Founder:</b>
+  <%= User.find(@group.founder_id).username %>
+</p>
+
+<p><b>Members:</b>
+<ul>
+  <% for user in @group.users %>
+    <li><%=h link_to user.username, user %></li>
+  <% end %>
+</ul>
+<%=h link_to "Invite new members to the group", new_invitation_path(:group => @group) %>
+</p>
+
+<% if @group.founder_id == current_user.id %>
+<%= link_to 'Change the Name', edit_group_path(@group) %> | <%= link_to "Delete the group", @group, :confirm => 'Are you sure?', :method => :delete %>
+<% end %>
+

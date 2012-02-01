@@ -1,0 +1,93 @@
+#menu ul {
+list-style-type: none;
+display: inline;
+height: 80px;
+width: 663px;
+margin: auto;
+}
+
+#menu li {
+display: block;
+float: right;
+margin: 6px;
+}
+
+ul.hmenu a {
+padding-right: 32px;
+padding-left: 32px;
+display: block;
+line-height: 80px;
+text-decoration: none;
+font-family: Georgia, "Times New Roman", Times, serif;
+font-size: 21px;
+color: #371C1C;
+}
+
+ul.hmenu a:hover {
+color: #FFF;
+}
+
+#thumbnail {
+	padding: 1em;
+	background: #ddd;
+	border: thin solid #333;
+}
+
+#footer
+{
+	float: clear;
+	background: #222;
+	text-align: right;
+	padding: 20px;
+	height: 1%;
+	-moz-border-radius: 15px;
+    border-radius: 15px;
+    color: white;
+}
+
+#footer ul li
+{
+	list-style: none;
+	display: inline;
+	float: right;
+}
+
+#footer li a {
+	display: block;
+	float: left;
+	padding: 5px 10px;
+	text-decoration: none;
+	color: white;
+}
+
+#container
+{
+	margin: 0 30px;
+	background: #fff;
+}
+
+#header
+{
+	float: clear;
+	background: #222;
+	padding: 20px;
+	color: white;
+    height: 75px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+#Logo
+{
+	float: left;
+	background: #222;
+	color: white;
+	width: 50%;
+}
+
+#menu
+{
+	align: right;
+	float: right;
+	width: 50%;
+}

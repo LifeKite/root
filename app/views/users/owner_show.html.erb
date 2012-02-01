@@ -1,0 +1,52 @@
+<h1><%= @user.username %></h1>
+<p><%= @user.email %></p>
+<br/>
+<% if @user.id == current_user.id %>
+<p><%= link_to 'Edit my account', edit_user_registration_path %></p>
+
+
+<p><h3>Invitiations</h3>
+<ul>
+	<% for invitation in @user.invitations %>
+		<li>
+			You have an invitation to join <%=h link_to invitation.group.name, invitation %>
+			<%= link_to 'Accept', accept_invitation_path(invitation) %>
+			<%= link_to 'Decline', invitation, :confirm => 'Are you sure?', :method => :delete %>
+		</li>
+	<% end %>
+</ul>
+</p>
+
+<p><h3>Groups</h3>
+<ul>
+
+  <% for group in @user.groups %>
+    <li>
+      <%=h link_to group.name, group %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "Start New Group", new_group_path %></td>
+</p>
+
+<% end %>
+
+<p><h3>Kites</h3>
+<ul>
+  <% for kite in @user.kites %>
+    <li>
+      <%=h image_tag(kite.ImageLocation, :id=>'thumbnail') %>
+      <%= link_to 'Show', kite %>
+      <% if @user.id == current_user.id %>
+      <%= link_to 'Edit', edit_kite_path(kite) %>
+      <% if !kite.Completed? %>
+      <%= link_to 'Complete', complete_kite_path(kite), :confirm => 'Are you sure?' %>
+      <% end %>
+      <%= link_to 'Destroy', kite, :confirm => 'Are you sure?', :method => :delete %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<% if @user.id == current_user.id %>
+<%= link_to "Create New Kite", new_kite_path %></td>
+<% end %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Created:</b>
+  <%= @kite.CreateDate %>
+</p>
+
+<% if @kite.Completed? %>
+<p>
+  <b>Completed:</b>
+  <%= @kite.Completed %>
+</p>
+
+<p>
+  <b>Completed On:</b>
+  <%= @kite.CompleteDate %>
+</p>
+<% end %>
+
+<p>
+  <%= image_tag(@kite.ImageLocation, :alt=>@kite.Description, :mouseover=>@kite.Description, :id=>'thumbnail') %>
+</p>
+
+<b>Comments</b>
+<ul>
+  <% for comment in @kite.comments %>
+    <li><%= comment.content %> - <%= comment.user.username %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Add Comment', new_comment_path(:kite => @kite) %>
+<% if @kite.user.id == current_user.id %>
+<%= link_to 'Edit', edit_kite_path(@kite) %> |
+<% end %>
+<%= link_to 'Back', @kite.user %>

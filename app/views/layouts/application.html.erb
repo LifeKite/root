@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rlifekite</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<div id="container">
+  <div id="header">
+  	<div id="Logo">
+  		<h1>LifeKite</h1><br/>Picture your goals
+  	</div>
+  	<div id="menu"
+	  <ul class="hmenu">
+	    <!--<li><%= render 'devise/menu/registration_items' %></li>-->
+	    <li><%= render 'devise/menu/login_items' %></li>
+	    <li><%= link_to 'Home', current_user %></li>
+	  </ul>
+	  <p style="color: green"><%= notice %></p>
+	  <p style="color: red"><%= alert %></p>
+	</div>
+	</div>
+  <div id="body">
+		<%= yield %>
+  </div>
+  <div id="footer">
+  	<ul>
+  		<li><%= link_to 'About', home_path('about') %></li>
+  		<li><%= link_to 'Advertise', home_path('contact') %></li>
+  		<li><%= link_to 'Help', home_path('help') %></li>
+  	<ul>
+  </div>
+</div>
+</body>
+</html>

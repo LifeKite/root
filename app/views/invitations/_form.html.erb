@@ -1,0 +1,29 @@
+<%= form_for(@invitation) do |f| %>
+  <% if @invitation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invitation.errors.count, "error") %> prohibited this invitation from being saved:</h2>
+
+      <ul>
+      <% @invitation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <span>Invite a friend to use LifeKite</span>
+  <div class="field">
+    
+    <%= f.text_field :email %>
+  </div>
+  <span>Or choose another LifeKite member</span>
+  <div class="field">
+    <%= f.select :user_id, User.all.map {|user| [ user.username, user.id ] }, :include_blank => true %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field "group_id", :value => params[:group] %>
+  <div class="actions">
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
