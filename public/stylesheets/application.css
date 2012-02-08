@@ -20,7 +20,7 @@ line-height: 80px;
 text-decoration: none;
 font-family: Georgia, "Times New Roman", Times, serif;
 font-size: 21px;
-color: #371C1C;
+color: white;
 }
 
 ul.hmenu a:hover {
@@ -35,7 +35,7 @@ color: #FFF;
 
 #footer
 {
-	float: clear;
+	clear: both;
 	background: #222;
 	text-align: right;
 	padding: 20px;
@@ -90,4 +90,46 @@ color: #FFF;
 	align: right;
 	float: right;
 	width: 50%;
+}
+#login
+{
+	float: right;
+}
+#summary
+{
+	float: left;
+}
+
+#summary ul li
+{
+	list-style: none;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 21px;
+	color: #371C1C;
+	line-height: 40px;
+}
+
+div.SectionGroup
+{
+	clear: both;
+	border: 1px solid black;
+	margin: 5px;
+}
+
+div.SectionGroup ul li
+{
+	list-style: none;
+	display: inline;
+}
+
+div.SectionGroup img 
+{
+max-width: 200px;
+max-height: 200px;
+}
+
+div.kite img
+{
+	max-width: 500px;
+	max-height: 500px;
 }

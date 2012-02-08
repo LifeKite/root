@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<div class="kite">
 <p>
   <b>Created:</b>
   <%= @kite.CreateDate %>
@@ -20,7 +21,7 @@
 <p>
   <%= image_tag(@kite.ImageLocation, :alt=>@kite.Description, :mouseover=>@kite.Description, :id=>'thumbnail') %>
 </p>
-
+</div>
 <b>Comments</b>
 <ul>
   <% for comment in @kite.comments %>

@@ -4,7 +4,7 @@
 <% if @user.id == current_user.id %>
 <p><%= link_to 'Edit my account', edit_user_registration_path %></p>
 
-
+<div class="SectionGroup">
 <p><h3>Invitiations</h3>
 <ul>
 	<% for invitation in @user.invitations %>
@@ -16,7 +16,9 @@
 	<% end %>
 </ul>
 </p>
+</div>
 
+<div class="SectionGroup">
 <p><h3>Groups</h3>
 <ul>
 
@@ -28,9 +30,10 @@
 </ul>
 <%= link_to "Start New Group", new_group_path %></td>
 </p>
-
+</div>
 <% end %>
 
+<div class="SectionGroup">
 <p><h3>Kites</h3>
 <ul>
   <% for kite in @user.kites %>
@@ -49,4 +52,5 @@
 </ul>
 <% if @user.id == current_user.id %>
 <%= link_to "Create New Kite", new_kite_path %></td>
+</div>
 <% end %>
