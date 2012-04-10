@@ -1,0 +1,36 @@
+<%= form_for(@kite, :html => {:multipart => true}) do |f| %>
+  <% if @kite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kite.errors.count, "error") %> prohibited this kite from being saved:</h2>
+
+      <ul>
+      <% @kite.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+ <div id="kiteCreateImage" class="SectionGroup">
+ <h3>Choose an image for your kite</h3>
+ <div class="field">
+  	<%= f.label "Local File" %><br />
+  	<%= f.file_field :Upload %>
+  </div>
+  <div class="field" style="display:none;">
+    <%= f.label :ImageLocation %><br />
+    <%= f.text_field :ImageLocation %>
+  </div>
+</div>
+<div id="kiteCreateDescription" class="SectionGroup">
+<h3>Provide an optional description for your kite</h3>
+  <div class="field">
+    <%= f.label :Description %><br />
+    <%= f.text_area :Description, :size => "60x5"%>
+  </div>
+</div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
