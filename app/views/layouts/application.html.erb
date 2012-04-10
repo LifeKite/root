@@ -15,9 +15,12 @@
   	</div>
   	<div id="menu"
 	  <ul class="hmenu">
-	    <!--<li><%= render 'devise/menu/registration_items' %></li>-->
-	    <li><%= render 'devise/menu/login_items' %></li>
+	  	<%if current_user %>
+	    <li><%= current_user.username %></li>
 	    <li><%= link_to 'Home', current_user %></li>
+	    <% end %>
+	    <li><%= render 'devise/menu/login_items' %></li>
+	    <li><%= link_to 'Edit my account', edit_user_registration_path %></li>
 	  </ul>
 	  <p style="color: green"><%= notice %></p>
 	  <p style="color: red"><%= alert %></p>

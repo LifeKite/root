@@ -111,9 +111,15 @@ color: #FFF;
 
 div.SectionGroup
 {
-	clear: both;
 	border: 1px solid black;
-	margin: 5px;
+	background: #CCCCCC;
+	-moz-border-radius: 15px;
+    border-radius: 15px;	
+}
+
+div.SectionGroup h3 
+{
+	text-align: center;
 }
 
 div.SectionGroup ul li
@@ -124,12 +130,174 @@ div.SectionGroup ul li
 
 div.SectionGroup img 
 {
-max-width: 200px;
-max-height: 200px;
+	max-width: 200px;
+	max-height: 200px;
 }
 
 div.kite img
 {
 	max-width: 500px;
 	max-height: 500px;
+}
+
+#kites {
+	float: right;
+	width: 48%;
+	margin-left: 3%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+	min-width:481px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#Groups, #invitations {
+	float: left;
+	clear: left;
+	width: 100%;
+	margin-left: 3%;
+	margin-top: 10px;
+	margin-bottom: 10px;	
+}
+
+#kitesContainer {
+	margin-left:auto;
+	margin-right:auto;
+	min-width: 400px;
+}
+
+#kitesContainer li span {
+	display: none;
+}
+
+#showcase {
+	background: #C0C0C0;
+	margin-left: auto;
+	margin-right: auto;
+	min-width: 450px;
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#showcase li {
+	list-style: none;
+}
+
+#showcase li span {
+	display: block;
+}
+/*\*//*/
+#showcase {
+	display: block;
+}
+#showcase span {
+	display: inline-block;
+	height: 100%;
+	width:1px;
+}
+/**/
+
+#showcase img {
+	max-height: 450px;
+	max-width: 450px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+#kitesInner {
+	float:left;
+	width:635px;
+	height:185px;
+	overflow: hidden;
+}
+#kiteContainerUl {
+	position:relative;
+	left:-220px;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	width: 9999px;
+}
+
+#kiteContainerUl li{
+	float:left;
+	width:200px;
+	padding:0px;
+	margin-top:10px;
+	margin-bottom:10px;
+	margin-left:5px;
+	margin-right:5px;
+}
+#kiteContainerUl li img {
+	.margin-bottom: -4px;
+	cursor: pointer;
+	cursor: hand;
+	border: 0px;
+}
+#left_scroll, #right_scroll{
+	float:left;
+	height:175px;
+	width:30px;
+	background: #C0C0C0;
+	cursor: pointer;
+	cursor: hand;
+	margin-top:10px;
+}
+#left_scroll {
+	background-image:url('/images/scrollLeft.png');
+}
+
+#right_scroll {
+	background-image:url('/images/scrollRight.png');
+}
+
+#kiteCreateImage {
+	width: 100%;
+}
+
+#kiteCreateDescription input {
+  width:300px;
+  height: 100px;
+}
+
+#content-container
+{
+	float: left;
+	width: 100%;
+	color: #000;
+	background: #eee;
+}
+
+#content-container2
+{
+	margin: 0 auto;
+	width: 900px;
+}
+
+#content-container3
+{
+	float: left;
+	width: 900px;
+	background: #FFF;
+}
+
+#bContent
+{
+	clear: left;
+	float: left;
+	width: 240px;
+	padding: 20px 0;
+	margin: 0 0 0 30px;
+	display: inline;
+}
+
+#kContent
+{
+	float: right;
+	width: 560px;
+	padding: 20px 0;
+	margin: 0 20px 0 0;
+	display: inline;
 }

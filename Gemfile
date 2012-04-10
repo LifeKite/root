@@ -8,6 +8,7 @@ gem 'rails', '3.0.3'
 
 gem 'devise', '1.2.rc'
 gem 'friendly_id', '3.2.1'
+gem 'jquery-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'

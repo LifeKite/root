@@ -1,5 +1,5 @@
-<h1>New kite for user <%= current_user.username %></h1>
+<h1>Create a new Kite</h1>
 
-<%= render 'form' %>
+<%= render 'formNew' %>
 
-<%= link_to 'Back', kites_path %>
+<%= link_to 'Back', @kite.user %>

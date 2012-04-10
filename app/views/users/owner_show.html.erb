@@ -1,56 +1,73 @@
-<h1><%= @user.username %></h1>
-<p><%= @user.email %></p>
-<br/>
-<% if @user.id == current_user.id %>
-<p><%= link_to 'Edit my account', edit_user_registration_path %></p>
-
-<div class="SectionGroup">
-<p><h3>Invitiations</h3>
-<ul>
-	<% for invitation in @user.invitations %>
-		<li>
-			You have an invitation to join <%=h link_to invitation.group.name, invitation %>
-			<%= link_to 'Accept', accept_invitation_path(invitation) %>
-			<%= link_to 'Decline', invitation, :confirm => 'Are you sure?', :method => :delete %>
-		</li>
-	<% end %>
-</ul>
-</p>
+<div id="content-container">
+	<% if @user.id == current_user.id %>
+		<p style="text-justify: inter-word;">
+			<%= link_to "Create a New Kite", new_kite_path %>
+			<%= link_to "Start New Group", new_group_path %>
+		</p>
+	<% end %>	
+    <div id="content-container2">
+        <div id="content-container3">
+            <div id="bContent">
+				<% if @user.id == current_user.id %>
+				
+				<% if @user.invitations.count > 0 %>
+				<div id='invitations' class="SectionGroup">
+				<h3>Invitiations</h3>
+				<ul>
+					<% for invitation in @user.invitations %>
+						<li>
+							You have an invitation to join <%=h link_to invitation.group.name, invitation %>
+							<%= link_to 'Accept', accept_invitation_path(invitation) %>
+							<%= link_to 'Decline', invitation, :confirm => 'Are you sure?', :method => :delete %>
+						</li>
+					<% end %>
+				</ul>
+				</div>
+				<% end %>
+				<div id='Groups' class="SectionGroup">
+					<h3>Groups</h3>
+					<ul>
+				  		<% for group in @user.groups %>
+				    	<li>
+				      	<%=h link_to group.name, group %>
+				    	</li>
+				  		<% end %>
+					</ul>
+					
+				</div>
+				<% else %>
+					<h3><%= @user.username %>'s kites</h3>
+				<% end %>
+			</div>
+			<div id="kContent">
+				<div id="kites" class="SectionGroup">
+					<h3>Kites</h3>
+					<div id='kitesContainer'>
+					<div id='showcase'></div>
+					<div id='left_scroll'></div>
+					<div id='kitesInner'>
+						<ul id='kiteContainerUl'>
+				  			<% for kite in @user.kites %>
+				    		<li>
+					      		<%=h image_tag(kite.ImageLocation, :id=>'thumbnail') %>
+					      		<span>
+					      		<%= link_to 'Show', kite %>
+					      		<% if @user.id == current_user.id %>
+					      			<%= link_to 'Edit', edit_kite_path(kite) %>
+						      		<% if !kite.Completed? %>
+						      			<%= link_to 'Complete', complete_kite_path(kite), :confirm => 'Are you sure?' %>
+						      		<% end %>
+					      			<%= link_to 'Destroy', kite, :confirm => 'Are you sure?', :method => :delete %>
+					      		<% end %>
+					      		</span>
+				    		</li>
+				  			<% end %>
+						</ul>
+					</div>
+					<div id='right_scroll'></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
 </div>
-
-<div class="SectionGroup">
-<p><h3>Groups</h3>
-<ul>
-
-  <% for group in @user.groups %>
-    <li>
-      <%=h link_to group.name, group %>
-    </li>
-  <% end %>
-</ul>
-<%= link_to "Start New Group", new_group_path %></td>
-</p>
-</div>
-<% end %>
-
-<div class="SectionGroup">
-<p><h3>Kites</h3>
-<ul>
-  <% for kite in @user.kites %>
-    <li>
-      <%=h image_tag(kite.ImageLocation, :id=>'thumbnail') %>
-      <%= link_to 'Show', kite %>
-      <% if @user.id == current_user.id %>
-      <%= link_to 'Edit', edit_kite_path(kite) %>
-      <% if !kite.Completed? %>
-      <%= link_to 'Complete', complete_kite_path(kite), :confirm => 'Are you sure?' %>
-      <% end %>
-      <%= link_to 'Destroy', kite, :confirm => 'Are you sure?', :method => :delete %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
-<% if @user.id == current_user.id %>
-<%= link_to "Create New Kite", new_kite_path %></td>
-</div>
-<% end %>
