@@ -1,18 +1,31 @@
 class Kite < ActiveRecord::Base
   belongs_to :user
   has_many :comments
-  
+  require 'aws/s3'
+    
   @@writeDirectory = "public/uploaded_images"
   @@referenceDirectory = "/uploaded_images/"
   
+  @@access_key_id = ENV['AMAZON_ACCESS_KEY_ID']
+  @@secret_access_key = ENV['AMAZON_SECRET_ACCESS_KEY']
+  
   def upload(uploaded_file)
+    
+    AWS::S3::Base.establish_connection!(
+          :access_key_id => @@access_key_id,
+          :secret_access_key => @@secret_access_key
+        )
     name = uploaded_file.original_filename
     just_filename = Digest::SHA1.hexdigest(Time.now.to_s)
     
-    path = File.join(@@writeDirectory, just_filename)
-    File.open(path, "wb") { |f| f.write(uploaded_file.read) }
+    bucket = "LifeKite"
     
-    return @@referenceDirectory.concat(just_filename)
+    AWS::S3::S3Object.store(just_filename, 
+                            uploaded_file, 
+                            bucket, 
+                            :access => :public_read)
+    
+    return AWS::S3::S3Object.url_for(just_filename, bucket)[/[^?]+/]                            
   end
   
   def complete
@@ -22,11 +35,14 @@ class Kite < ActiveRecord::Base
   end
   
   def cleanup
-    cleanName = self.ImageLocation
-    fixedWriteDir = @@writeDirectory.concat("/")
-    cleanName.sub!(@@referenceDirectory, fixedWriteDir)
-    if File.exists?(cleanName)
-      File.delete(cleanName)
+    AWS::S3::Base.establish_connection!(
+              :access_key_id => @@access_key_id,
+              :secret_access_key => @@secret_access_key
+            )
+    cleanName = File.basename(self.ImageLocation)
+    
+    if AWS::S3::S3Object.exists? cleanName, 'LifeKite'
+      AWS::S3::S3Object.delete cleanName, 'LifeKite'
     end
   end
   
