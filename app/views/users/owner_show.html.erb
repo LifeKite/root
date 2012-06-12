@@ -1,14 +1,17 @@
-<div id="content-container">
-	<% if @user.id == current_user.id %>
-		<p style="text-justify: inter-word;">
-			<%= link_to "Create a New Kite", new_kite_path %>
-			<%= link_to "Start New Group", new_group_path %>
-		</p>
-	<% end %>	
-    <div id="content-container2">
-        <div id="content-container3">
-            <div id="bContent">
-				<% if @user.id == current_user.id %>
+<div id="content-container" class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<% if @user.id == current_user.id %>
+				<p style="text-justify: inter-word;">
+					<%= link_to "Create a New Kite", new_kite_path %>
+					<%= link_to "Start New Group", new_group_path %>
+				</p>
+			<% end %>	
+		</div>
+	</div>
+	<div class="row-fluid" id='showcase'>
+		<div class="span2">
+			<% if @user.id == current_user.id %>
 				
 				<% if @user.invitations.count > 0 %>
 				<div id='invitations' class="SectionGroup">
@@ -38,36 +41,26 @@
 				<% else %>
 					<h3><%= @user.username %>'s kites</h3>
 				<% end %>
+		</div>
+		<div class="span8">
+			<div ></div>
+		</div>
+		<div class="span2" style="margin-top: 20px;">
+			<ul id='kitesContainer' class='jcarousel jcarousel-skin-ie7' >
+				<% for kite in @user.kites %>
+		    		<li>
+		    			<%=h image_tag(kite.ImageLocation, :id=>'thumbnail', :name=>kite.id, :alt=>kite.Description, :size=>'50') %>
+		    		</li>   		
+				<% end %>
+			</ul>	
+		</div>
+		<div class="row-fluid">
+			<div class="span2">
 			</div>
-			<div id="kContent">
-				<div id="kites" class="SectionGroup">
-					<h3>Kites</h3>
-					<div id='kitesContainer'>
-					<div id='showcase'></div>
-					<div id='left_scroll'></div>
-					<div id='kitesInner'>
-						<ul id='kiteContainerUl'>
-				  			<% for kite in @user.kites %>
-				    		<li>
-					      		<%=h image_tag(kite.ImageLocation, :id=>'thumbnail') %>
-					      		<span>
-					      		<%= link_to 'Show', kite %>
-					      		<% if @user.id == current_user.id %>
-					      			<%= link_to 'Edit', edit_kite_path(kite) %>
-						      		<% if !kite.Completed? %>
-						      			<%= link_to 'Complete', complete_kite_path(kite), :confirm => 'Are you sure?' %>
-						      		<% end %>
-					      			<%= link_to 'Destroy', kite, :confirm => 'Are you sure?', :method => :delete %>
-					      		<% end %>
-					      		</span>
-				    		</li>
-				  			<% end %>
-						</ul>
-					</div>
-					<div id='right_scroll'></div>
-				</div>
+			<div class="span8" id="moreinfo">
+				<span id="kiteDesc"></span>
+				<%= link_to 'more...', kites_path %>
 			</div>
-			
 		</div>
 	</div>
 </div>

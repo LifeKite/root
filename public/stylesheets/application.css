@@ -27,11 +27,7 @@ ul.hmenu a:hover {
 color: #FFF;
 }
 
-#thumbnail {
-	padding: 1em;
-	background: #ddd;
-	border: thin solid #333;
-}
+
 
 #footer
 {
@@ -161,24 +157,18 @@ div.kite img
 	margin-bottom: 10px;	
 }
 
-#kitesContainer {
-	margin-left:auto;
-	margin-right:auto;
-	min-width: 400px;
-}
 
-#kitesContainer li span {
-	display: none;
-}
 
 #showcase {
 	background: #C0C0C0;
 	margin-left: auto;
 	margin-right: auto;
-	min-width: 450px;
 	display: block;
 	text-align: center;
 	vertical-align: middle;
+	
+	background-repeat:no-repeat; 
+	background-position: center;
 }
 
 #showcase li {
@@ -200,29 +190,24 @@ div.kite img
 /**/
 
 #showcase img {
-	max-height: 450px;
-	max-width: 450px;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
 }
 #kitesInner {
 	float:left;
-	width:635px;
-	height:185px;
 	overflow: hidden;
 }
 #kiteContainerUl {
 	position:relative;
-	left:-220px;
 	list-style-type: none;
 	margin: 0px;
 	padding: 0px;
-	width: 9999px;
+	height: 9999px;
+	overflow: hidden;
 }
 
 #kiteContainerUl li{
-	float:left;
 	width:200px;
 	padding:0px;
 	margin-top:10px;
@@ -273,13 +258,13 @@ div.kite img
 #content-container2
 {
 	margin: 0 auto;
-	width: 900px;
+	height: 900px;
 }
 
 #content-container3
 {
 	float: left;
-	width: 900px;
+	height: 900px;
 	background: #FFF;
 }
 
@@ -287,7 +272,7 @@ div.kite img
 {
 	clear: left;
 	float: left;
-	width: 240px;
+	height: 200px;
 	padding: 20px 0;
 	margin: 0 0 0 30px;
 	display: inline;
@@ -296,8 +281,16 @@ div.kite img
 #kContent
 {
 	float: right;
-	width: 560px;
+	height: 560px;
 	padding: 20px 0;
 	margin: 0 20px 0 0;
 	display: inline;
+}
+
+#moreinfo
+{
+	-moz-border-radius: 15px;
+    border-radius: 15px;
+    background-color: white; 
+    align: left;
 }
