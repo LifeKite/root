@@ -45,6 +45,10 @@ Rlifekite::Application.routes.draw do
   
   match "/kites/:id/complete" => "kites#complete"
   match "/invitations/:id/accept" => "invitations#accept"
+  
+  devise_scope :user do
+    get "/login" => "devise/sessions#new"
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

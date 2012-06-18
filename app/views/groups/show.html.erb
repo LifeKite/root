@@ -1,20 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @group.name %>
-</p>
-<p>
-  <b>Founder:</b>
-  <%= User.find(@group.founder_id).username %>
-</p>
-
-<p><b>Members:</b>
-<ul>
-  <% for user in @group.users %>
-    <li><%=h link_to user.username, user %></li>
-  <% end %>
-</ul>
+<div class="row span12" style="margin-top: 20px;">
+	<div class="span4">
+	  <h2 style="margin-top: 0px;"><%= @group.name %></h2>
+	</div>
+	<div class="span3 offset4">
+	  <b>Founder:</b>
+	  <%= User.find(@group.founder_id).username %>
+	</div>
+</div>
+<div class="row">
+	<div class="span12 well groupList">
+	<p><b>Members:</b>
+	<ul id="double">
+	  <% for user in @group.users %>
+	    <li><%=h link_to user.username, user %></li>
+	  <% end %>
+	</ul>
+	</div>
+</div>
 <%=h link_to "Invite new members to the group", new_invitation_path(:group => @group) %>
 </p>
 

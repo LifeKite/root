@@ -42,12 +42,28 @@ class InvitationsController < ApplicationController
   def create
     @invitation = Invitation.new(params[:invitation])
 
+    @invitation.initiated = Date.today
+    error = false
+    
+    # If this is a new user, also create an account invitation for them
+    if @invitation.email
+      #check that this user doesn't already exist
+
+      if(User.find_by_email(@invitation.email))
+       error = true
+      else
+        User.invite!(:email => @invitation.email, :username => rand(36**8).to_s(36))
+      end
+     
+    end
     # @invitation.user = User.find(:first, :conditions => [ "username = ?", params[:user]])
     # @invitation.group = params[:group]
-    @invitation.initiated = Date.today
+    
     
     respond_to do |format|
-      if @invitation.save
+      if error == true
+        format.html { redirect_to(@invitation.group, :notice => 'The specified email is already in use.  Please specify the user by their username to invite them to your group.') }
+      elsif @invitation.save
         format.html { redirect_to(@invitation, :notice => 'Invitation was successfully created.') }
         format.xml  { render :xml => @invitation, :status => :created, :location => @invitation }
       else
@@ -101,7 +117,7 @@ class InvitationsController < ApplicationController
     @invitation.destroy
 
     respond_to do |format|
-      format.html { redirect_to(invitations_url) }
+      format.html { redirect_to(current_user) }
       format.xml  { head :ok }
     end
   end

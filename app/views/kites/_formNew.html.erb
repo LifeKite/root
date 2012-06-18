@@ -11,26 +11,14 @@
     </div>
   <% end %>
  
- <div id="kiteCreateImage" class="SectionGroup">
- <h3>Choose an image for your kite</h3>
- <div class="field">
-  	<%= f.label "Local File" %><br />
-  	<%= f.file_field :Upload %>
-  </div>
-  <div class="field" style="display:none;">
-    <%= f.label :ImageLocation %><br />
-    <%= f.text_field :ImageLocation %>
-  </div>
-</div>
-<div id="kiteCreateDescription" class="SectionGroup">
-<h3>Provide an optional description for your kite</h3>
-  <div class="field">
-    <%= f.label :Description %><br />
-    <%= f.text_area :Description, :size => "60x5"%>
-  </div>
+<div class="well form-vertical">
+<p>Choose an image for your kite.</p>
+  	<%= f.label "Kite Image", :class => "control-label" %><br />
+  	<%= f.file_field :Upload, :class=>"input-file" %>
+<p>Write something to describe your kite.  Just a quick description of what you want to accomplish</p>
+    <%= f.label :Description, :class => "control-label" %><br />
+    <%= f.text_area :Description, :size => "600x5", :style=> "width: 100%;"%>
 </div>
   
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit "Create kite", {:class => "btn"} %>
 <% end %>

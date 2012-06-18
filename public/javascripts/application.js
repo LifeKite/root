@@ -23,6 +23,14 @@ $(document).ready(function(){
 		setCenterStage(this);	
 	});
 	
+	if($('.alert-success').text().length > 0) {
+		$('.alert-success').show();
+	}
+	
+	if($('.alert-error').text().length > 0) {
+		$('.alert-error').show();
+	}
+	
 	//Automatically select the first
 	setCenterStage($('#kitesContainer li:first img'));
 

@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
     
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
   :authentication_keys => [:username]
 
@@ -15,13 +15,22 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
   
   
-  validates_presence_of :username
+  validates_presence_of :email
   validates_uniqueness_of :username, :case_sensitive=>false
+  validates_uniqueness_of :email, :case_sensitive=>true
   has_friendly_id :username, :use_slug=>true, :strip_non_ascii=>true
   
   def self.find_for_database_authentication(warden_conditions)
      conditions = warden_conditions.dup
      login = conditions.delete(:username)
      where(conditions).where(["lower(username) = :value", { :value => login.strip.downcase }]).first
+   end
+   
+   def validate_reserved
+      slug_text
+      rescue FriendlyId::BlankError
+      rescue FriendlyId::ReservedError
+        @errors[friendly_id_config.method] = "is reserved.  Please choose something else."
+        return false; 
    end
 end
