@@ -1,14 +1,14 @@
 require 'test_helper'
 
-class InvitationsControllerTest < ActionController::TestCase
+class InvitesControllerTest < ActionController::TestCase
   setup do
-    @invitation = invitations(:one)
+    @Invite = Invites(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:invitations)
+    assert_not_nil assigns(:Invites)
   end
 
   test "should get new" do
@@ -16,34 +16,34 @@ class InvitationsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create invitation" do
-    assert_difference('Invitation.count') do
-      post :create, :invitation => @invitation.attributes
+  test "should create Invite" do
+    assert_difference('Invite.count') do
+      post :create, :Invite => @Invite.attributes
     end
 
-    assert_redirected_to invitation_path(assigns(:invitation))
+    assert_redirected_to Invite_path(assigns(:Invite))
   end
 
-  test "should show invitation" do
-    get :show, :id => @invitation.to_param
+  test "should show Invite" do
+    get :show, :id => @Invite.to_param
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, :id => @invitation.to_param
+    get :edit, :id => @Invite.to_param
     assert_response :success
   end
 
-  test "should update invitation" do
-    put :update, :id => @invitation.to_param, :invitation => @invitation.attributes
-    assert_redirected_to invitation_path(assigns(:invitation))
+  test "should update Invite" do
+    put :update, :id => @Invite.to_param, :Invite => @Invite.attributes
+    assert_redirected_to Invite_path(assigns(:Invite))
   end
 
-  test "should destroy invitation" do
-    assert_difference('Invitation.count', -1) do
-      delete :destroy, :id => @invitation.to_param
+  test "should destroy Invite" do
+    assert_difference('Invite.count', -1) do
+      delete :destroy, :id => @Invite.to_param
     end
 
-    assert_redirected_to invitations_path
+    assert_redirected_to Invites_path
   end
 end

@@ -60,10 +60,10 @@ class KitesController < ApplicationController
     @kite.CreateDate = Date.today
     @kite.user = current_user
     @kite.Completed = false
-    
+
     respond_to do |format|
-      if @kite.save(params[:ImageLocation])
-        format.html { redirect_to(@kite, :notice => "Kite was created successfully") }
+      if @kite.save()
+        format.html { redirect_to(current_user, :notice => "Kite was created successfully") }
         format.xml  { render :xml => @kite, :status => :created, :location => @kite }
       else
         format.html { render :action => "new" }

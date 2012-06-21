@@ -13,15 +13,15 @@
 		<div class="span2">
 			<% if @user.id == current_user.id %>
 				
-				<% if @user.invitations.count > 0 %>
-				<div id='invitations' class="SectionGroup">
+				<% if @user.Invites.count > 0 %>
+				<div id='Invites' class="SectionGroup">
 				<h3>Invitiations</h3>
 				<ul>
-					<% for invitation in @user.invitations %>
+					<% for invite in @user.Invites %>
 						<li>
-							You have an invitation to join <%=h link_to invitation.group.name, invitation %>
-							<%= link_to 'Accept', accept_invitation_path(invitation) %>
-							<%= link_to 'Decline', invitation, :confirm => 'Are you sure?', :method => :delete %>
+							You have an Invite to join <%=h link_to invite.group.name, Invite %>
+							<%= link_to 'Accept', accept_Invite_path(invite) %>
+							<%= link_to 'Decline', invite, :confirm => 'Are you sure?', :method => :delete %>
 						</li>
 					<% end %>
 				</ul>

@@ -1,6 +1,6 @@
-class CreateInvitations < ActiveRecord::Migration
+class CreateInvites < ActiveRecord::Migration
   def self.up
-    create_table :invitations do |t|
+    create_table :invites do |t|
       t.string :email
       t.integer :user_id
       t.integer :group_id
@@ -10,6 +10,6 @@ class CreateInvitations < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :invitations
+    drop_table :invites
   end
 end

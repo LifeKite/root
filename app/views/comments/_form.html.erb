@@ -16,7 +16,6 @@
     <%= f.text_area :content %>
   </div>
   <div class="field">
-  	<%= f.label Kite.find(params[:kite]).Description %><br />
   	<%= f.hidden_field "kite_id", :value => Kite.find(params[:kite]).id %>
   </div>
   <div class="actions">

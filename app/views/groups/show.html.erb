@@ -19,7 +19,7 @@
 	</ul>
 	</div>
 </div>
-<%=h link_to "Invite new members to the group", new_invitation_path(:group => @group) %>
+<%=h link_to "Invite new members to the group", new_invite_path(:group => @group) %>
 </p>
 
 <% if @group.founder_id == current_user.id %>

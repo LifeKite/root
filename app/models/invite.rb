@@ -1,4 +1,4 @@
-class Invitation < ActiveRecord::Base
+class Invite < ActiveRecord::Base
   belongs_to :group
   has_one :user
   

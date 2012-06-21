@@ -1,5 +1,5 @@
 Rlifekite::Application.routes.draw do
-  resources :invitations
+  resources :invites
 
   resources :assignments
 
@@ -37,14 +37,14 @@ Rlifekite::Application.routes.draw do
     end
   end
   
-  resources :invitations do
+  resources :invites do
     member do
       put 'accept'
     end
   end
   
   match "/kites/:id/complete" => "kites#complete"
-  match "/invitations/:id/accept" => "invitations#accept"
+  match "/invites/:id/accept" => "invites#accept"
   
   devise_scope :user do
     get "/login" => "devise/sessions#new"
