@@ -40,11 +40,11 @@ class InvitesController < ApplicationController
   # POST /Invites
   # POST /Invites.xml
   def create
-    @Invite = Invite.new(params[:Invite])
-
+    @Invite = Invite.new(params[:invite])
+    # @Invite.group = params[:group]
     @Invite.initiated = Date.today
     error = false
-    
+    debugger
     # If this is a new user, also create an account Invite for them
     if @Invite.email
       #check that this user doesn't already exist
@@ -57,14 +57,14 @@ class InvitesController < ApplicationController
      
     end
     # @Invite.user = User.find(:first, :conditions => [ "username = ?", params[:user]])
-    # @Invite.group = params[:group]
+    
     
     
     respond_to do |format|
       if error == true
         format.html { redirect_to(@Invite.group, :notice => 'The specified email is already in use.  Please specify the user by their username to invite them to your group.') }
       elsif @Invite.save
-        format.html { redirect_to(@Invite, :notice => 'Invite was successfully created.') }
+        format.html { redirect_to(@Invite.group, :notice => 'Invite was successfully created.') }
         format.xml  { render :xml => @Invite, :status => :created, :location => @Invite }
       else
         format.html { render :action => "new" }
