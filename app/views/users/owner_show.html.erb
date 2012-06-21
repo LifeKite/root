@@ -13,11 +13,11 @@
 		<div class="span2">
 			<% if @user.id == current_user.id %>
 				
-				<% if @user.invites.count > 0 %>
+				<% if @user.Invites.count > 0 %>
 				<div id='Invites' class="SectionGroup">
 				<h3>Invitiations</h3>
 				<ul>
-					<% for invite in @user.invites %>
+					<% for invite in @user.Invites %>
 						<li>
 							You have an Invite to join <%=h link_to invite.group.name, Invite %>
 							<%= link_to 'Accept', accept_invite_path(invite) %>
