@@ -93,12 +93,12 @@ class InvitesController < ApplicationController
   # PUT /Invites/1.xml
   def accept
     @Invite = Invite.find(params[:id])
-    
+    debugger
     #add the user to the group specified in the Invite, then delete
     # the Invite
     respond_to do |format|
     if @Invite.accept()
-      format.html { redirect_to(@Invite.Group, :notice => 'Welcome to the group!')}
+      format.html { redirect_to(@Invite.group, :notice => 'Welcome to the group!')}
       format.xml { head :ok }
       @Invite.destroy
     else
