@@ -44,21 +44,20 @@ class InvitesController < ApplicationController
     # @Invite.group = params[:group]
     @Invite.initiated = Date.today
     error = false
-    debugger
+    
     # If this is a new user, also create an account Invite for them
     if @Invite.email
       #check that this user doesn't already exist
-
+      username = nil
       if(User.find_by_email(@Invite.email))
        error = true
       else
-        User.invite!(:email => @Invite.email, :username => rand(36**8).to_s(36))
+        username = rand(36**8).to_s(36)
+        User.invite!(:email => @Invite.email, :username => username)
       end
-     
+      debugger
+      @Invite.user_id = User.find_by_username(username).id
     end
-    # @Invite.user = User.find(:first, :conditions => [ "username = ?", params[:user]])
-    
-    
     
     respond_to do |format|
       if error == true
