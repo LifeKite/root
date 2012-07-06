@@ -3,8 +3,8 @@
 		<div class="span12">
 			<% if @user.id == current_user.id %>
 				<p style="text-justify: inter-word;">
-					<%= link_to "Create a New Kite", new_kite_path %>
-					<%= link_to "Start New Group", new_group_path %>
+					<%= link_to "Create a New Kite", new_kite_path, { :class => "btn" } %>
+					<%= link_to "Start New Group", new_group_path, { :class => "btn" } %>
 				</p>
 			<% end %>	
 		</div>
@@ -27,6 +27,22 @@
 				</ul>
 				</div>
 				<% end %>
+				
+				<% if @user.Notifications.count > 0 %>
+					<div id='Notifications' class='SectionGroup'>
+						<h3>Notifications</h3>
+						<ul>
+							<% for notification in @user.Notifications %>
+								<li>
+									<%=h notification.message %>
+									<%= link_to 'View', notification.link %>
+									<%= link_to 'Dismiss', notification, :method => :delete %>
+								</li>
+							<% end %>
+						</ul>
+					</div>
+				<% end %>
+				
 				<div id='Groups' class="SectionGroup">
 					<h3>Groups</h3>
 					<ul>
@@ -47,10 +63,18 @@
 		</div>
 		<div class="span2" style="margin-top: 0px; margin-bottom: -30px;">
 			<ul id='kitesContainer' class='jcarousel jcarousel-skin-ie7' >
-				<% for kite in @user.kites %>
-		    		<li>
-		    			<%=h image_tag(kite.ImageLocation, :id=>'thumbnail', :name=>kite.id, :alt=>kite.Description, :size=>'50') %>
-		    		</li>   		
+				<% if @user.id == current_user.id %>
+					<% for kite in @user.kites %>
+			    		<li>
+			    			<%=h image_tag(kite.ImageLocation, :id=>'thumbnail', :name=>kite.id, :alt=>kite.Description, :size=>'50', :title=>kite.sharelevel) %>
+			    		</li>   		
+					<% end %>
+				<% else %>
+					<% @user.kites.find_each(:sharelevel => "public") do |kite| %>
+			    		<li>
+			    			<%=h image_tag(kite.ImageLocation, :id=>'thumbnail', :name=>kite.id, :alt=>kite.Description, :size=>'50', :title=>kite.sharelevel) %>
+			    		</li>   		
+					<% end %>
 				<% end %>
 			</ul>	
 		</div>
@@ -58,8 +82,9 @@
 			<div class="span2">
 			</div>
 			<div class="span8" id="moreinfo">
+				<span id="kiteState" style="float: left; margin-left: 10px;"></span>
 				<span id="kiteDesc"></span>
-				<%= link_to 'more...', kites_path %>
+				<%= link_to ' more...', kites_path %>
 			</div>
 		</div>
 	</div>

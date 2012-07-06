@@ -34,6 +34,16 @@ class Kite < ActiveRecord::Base
     self.save!
   end
   
+  def promote
+    update_attribute(:sharelevel, "public")
+    self.save!
+  end
+  
+  def demote
+    update_attribute(:sharelevel, "private")
+    self.save!
+  end
+  
   def cleanup
     AWS::S3::Base.establish_connection!(
               :access_key_id => @@access_key_id,

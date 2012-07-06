@@ -15,6 +15,14 @@ $(document).ready(function(){
 		$('#moreinfo a').attr('href', y);
 		
 		$('#kiteDesc').text($(image).attr('alt'));
+		
+		var sharelevel = $(image).attr('title');
+		$('#kiteState').text(sharelevel);
+		if(sharelevel == "public") {
+			$('#kiteState').css('color', 'green');
+		} else {
+			$('#kiteState').css('color', 'gray');
+		}
 	}
 	
 	$('#kitesContainer').jcarousel({vertical:true, scroll: 1, wrap: "circular"});

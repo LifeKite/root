@@ -8,6 +8,8 @@ Rlifekite::Application.routes.draw do
   resources :groups
   
   resources :home
+  
+  resources :notification
 
   get "friend/create"
 
@@ -34,6 +36,8 @@ Rlifekite::Application.routes.draw do
   resources :kites do
     member do
       put 'complete'
+      put 'promote'
+      put 'demote'
     end
   end
   
@@ -43,8 +47,17 @@ Rlifekite::Application.routes.draw do
     end
   end
   
+  resources :notification do
+    member do
+      put 'markViewed'
+    end
+  end
+  
   match "/kites/:id/complete" => "kites#complete"
+  match "/kites/:id/promote" => "kites#promote"
+  match "/kites/:id/demote" => "kites#demote"
   match "/invites/:id/accept" => "invites#accept"
+  match "/notifications/:id/markViewed" => "notification#markViewed"
   
   devise_scope :user do
     get "/login" => "devise/sessions#new"

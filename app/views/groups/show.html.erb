@@ -19,10 +19,11 @@
 	</ul>
 	</div>
 </div>
-<%=h link_to "Invite new members to the group", new_invite_path(:group => @group) %>
-</p>
+<%=h link_to "Invite new members to the group", new_invite_path(:group => @group), :class => "btn" %>
+
 
 <% if @group.founder_id == current_user.id %>
-<%= link_to 'Change the Name', edit_group_path(@group) %> | <%= link_to "Delete the group", @group, :confirm => 'Are you sure?', :method => :delete %>
+<%= link_to 'Change the Name', edit_group_path(@group), :class => "btn" %> 
+<%= link_to "Delete the group", @group, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
 <% end %>
-
+</p>

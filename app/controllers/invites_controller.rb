@@ -92,7 +92,7 @@ class InvitesController < ApplicationController
   # PUT /Invites/1.xml
   def accept
     @Invite = Invite.find(params[:id])
-    debugger
+
     #add the user to the group specified in the Invite, then delete
     # the Invite
     respond_to do |format|

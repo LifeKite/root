@@ -60,6 +60,7 @@ class KitesController < ApplicationController
     @kite.CreateDate = Date.today
     @kite.user = current_user
     @kite.Completed = false
+    @kite.sharelevel = "private"
 
     respond_to do |format|
       if @kite.save()
@@ -92,6 +93,26 @@ class KitesController < ApplicationController
 
     @kite = Kite.find(params[:id])
     @kite.complete
+    
+    respond_to do |format|
+      format.html { redirect_to(current_user) }
+      format.xml  { head :ok }
+    end
+  end
+  
+  def promote
+    @kite = Kite.find(params[:id])
+    @kite.promote
+    
+    respond_to do |format|
+      format.html { redirect_to(current_user) }
+      format.xml  { head :ok }
+    end
+  end
+  
+  def demote
+    @kite = Kite.find(params[:id])
+    @kite.demote
     
     respond_to do |format|
       format.html { redirect_to(current_user) }

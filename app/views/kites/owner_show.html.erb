@@ -6,9 +6,12 @@
 	<div class="span6">
 		<div class="row">
 		<div class="span12 well">
-			<p>
-				<b>Created:</b>
+				<p>
+				  <b>Created:</b>
 				  <%= @kite.CreateDate %>
+				  <p>
+				  <%=h @kite.Description %>
+				  </p>
 				</p>
 				
 				<% if @kite.Completed? %>
@@ -34,15 +37,22 @@
 				  <% end %>
 				</ul>
 				
-				<%= link_to 'Add Comment', new_comment_path(:kite => @kite) %>
+				<%= link_to new_comment_path(:kite => @kite), :class => "btn" do %>
+					<span><i class="icon-comment"></i>Add Comment</span>
+				<% end %>
   			</div>
   		</div>
   	</div>
   </div>
 
-
+<%= link_to 'Back', @kite.user, :class => "btn" %>
 <% if @kite.user.id == current_user.id %>
-<%= link_to 'Edit', edit_kite_path(@kite) %> 
-<%= link_to 'Delete', @kite, :confirm => 'Are you sure?', :method => :delete %>
+<%= link_to 'Edit', edit_kite_path(@kite), :class => "btn" %> 
+<%= link_to 'Delete', @kite, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
+	<% if @kite.sharelevel == "private" %>
+		<%= link_to 'Make your kite public', promote_kite_path(@kite), :class => "btn" %>
+	<% else %>
+		<%= link_to 'Make your kite private', demote_kite_path(@kite), :class => "btn" %>
+	<% end %>
 <% end %>
-<%= link_to 'Back', @kite.user %>
+
