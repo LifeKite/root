@@ -1,15 +1,316 @@
-ul.hmenu {
-	list-style: none;
-	margin: 0 0 2em;
-	padding: 0;
+#menu ul {
+list-style-type: none;
+display: inline;
+height: 80px;
+width: 663px;
+margin: auto;
 }
 
-ul.hmenu li {
+#menu li {
+display: block;
+float: right;
+margin: 6px;
+}
+
+ul.hmenu a {
+padding-right: 32px;
+padding-left: 32px;
+display: block;
+line-height: 80px;
+text-decoration: none;
+font-family: Georgia, "Times New Roman", Times, serif;
+font-size: 21px;
+color: white;
+}
+
+ul.hmenu a:hover {
+color: #FFF;
+}
+
+
+
+#footer
+{
+	clear: both;
+	background: #222;
+	text-align: right;
+	padding: 20px;
+	height: 1%;
+	-moz-border-radius: 15px;
+    border-radius: 15px;
+    color: white;
+}
+
+#footer ul li
+{
+	list-style: none;
+	display: inline;
+	float: right;
+}
+
+#footer li a {
+	display: block;
+	float: left;
+	padding: 5px 10px;
+	text-decoration: none;
+	color: white;
+}
+
+#container
+{
+	margin: 0 30px;
+	background: #fff;
+}
+
+#header
+{
+	float: clear;
+	background: #222;
+	padding: 20px;
+	color: white;
+    height: 75px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+#Logo
+{
+	float: left;
+	background: #222;
+	color: white;
+	width: 50%;
+}
+
+#menu
+{
+	align: right;
+	float: right;
+	width: 50%;
+}
+#login
+{
+	float: right;
+}
+#summary
+{
+	float: left;
+}
+
+#summary ul li
+{
+	list-style: none;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 21px;
+	color: #371C1C;
+	line-height: 40px;
+}
+
+div.SectionGroup
+{
+	border: 1px solid black;
+	background: #CCCCCC;
+	-moz-border-radius: 15px;
+    border-radius: 15px;	
+}
+
+div.SectionGroup h3 
+{
+	text-align: center;
+}
+
+div.SectionGroup ul li
+{
+	list-style: none;
 	display: inline;
 }
 
-#thumbnail {
-	padding: 1em;
-	background: #ddd;
-	border: thin solid #333;
+div.SectionGroup img 
+{
+	max-width: 200px;
+	max-height: 200px;
 }
+
+div.kite img
+{
+	max-width: 500px;
+	max-height: 500px;
+}
+
+#kites {
+	float: right;
+	width: 48%;
+	margin-left: 3%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+	min-width:481px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#Groups, #Invites {
+	float: left;
+	clear: left;
+	width: 100%;
+	margin-left: 3%;
+	margin-top: 10px;
+	margin-bottom: 10px;	
+}
+
+
+
+#showcase {
+	background: #C0C0C0;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	
+	background-repeat:no-repeat; 
+	background-position: center;
+}
+
+#showcase li {
+	list-style: none;
+}
+
+#showcase li span {
+	display: block;
+}
+/*\*//*/
+#showcase {
+	display: block;
+}
+#showcase span {
+	display: inline-block;
+	height: 100%;
+	width:1px;
+}
+/**/
+
+#showcase img {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+#kitesInner {
+	float:left;
+	overflow: hidden;
+}
+#kiteContainerUl {
+	position:relative;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	height: 9999px;
+	overflow: hidden;
+}
+
+#kiteContainerUl li{
+	width:200px;
+	padding:0px;
+	margin-top:10px;
+	margin-bottom:10px;
+	margin-left:5px;
+	margin-right:5px;
+}
+#kiteContainerUl li img {
+	.margin-bottom: -4px;
+	cursor: pointer;
+	cursor: hand;
+	border: 0px;
+}
+#left_scroll, #right_scroll{
+	float:left;
+	height:175px;
+	width:30px;
+	background: #C0C0C0;
+	cursor: pointer;
+	cursor: hand;
+	margin-top:10px;
+}
+#left_scroll {
+	background-image:url('/images/scrollLeft.png');
+}
+
+#right_scroll {
+	background-image:url('/images/scrollRight.png');
+}
+
+#kiteCreateImage {
+	width: 100%;
+}
+
+#kiteCreateDescription input {
+  width:300px;
+  height: 100px;
+}
+
+#content-container
+{
+	float: left;
+	width: 100%;
+	color: #000;
+	background: #eee;
+}
+
+#content-container2
+{
+	margin: 0 auto;
+	height: 900px;
+}
+
+#content-container3
+{
+	float: left;
+	height: 900px;
+	background: #FFF;
+}
+
+#bContent
+{
+	clear: left;
+	float: left;
+	height: 200px;
+	padding: 20px 0;
+	margin: 0 0 0 30px;
+	display: inline;
+}
+
+#kContent
+{
+	float: right;
+	height: 560px;
+	padding: 20px 0;
+	margin: 0 20px 0 0;
+	display: inline;
+}
+
+#moreinfo
+{
+	-moz-border-radius: 15px;
+    border-radius: 15px;
+    background-color: white; 
+    align: left;
+}
+
+.groupList ul
+{
+	width: 760px;
+	margin-bottom:20px;
+	overflow:hidden;
+	border-top:1px solid #ccc;
+}
+
+.groupList li
+{
+	line-height: 1.5em;
+	border-bottom:1px solid #ccc;
+	float: left;
+	display:inline;
+}
+
+#double li { width:50%;}
+#tripple li {width: 33.333%;}
+#quad li { width: 25%;}

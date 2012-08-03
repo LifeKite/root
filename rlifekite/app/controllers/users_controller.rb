@@ -6,7 +6,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user =  User.find(params[:id])
+    if (params.has_key?(:id))
+      @user =  User.find(params[:id])   
+        
+    else
+      @user = current_user
+    end
     if(current_user = @user)
       render :action => 'owner_show'
     else

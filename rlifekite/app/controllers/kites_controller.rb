@@ -30,6 +30,7 @@ class KitesController < ApplicationController
   # GET /kites/new.xml
   def new
     
+    
     @kite = Kite.new
 
     respond_to do |format|
@@ -46,11 +47,24 @@ class KitesController < ApplicationController
   # POST /kites
   # POST /kites.xml
   def create
-    @kite = Kite.new(params[:kite])
+    if(params[:kite].has_key?(:Upload))
+      upload = params[:kite][:Upload]
+      params[:kite].delete(:Upload)
+      
+      @kite = Kite.new(params[:kite])
+      @kite.ImageLocation = @kite.upload(upload)
+    else
+      @kite = Kite.new(params[:kite])
+    end
+    
+    @kite.CreateDate = Date.today
     @kite.user = current_user
+    @kite.Completed = false
+    @kite.sharelevel = "private"
+
     respond_to do |format|
-      if @kite.save
-        format.html { redirect_to(@kite, :notice => 'Kite was successfully created.') }
+      if @kite.save()
+        format.html { redirect_to(current_user, :notice => "Kite was created successfully") }
         format.xml  { render :xml => @kite, :status => :created, :location => @kite }
       else
         format.html { render :action => "new" }
@@ -75,15 +89,48 @@ class KitesController < ApplicationController
     end
   end
 
+  def complete
+
+    @kite = Kite.find(params[:id])
+    @kite.complete
+    
+    respond_to do |format|
+      format.html { redirect_to(current_user) }
+      format.xml  { head :ok }
+    end
+  end
+  
+  def promote
+    @kite = Kite.find(params[:id])
+    @kite.promote
+    
+    respond_to do |format|
+      format.html { redirect_to(current_user) }
+      format.xml  { head :ok }
+    end
+  end
+  
+  def demote
+    @kite = Kite.find(params[:id])
+    @kite.demote
+    
+    respond_to do |format|
+      format.html { redirect_to(current_user) }
+      format.xml  { head :ok }
+    end
+  end
+  
   # DELETE /kites/1
   # DELETE /kites/1.xml
   def destroy
     @kite = Kite.find(params[:id])
+    @kite.cleanup
     @kite.destroy
 
     respond_to do |format|
-      format.html { redirect_to(kites_url) }
+      format.html { redirect_to(current_user) }
       format.xml  { head :ok }
     end
   end
+ 
 end

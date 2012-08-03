@@ -1,2 +1,31 @@
-<h1>Home#index</h1>
-<p><%= link_to "View List of Users", users_path %></p>
+<div class="row-fluid" style="margin-top: 10px; margin-bottom: 10px;">
+<div id='logo' class="span4">
+	<%= image_tag("Kite.jpg") %>
+</div>
+<div class="span4" id="summary">
+	<ul>
+		<li>Life Goals</li>
+		<li>Beautiful Images</li>
+		<li>Encouraging Friends</li>
+	</ul>
+</div>
+<div class="span4">
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name),
+	:html => {:class => "well form-vertical" }) do |f| %>
+  <div class="control-group">
+  	<%= f.label :username %>
+  	<%= f.text_field :username %>
+  
+  	<%= f.label :password %>
+  	<%= f.password_field :password %>
+	<br/>
+  	<% if devise_mapping.rememberable? -%>
+    	<p><%= f.check_box :remember_me %><%= f.label :remember_me, :class => "checkbox", :style => "margin-top: -18px;" %></p>
+  	<% end -%>
+
+  	<%= f.submit "Sign in", {:class => "btn"} %>
+  </div>
+<% end %>
+
+</div>
+</div>

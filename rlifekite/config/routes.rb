@@ -1,11 +1,21 @@
 Rlifekite::Application.routes.draw do
-  resources :invitations
+  get "sharedpurpose/create"
+
+  resources :invites
 
   resources :assignments
 
   resources :comments
 
   resources :groups
+  
+  resources :home
+  
+  resources :notification
+  
+  resources :sharedpurposes
+  
+  resources :sharedpurposekites
 
   get "friend/create"
 
@@ -24,6 +34,40 @@ Rlifekite::Application.routes.draw do
   resources :friendships
     
   root :to => "home#index"
+  match ':page' => 'home#show'
+  # map.home ':page', :controller => 'home', :action => 'show', :page => /about|help|contact/
+  # root :to => "users#show"
+  # match '/' => "users#show", :as => :user_root
+  
+  resources :kites do
+    member do
+      put 'complete'
+      put 'promote'
+      put 'demote'
+    end
+  end
+  
+  resources :invites do
+    member do
+      put 'accept'
+    end
+  end
+  
+  resources :notification do
+    member do
+      put 'markViewed'
+    end
+  end
+  
+  match "/kites/:id/complete" => "kites#complete"
+  match "/kites/:id/promote" => "kites#promote"
+  match "/kites/:id/demote" => "kites#demote"
+  match "/invites/:id/accept" => "invites#accept"
+  match "/notifications/:id/markViewed" => "notification#markViewed"
+  
+  devise_scope :user do
+    get "/login" => "devise/sessions#new"
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
