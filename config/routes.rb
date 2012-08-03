@@ -1,4 +1,6 @@
 Rlifekite::Application.routes.draw do
+  get "sharedpurpose/create"
+
   resources :invites
 
   resources :assignments
@@ -10,6 +12,10 @@ Rlifekite::Application.routes.draw do
   resources :home
   
   resources :notification
+  
+  resources :sharedpurposes
+  
+  resources :sharedpurposekites
 
   get "friend/create"
 

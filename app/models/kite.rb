@@ -1,6 +1,8 @@
 class Kite < ActiveRecord::Base
   belongs_to :user
   has_many :comments
+  has_many :sharedpurposekites
+  has_many :sharedpurposes, :through => :sharedpurposekites
   require 'aws/s3'
     
   @@writeDirectory = "public/uploaded_images"

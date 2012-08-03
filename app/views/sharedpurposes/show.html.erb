@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row span12" style="margin-top: 20px;">
+  <div class="span4">
+    <h2 style="margin-top: 0px;"><%= @sharedpurpose.name %></h2>
+  </div>
+  <div class="span3 offset4">
+    <b>Founder:</b>
+    <%= User.find(@sharedpurpose.founder_id).username %>
+  </div>
+</div>
+<div class="row">
+  <div class="span12 well groupList">
+  <p><b>Members:</b>
+  <ul id="double">
+    <% for kite in @sharedpurpose.kites %>
+      <li><%= image_tag(kite.ImageLocation, :alt=>kite.Description, :mouseover=>kite.Description, :id=>'thumbnail') %></li>
+    <% end %>
+  </ul>
+  </div>
+</div>
+
+
+<% if @sharedpurpose.founder_id == current_user.id %>
+<%= link_to 'Change the Name', edit_sharedpurpose_path(@sharedpurpose), :class => "btn" %> 
+<%= link_to "Delete the group", @sharedpurpose, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
+<% end %>
+</p>

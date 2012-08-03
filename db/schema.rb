@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706125510) do
+ActiveRecord::Schema.define(:version => 20120711005327) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -64,6 +64,20 @@ ActiveRecord::Schema.define(:version => 20120706125510) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.string   "link"
+  end
+
+  create_table "sharedpurposekites", :force => true do |t|
+    t.integer  "kite_id"
+    t.integer  "sharedpurpose_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "sharedpurposes", :force => true do |t|
+    t.string   "name"
+    t.integer  "founder_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "slugs", :force => true do |t|
