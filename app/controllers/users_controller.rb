@@ -12,6 +12,20 @@ class UsersController < ApplicationController
     else
       @user = current_user
     end
+    
+    @ki = current_user.kites 
+    @ki.map! do |kit|
+      if(kit.sharedpurposes.nil? != true) 
+          kit.sharedpurposes.all
+      end
+    end
+
+    @ownedKitestrings = Sharedpurpose.where(:founder_id == @user.id)    
+    @ki = (@ki + @ownedKitestrings)
+    @ki.flatten!
+    #debugger
+    @ki.uniq!
+            
     if(current_user = @user)
       render :action => 'owner_show'
     else

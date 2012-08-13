@@ -3,7 +3,8 @@ class KitesController < ApplicationController
   # GET /kites.xml
   def index
     @kites = Kite.all
-
+    
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @kites }
@@ -14,12 +15,18 @@ class KitesController < ApplicationController
   # GET /kites/1.xml
   def show
     @kite = Kite.find(params[:id])
-
-    if(current_user = @kite.user)
-      render :action => 'owner_show'
-    else
-      render :action => 'shared_show'
-    end
+    
+     if @kite.UserCanView(current_user)
+       if(current_user = @kite.user)
+         render :action => 'owner_show'
+       else
+         render :action => 'shared_show'
+       end
+     else
+       redirect_to(current_user, :error => "The kite you have selected is private and cannot be viewed.")
+     end
+      
+    
 #    respond_to do |format|
 #      format.html # show.html.erb
 #      format.xml  { render :xml => @kite }
@@ -42,6 +49,10 @@ class KitesController < ApplicationController
   # GET /kites/1/edit
   def edit
     @kite = Kite.find(params[:id])
+      
+    if @kite.UserCanView(current_user) == false
+       redirect_to(current_user, :error => "The kite you have selected is private and cannot be viewed.")
+     end
   end
 
   # POST /kites
@@ -77,14 +88,19 @@ class KitesController < ApplicationController
   # PUT /kites/1.xml
   def update
     @kite = Kite.find(params[:id])
+      
+    if @kite.UserCanView(current_user) == false
+      redirect_to(current_user, :error => "The kite you have selected is private and cannot be viewed.")
+    else
 
-    respond_to do |format|
-      if @kite.update_attributes(params[:kite])
-        format.html { redirect_to(@kite, :notice => 'Kite was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @kite.errors, :status => :unprocessable_entity }
+      respond_to do |format|
+        if @kite.update_attributes(params[:kite])
+          format.html { redirect_to(@kite, :notice => 'Kite was successfully updated.') }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @kite.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
@@ -92,7 +108,11 @@ class KitesController < ApplicationController
   def complete
 
     @kite = Kite.find(params[:id])
-    @kite.complete
+      
+    if user.id == current_user.id
+      @kite.complete
+    end
+    
     
     respond_to do |format|
       format.html { redirect_to(current_user) }
@@ -102,7 +122,11 @@ class KitesController < ApplicationController
   
   def promote
     @kite = Kite.find(params[:id])
-    @kite.promote
+      
+    if user.id == current_user.id
+      @kite.promote
+    end
+    
     
     respond_to do |format|
       format.html { redirect_to(current_user) }
@@ -112,8 +136,11 @@ class KitesController < ApplicationController
   
   def demote
     @kite = Kite.find(params[:id])
-    @kite.demote
     
+    if user.id == current_user.id
+      @kite.demote
+    end
+      
     respond_to do |format|
       format.html { redirect_to(current_user) }
       format.xml  { head :ok }
@@ -124,13 +151,16 @@ class KitesController < ApplicationController
   # DELETE /kites/1.xml
   def destroy
     @kite = Kite.find(params[:id])
-    @kite.cleanup
-    @kite.destroy
-
+      
+    if user.id == current_user.id
+      @kite.cleanup
+      @kite.destroy
+    end
+    
     respond_to do |format|
       format.html { redirect_to(current_user) }
       format.xml  { head :ok }
     end
   end
- 
+   
 end

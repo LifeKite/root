@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 <div class="row-fluid">
 	<div class="kite span6">
-		<%= image_tag(@kite.ImageLocation, :alt=>@kite.Description, :mouseover=>@kite.Description, :id=>'thumbnail') %>
+		<%= image_tag(@kite.ImageLocation, :alt=>@kite.Description, 
+			:mouseover => @kite.ImageLocation, :id=>'thumbnail') %>
 	</div>
 	<div class="span6">
 		<div class="row">
@@ -47,8 +48,8 @@
 
 <%= link_to 'Back', @kite.user, :class => "btn" %>
 <% if @kite.user.id == current_user.id %>
-<%= link_to 'Edit', edit_kite_path(@kite), :class => "btn" %> 
-<%= link_to 'Delete', @kite, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
+    <%= link_to 'Update Description', edit_kite_path(@kite), :class => "btn" %> 
+    <%= link_to 'Delete', @kite, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
 	<% if @kite.sharelevel == "private" %>
 		<%= link_to 'Make your kite public', promote_kite_path(@kite), :class => "btn" %>
 	<% else %>

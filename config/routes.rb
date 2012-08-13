@@ -59,11 +59,25 @@ Rlifekite::Application.routes.draw do
     end
   end
   
+  resources :sharedpurpose do
+    member do
+      put 'promote'
+      put 'demote'
+    end
+  end
+  
   match "/kites/:id/complete" => "kites#complete"
   match "/kites/:id/promote" => "kites#promote"
   match "/kites/:id/demote" => "kites#demote"
   match "/invites/:id/accept" => "invites#accept"
   match "/notifications/:id/markViewed" => "notification#markViewed"
+  match "/sharedpurpose/:id/selectKite" => "sharedpurposes#selectKite"
+  match "/sharedpurpose/:id/promote" => "sharedpurposes#promote"
+  match "/sharedpurpose/:id/demote" => "sharedpurposes#demote"
+  match "/sharedpurpose/:id/addKite" => "sharedpurposes#addKite"
+  match "/sharedpurpose/:id/removeKite" => "sharedpurposes#removeKite"
+  match "/groups/search" => "groups#search"
+  match "/sharedpurposes/search" => "sharedpurposes#search"
   
   devise_scope :user do
     get "/login" => "devise/sessions#new"

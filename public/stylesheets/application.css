@@ -60,6 +60,8 @@ color: #FFF;
 {
 	margin: 0 30px;
 	background: #fff;
+	margin-left: 20px;
+    margin-right: 20px;
 }
 
 #header
@@ -72,6 +74,8 @@ color: #FFF;
     -moz-border-radius: 15px;
     border-radius: 15px;
 }
+
+
 
 #Logo
 {
@@ -148,7 +152,7 @@ div.kite img
 	padding-right: 10px;
 }
 
-#Groups, #Invites {
+#Groups, #Invites, #KiteStrings {
 	float: left;
 	clear: left;
 	width: 100%;
@@ -166,9 +170,11 @@ div.kite img
 	display: block;
 	text-align: center;
 	vertical-align: middle;
-	
+	border: 1px solid gray;
 	background-repeat:no-repeat; 
 	background-position: center;
+	-moz-border-radius: 15px;
+    border-radius: 15px;
 }
 
 #showcase li {
@@ -247,12 +253,8 @@ div.kite img
   height: 100px;
 }
 
-#content-container
-{
-	float: left;
-	width: 100%;
-	color: #000;
-	background: #eee;
+#kiteDesc {
+	color: white;
 }
 
 #content-container2
@@ -291,8 +293,9 @@ div.kite img
 {
 	-moz-border-radius: 15px;
     border-radius: 15px;
-    background-color: white; 
+    background: rgb(1,1,1);
     align: left;
+    background: rgba(1,1,1,0.6);
 }
 
 .groupList ul
@@ -314,3 +317,10 @@ div.kite img
 #double li { width:50%;}
 #tripple li {width: 33.333%;}
 #quad li { width: 25%;}
+
+.ui-selecting { background: #FECA40; }
+.ui-selected { background: #4088B8; color: white; }
+
+#groupSearch, #kitestringSearch {
+	display: table-row;
+}

@@ -1,17 +1,24 @@
-<div id="content-container" class="container-fluid">
+<div id="content-container" class="span12">
 	<div class="row-fluid">
 		<div class="span12">
 			<% if @user.id == current_user.id %>
-				<p style="text-justify: inter-word;">
+				<div class="span5">
 					<%= link_to "Create a New Kite", new_kite_path, { :class => "btn" } %>
 					<%= link_to "Start New Group", new_group_path, { :class => "btn" } %>
 					<%= link_to "Start a new kite string", new_sharedpurpose_path, { :class => "btn" } %>
-				</p>
+			    </div>
+				<div id="groupSearch" class="span3 form-search form-inline">
+					<%= render :partial => 'groups/search' %>
+				</div>
+				<div id="kitestringSearch" class="span3 form-search form-inline">
+					<%= render :partial => 'sharedpurposes/search' %>
+				</div>
+				
 			<% end %>	
 		</div>
 	</div>
 	<div class="row-fluid" id='showcase'>
-		<div class="span2">
+		<div class="span2" >
 			<% if @user.id == current_user.id %>
 				
 				<% if @user.Invites.count > 0 %>
@@ -52,22 +59,39 @@
 				      	<%=h link_to group.name, group %>
 				    	</li>
 				  		<% end %>
-					</ul>
-					
+					</ul>	
 				</div>
+				
+				<div id='KiteStrings' class="SectionGroup">
+					<h3>Kite Strings</h3>
+					<ul>
+						<% for sharedpurpose in @ki %>
+							<li>
+								<%=h link_to sharedpurpose.name, sharedpurpose %>
+							</li>
+						<% end %>
+					</ul>
+				</div>
+				
 				<% else %>
 					<h3><%= @user.username %>'s kites</h3>
 				<% end %>
 		</div>
 		<div class="span8">
-			<div ></div>
+			<div class="span10 offset4" id="moreinfo" style="margin-top: 10px;">
+				<span id="kiteState" class="badge" style="float: left; margin-left: 10px; margin-top: 6px;"></span>
+				<span id="kiteDesc"></span>
+				<%= link_to ' more...', kites_path, :class => "btn btn-info", :style => "float: right;" %>
+			</div>
 		</div>
 		<div class="span2" style="margin-top: 0px; margin-bottom: -30px;">
 			<ul id='kitesContainer' class='jcarousel jcarousel-skin-ie7' >
 				<% if @user.id == current_user.id %>
 					<% for kite in @user.kites %>
 			    		<li>
-			    			<%=h image_tag(kite.ImageLocation, :id=>'thumbnail', :name=>kite.id, :alt=>kite.Description, :size=>'50', :title=>kite.sharelevel) %>
+			    			<%=h image_tag(kite.ImageLocation, :id=>'thumbnail', 
+			    			:name=>kite.id, :alt=>kite.Description, :size=>'50', 
+			    			:title=>kite.sharelevel, :mouseover => kite.ImageLocation) %>
 			    		</li>   		
 					<% end %>
 				<% else %>
@@ -82,11 +106,7 @@
 		<div class="row-fluid">
 			<div class="span2">
 			</div>
-			<div class="span8" id="moreinfo">
-				<span id="kiteState" style="float: left; margin-left: 10px;"></span>
-				<span id="kiteDesc"></span>
-				<%= link_to ' more...', kites_path %>
-			</div>
+			
 		</div>
 	</div>
 </div>

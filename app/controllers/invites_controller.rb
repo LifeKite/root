@@ -55,7 +55,7 @@ class InvitesController < ApplicationController
         username = rand(36**8).to_s(36)
         User.invite!(:email => @Invite.email, :username => username)
       end
-      debugger
+      
       @Invite.user_id = User.find_by_username(username).id
     end
     

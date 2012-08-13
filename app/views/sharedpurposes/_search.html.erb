@@ -1,0 +1,4 @@
+<%= form_tag :controller => 'sharedpurposes', :action => 'search', :method => 'get' do %>
+	<%= text_field_tag :search, params[:search], :id => 'search_field', :placeholder => 'Find a kite string', :class => "input-medium" %>
+	<%= submit_tag "Search", :name => nil, :class => "btn"  %>
+<% end %>

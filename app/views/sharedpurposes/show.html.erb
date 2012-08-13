@@ -1,28 +1,54 @@
 <p id="notice"><%= notice %></p>
-
-<div class="row span12" style="margin-top: 20px;">
-  <div class="span4">
-    <h2 style="margin-top: 0px;"><%= @sharedpurpose.name %></h2>
-  </div>
-  <div class="span3 offset4">
-    <b>Founder:</b>
-    <%= User.find(@sharedpurpose.founder_id).username %>
-  </div>
-</div>
-<div class="row">
-  <div class="span12 well groupList">
-  <p><b>Members:</b>
-  <ul id="double">
-    <% for kite in @sharedpurpose.kites %>
-      <li><%= image_tag(kite.ImageLocation, :alt=>kite.Description, :mouseover=>kite.Description, :id=>'thumbnail') %></li>
-    <% end %>
-  </ul>
-  </div>
-</div>
-
-
-<% if @sharedpurpose.founder_id == current_user.id %>
-<%= link_to 'Change the Name', edit_sharedpurpose_path(@sharedpurpose), :class => "btn" %> 
-<%= link_to "Delete the group", @sharedpurpose, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
+<% if @sharedpurpose.UserCanView(current_user) %>
+	<div class="row span12" style="margin-top: 20px;">
+	  <div class="span4">
+	    <h2 style="margin-top: 0px;"><%= @sharedpurpose.name %></h2>
+	    <% if @sharedpurpose.isPrivate == true %>
+	    	<span class="badge badge-important">Private</span>
+	    <% else %>
+	    	<span class="badge badge-success">Public</span>
+	    <% end %> 
+	  </div>
+	  <div class="span3 offset4">
+	    <b>Founder:</b>
+	    <%= User.find(@sharedpurpose.founder_id).username %>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="span12 well groupList">
+	  <p><b>Kites:</b>
+	  <ul id="double" class="thumbnails">
+	    <% for kite in @sharedpurpose.kites %>
+	      <li>
+	      	<div class="thumbnail">
+	      		<%= image_tag(kite.ImageLocation, :alt=>kite.Description, :mouseover=>kite.Description, 
+	      			:id=>'thumbnail', :mouseover => kite.ImageLocation) %>
+	      		<span>
+	      			<strong>Owner: </strong><%= kite.user.username %>
+	      		</span>
+	      		<% if @sharedpurpose.founder_id == current_user.id || kite.user.id == current_user.id %>
+	      			<%= link_to 'Remove this kite from the string', {:controller => "sharedpurposes", :action => "removeKite", :confirm => 'Are you sure?', :id => @sharedpurpose, :kite_id => kite.id}, :class => "btn" %>
+	      		<% end %>
+	      		<%= link_to 'Visit', kite %>
+	      	</div>
+	      </li>
+	    <% end %>
+	  </ul>
+	  </div>
+	</div>
+	
+	
+	<%= link_to 'Add a kite to this string', {:controller => "sharedpurposes", :action => "selectKite", :id => @sharedpurpose}, :class => "btn" %>
+	<% if @sharedpurpose.founder_id == current_user.id %>
+	<%= link_to 'Change the Name', edit_sharedpurpose_path(@sharedpurpose), :class => "btn" %> 
+	<%= link_to "Delete the Kite String", @sharedpurpose, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
+	<% if @sharedpurpose.isPrivate == true %>
+		<%= link_to 'Make this Kite String public', promote_sharedpurpose_path(@sharedpurpose), :class => 'btn' %>
+	<% else %>
+		<%= link_to 'Make this Kite String private', demote_sharedpurpose_path(@sharedpurpose), :class => 'btn', %>
+	<% end %>
+	<% end %>
+	</p>
+<% else %>
+	<p>This is a private Kite String which you are not a member of. </p>
 <% end %>
-</p>

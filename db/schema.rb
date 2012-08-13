@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711005327) do
+ActiveRecord::Schema.define(:version => 20120811170713) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20120711005327) do
     t.integer  "founder_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "isPrivate"
   end
 
   create_table "slugs", :force => true do |t|

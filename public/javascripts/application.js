@@ -7,7 +7,7 @@
 $(document).ready(function(){
 	
 	function setCenterStage(image) {
-		$('#showcase').css('background', 'url(' + $(image).attr('src') + ') no-repeat center');
+		$('#showcase').css('background', '#E4E2D6' + ' url(' + $(image).attr('src') + ') no-repeat center');
 		//$('#showcase').empty();
 		var end = $('#moreinfo a').attr('href').lastIndexOf('/');
 		var y = end == 0 ? $('#moreinfo a').attr('href') : $('#moreinfo a').attr('href').slice(0, end); 
@@ -19,9 +19,13 @@ $(document).ready(function(){
 		var sharelevel = $(image).attr('title');
 		$('#kiteState').text(sharelevel);
 		if(sharelevel == "public") {
-			$('#kiteState').css('color', 'green');
+			
+			$('#kiteState').toggleClass('badge-success', true);
+			$('#kiteState').toggleClass('badge-important', false);
 		} else {
-			$('#kiteState').css('color', 'gray');
+			
+			$('#kiteState').toggleClass('badge-success', false);
+			$('#kiteState').toggleClass('badge-important', true);
 		}
 	}
 	
@@ -38,6 +42,16 @@ $(document).ready(function(){
 	if($('.alert-error').text().length > 0) {
 		$('.alert-error').show();
 	}
+	$( ".selectable" ).selectable({
+		stop: function() {
+			var name = "";
+			$(".ui-selected #thumbnail", this).each(function(){
+				if( $(this).attr('name') != undefined)
+					name = name + $(this).attr('name') + ", ";
+			})
+			$('#kite_ids').val(name.slice(0,-2));
+		}
+	});
 	
 	//Automatically select the first
 	setCenterStage($('#kitesContainer li:first img'));

@@ -58,4 +58,26 @@ class Kite < ActiveRecord::Base
     end
   end
   
+  def UserCanView(testuser)
+    if sharelevel == "public"
+      return true
+    end
+    
+    if user.id == testuser.id
+      return true
+    end
+    
+    # Test if this kite is shared
+    # on a kitestring that this user is a 
+    # member of
+    for str in sharedpurposes
+      if str.UserCanView(testuser)
+        return true
+      end
+    end
+        
+    return false
+  end
+  
+  
 end
