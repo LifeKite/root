@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       end
     end
 
-    @ownedKitestrings = Sharedpurpose.where(:founder_id == @user.id)    
+    @ownedKitestrings = Sharedpurpose.where(:founder_id => @user.id)    
     @ki = (@ki + @ownedKitestrings)
     @ki.flatten!
     #debugger
