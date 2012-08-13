@@ -109,7 +109,7 @@ class KitesController < ApplicationController
 
     @kite = Kite.find(params[:id])
       
-    if user.id == current_user.id
+    if @kite.user.id == current_user.id
       @kite.complete
     end
     
@@ -137,7 +137,7 @@ class KitesController < ApplicationController
   def demote
     @kite = Kite.find(params[:id])
     
-    if user.id == current_user.id
+    if @kite.user.id == current_user.id
       @kite.demote
     end
       
