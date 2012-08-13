@@ -123,7 +123,7 @@ class KitesController < ApplicationController
   def promote
     @kite = Kite.find(params[:id])
       
-    if user.id == current_user.id
+    if @kite.user.id == current_user.id
       @kite.promote
     end
     
@@ -152,7 +152,7 @@ class KitesController < ApplicationController
   def destroy
     @kite = Kite.find(params[:id])
       
-    if user.id == current_user.id
+    if @kite.user.id == current_user.id
       @kite.cleanup
       @kite.destroy
     end
