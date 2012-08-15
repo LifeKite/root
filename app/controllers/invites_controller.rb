@@ -50,18 +50,28 @@ class InvitesController < ApplicationController
       #check that this user doesn't already exist
       username = nil
       if(User.find_by_email(@Invite.email))
-       error = true
+       error = 'The specified email is already in use.  Please specify the user by their username to invite them to your group.'
       else
         username = rand(36**8).to_s(36)
         User.invite!(:email => @Invite.email, :username => username)
       end
       
-      @Invite.user_id = User.find_by_username(username).id
+      @User = User.find_by_username(username)
+      if !@User.nil?
+        debugger
+        @Invite.user_id = @User.id
+        @Invite.invitation_token = @User.invitation_token
+      else
+        error = 'Unable to create the invitation'
+        @User.destroy
+      end
+      
+      
     end
     
     respond_to do |format|
       if error == true
-        format.html { redirect_to(@Invite.group, :notice => 'The specified email is already in use.  Please specify the user by their username to invite them to your group.') }
+        format.html { redirect_to(@Invite.group, :notice => error) }
       elsif @Invite.save
         format.html { redirect_to(@Invite.group, :notice => 'Invite was successfully created.') }
         format.xml  { render :xml => @Invite, :status => :created, :location => @Invite }

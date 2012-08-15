@@ -27,6 +27,7 @@
 				<ul>
 					<% for invite in @user.Invites %>
 						<li>
+							<i class="icon-inbox"></i>
 							You have an Invite to join <%=h link_to invite.group.name, Invite %>
 							<%= link_to 'Accept', accept_invite_path(invite) %>
 							<%= link_to 'Decline', invite, :confirm => 'Are you sure?', :method => :delete %>
@@ -42,6 +43,7 @@
 						<ul>
 							<% for notification in @user.Notifications %>
 								<li>
+									<i class="icon-envelope"></i>
 									<%=h notification.message %>
 									<%= link_to 'View', notification.link %>
 									<%= link_to 'Dismiss', notification, :method => :delete %>
@@ -56,6 +58,7 @@
 					<ul>
 				  		<% for group in @user.groups %>
 				    	<li>
+				    	<i class="icon-envelope"></i>
 				      	<%=h link_to group.name, group %>
 				    	</li>
 				  		<% end %>
@@ -67,6 +70,7 @@
 					<ul>
 						<% for sharedpurpose in @ki %>
 							<li>
+								<i class="icon-picture"></i>
 								<%=h link_to sharedpurpose.name, sharedpurpose %>
 							</li>
 						<% end %>
