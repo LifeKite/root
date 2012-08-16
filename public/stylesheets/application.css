@@ -111,10 +111,11 @@ color: #FFF;
 
 div.SectionGroup
 {
-	border: 3px solid gary;
+	border: 3px solid gray;
 	background: #CCCCCC;
 	-moz-border-radius: 15px;
-    border-radius: 15px;	
+    border-radius: 15px;
+    opacity: 0.5;	
 }
 
 div.SectionGroup h3 

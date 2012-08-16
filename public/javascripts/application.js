@@ -53,6 +53,16 @@ $(document).ready(function(){
 		}
 	});
 	
+	$('.SectionGroup').mouseover(function(){
+		$(this).animate({opacity:1},1000);
+		$(this).css('border-color', 'white');
+	})
+	
+	$('.SectionGroup').mouseout(function(){
+		$(this).animate({opacity:0.5},1000);
+		$(this).css('border-color', 'gray');
+	})
+	
 	//Automatically select the first
 	setCenterStage($('#kitesContainer li:first img'));
 
