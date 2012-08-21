@@ -16,9 +16,9 @@
 }
 
 .jcarousel-skin-ie7 .jcarousel-container-vertical {
-    width: 175px;
+    width: 164px;
     height: 400px;
-    padding: 40px 10px;
+    padding: 40px 15px;
 }
 
 .jcarousel-skin-ie7 .jcarousel-clip {
@@ -31,7 +31,7 @@
 }
 
 .jcarousel-skin-ie7 .jcarousel-clip-vertical {
-    width:  165px;
+    width:  170px;
     height: 400px;
 }
 
@@ -142,7 +142,7 @@
 .jcarousel-skin-ie7 .jcarousel-next-vertical {
     position: absolute;
     bottom: 5px;
-    left: 75px;
+    left: 80px;
     width: 32px;
     height: 32px;
     cursor: pointer;
@@ -169,7 +169,7 @@
 .jcarousel-skin-ie7 .jcarousel-prev-vertical {
     position: absolute;
     top: 5px;
-    left: 75px;
+    left: 80px;
     width: 32px;
     height: 32px;
     cursor: pointer;

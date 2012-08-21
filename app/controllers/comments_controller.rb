@@ -48,7 +48,10 @@ class CommentsController < ApplicationController
     @notification = Notification.new(
       :message => "Someone has commented on your kite",
       :user => @kite.user,
-      :link => kite_path(@kite))
+      :link => kite_path(@kite))   
+    debugger
+    NotificationMailer.mail(@notification)
+    return if request.xhr?
     
     respond_to do |format|
       if @comment.save && @notification.save

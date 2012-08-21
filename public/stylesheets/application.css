@@ -127,7 +127,7 @@ div.SectionGroup h3
 div.SectionGroup ul li
 {
 	list-style: none;
-	display: inline;
+	margin-top: 5px;
 }
 
 div.SectionGroup img 

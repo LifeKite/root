@@ -8,6 +8,9 @@
   <%= javascript_include_tag "jquery-ui.js" %>
   <%= javascript_include_tag "jquery.jcarousel.min.js" %>
   <%= javascript_include_tag "bootstrap-alert.js" %>
+  <%= javascript_include_tag "jquery.ui.widget.js" %>
+  <%= javascript_include_tag "jquery.iframe-transport.js" %>
+  <%= javascript_include_tag "jquery.fileupload.js" %>
   
   <%= csrf_meta_tag %>
 </head>
@@ -49,12 +52,11 @@
   <div id="footer" class="row-fluid">
   	<div class="span11">
   	<ul>
-  		<li><%= link_to 'About', home_path('about') %></li>
-  		<li><%= link_to 'Advertise', home_path('contact') %></li>
-  		<li><%= link_to 'Help', home_path('help') %></li>
+  		<a href="#homeModal" style="color:white;" role="button" data-toggle="modal">About</a>
   	<ul>
   	</div>
   </div>
 </div>
+<%= render :partial => home_path('about') %>
 </body>
 </html>

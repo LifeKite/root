@@ -88,13 +88,13 @@
 				<%= link_to ' more...', kites_path, :class => "btn btn-info", :style => "float: right; margin-right: 10px;" %>
 			</div>
 		</div>
-		<div class="span2" style="margin-top: 0px; margin-bottom: -30px;">
+		<div class="span2" style="margin-top: 0px; margin-bottom: -30px; margin-left:0; margin-right:0">
 			<ul id='kitesContainer' class='jcarousel jcarousel-skin-ie7' >
 				<% if @user.id == current_user.id %>
 					<% for kite in @user.kites %>
 			    		<li>
 			    			<%=h image_tag(kite.ImageLocation, :id=>'thumbnail', 
-			    			:name=>kite.id, :alt=>kite.Description, :size=>'50', 
+			    			:name=>kite.id, :alt=>kite.Description, :size=>'40', 
 			    			:title=>kite.sharelevel, :mouseover => kite.ImageLocation) %>
 			    		</li>   		
 					<% end %>
@@ -102,7 +102,7 @@
 					<% for kite in @user.kites.where(:sharelevel => "public") %>
 			    		<li>
 			    			<%=h image_tag(kite.ImageLocation, :id=>'thumbnail', 
-			    			:name=>kite.id, :alt=>kite.Description, :size=>'50', 
+			    			:name=>kite.id, :alt=>kite.Description, :size=>'40', 
 			    			:title=>kite.sharelevel, :mouseover => kite.ImageLocation) %>
 			    		</li>   		
 					<% end %>
