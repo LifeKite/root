@@ -50,7 +50,7 @@ class CommentsController < ApplicationController
       :user => @kite.user,
       :link => kite_path(@kite))   
     
-    NotificationMailer.notifymail(@notification)
+    NotificationMailer.notification_email(@notification).deliver
     return if request.xhr?
     
     respond_to do |format|

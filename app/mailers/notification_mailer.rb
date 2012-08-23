@@ -1,6 +1,7 @@
 class NotificationMailer < ActionMailer::Base
   default :from => 'lifekite-info@gmail.com'
-  def notifymail(notification)
+  default :subject => 'Kite-comment notification'
+  def notification_email(notification)
     
     @user = User.find(notification[:user_id]);
     @subject = 'Kite-comment notification'
@@ -10,8 +11,6 @@ class NotificationMailer < ActionMailer::Base
     @receiver = @user.username
     @kitepath = notification[:link]
 
-    mail(
-      :to => 'rwnagle3@gmail.com',
-      :subject => 'Kite-comment notification')
+    mail(:to => @user.email)
   end
 end
