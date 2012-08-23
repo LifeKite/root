@@ -49,8 +49,8 @@ class CommentsController < ApplicationController
       :message => "Someone has commented on your kite",
       :user => @kite.user,
       :link => kite_path(@kite))   
-    debugger
-    NotificationMailer.mail(@notification)
+    
+    NotificationMailer.notifymail(@notification)
     return if request.xhr?
     
     respond_to do |format|
