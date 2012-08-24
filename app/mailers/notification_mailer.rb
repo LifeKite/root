@@ -3,7 +3,7 @@ class NotificationMailer < ActionMailer::Base
   default :subject => 'Kite-comment notification'
   
   def notification_email(notification)
-    
+    @content_type = 'text/html'
     @user = User.find(notification[:user_id]);
     @subject = 'Kite-comment notification'
     @recipients = @user.email
