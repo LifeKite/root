@@ -7,7 +7,8 @@
 $(document).ready(function(){
 	
 	function setCenterStage(image) {
-		$('#showcase').css('background', '#E4E2D6' + ' url(' + $(image).attr('src') + ') no-repeat center');
+		$('#showcase').css('background', 
+				'#E4E2D6' + ' url(' + $(image).attr('src') + ') no-repeat center');
 		//$('#showcase').empty();
 		var end = $('#moreinfo a').attr('href').lastIndexOf('/');
 		var y = end == 0 ? $('#moreinfo a').attr('href') : $('#moreinfo a').attr('href').slice(0, end); 
@@ -64,6 +65,7 @@ $(document).ready(function(){
 	})
 	
 	//Automatically select the first
-	setCenterStage($('#kitesContainer li:first img'));
+	if($('#kitesContainer') != null && $('#kitesContainer').length > 0)
+		setCenterStage($('#kitesContainer li:first img'));
 
 });

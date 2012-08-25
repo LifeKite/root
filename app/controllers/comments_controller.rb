@@ -44,15 +44,14 @@ class CommentsController < ApplicationController
     #@comment.kite = Kite.find(params[:kite_id])
     @comment.user = current_user
     @kite = Kite.find(@comment.kite_id)
-    
+    debugger
     @notification = Notification.new(
       :message => "Someone has commented on your kite",
       :user => @kite.user,
-      :link => kite_path(@kite))   
+      :link => kite_url(@kite))   
     
     NotificationMailer.notification_email(@notification).deliver
-    #return if request.xhr?
-    
+        
     respond_to do |format|
       if @comment.save && @notification.save
         format.html { redirect_to(@kite, :notice => 'Comment was successfully created.') }
