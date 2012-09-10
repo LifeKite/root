@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
     #@comment.kite = Kite.find(params[:kite_id])
     @comment.user = current_user
     @kite = Kite.find(@comment.kite_id)
-    debugger
+  
     @notification = Notification.new(
       :message => "Someone has commented on your kite",
       :user => @kite.user,
@@ -79,6 +79,44 @@ class CommentsController < ApplicationController
     end
   end
 
+  def markHelpful
+    @comment = Comment.find(params[:id])
+    @kite = Kite.find(@comment.kite_id)
+    
+    @notification = Notification.new(
+        :message => @kite.user.username + " found your comment helpful.",
+        :user => @comment.user,
+        :link => kite_url(@kite))   
+      
+    NotificationMailer.notification_email(@notification).deliver
+          
+    
+    respond_to do |format|
+          if @comment.markHelpful()  && @notification.save
+            format.html { redirect_to(@kite) }
+            format.xml  { head :ok }
+          else
+            format.html { render :action => "edit" }
+            format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
+          end
+        end
+  end
+  
+  def unmarkHelpful
+    @comment = Comment.find(params[:id])
+         
+        
+        respond_to do |format|
+          if @comment.unmarkHelpful()
+            format.html { redirect_to(@comment) }
+            format.xml  { head :ok }
+          else
+            format.html { render :action => "edit" }
+            format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
+          end
+        end
+  end
+  
   # DELETE /comments/1
   # DELETE /comments/1.xml
   def destroy

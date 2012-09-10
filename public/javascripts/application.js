@@ -7,8 +7,25 @@
 $(document).ready(function(){
 	
 	function setCenterStage(image) {
-		$('#showcase').css('background', 
-				'#E4E2D6' + ' url(' + $(image).attr('src') + ') no-repeat center');
+		
+		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center');
+		
+		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center, ' +
+					  ' -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999))');
+		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center, ' +
+					  ' -webkit-linear-gradient(top, #444444, #999999)');
+		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center, ' +
+					  ' -moz-linear-gradient(top, #444444, #999999)');
+		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center, ' +
+					  ' -ms-linear-gradient(top, #444444, #999999)');
+		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center, ' +
+					  ' -o-linear-gradient(top, #444444, #999999)');
+		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center, ' +
+					  ' linear-gradient(top, #444444, #999999)');
+		
+//		$('#showcase').css('filter', 
+//		'filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr="#444444", endColorstr="#999999")');
+		
 		//$('#showcase').empty();
 		var end = $('#moreinfo a').attr('href').lastIndexOf('/');
 		var y = end == 0 ? $('#moreinfo a').attr('href') : $('#moreinfo a').attr('href').slice(0, end); 

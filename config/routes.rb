@@ -39,6 +39,13 @@ Rlifekite::Application.routes.draw do
   # root :to => "users#show"
   # match '/' => "users#show", :as => :user_root
   
+  resources :comments do
+    member do
+      put 'markHelpful'
+      put 'unmarkHelpful'
+    end
+  end
+  
   resources :kites do
     member do
       put 'complete'
@@ -78,6 +85,8 @@ Rlifekite::Application.routes.draw do
   match "/sharedpurpose/:id/removeKite" => "sharedpurposes#removeKite"
   match "/groups/search" => "groups#search"
   match "/sharedpurposes/search" => "sharedpurposes#search"
+  match "/comments/:id/markHelpful" => "comments#markHelpful"
+  match "/comments/:id/unmarkHelpful" => "comments#unmarkHelpful"
   
   devise_scope :user do
     get "/login" => "devise/sessions#new"
