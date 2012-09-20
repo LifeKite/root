@@ -40,6 +40,7 @@ color: #FFF;
 	-moz-border-radius: 15px;
     border-radius: 15px;
     color: white;
+    margin-top: 80px;
 }
 
 #footer ul li
@@ -179,6 +180,9 @@ div.kite img
 	background-position: center;
 	-moz-border-radius: 15px;
     border-radius: 15px;
+    min-height: 100%;
+    height: auto !important;
+    margin-bottom: -75px;
 }
 
 #showcase li {
@@ -327,4 +331,66 @@ div.kite img
 
 #groupSearch, #kitestringSearch {
 	display: table-row;
+}
+
+.previous_page {
+	float: left !important;
+}
+
+.next_page {
+	float: right !important;
+}
+
+.thumbnails {
+	text-align: center !important;
+}
+
+.thumbnails > li {
+	display: inline-block !important;
+	*display: inline;
+	float: none !important;
+}
+
+.pagination {
+	text-align: center;
+	padding: 0.3em;
+	cursor: default;
+	height: 75px;
+	color: #ffffff;
+}
+
+.pagination a, .pagination span, .pagination em {
+	padding: 0.5em 0.5em;
+	border: 2px solid gray;
+	border-radius: 10px;
+	text-decoration: none;
+	background: #cdcdcd;
+	color: dark gray;
+}
+
+.pagination a {
+	border: 2px solid gray;
+	border-radius: 10px;
+	text-decoration: none;
+	background: #cdcdcd; 
+
+.pagination .disabled {
+	border: 2px solid gray;
+	border-radius: 10px;
+	text-decoration: none;
+	background: #a0a0a0;
+	color: #cdcdcd;
+}
+
+.pagination .current {
+	font-style: normal;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+}
+.pagination a:hover, .pagination a:focus {
+	border-color: #000066;
+	color: black;
+	background: #cdcdcd !important;
 }

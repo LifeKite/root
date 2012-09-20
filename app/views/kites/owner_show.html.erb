@@ -37,16 +37,18 @@
   		<div class="row">
   			<div class="span12 well" style="max-height:350px; overflow:auto;">
   				<b>Comments</b>
+  				
 				<ul>
 				  
 				  <%= render @kite.comments(:order => "isHelpful DESC") %>
 				 
 				</ul>
 				
-				<%= link_to new_comment_path(:kite => @kite), :class => "btn" do %>
-					<span><i class="icon-comment"></i>Add Comment</span>
-				<% end %>
+				
   			</div>
+  			<%= link_to new_comment_path(:kite => @kite), :class => "btn pull-right" do %>
+				<span><i class="icon-comment"></i>Add Comment</span>
+			<% end %>
   		</div>
   	</div>
 </div>

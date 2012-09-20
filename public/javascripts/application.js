@@ -49,7 +49,7 @@ $(document).ready(function(){
 	
 	$('#kitesContainer').jcarousel({vertical:true, scroll: 1, wrap: "circular"});
 	
-	$('#kitesContainer li img').click(function(){
+	$('#kitelist li img').click(function(){
 		setCenterStage(this);	
 	});
 	
@@ -82,7 +82,7 @@ $(document).ready(function(){
 	})
 	
 	//Automatically select the first
-	if($('#kitesContainer') != null && $('#kitesContainer').length > 0)
-		setCenterStage($('#kitesContainer li:first img'));
+	if($('#kitelist') != null && $('#kitelist').length > 0)
+		setCenterStage($('#kitelist li:first img'));
 
 });

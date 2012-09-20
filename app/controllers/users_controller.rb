@@ -25,6 +25,12 @@ class UsersController < ApplicationController
     @ki.flatten!
     #debugger
     @ki.uniq!
+    
+    if(@user.id == current_user.id)
+      @summarykites = @user.kites.paginate(:page => params[:page], :per_page => 5)
+    else
+      @summarykites = @user.kites.where(:sharelevel => "public").paginate(:page => params[:page])
+     end
             
     if(current_user = @user)
       render :action => 'owner_show'
