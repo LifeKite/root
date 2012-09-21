@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
   # GET /comments/new.xml
   def new
     @comment = Comment.new
-
+    @kite = Kite.find(params[:kite])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @comment }
@@ -35,6 +35,7 @@ class CommentsController < ApplicationController
   # GET /comments/1/edit
   def edit
     @comment = Comment.find(params[:id])
+    @kite = Kite.find(@comment.kite_id)
   end
 
   # POST /comments
@@ -104,11 +105,11 @@ class CommentsController < ApplicationController
   
   def unmarkHelpful
     @comment = Comment.find(params[:id])
-         
+    @kite = Kite.find(@comment.kite_id)     
         
         respond_to do |format|
           if @comment.unmarkHelpful()
-            format.html { redirect_to(@comment) }
+            format.html { redirect_to(@kite) }
             format.xml  { head :ok }
           else
             format.html { render :action => "edit" }
