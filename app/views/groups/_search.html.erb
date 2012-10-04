@@ -1,4 +1,5 @@
-<%= form_tag :controller => 'groups', :action => 'search', :method => 'get' do %>
-	<%= text_field_tag :search, params[:search], :id => 'search_field', :placeholder => 'Find a group', :class => "input-medium" %>
-	<%= submit_tag "Search", :name => nil, :class => "btn" %>
+<%= form_tag( :controller => "groups", :action => "search", :method => 'get', :html => { :class => 'form-search'}) do %>
+	<div class="input-append">
+		<%= text_field_tag :search, params[:search], :id => 'search_field', :placeholder => 'Find a group', :class => "input-medium search-query" %><%= submit_tag "Search", :name => nil, :class => "btn " %>
+	</div>
 <% end %>

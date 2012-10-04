@@ -1,3 +1,25 @@
+body {
+	/* IE10 Consumer Preview */ 
+	background-image: -ms-linear-gradient(top, #C8A3FF 0%, #002130 100%);
+	
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(top, #C8A3FF 0%, #002130 100%);
+	
+	/* Opera */ 
+	background-image: -o-linear-gradient(top, #C8A3FF 0%, #002130 100%);
+	
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #C8A3FF), color-stop(1, #002130));
+	
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(top, #C8A3FF 0%, #002130 100%);
+	
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: linear-gradient(to bottom, #C8A3FF 0%, #002130 100%);
+	    
+}
+
+
 #menu ul {
 list-style-type: none;
 display: inline;
@@ -40,7 +62,7 @@ color: #FFF;
 	-moz-border-radius: 15px;
     border-radius: 15px;
     color: white;
-    margin-top: 80px;
+    margin-top: 10px;
 }
 
 #footer ul li
@@ -61,9 +83,8 @@ color: #FFF;
 #container
 {
 	margin: 0 30px;
-	background: #fff;
-	margin-left: 20px;
-    margin-right: 20px;
+	margin-left: 60px;
+    margin-right: 60px;
 }
 
 #header
@@ -115,10 +136,19 @@ color: #FFF;
 div.SectionGroup
 {
 	border: 3px solid gray;
+	width: 200px;
+	margin-left: 20px;
 	background: #CCCCCC;
 	-moz-border-radius: 15px;
     border-radius: 15px;
     opacity: 0.5;	
+    -moz-box-shadow: 3px 3px 4px #000;
+		-webkit-box-shadow: 3px 3px 4px #000;
+		box-shadow: 3px 3px 4px #000;
+		/* For IE 8 */
+		-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+		/* For IE 5.5 - 7 */
+		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
 div.SectionGroup h3 
@@ -160,8 +190,6 @@ div.kite img
 #Groups, #Invites, #KiteStrings {
 	float: left;
 	clear: left;
-	width: 100%;
-	margin-left: 3%;
 	margin-top: 10px;
 	margin-bottom: 10px;	
 }
@@ -183,6 +211,7 @@ div.kite img
     min-height: 100%;
     height: auto !important;
     margin-bottom: -75px;
+    margin-top: 10px;
 }
 
 #showcase li {
@@ -207,6 +236,14 @@ div.kite img
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
+	background-color: white;
+	-moz-box-shadow: 3px 3px 4px #000;
+		-webkit-box-shadow: 3px 3px 4px #000;
+		box-shadow: 3px 3px 4px #000;
+		/* For IE 8 */
+		-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+		/* For IE 5.5 - 7 */
+		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 #kitesInner {
 	float:left;
@@ -304,6 +341,14 @@ div.kite img
     background: rgb(1,1,1);
     align: left;
     background: rgba(1,1,1,0.6);
+    margin-left: 60px;
+    -moz-box-shadow: 3px 3px 4px #000;
+		-webkit-box-shadow: 3px 3px 4px #000;
+		box-shadow: 3px 3px 4px #000;
+		/* For IE 8 */
+		-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+		/* For IE 5.5 - 7 */
+		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
 .groupList ul
@@ -393,4 +438,71 @@ div.kite img
 	border-color: #000066;
 	color: black;
 	background: #cdcdcd !important;
+}
+
+#mbody {
+	margin-top: 10px;
+	margin-right: 15px;
+    border-radius: 10px;
+    padding: 5px;
+ 	padding-bottom: 95px;
+ 	width: 99%;
+
+	/* IE10 Consumer Preview */ 
+	/* background-image: -ms-linear-gradient(top, #C8A3FF 0%, #002130 100%);
+	
+	/* Mozilla Firefox */ 
+	/* background-image: -moz-linear-gradient(top, #C8A3FF 0%, #002130 100%);
+	
+	/* Opera */ 
+	/* background-image: -o-linear-gradient(top, #C8A3FF 0%, #002130 100%);
+	
+	/* Webkit (Safari/Chrome 10) */ 
+	/* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #C8A3FF), color-stop(1, #002130));
+	
+	/* Webkit (Chrome 11+) */ 
+	/* background-image: -webkit-linear-gradient(top, #C8A3FF 0%, #002130 100%);
+	
+	/* W3C Markup, IE10 Release Preview */ 
+	/* background-image: linear-gradient(to bottom, #C8A3FF 0%, #002130 100%);*/
+	    
+}
+
+.controlbar {
+	border-radius: 10px;
+	border: 1px solid gray;
+	/* IE10 Consumer Preview */ 
+	background-image: -ms-linear-gradient(top, #444444 0%, #999999 100%);
+	
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(top, #444444 0%, #999999 100%);
+	
+	/* Opera */ 
+	background-image: -o-linear-gradient(top, #444444 0%, #999999 100%);
+	
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #444444), color-stop(1, #999999));
+	
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(top, #444444 0%, #999999 100%);
+	
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: linear-gradient(to bottom, #444444 0%, #999999 100%);
+	    
+}
+
+.controlbar div {
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+.controlbar form {
+	margin-bottom: 0px !important;	
+}
+
+.input-append .btn {
+	height: 30px;
+	border-bottom-right-radius: 15px !important;
+	border-top-right-radius: 15px !important;
+	margin-left: -10px !important;
 }

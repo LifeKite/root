@@ -30,7 +30,7 @@ Rlifekite::Application.routes.draw do
   resources :kites
   
   devise_for :users
-  resources :users, :only => [:index, :show]
+  resources :users, :only => [:index, :show, :edit]
   resources :friendships
     
   root :to => "home#index"
@@ -70,6 +70,12 @@ Rlifekite::Application.routes.draw do
     member do
       put 'promote'
       put 'demote'
+    end
+  end
+  
+  resources :users do
+    member do
+      put 'update'
     end
   end
   

@@ -46,15 +46,21 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @kite = Kite.find(@comment.kite_id)
   
-    @notification = Notification.new(
-      :message => "Someone has commented on your kite",
-      :user => @kite.user,
-      :link => kite_url(@kite))   
+    if @kite.user.notifyOnKiteComment
+      @notification = Notification.new(
+        :message => "Someone has commented on your kite",
+        :user => @kite.user,
+        :link => kite_url(@kite))   
+      
+      if @kite.user.sendEmailNotifications
+        NotificationMailer.notification_email(@notification).deliver
+      end
+      
+      @notification.save
+    end
     
-    NotificationMailer.notification_email(@notification).deliver
-        
     respond_to do |format|
-      if @comment.save && @notification.save
+      if @comment.save
         format.html { redirect_to(@kite, :notice => 'Comment was successfully created.') }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
@@ -84,16 +90,23 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @kite = Kite.find(@comment.kite_id)
     
-    @notification = Notification.new(
-        :message => @kite.user.username + " found your comment helpful.",
-        :user => @comment.user,
-        :link => kite_url(@kite))   
+    if @comment.user.notifyOnKitePromote
+      @notification = Notification.new(
+          :message => @kite.user.username + " found your comment helpful.",
+          :user => @comment.user,
+          :link => kite_url(@kite))   
+        
+      if @comment.user.sendEmailNotifications
+        NotificationMailer.notification_email(@notification).deliver
+      end
       
-    NotificationMailer.notification_email(@notification).deliver
-          
+      @notification.save
+      
+    end
+    
     
     respond_to do |format|
-          if @comment.markHelpful()  && @notification.save
+          if @comment.markHelpful() 
             format.html { redirect_to(@kite) }
             format.xml  { head :ok }
           else

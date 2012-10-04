@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   :authentication_keys => [:username]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :notifyOnKiteComment, :notifyOnKitePromote, :sendEmailNotifications 
   
   
   validates_presence_of :email

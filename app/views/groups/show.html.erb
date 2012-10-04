@@ -13,7 +13,7 @@
 			  <%= User.find(@group.founder_id).username %>
 			</div>
 		</div>
-		<div class="span10 offset2">
+		<div class="span10 offset1 well">
 			<div class="span12 groupList">
 			<p><b>Members:</b>
 			<ul id="double">
@@ -33,10 +33,9 @@
 			</ul>
 			</div>
 		</div>
-		<div class="span10 offset2">
-			<%=h link_to "Invite new members to the group", new_invite_path(:group => @group), :class => "btn" %>
-		</div>
+
 		<div class="span12">
+			<%=h link_to "Invite new members to the group", new_invite_path(:group => @group), :class => "btn" %>
 			<% if @group.founder_id == current_user.id %>
 			<%= link_to 'Change the Name', edit_group_path(@group), :class => "btn" %> 
 			<%= link_to "Delete the group", @group, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>

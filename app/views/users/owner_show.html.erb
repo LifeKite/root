@@ -1,16 +1,16 @@
 <div id="content-container" class="span12">
-	<div class="row-fluid">
+	<div class="row-fluid controlbar">
 		<div class="span12">
 			<% if @user.id == current_user.id %>
 				<div class="span5">
-					<%= link_to "Create a New Kite", new_kite_path, { :class => "btn" } %>
-					<%= link_to "Start New Group", new_group_path, { :class => "btn" } %>
-					<%= link_to "Start a new kite string", new_sharedpurpose_path, { :class => "btn" } %>
+					<%= link_to "Create a New Kite", new_kite_path, { :class => "btn btn-mini" } %>
+					<%= link_to "Start New Group", new_group_path, { :class => "btn btn-mini" } %>
+					<%= link_to "Start a new kite string", new_sharedpurpose_path, { :class => "btn btn-mini" } %>
 			    </div>
-				<div id="groupSearch" class="span3 form-search form-inline">
+				<div id="groupSearch" class="pull-right" style="margin-right: 10px">
 					<%= render :partial => 'groups/search' %>
 				</div>
-				<div id="kitestringSearch" class="span3 form-search form-inline">
+				<div id="kitestringSearch" class="pull-right" style="margin-right: 10px">
 					<%= render :partial => 'sharedpurposes/search' %>
 				</div>
 				
@@ -86,7 +86,7 @@
 			<div class="span10 offset4 SectionGroup" id="moreinfo" style="margin-top: 10px;">
 				<span id="kiteState" class="badge" style="float: left; margin-left: 10px; margin-top: 6px;"></span>
 				<span id="kiteDesc"></span>
-				<%= link_to ' more...', kites_path, :class => "btn btn-info", :style => "float: right; margin-right: 10px;" %>
+				<%= link_to ' more...', kites_path, :class => "btn btn-info btn-mini", :style => "float: right; margin-right: 10px; margin-top: 3px;" %>
 			</div>
 		</div>
 		</div>

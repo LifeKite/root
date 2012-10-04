@@ -1,4 +1,4 @@
-<%= form_for(@kite, :html => {:class => "upload", :multipart => true}) do |f| %>
+<%= form_for(@kite, :html => {:class => "upload well", :multipart => true}) do |f| %>
   <% if @kite.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@kite.errors.count, "error") %> prohibited this kite from being saved:</h2>
@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-<div class="well form-vertical">
+<div class="form-vertical">
 <p>Choose an image for your kite.</p>
   	<%= f.label "Kite Image", :class => "control-label" %><br />
   	<%= f.file_field :Upload, :class=>"input-file" %>

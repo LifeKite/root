@@ -5,6 +5,29 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def edit
+    if (params.has_key?(:id))
+          @user =  User.find(params[:id])   
+            
+    else
+      @user = current_user
+    end
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.html {redirect_to(@user)}
+        format.xml {head :ok}
+      else
+        format.html {render :action => "edit" }
+        format.xml {render :xml => @user.errors}
+      end
+    end
+  end
+  
   def show
     if (params.has_key?(:id))
       @user =  User.find(params[:id])   

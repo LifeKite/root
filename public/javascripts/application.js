@@ -54,11 +54,13 @@ $(document).ready(function(){
 	});
 	
 	if($('.alert-success').text().length > 0) {
-		$('.alert-success').show();
+		$(this).alert();
+		//$('.alert-success').show();
 	}
 	
 	if($('.alert-error').text().length > 0) {
-		$('.alert-error').show();
+		$(this).alert();
+		//$('.alert-error').show();
 	}
 	$( ".selectable" ).selectable({
 		stop: function() {
@@ -71,12 +73,12 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('.SectionGroup').mouseover(function(){
+	$('.SectionGroup').mouseenter(function(){
 		$(this).animate({opacity:1},1000);
 		$(this).css('border-color', 'white');
 	})
 	
-	$('.SectionGroup').mouseout(function(){
+	$('.SectionGroup').mouseleave(function(){
 		$(this).animate({opacity:0.5},1000);
 		$(this).css('border-color', 'gray');
 	})

@@ -1,4 +1,4 @@
-<%= form_for(@sharedpurpose) do |f| %>
+<%= form_for(@sharedpurpose, :html=>{:class => 'form-horizontal'}) do |f| %>
 	<% if @sharedpurpose.errors.any? %>
 		<div id="error_explanation">
 		  <h2><%= pluralize(@sharedpurpose.errors.count, "error") %>
@@ -11,15 +11,15 @@
 		</div>
  	<% end %>
  	
- 	<div class="field">
- 		<%= f.label :name %><br />
+ 	<div class="field control-group">
+ 		<%= f.label :name, :html => { :class=>'control-label'} %>
  		<%= f.text_field :name %>
  	</div>
  	<div class="field">
  		<%= f.hidden_field "founder_id", :value => current_user.id %>
  	</div>
  	<div class="actions">
- 		<%= f.submit %>
+ 		<%= f.submit "Create Kite String", :class => "btn " %>
  	</div>
  <% end %>
  
