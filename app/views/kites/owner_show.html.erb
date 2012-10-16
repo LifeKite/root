@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 <div class="row-fluid">
 	<div class="kite span6">
-		<div >
+		<div class="controlbar" style="text-align: center; margin-left: 10px; margin-right:10px;">
 			<%= image_tag(@kite.ImageLocation, :alt=>@kite.Description, 
 				:mouseover => @kite.ImageLocation, :id=>'thumbnail') %>
 		</div>
-		<div >
+		<div style="padding-top: 10px;padding-right: 10px;">
 			<div class="span12 well">
 				<p>
 				  <b>Created:</b>
@@ -31,12 +31,10 @@
 		</div>
 	</div>
 	<div class="span6">
-		<div class="row">
 		
-  		</div>
   		<div class="row">
-  			<div class="span12 well" style="max-height:350px; overflow:auto;">
-  				<b>Comments</b>
+  			<div class="span12 controlbar" style="height:430px; overflow:auto;">
+  				<h3 style="padding-left: 10px;">Comments:</h3>
   				
 				<ul>
 				  

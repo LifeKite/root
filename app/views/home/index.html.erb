@@ -1,17 +1,17 @@
 <div class="row-fluid" style="margin-top: 10px; margin-bottom: 10px;clear: both; padding-top: 60px;">
 <div id='logo' class="span4">
-	<%= image_tag("Kite.jpg") %>
+	<%= image_tag("Kite.png") %>
 </div>
 <div class="span4" id="summary">
 	<ul>
-		<li>Life Goals</li>
-		<li>Beautiful Images</li>
-		<li>Encouraging Friends</li>
+		<li style="font-family: 'Sofadi One', cursive; font-size: 30px;">Life Goals</li>
+		<li style="font-family: 'Sofadi One', cursive; font-size: 30px;">Beautiful Images</li>
+		<li style="font-family: 'Sofadi One', cursive; font-size: 30px;">Encouraging Friends</li>
 	</ul>
 </div>
 <div class="span4">
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),
-	:html => {:class => "well form-vertical" }) do |f| %>
+	:html => {:class => "form-vertical", :style=> "border: 1px solid black; padding: 10px;" }) do |f| %>
   <div class="control-group">
   	<%= f.label :username %>
   	<%= f.text_field :username %>
