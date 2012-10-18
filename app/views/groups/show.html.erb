@@ -4,30 +4,36 @@
 	</div>
 	<div class="row-fluid">
 
-		<div class="span10 offset2" style="margin-top: 20px;">
-			<div class="span4">
+		<div class="span12" style="margin-top: 20px;">
+			<div class="span4" style="margin-left: 20px;">
 			  <h2 style="margin-top: 0px;"><%= @group.name %></h2>
 			</div>
-			<div class="span3 offset4">
+			<div class="pull-right">
 			  <b>Founder:</b>
 			  <%= User.find(@group.founder_id).username %>
 			</div>
 		</div>
-		<div class="span10 offset1 well">
+		<div class="span12 well">
 			<div class="span12 groupList">
 			<p><b>Members:</b>
 			<ul id="double">
 			  <% for user in @group.users %>
-			    <li class="well">
+			    <li class="groupmember">
 			    	<%=h link_to user.username, user, :class=> "pull-left"%>
-			    	<ul class="thumbnails row span6 pull-right">
-			    	<% for kite in user.kites.where(:sharelevel => "public") %>
-			    		<li class="span1 thumbnail">
-			    			<%=h image_tag(kite.ImageLocation, :id=>'thumbnail', :size=>'10',
-			    			:alt=>kite.Description, :mouseover => kite.ImageLocation) %>
-			    		</li>
-			    	<% end %>
-			    	</ul>
+			    	<% if user.kites.where(:sharelevel => "public").size == 0 %>
+			    		<div class="kitesample thumbnails row span12 pull-right">
+			    			<strong>No kites shared</strong>
+			    		</div>
+			    	<% else %>
+				    	<ul class="kitesample thumbnails row span12 pull-right">
+				    	<% for kite in user.kites.where(:sharelevel => "public").sample(5) %>
+				    		<li class="span2 thumbnail">
+				    			<%=h link_to image_tag(kite.ImageLocation, :id=>'thumbnail', :size=>'10',
+				    			:alt=>kite.Description, :mouseover => kite.ImageLocation), kite %>
+				    		</li>
+				    	<% end %>
+				    	</ul>
+				    <% end %>
 			    </li>
 			  <% end %>
 			</ul>

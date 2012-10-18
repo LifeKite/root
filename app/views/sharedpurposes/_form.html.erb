@@ -1,4 +1,4 @@
-<%= form_for(@sharedpurpose, :html=>{:class => 'form-horizontal'}) do |f| %>
+<%= form_for(@sharedpurpose, :html=>{:class => 'form-horizontal well'}) do |f| %>
 	<% if @sharedpurpose.errors.any? %>
 		<div id="error_explanation">
 		  <h2><%= pluralize(@sharedpurpose.errors.count, "error") %>
@@ -20,6 +20,7 @@
  	</div>
  	<div class="actions">
  		<%= f.submit "Create Kite String", :class => "btn " %>
+ 		<%= link_to 'Cancel', current_user, :class => "btn" %>
  	</div>
  <% end %>
  

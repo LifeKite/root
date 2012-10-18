@@ -170,11 +170,7 @@ div.SectionGroup img
 	max-height: 200px;
 }
 
-div.kite img
-{
-	max-width: 500px;
-	max-height: 500px;
-}
+
 
 #kites {
 	float: right;
@@ -354,9 +350,8 @@ div.kite img
 
 .groupList ul
 {
-	width: 760px;
 	margin-bottom:20px;
-	overflow:hidden;
+	overflow-y:hidden;
 	border-top:1px solid #ccc;
 }
 
@@ -366,12 +361,13 @@ div.kite img
 	border-bottom:1px solid #ccc;
 	float: left;
 	display:inline;
+	width: 90%;
 }
 
-#double li { width:50%;}
+/*double li { width:40%;}
 #tripple li {width: 33.333%;}
 #quad li { width: 25%;}
-
+*/
 .ui-selecting { background: #FECA40; }
 .ui-selected { background: #4088B8; color: white; }
 
@@ -506,4 +502,42 @@ div.kite img
 	border-bottom-right-radius: 15px !important;
 	border-top-right-radius: 15px !important;
 	margin-left: -10px !important;
+}
+
+.kitesample {
+	border: 1px solid black;
+	border-radius: 10px;
+	height: 100px;
+	color: white;
+	vertical-align: middle;
+	background-image: -ms-linear-gradient(top, #444444 0%, #999999 100%);
+	
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(top, #444444 0%, #999999 100%);
+	
+	/* Opera */ 
+	background-image: -o-linear-gradient(top, #444444 0%, #999999 100%);
+	
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #444444), color-stop(1, #999999));
+	
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(top, #444444 0%, #999999 100%);
+	
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: linear-gradient(to bottom, #444444 0%, #999999 100%);
+}
+
+.kitesample li {
+	margin-top: 5px;
+	float: left;
+}
+
+.kitesample li img {
+	width: 160px;
+	height: 75px;
+}
+
+.groupmember {
+	margin: 20px;
 }
