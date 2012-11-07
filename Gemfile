@@ -23,8 +23,8 @@ gem 'will_paginate', '~> 3.0.0'
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
 group :development do
-	gem 'ruby-debug19'
-	gem 'sqlite3-ruby', :require => 'sqlite3'
+	gem 'debugger'
+	gem 'sqlite3', :require => 'sqlite3'
 end
 # Bundle the extra gems:
 # gem 'bj'
@@ -40,7 +40,7 @@ end
 #   gem 'webrat'
 # end
 group :production do
-	gem 'heroku'
+	# gem 'heroku'
 	gem 'pg'
 	gem 'thin'
 end

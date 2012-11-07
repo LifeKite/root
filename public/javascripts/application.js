@@ -8,20 +8,30 @@ $(document).ready(function(){
 	
 	function setCenterStage(image) {
 		
-		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center');
+		var iUpfront = ' url("' + $(image).attr('src') + '") no-repeat center';
+				
+		$('#showcase').css('background', iUpfront);
 		
-		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center, ' +
-					  ' -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999))');
-		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center, ' +
-					  ' -webkit-linear-gradient(top, #444444, #999999)');
-		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center, ' +
-					  ' -moz-linear-gradient(top, #444444, #999999)');
-		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center, ' +
-					  ' -ms-linear-gradient(top, #444444, #999999)');
-		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center, ' +
-					  ' -o-linear-gradient(top, #444444, #999999)');
-		$('#showcase').css('background', ' url("' + $(image).attr('src') + '") no-repeat center, ' +
-					  ' linear-gradient(top, #444444, #999999)');
+		$('#showcase').css('background', iUpfront + ', ' +
+					  ' -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999))' +
+					  ' -webkit-background-size: cover');
+		$('#showcase').css('background', iUpfront + ', ' +
+					  ' -webkit-linear-gradient(top, #444444, #999999)' +
+					  ' -webkit-background-size: cover');
+		$('#showcase').css('background', iUpfront + ', ' +
+					  ' -moz-linear-gradient(top, #444444, #999999)' +
+					  ' -moz-background-size: cover');
+		$('#showcase').css('background', iUpfront + ', ' +
+					  ' -ms-linear-gradient(top, #444444, #999999)' +
+					  ' background-size: cover');
+		$('#showcase').css('background', iUpfront + ', ' +
+					  ' -o-linear-gradient(top, #444444, #999999)' +
+					  ' -o-background-size: cover');
+		$('#showcase').css('background', iUpfront + ', ' +
+					  ' linear-gradient(top, #444444, #999999)' +
+					  ' background-size: cover');
+		
+		
 		
 //		$('#showcase').css('filter', 
 //		'filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr="#444444", endColorstr="#999999")');
