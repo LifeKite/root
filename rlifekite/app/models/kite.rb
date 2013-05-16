@@ -20,7 +20,7 @@ class Kite < ActiveRecord::Base
     name = uploaded_file.original_filename
     just_filename = Digest::SHA1.hexdigest(Time.now.to_s)
     
-    bucket = "LifeKite"
+    bucket = "lkphotos"
     
     AWS::S3::S3Object.store(just_filename, 
                             uploaded_file, 
