@@ -1,0 +1,31 @@
+<h1>Listing kites</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Completed</th>
+    <th>Createdate</th>
+    <th>Completedate</th>
+    <th>ImageLocation</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% current_user.kites.each do |kite| %>
+  <tr>
+    <td><%= kite.Description %></td>
+    <td><%= kite.Completed %></td>
+    <td><%= kite.CreateDate %></td>
+    <td><%= kite.CompleteDate %></td>
+    <td><%= kite.ImageLocation %></td>
+    <td><%= link_to 'Show', kite %></td>
+    <td><%= link_to 'Edit', edit_kite_path(kite) %></td>
+    <td><%= link_to 'Destroy', kite, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Kite', new_kite_path %>
