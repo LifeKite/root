@@ -1,0 +1,22 @@
+<h3>Select one of your kites to add to the Kitestring</h3>
+
+<%= form_tag("addKite") do %>
+
+	<ul class="thumbnails selectable">
+	<% for kite in @cleanKites %>
+		<li class="span3">
+			<div class="thumbnail">
+			<%=h image_tag(kite.ImageLocation, :id=>'thumbnail', :name=>kite.id, :alt=>kite.Description, :size=>'50', :title=>kite.sharelevel) %>
+			<p><%=h kite.Description %></p>
+			</div>
+		</li>
+	<% end %>
+	</ul>
+	
+	<%= hidden_field_tag(:kite_ids) %>
+	
+	<%= submit_tag("Add Kite") %>
+	
+<% end %>
+
+<%= link_to 'Back', @sharedpurpose, :class => 'btn' %>
