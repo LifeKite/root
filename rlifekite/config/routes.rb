@@ -32,8 +32,9 @@ Rlifekite::Application.routes.draw do
   devise_for :users
   resources :users, :only => [:index, :show, :edit]
   resources :friendships
-    
-  root :to => "home#index"
+  
+  root :to => redirect('/splash/index.html')  
+  # root :to => "home#index"
   match ':page' => 'home#show'
   # map.home ':page', :controller => 'home', :action => 'show', :page => /about|help|contact/
   # root :to => "users#show"
