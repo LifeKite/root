@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711005327) do
+ActiveRecord::Schema.define(:version => 20121002230327) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20120711005327) do
     t.integer  "kite_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "isHelpful"
   end
 
   create_table "groups", :force => true do |t|
@@ -40,8 +41,9 @@ ActiveRecord::Schema.define(:version => 20120711005327) do
     t.integer  "user_id"
     t.integer  "group_id"
     t.date     "initiated"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "invitation_token"
   end
 
   create_table "kites", :force => true do |t|
@@ -78,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20120711005327) do
     t.integer  "founder_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "isPrivate"
   end
 
   create_table "slugs", :force => true do |t|
@@ -114,6 +117,9 @@ ActiveRecord::Schema.define(:version => 20120711005327) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "notifyOnKiteComment"
+    t.boolean  "notifyOnKitePromote"
+    t.boolean  "sendEmailNotifications"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

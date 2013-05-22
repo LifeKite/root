@@ -30,7 +30,7 @@ Rlifekite::Application.routes.draw do
   resources :kites
   
   devise_for :users
-  resources :users, :only => [:index, :show]
+  resources :users, :only => [:index, :show, :edit]
   resources :friendships
     
   root :to => "home#index"
@@ -38,6 +38,13 @@ Rlifekite::Application.routes.draw do
   # map.home ':page', :controller => 'home', :action => 'show', :page => /about|help|contact/
   # root :to => "users#show"
   # match '/' => "users#show", :as => :user_root
+  
+  resources :comments do
+    member do
+      put 'markHelpful'
+      put 'unmarkHelpful'
+    end
+  end
   
   resources :kites do
     member do
@@ -59,11 +66,33 @@ Rlifekite::Application.routes.draw do
     end
   end
   
+  resources :sharedpurpose do
+    member do
+      put 'promote'
+      put 'demote'
+    end
+  end
+  
+  resources :users do
+    member do
+      put 'update'
+    end
+  end
+  
   match "/kites/:id/complete" => "kites#complete"
   match "/kites/:id/promote" => "kites#promote"
   match "/kites/:id/demote" => "kites#demote"
   match "/invites/:id/accept" => "invites#accept"
   match "/notifications/:id/markViewed" => "notification#markViewed"
+  match "/sharedpurpose/:id/selectKite" => "sharedpurposes#selectKite"
+  match "/sharedpurpose/:id/promote" => "sharedpurposes#promote"
+  match "/sharedpurpose/:id/demote" => "sharedpurposes#demote"
+  match "/sharedpurpose/:id/addKite" => "sharedpurposes#addKite"
+  match "/sharedpurpose/:id/removeKite" => "sharedpurposes#removeKite"
+  match "/groups/search" => "groups#search"
+  match "/sharedpurposes/search" => "sharedpurposes#search"
+  match "/comments/:id/markHelpful" => "comments#markHelpful"
+  match "/comments/:id/unmarkHelpful" => "comments#unmarkHelpful"
   
   devise_scope :user do
     get "/login" => "devise/sessions#new"

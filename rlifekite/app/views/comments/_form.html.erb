@@ -13,12 +13,13 @@
 
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.text_area :content, :size => "600x5", :style=> "width: 60%;" %>
   </div>
   <div class="field">
-  	<%= f.hidden_field "kite_id", :value => Kite.find(params[:kite]).id %>
+  	<%= f.hidden_field "kite_id", :value => @kite.id %>
   </div>
   <div class="actions">
     <%= f.submit %>
+    <%= link_to 'Cancel', @kite, :class => "btn" %>
   </div>
 <% end %>

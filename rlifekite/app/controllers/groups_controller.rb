@@ -82,4 +82,10 @@ class GroupsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def search
+    @groups = Group.search params[:search]
+    
+    render "index"
+  end
 end

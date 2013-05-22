@@ -20,7 +20,7 @@ class Kite < ActiveRecord::Base
     name = uploaded_file.original_filename
     just_filename = Digest::SHA1.hexdigest(Time.now.to_s)
     
-    bucket = "lkphotos"
+    bucket = "LifeKite"
     
     AWS::S3::S3Object.store(just_filename, 
                             uploaded_file, 
@@ -57,5 +57,27 @@ class Kite < ActiveRecord::Base
       AWS::S3::S3Object.delete cleanName, 'LifeKite'
     end
   end
+  
+  def UserCanView(testuser)
+    if sharelevel == "public"
+      return true
+    end
+    
+    if user.id == testuser.id
+      return true
+    end
+    
+    # Test if this kite is shared
+    # on a kitestring that this user is a 
+    # member of
+    for str in sharedpurposes
+      if str.UserCanView(testuser)
+        return true
+      end
+    end
+        
+    return false
+  end
+  
   
 end

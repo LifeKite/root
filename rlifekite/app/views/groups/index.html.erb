@@ -1,23 +1,25 @@
 <h1>Listing groups</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div id="groupSearch" class="span3 form-search form-inline">
+	<%= render :partial => 'groups/search' %>
+</div>
 
-<% @groups.each do |group| %>
-  <tr>
-    <td><%= group.name %></td>
-    <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
-    <td><%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<% if @groups.count ==0 %>
+	<p>No records found matching your criteria</p>
+<% else %>
+	<table class="table table-bordered table-striped">
+	  <tr>
+	    <th>Name</th>
+	    <th></th>
+	  </tr>
+	
+	<% @groups.each do |group| %>
+	  <tr>
+	    <td><%= group.name %></td>
+	    <td><%= link_to 'Show', group %></td>
+	  </tr>
+	<% end %>
+	</table>
 <% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Group', new_group_path %>

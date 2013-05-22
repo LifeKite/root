@@ -1,0 +1,13 @@
+<h1><%= @user.username %></h1>
+<br/>
+
+<p><h3>Kites</h3>
+<ul>
+  <% for kite in @user.kites %>
+    <li>
+      <%=h image_tag(kite.ImageLocation, :id=>'thumbnail') %>
+      <%= link_to 'Show', kite %>
+    </li>
+  <% end %>
+</ul>
+
