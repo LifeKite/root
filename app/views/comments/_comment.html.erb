@@ -1,0 +1,24 @@
+<div class="well" style="width: 85%;">
+	<div class="row">
+  		<%= comment.content %> - <%= link_to comment.user.username, comment.user %>
+	  	<% if comment.isHelpful %>
+			<i class="icon-thumbs-up"></i>
+		<% end %>
+	</div>
+	<div class="row">
+
+		<% if Kite.find(comment.kite_id).user == current_user %>
+			<% if comment.isHelpful %>
+				<%= link_to 'This comment was not helpful', 
+					unmarkHelpful_comment_path(comment), :class=>"btn" %>
+			<% else %>
+				<%= link_to 'Mark this comment as helpful', 
+					markHelpful_comment_path(comment), :class=>"btn" %>
+			<% end %> 
+		<% end %>
+		<% if comment.user.id = current_user.id %>
+			<%= link_to 'Edit', edit_comment_path(comment), :class=>"btn" %>
+			
+		<% end %>
+	</div>
+</div>
