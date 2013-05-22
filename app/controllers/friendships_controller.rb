@@ -1,4 +1,11 @@
+# Author::    Rich Nagle  (mailto:rwnagle3+lifekite@gmail.com)
+# Copyright:: Copyright (c) 2013 Lifekite, LLC
+
+# This class exposes methods to allow users to mark each other as
+# friends
 class FriendshipsController < ApplicationController
+  
+  # Create a new friendship :)
   def create
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
       if @friendship.save
@@ -10,6 +17,7 @@ class FriendshipsController < ApplicationController
       end
   end
 
+  # Destroy a current friendship :(
   def destroy
     @friend = current_user.friendships.find(params[:id])
     @friend.destroy

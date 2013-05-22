@@ -1,6 +1,10 @@
+# Author::    Rich Nagle  (mailto:rwnagle3+lifekite@gmail.com)
+# Copyright:: Copyright (c) 2013 Lifekite, LLC
+
+# This class exposes methods to modify user comments
 class CommentsController < ApplicationController
-  # GET /comments
-  # GET /comments.xml
+  
+  # List all comments
   def index
     @comments = Comment.all
 
@@ -10,8 +14,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/1
-  # GET /comments/1.xml
+  # Generate a comment view
   def show
     @comment = Comment.find(params[:id])
 
@@ -21,8 +24,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/new
-  # GET /comments/new.xml
+  # Create a new comment
   def new
     @comment = Comment.new
     @kite = Kite.find(params[:kite])
@@ -32,14 +34,13 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/1/edit
+  # Edit an existing comment
   def edit
     @comment = Comment.find(params[:id])
     @kite = Kite.find(@comment.kite_id)
   end
 
-  # POST /comments
-  # POST /comments.xml
+  # Persist a new comment in the data store
   def create
     @comment = Comment.new(params[:comment])
     #@comment.kite = Kite.find(params[:kite_id])
@@ -70,8 +71,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PUT /comments/1
-  # PUT /comments/1.xml
+  # Update an existing comment in the data store
   def update
     @comment = Comment.find(params[:id])
 
@@ -86,6 +86,7 @@ class CommentsController < ApplicationController
     end
   end
 
+  # Promote a comment as helpful
   def markHelpful
     @comment = Comment.find(params[:id])
     @kite = Kite.find(@comment.kite_id)
@@ -116,6 +117,7 @@ class CommentsController < ApplicationController
         end
   end
   
+  # Demote a comment as not helpful
   def unmarkHelpful
     @comment = Comment.find(params[:id])
     @kite = Kite.find(@comment.kite_id)     
@@ -131,8 +133,7 @@ class CommentsController < ApplicationController
         end
   end
   
-  # DELETE /comments/1
-  # DELETE /comments/1.xml
+  # Delete a comment
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy

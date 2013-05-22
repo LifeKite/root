@@ -1,10 +1,18 @@
+# Author::    Rich Nagle  (mailto:rwnagle3+lifekite@gmail.com)
+# Copyright:: Copyright (c) 2013 Lifekite, LLC
+
+# This class exposes methods to manipulate the user, including 
+# authentication and new user creation.  It also accesses assets
+# owned by the user such as kites, comments, etc.
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   
+  # Show all users
   def index
     @users = User.all
   end
 
+  # Retrieve an editable user based on id
   def edit
     if (params.has_key?(:id))
           @user =  User.find(params[:id])   
@@ -14,6 +22,7 @@ class UsersController < ApplicationController
     end
   end
   
+  # Updated the user information based on id and user object
   def update
     @user = User.find(params[:id])
     
@@ -28,6 +37,7 @@ class UsersController < ApplicationController
     end
   end
   
+  # Generate user view 
   def show
     if (params.has_key?(:id))
       @user =  User.find(params[:id])   

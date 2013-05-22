@@ -1,3 +1,8 @@
+# Author::    Rich Nagle  (mailto:rwnagle3+lifekite@gmail.com)
+# Copyright:: Copyright (c) 2013 Lifekite, LLC
+
+# This class exposes methods to control a user's assignment to
+# one or more groups
 class AssignmentsController < ApplicationController
   # GET /assignments
   # GET /assignments.xml

@@ -1,3 +1,8 @@
+# Author::    Rich Nagle  (mailto:rwnagle3+lifekite@gmail.com)
+# Copyright:: Copyright (c) 2013 Lifekite, LLC
+
+# This class holds the core Kite object, including
+# the kite image and initial description
 class Kite < ActiveRecord::Base
   belongs_to :user
   has_many :comments
@@ -11,6 +16,7 @@ class Kite < ActiveRecord::Base
   @@access_key_id = ENV['AMAZON_ACCESS_KEY_ID']
   @@secret_access_key = ENV['AMAZON_SECRET_ACCESS_KEY']
   
+  # Upload an image file to the kite
   def upload(uploaded_file)
     
     AWS::S3::Base.establish_connection!(
@@ -30,22 +36,27 @@ class Kite < ActiveRecord::Base
     return AWS::S3::S3Object.url_for(just_filename, bucket)[/[^?]+/]                            
   end
   
+  # Mark the kite completed
   def complete
     update_attribute(:Completed, 1)
     update_attribute(:CompleteDate, Date.today)
     self.save!
   end
   
+  # Make the kite public
   def promote
     update_attribute(:sharelevel, "public")
     self.save!
   end
   
+  # Make the kite private
   def demote
     update_attribute(:sharelevel, "private")
     self.save!
   end
   
+  # Remove any unassociated images which may have wandered into
+  # the repository
   def cleanup
     AWS::S3::Base.establish_connection!(
               :access_key_id => @@access_key_id,
@@ -58,6 +69,8 @@ class Kite < ActiveRecord::Base
     end
   end
   
+  # Function tests whether the current user instance (logged in)
+  # can access a given kite.
   def UserCanView(testuser)
     if sharelevel == "public"
       return true

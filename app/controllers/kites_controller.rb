@@ -1,9 +1,13 @@
+# Author::    Rich Nagle  (mailto:rwnagle3+lifekite@gmail.com)
+# Copyright:: Copyright (c) 2013 Lifekite, LLC
+
+# This class exposes methods to manipulate kite objects and their
+# associated assets (such as comments)
 class KitesController < ApplicationController
-  # GET /kites
-  # GET /kites.xml
+  
+  # List all kites
   def index
     @kites = Kite.all
-    
     
     respond_to do |format|
       format.html # index.html.erb
@@ -11,8 +15,18 @@ class KitesController < ApplicationController
     end
   end
 
-  # GET /kites/1
-  # GET /kites/1.xml
+  # Retrieve a random sampling of all public kites, requires 
+  # number of kites to retrieve
+  def randomSample
+    @kites = Kite.all.where(:sharelevel => "public").sample(params[:count])
+      
+    respond_to do |format|
+      format.html 
+      format.xml { render :xml => @kites}
+    end
+  end
+  
+  # Open the view for a given kite
   def show
     @kite = Kite.find(params[:id])
     
@@ -33,11 +47,10 @@ class KitesController < ApplicationController
 #    end
   end
 
-  # GET /kites/new
-  # GET /kites/new.xml
+  # Create a new kite object (will not persist untill passed
+  # back to create)
   def new
-    
-    
+   
     @kite = Kite.new
 
     respond_to do |format|
@@ -46,7 +59,7 @@ class KitesController < ApplicationController
     end
   end
 
-  # GET /kites/1/edit
+  # Retrieve a kite for editing
   def edit
     @kite = Kite.find(params[:id])
       
@@ -55,8 +68,7 @@ class KitesController < ApplicationController
      end
   end
 
-  # POST /kites
-  # POST /kites.xml
+  # Commit a given kite to the data store
   def create
     if(params[:kite].has_key?(:Upload))
       upload = params[:kite][:Upload]
@@ -84,8 +96,8 @@ class KitesController < ApplicationController
     end
   end
 
-  # PUT /kites/1
-  # PUT /kites/1.xml
+  # Update the parameters of a kite.  Kite and kite id are taken
+  # as parameters
   def update
     @kite = Kite.find(params[:id])
       

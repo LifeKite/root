@@ -1,5 +1,12 @@
+# Author::    Rich Nagle  (mailto:rwnagle3+lifekite@gmail.com)
+# Copyright:: Copyright (c) 2013 Lifekite, LLC
+
+# This class exposes methods to manipulate notifications. 
+# Notifications are fired in response to actions such as
+# a friend/group request or a comment on your kite
 class NotificationController < ApplicationController
 
+  # Create a new notification
   def new 
     @Notification = Notification.new
     respond_to do |format|
@@ -8,6 +15,7 @@ class NotificationController < ApplicationController
     end
   end
   
+  # Persist a new notification
   def create
     @Notification = Notification.new(params[:note])
     @Notification.state = "new";
@@ -18,6 +26,7 @@ class NotificationController < ApplicationController
     end
   end
   
+  # Mark a notification as having been viewed
   def markViewed
     @Notification = Notification.find(params[:id])
     @Notification.markViewed
@@ -28,6 +37,7 @@ class NotificationController < ApplicationController
     end
   end
   
+  # Delete a notification
   def destroy
     @Notification = Notification.find(params[:id])
     @Notification.destroy

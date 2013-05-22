@@ -1,5 +1,11 @@
+# Author::    Rich Nagle  (mailto:rwnagle3+lifekite@gmail.com)
+# Copyright:: Copyright (c) 2013 Lifekite, LLC
+
+# This class exposes methods to manipulate a special type of
+# group which is built around kites rather than users
 class SharedpurposesController < ApplicationController
 
+  # Create a new group
   def new
     @sharedpurpose = Sharedpurpose.new
     respond_to do |format|
@@ -9,6 +15,7 @@ class SharedpurposesController < ApplicationController
   
   end
   
+  # Persist a new group
   def create
     @sharedpurpose = Sharedpurpose.new(params[:sharedpurpose])
     @sharedpurpose.isPrivate = true
@@ -24,6 +31,7 @@ class SharedpurposesController < ApplicationController
     end
   end
   
+  # Update an existing group
   def update
     @sharedpurpose = Sharedpurpose.find(params[:id])
     
@@ -38,6 +46,7 @@ class SharedpurposesController < ApplicationController
     end
   end
   
+  # Generate a view of the selected group
   def show
     @sharedpurpose = Sharedpurpose.find(params[:id])
 
@@ -51,6 +60,7 @@ class SharedpurposesController < ApplicationController
     end
   end
   
+  # Generate an editable view of the current group
   def edit
     @sharedpurpose = Sharedpurpose.find(params[:id])
     
@@ -59,6 +69,7 @@ class SharedpurposesController < ApplicationController
     end
   end
   
+  # Add a kite to the group
   def selectKite
     @sharedpurpose = Sharedpurpose.find(params[:id])
       
@@ -73,6 +84,7 @@ class SharedpurposesController < ApplicationController
     end
   end
   
+  # Add a kite to the group
   def addKite
 
     @sharedpurpose = Sharedpurpose.find(params[:id])
@@ -95,6 +107,7 @@ class SharedpurposesController < ApplicationController
     end
   end
   
+  # Remove kite from the group
   def removeKite
     @sharedpurpose = Sharedpurpose.find(params[:id])
     @kite = Kite.find(params[:kite_id])
@@ -115,6 +128,7 @@ class SharedpurposesController < ApplicationController
     end
   end
   
+  # Make group public
   def promote
     @sharedpurpose = Sharedpurpose.find(params[:id])
     @sharedpurpose.isPrivate = false
@@ -134,6 +148,7 @@ class SharedpurposesController < ApplicationController
     end
   end
   
+  # Make group private
   def demote
     @sharedpurpose = Sharedpurpose.find(params[:id])
     @sharedpurpose.isPrivate = true
@@ -153,6 +168,7 @@ class SharedpurposesController < ApplicationController
     end
   end
   
+  # Find group by name
   def search
     @sharedpurposes = Sharedpurpose.search params[:search]
     

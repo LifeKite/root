@@ -1,3 +1,8 @@
+# Author::    Rich Nagle  (mailto:rwnagle3+lifekite@gmail.com)
+# Copyright:: Copyright (c) 2013 Lifekite, LLC
+
+# This class exposes methods to invite new users to groups
+# as well as invite new users to LifeKite
 class InvitesController < ApplicationController
   # GET /Invites
   # GET /Invites.xml
