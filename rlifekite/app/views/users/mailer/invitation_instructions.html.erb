@@ -1,8 +1,0 @@
-<p>Hello <%= @resource.email %>!</p>
-
-<p>Someone has invited you to <%= root_url %>, you can accept it through the link below.</p>
-
-<p><%= link_to 'Accept Invite', accept_Invite_url(@resource, :Invite_token => @resource.Invite_token) %></p>
-
-<p>If you don't want to accept the Invite, please ignore this email.<br />
-Your account won't be created until you access the link above and set your password.</p>

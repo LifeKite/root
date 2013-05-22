@@ -53,8 +53,8 @@ class Kite < ActiveRecord::Base
             )
     cleanName = File.basename(self.ImageLocation)
     
-    if AWS::S3::S3Object.exists? cleanName, 'LifeKite'
-      AWS::S3::S3Object.delete cleanName, 'LifeKite'
+    if AWS::S3::S3Object.exists? cleanName, bucket
+      AWS::S3::S3Object.delete cleanName, bucket
     end
   end
   
