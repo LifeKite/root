@@ -101,7 +101,7 @@ class KitesController < ApplicationController
     @kite.CreateDate = Date.today
     @kite.user = current_user
     @kite.Completed = false
-    @kite.sharelevel = "private"
+    @kite.sharelevel = "public"
 
     respond_to do |format|
       if @kite.save()
