@@ -1,97 +1,95 @@
-<div class="home has-navigation has-footer">
-	<div class="wrapper">
-		<div class="content">
-			<div class="content-header">
-				<h1 class="page-title">Explore Kites</h1>
-				<div id="filter" class="filter">
-					<div id="filter-button" class="filter-button">Filter By</div>
-					<ul id="filter-list" class="filter-list" style="display:none;">
-						<!-- Begin kite categories -->
-						<li>Filter Type 1</li>
-						<li>Filter Type 2</li>
-						<li>Filter Type 3</li>
-						<li>Filter Type 4</li>
-						<!-- End kite categories -->
+<div class="wrapper home has-navigation has-footer">
+	<div class="content">
+		<div class="content-header">
+			<h1 class="page-title">Explore Kites</h1>
+			<div id="filter" class="filter">
+				<div id="filter-button" class="filter-button">Filter By</div>
+				<ul id="filter-list" class="filter-list" style="display:none;">
+					<!-- Begin kite categories -->
+					<li>Filter Type 1</li>
+					<li>Filter Type 2</li>
+					<li>Filter Type 3</li>
+					<li>Filter Type 4</li>
+					<!-- End kite categories -->
+				</ul>
+			</div>
+			<div class="search">
+				<input class="search-input" type="text" placeholder="Search">
+				<input class="search-button" type="image" src="/images/search-button.png" width="38" height="36">
+			</div>
+		</div>
+		<div class="kites">
+			<!-- Begin kite -->
+			<% for kite in @kites %>
+				<div class="kite" style="background: url('<%= kite.ImageLocation %>') no-repeat center">
+	
+					<div class="overlay">
+						<h2 class="kite-name">
+							<%=h link_to kite.Description, kite %>
+						</h2>
+						<p class="kite-byline">Created by <%=h link_to kite.user.username, kite.user, :class => "author-link" %></p>
+						<div class="kite-likes"><span class="like-count">23</span> Likes</div>
+						<div class="view-kite"><%=h link_to "View", kite, :class=>"view-kite-link"%></div>
+					</div>
+				</div>		
+			<% end %>
+
+			<!-- End kite -->
+		</div>
+		<footer id="page-footer" class="page-footer">
+			<div class="footer-tab"><a class="hide-this-bar footer-tab-link">Hide this bar</a><a class="show-this-bar footer-tab-link">Show this bar</a></div>
+			<div class="footer-box stat-box stat-new">
+				<img src="/images/big-icon-flag.png" width="83" height="82">
+				<p class="stat"><%= @newKites %></p>
+				<p class="label">New!</p>
+			</div>
+			<div class="footer-box stat-box stat-user-kites">
+				<img src="/images/big-icon-stacks.png" width="84" height="82">
+				<p class="stat"><%= @kiteCount %></p>
+				<p class="label">User Kites</p>
+			</div>
+			<div class="footer-box stat-box stat-completed">
+				<img src="/images/big-icon-check.png" width="83" height="82">
+				<p class="stat"><%= @completedKites %></p>
+				<p class="label">Completed</p>
+			</div>
+			<div class="footer-box feed-box">
+				<div class="label-side">
+					<img src="/images/big-icon-thumbs-up.png" width="84" height="83">
+					<p class="label">Most<br>Popular</p>
+				</div>
+				<div class="feed-side">
+					<ul class="kite-feed">
+						<!-- Begin comment feed -->
+						<% for summarykite in @popularKites %>
+						<li class="kite-feed-item">
+							<span class="headline"><%=h link_to summarykite.Description, @summarykite%></span><br>
+							<span class="details"><%=h summarykite.user.username %> | <a>23 Following</a></span>
+						</li>
+						<%end%>
+						<!-- End comment feed -->
 					</ul>
 				</div>
-				<div class="search">
-					<input class="search-input" type="text" placeholder="Search">
-					<input class="search-button" type="image" src="/images/search-button.png" width="38" height="36">
+			</div>
+			<div class="footer-box feed-box">
+				<div class="label-side">
+					<img src="/images/big-icon-speech-bubble.png" width="84" height="83">
+					<p class="label">Recent<br>Comments</p>
+				</div>
+				<div class="feed-side">
+					<ul class="kite-feed">
+						<!-- Begin comment feed -->
+						<% for summarykite in @popularKites %>
+						<li class="kite-feed-item">
+							<span class="headline"><%=h link_to summarykite.Description, @summarykite%></span><br>
+							<span class="details"><%=h summarykite.user.username %> | <a>23 Following</a></span>
+						</li>
+						<%end%>
+						<!-- End comment feed -->
+					</ul>
 				</div>
 			</div>
-			<div class="kites">
-				<!-- Begin kite -->
-				<% for kite in @kites %>
-					<div class="kite" style="background: url('<%= kite.ImageLocation %>') no-repeat center">
-		
-						<div class="overlay">
-							<h2 class="kite-name">
-								<%=h link_to kite.Description, kite %>
-							</h2>
-							<p class="kite-byline">Created by <%=h link_to kite.user.username, kite.user, :class => "author-link" %></p>
-							<div class="kite-likes"><span class="like-count">23</span> Likes</div>
-							<div class="view-kite"><%=h link_to "View", kite, :class=>"view-kite-link"%></div>
-						</div>
-					</div>		
-				<% end %>
-	
-				<!-- End kite -->
-			</div>
-			<footer id="page-footer" class="page-footer">
-				<div class="footer-tab"><a class="hide-this-bar footer-tab-link">Hide this bar</a><a class="show-this-bar footer-tab-link">Show this bar</a></div>
-				<div class="footer-box stat-box stat-new">
-					<img src="/images/big-icon-flag.png" width="83" height="82">
-					<p class="stat"><%= @newKites %></p>
-					<p class="label">New!</p>
-				</div>
-				<div class="footer-box stat-box stat-user-kites">
-					<img src="/images/big-icon-stacks.png" width="84" height="82">
-					<p class="stat"><%= @kiteCount %></p>
-					<p class="label">User Kites</p>
-				</div>
-				<div class="footer-box stat-box stat-completed">
-					<img src="/images/big-icon-check.png" width="83" height="82">
-					<p class="stat"><%= @completedKites %></p>
-					<p class="label">Completed</p>
-				</div>
-				<div class="footer-box feed-box">
-					<div class="label-side">
-						<img src="/images/big-icon-thumbs-up.png" width="84" height="83">
-						<p class="label">Most<br>Popular</p>
-					</div>
-					<div class="feed-side">
-						<ul class="kite-feed">
-							<!-- Begin comment feed -->
-							<% for summarykite in @popularKites %>
-							<li class="kite-feed-item">
-								<span class="headline"><%=h link_to summarykite.Description, @summarykite%></span><br>
-								<span class="details"><%=h summarykite.user.username %> | <a>23 Following</a></span>
-							</li>
-							<%end%>
-							<!-- End comment feed -->
-						</ul>
-					</div>
-				</div>
-				<div class="footer-box feed-box">
-					<div class="label-side">
-						<img src="/images/big-icon-speech-bubble.png" width="84" height="83">
-						<p class="label">Recent<br>Comments</p>
-					</div>
-					<div class="feed-side">
-						<ul class="kite-feed">
-							<!-- Begin comment feed -->
-							<% for summarykite in @popularKites %>
-							<li class="kite-feed-item">
-								<span class="headline"><%=h link_to summarykite.Description, @summarykite%></span><br>
-								<span class="details"><%=h summarykite.user.username %> | <a>23 Following</a></span>
-							</li>
-							<%end%>
-							<!-- End comment feed -->
-						</ul>
-					</div>
-				</div>
-			</footer>
-		</div>
+		</footer>
 	</div>
 </div>
 <%= javascript_include_tag "filter.js" %>
