@@ -5,8 +5,10 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
-user = User.create(
-  :username => 'RGORDON',
-  :email => 'lifekite.info@gmail.com',
-  :password => 't5ndbpp',
-  :password_confirmation => 't5ndbpp')
+['all', Rails.env].each do |seed|
+  seed_file = "#{Rails.root}/db/seeds/#{seed}.rb"
+  if File.exists?(seed_file)
+    puts "*** Loading #{seed} seed data"
+    require seed_file
+  end
+end

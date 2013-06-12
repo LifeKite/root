@@ -9,10 +9,8 @@ class Kite < ActiveRecord::Base
   has_many :sharedpurposekites
   has_many :sharedpurposes, :through => :sharedpurposekites
   require 'aws/s3'
-    
-  @@writeDirectory = "public/uploaded_images"
-  @@referenceDirectory = "/uploaded_images/"
   
+  @@aws_bucket_id = ENV['AMAZON_BUCKET_ID']
   @@access_key_id = ENV['AMAZON_ACCESS_KEY_ID']
   @@secret_access_key = ENV['AMAZON_SECRET_ACCESS_KEY']
   
@@ -26,14 +24,13 @@ class Kite < ActiveRecord::Base
     name = uploaded_file.original_filename
     just_filename = Digest::SHA1.hexdigest(Time.now.to_s)
     
-    bucket = "LifeKite"
-    
+   
     AWS::S3::S3Object.store(just_filename, 
                             uploaded_file, 
-                            bucket, 
+                            @@aws_bucket_id, 
                             :access => :public_read)
     
-    return AWS::S3::S3Object.url_for(just_filename, bucket)[/[^?]+/]                            
+    return AWS::S3::S3Object.url_for(just_filename, @@aws_bucket_id)[/[^?]+/]                            
   end
   
   # Mark the kite completed
@@ -64,8 +61,8 @@ class Kite < ActiveRecord::Base
             )
     cleanName = File.basename(self.ImageLocation)
     
-    if AWS::S3::S3Object.exists? cleanName, bucket
-      AWS::S3::S3Object.delete cleanName, bucket
+    if AWS::S3::S3Object.exists? cleanName, @@aws_bucket_id
+      AWS::S3::S3Object.delete cleanName, @@aws_bucket_id
     end
   end
   
@@ -92,5 +89,5 @@ class Kite < ActiveRecord::Base
     return false
   end
   
-  
+    
 end

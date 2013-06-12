@@ -7,7 +7,19 @@ class KitesController < ApplicationController
   
   # List all kites
   def index
-    @kites = Kite.all
+    time_range = (1.week.ago..Time.now)
+    @kites = Kite.where(:sharelevel => "public")
+     @kites.any? do |k|
+       @kites = @kites.sample(10)
+     end
+     @kiteCount = @kites.any? ? @kites.count : 0
+     @newKites = @kites.any? && Kite.where(:CreateDate => time_range).any? ? Kite.where(:CreateDate => time_range).count : 0
+     @completedKites = @kites.any? ? @kites.count(:conditions => "Completed = true") : 0
+       
+     #Currently not supported since we don't have following yet, just randomly choose three
+     @popularKites = @kites.sample(3)
+     
+    
     
     respond_to do |format|
       format.html # index.html.erb
@@ -16,10 +28,16 @@ class KitesController < ApplicationController
   end
 
   # Retrieve a random sampling of all public kites, requires 
-  # number of kites to retrieve
+  # number of kites to retrieve, used for the initial page
   def randomSample
+    time_range = (1.week.ago..Time.now)
     @kites = Kite.all.where(:sharelevel => "public").sample(params[:count])
-      
+    @kiteCount = @kites.count
+    @newKites = @kites.all.where(:CreateDate => time_range).count
+    @completedKites = @kites.count(:conditions => "Completed = true")
+    
+    #Currently not supported since we don't have following yet, just randomly choose three
+    @popularKites = @kites.sample(3)
     respond_to do |format|
       format.html 
       format.xml { render :xml => @kites}

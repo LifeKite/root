@@ -1,15 +1,15 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  Description: MyText
-  Completed: 
+  Description: Rule the world
+  Completed: False
   CreateDate: 2011-07-18
   CompleteDate: 2011-07-18
-  Image: 
+  Image: fixture_file_upload('/TestKiteOne.png', 'image/png')
 
 two:
   Description: MyText
-  Completed: 
+  Completed: False
   CreateDate: 2011-07-18
   CompleteDate: 2011-07-18
   Image: 

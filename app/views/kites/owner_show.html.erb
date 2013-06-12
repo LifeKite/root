@@ -1,64 +1,64 @@
-<p id="notice"><%= notice %></p>
-<div class="row-fluid">
-	<div class="kite span6">
-		<div class="controlbar" style="text-align: center; margin-left: 10px; margin-right:10px;">
-			<%= image_tag(@kite.ImageLocation, :alt=>@kite.Description, 
-				:mouseover => @kite.ImageLocation, :id=>'thumbnail') %>
-		</div>
-		<div style="padding-top: 10px;padding-right: 10px;">
-			<div class="span12 well">
-				<p>
-				  <b>Created:</b>
-				  <%= @kite.CreateDate %>
-				  <p>
-				  <%=h @kite.Description %>
-				  </p>
-				</p>
-				
-				<% if @kite.Completed? %>
-				<p>
-				  <b>Completed:</b>
-				  <%= @kite.Completed %>
-				</p>
-				
-				<p>
-				  <b>Completed On:</b>
-				  <%= @kite.CompleteDate %>
-				</p>
-				<% end %>
-				<p>
-  			</div>
-		</div>
+<div class="detail has-sidebar">
+<% if !current_user.nil? && @kite.user.id == current_user.id %>
+<div class="sidebar">
+	<a href=<%= edit_user_registration_path %>>
+	<div class="profile sidebar-button">
+		<div class="active-flag">Profile</div>
 	</div>
-	<div class="span6">
-		
-  		<div class="row-fluid">
-  			<div class="span12 controlbar" style="height:430px; overflow:auto;">
-  				<h3 style="padding-left: 10px;">Comments:</h3>
-  				
-				<ul>
-				  
-				  <%= render @kite.comments(:order => "isHelpful DESC") %>
-				 
-				</ul>
-				
-				
-  			</div>
-  			<%= link_to new_comment_path(:kite => @kite.id), :class => "btn pull-right" do %>
+	</a>
+	<a href=<%= new_kite_path %>>
+	<div class="add-kite sidebar-button">
+		<div class="active-flag">Add Kite</div>
+	</div>
+	</a>
+	<a href=<%= kites_path %>>
+	<div class="kites sidebar-button">
+		<div class="active-flag">Kites</div>
+	</div>
+	</a>
+	<a href=<%= groups_path%>>
+	<div class="groups sidebar-button">
+		<div class="active-flag">Groups</div>
+	</div>
+	</a>
+	<div class="help sidebar-button">
+		<div class="active-flag">Help</div>
+	</div>
+</div>
+<%end%>
+<div class="wrapper">
+	<div class="content" style="background-image: url('<%= @kite.ImageLocation %>')">
+		<div id="kite-nav" class="kite-nav">
+			<div class="kite-nav-tab">
+				<div class="kite-nav-button info"></div>
+				<div class="kite-nav-button heart"></div>
+				<div class="kite-nav-button comments"></div>
+				<div class="kite-nav-button members"></div>
+				<div class="kite-nav-button kite-nav-toggle show"></div>
+				<div class="kite-nav-button kite-nav-toggle hide"></div>
+			</div>
+			<%= content_tag(:p, @kite.Description)%>
+			<h3 style="padding-left: 10px;">Comments:</h3>
+			<ul>
+			  <%= render @kite.comments(:order => "isHelpful DESC") %>
+			</ul>
+			<%= link_to new_comment_path(:kite => @kite.id), :class => "btn pull-right" do %>
 				<span><i class="icon-comment"></i>Add Comment</span>
 			<% end %>
-  		</div>
-  	</div>
+			<% if !current_user.nil? && @kite.user.id == current_user.id %>
+			    <%= link_to 'Update Description', edit_kite_path(@kite), :class => "btn" %> 
+			    <%= link_to 'Delete', @kite, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
+				<% if @kite.sharelevel == "private" %>
+					<%= link_to 'Make your kite public', promote_kite_path(@kite), :class => "btn" %>
+				<% else %>
+					<%= link_to 'Make your kite private', demote_kite_path(@kite), :class => "btn" %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
 </div>
-
-<%= link_to 'Back', @kite.user, :class => "btn" %>
-<% if @kite.user.id == current_user.id %>
-    <%= link_to 'Update Description', edit_kite_path(@kite), :class => "btn" %> 
-    <%= link_to 'Delete', @kite, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
-	<% if @kite.sharelevel == "private" %>
-		<%= link_to 'Make your kite public', promote_kite_path(@kite), :class => "btn" %>
-	<% else %>
-		<%= link_to 'Make your kite private', demote_kite_path(@kite), :class => "btn" %>
-	<% end %>
-<% end %>
-
+<%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"%>
+<%= javascript_include_tag "filter.js" %>
+<%= javascript_include_tag "footer.js" %>
+<%= javascript_include_tag "kite-nav.js" %>
+</div>
