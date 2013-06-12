@@ -19,7 +19,7 @@
   <link href='http://fonts.googleapis.com/css?family=Amaranth:400,700' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tag %>
 </head>
-<body class="home has-navigation has-footer">
+<body>
 
 <div id="container" class="container-fluid">
 	
@@ -53,14 +53,12 @@
 			<%end%>
 		</div>
 	</div>
-	</header>
-	<div class="alert alert-success span12" style="display: none;"><%= notice %></div>
-    <div class="alert alert-error span12" style="display: none;"><%= alert %></div>
-	<div class="wrapper">
-	<div class="content">
-				<%= yield %>
+  </div>
+  <div class="alert alert-success span12" style="display: none;"><%= notice %></div>
+  <div class="alert alert-error span12" style="display: none;"><%= alert %></div>
+      <%= yield %>
   	</div>
-  	</div>
+  </div>
 
 </body>
 </html>

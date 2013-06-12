@@ -1,4 +1,3 @@
-<div class="detail has-sidebar">
 <% if !current_user.nil? && @kite.user.id == current_user.id %>
 <div class="sidebar">
 	<a href=<%= edit_user_registration_path %>>
@@ -26,34 +25,36 @@
 	</div>
 </div>
 <%end%>
-<div class="wrapper">
-	<div class="content" style="background-image: url('<%= @kite.ImageLocation %>')">
-		<div id="kite-nav" class="kite-nav">
-			<div class="kite-nav-tab">
-				<div class="kite-nav-button info"></div>
-				<div class="kite-nav-button heart"></div>
-				<div class="kite-nav-button comments"></div>
-				<div class="kite-nav-button members"></div>
-				<div class="kite-nav-button kite-nav-toggle show"></div>
-				<div class="kite-nav-button kite-nav-toggle hide"></div>
-			</div>
-			<%= content_tag(:p, @kite.Description)%>
-			<h3 style="padding-left: 10px;">Comments:</h3>
-			<ul>
-			  <%= render @kite.comments(:order => "isHelpful DESC") %>
-			</ul>
-			<%= link_to new_comment_path(:kite => @kite.id), :class => "btn pull-right" do %>
-				<span><i class="icon-comment"></i>Add Comment</span>
-			<% end %>
-			<% if !current_user.nil? && @kite.user.id == current_user.id %>
-			    <%= link_to 'Update Description', edit_kite_path(@kite), :class => "btn" %> 
-			    <%= link_to 'Delete', @kite, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
-				<% if @kite.sharelevel == "private" %>
-					<%= link_to 'Make your kite public', promote_kite_path(@kite), :class => "btn" %>
-				<% else %>
-					<%= link_to 'Make your kite private', demote_kite_path(@kite), :class => "btn" %>
+<div class="detail has-sidebar has-navigation">
+	<div class="wrapper">
+		<div class="content" style="background-image: url('<%= @kite.ImageLocation %>')">
+			<div id="kite-nav" class="kite-nav">
+				<div class="kite-nav-tab">
+					<div class="kite-nav-button info"></div>
+					<div class="kite-nav-button heart"></div>
+					<div class="kite-nav-button comments"></div>
+					<div class="kite-nav-button members"></div>
+					<div class="kite-nav-button kite-nav-toggle show"></div>
+					<div class="kite-nav-button kite-nav-toggle hide"></div>
+				</div>
+				<%= content_tag(:p, @kite.Description)%>
+				<h3 style="padding-left: 10px;">Comments:</h3>
+				<ul>
+				  <%= render @kite.comments(:order => "isHelpful DESC") %>
+				</ul>
+				<%= link_to new_comment_path(:kite => @kite.id), :class => "btn pull-right" do %>
+					<span><i class="icon-comment"></i>Add Comment</span>
 				<% end %>
-			<% end %>
+				<% if !current_user.nil? && @kite.user.id == current_user.id %>
+				    <%= link_to 'Update Description', edit_kite_path(@kite), :class => "btn" %> 
+				    <%= link_to 'Delete', @kite, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
+					<% if @kite.sharelevel == "private" %>
+						<%= link_to 'Make your kite public', promote_kite_path(@kite), :class => "btn" %>
+					<% else %>
+						<%= link_to 'Make your kite private', demote_kite_path(@kite), :class => "btn" %>
+					<% end %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>
@@ -61,4 +62,3 @@
 <%= javascript_include_tag "filter.js" %>
 <%= javascript_include_tag "footer.js" %>
 <%= javascript_include_tag "kite-nav.js" %>
-</div>
