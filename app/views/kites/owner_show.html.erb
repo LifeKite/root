@@ -24,8 +24,10 @@
 		<div class="active-flag">Help</div>
 	</div>
 </div>
-<%end%>
 <div class="wrapper detail has-sidebar has-navigation">
+<% else %>
+<div class="wrapper detail has-navigation">
+<%end%>
 	<div class="content" style="background-image: url('<%= @kite.ImageLocation %>'); position: absolute; bottom: 0; width: 100%; height: 90%; z-index:-1;">
 		<div id="kite-nav" class="kite-nav">
 			<div class="kite-nav-tab">

@@ -12,6 +12,8 @@ html {
 
 body {
 	background: url('/images/background.png');
+	padding: 0;
+	margin: 0;
 }
 
 /* Compensate for fixed position bars */
