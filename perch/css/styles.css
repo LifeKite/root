@@ -11,19 +11,21 @@ html {
 }
 
 body {
-	background: url('../graphics/background.png');
+	background-image: url('../graphics/background.png');
+	padding: 0;
+	margin: 0;
 }
 
 /* Compensate for fixed position bars */
-.has-sidebar .wrapper {
+.has-sidebar.wrapper {
 	padding-left: 63px;
 }
 
-.has-navigation .wrapper {
+.has-navigation.wrapper {
 	padding-top: 56px;
 }
 
-.has-footer .wrapper {
+.has-footer.wrapper {
 	padding-bottom: 215px;
 }
 
@@ -77,6 +79,7 @@ h1, h2, h3, h4, h5, h6, ul {
 .kite-name {
 	font-family: 'Amaranth', sans-serif;
 	font-size: 18px;
+	color: #000;
 }
 
 .kite:hover .overlay {
@@ -513,7 +516,7 @@ h1, h2, h3, h4, h5, h6, ul {
 
 /* Detail
 *********************************/
-.detail .wrapper {
+.detail.wrapper {
 	width: 100%;
 	height: 100%;
 	
@@ -624,4 +627,66 @@ h1, h2, h3, h4, h5, h6, ul {
 
 .kite-nav.hidden .kite-nav-button.hide {
 	display: none;
+}
+
+/* Login
+*********************************/
+
+.login .content {
+	width: 355px;
+	margin: 95px auto 0;
+	text-align: center;
+}
+
+.logo-color {
+	margin-bottom: 40px;
+}
+
+.signup-form input {
+	width: 100%;
+	height: 48px;
+	font-size: 18px;
+	color: #5d5d5d;
+	border: none;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-bottom: 8px;
+	
+	border-top: 1px solid #cecece;
+	border-left: 1px solid #cecece;
+	box-shadow: 1px 1px 1px #eee inset;
+	
+	.border-box;
+}
+
+.create-button {
+	display: inline-block;
+	padding: 17px 25px;
+	background-color: #b0cf4d;
+	color: #fff;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 20px;
+	margin-top: 20px;
+	letter-spacing: 1px;
+}
+
+.or {
+	display: block;
+	margin: 20px auto;
+}
+
+.create-your-account {
+	font-family: 'Amaranth', sans-serif;
+	font-weight: normal;
+	color: #b0cf4d;
+	margin-bottom: 20px;
+	font-size: 34px;
+}
+
+.wrapper.login {
+	background-image: url('../graphics/big-logo-background.png'), url('../graphics/background.png');
+	background-position: bottom left, top left;
+	background-repeat: no-repeat, repeat;
+	background-size: 70% 70%, auto auto;
 }
