@@ -3,6 +3,7 @@
 <head>
   <title>Rlifekite</title>
   <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "normalize" %>
   <%= stylesheet_link_tag "styles" %>
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag "bootstrap.min.js" %>
@@ -56,6 +57,9 @@
   </div>
   <div class="alert alert-success span12" style="display: none;"><%= notice %></div>
   <div class="alert alert-error span12" style="display: none;"><%= alert %></div>
+  	  <% if !current_user.nil? %>
+  	  	<%= render 'layouts/sidebar' %>
+  	  <% end %>
       <%= yield %>
   	</div>
   </div>
