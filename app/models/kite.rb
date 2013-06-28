@@ -8,6 +8,8 @@ class Kite < ActiveRecord::Base
   has_many :comments
   has_many :sharedpurposekites
   has_many :sharedpurposes, :through => :sharedpurposekites
+  has_many :follwing
+  has_many :followers, :through => :follwing, :class_name => 'User', :foreign_key => 'id'
   require 'aws/s3'
   
   @@aws_bucket_id = ENV['AMAZON_BUCKET_ID']
@@ -88,6 +90,7 @@ class Kite < ActiveRecord::Base
         
     return false
   end
+  
   
     
 end

@@ -6,6 +6,8 @@
 
 $(document).ready(function(){
 	
+	
+	
 	function setCenterStage(image) {
 		
 		var iUpfront = ' url("' + $(image).attr('src') + '") no-repeat center';

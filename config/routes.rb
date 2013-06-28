@@ -52,6 +52,7 @@ Rlifekite::Application.routes.draw do
       put 'complete'
       put 'promote'
       put 'demote'
+      get 'personalIndex'
     end
   end
   

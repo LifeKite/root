@@ -60,5 +60,13 @@
 	<script src="http://code.jquery.com/jquery.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <script type="text/javascript">
+    	$(document).bind("keyup keydown", function(e) {
+		if(e.ctrlKey && e.keyCode == 76) {
+			window.location.replace("http://lifekite.com/kites");
+		}
+	})
+    	
+    </script>
 </body>
 </html>

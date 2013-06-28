@@ -1,29 +1,4 @@
 <% if !current_user.nil? && @kite.user.id == current_user.id %>
-<div class="sidebar">
-	<a href=<%= edit_user_registration_path %>>
-	<div class="profile sidebar-button">
-		<div class="active-flag">Profile</div>
-	</div>
-	</a>
-	<a href=<%= new_kite_path %>>
-	<div class="add-kite sidebar-button">
-		<div class="active-flag">Add Kite</div>
-	</div>
-	</a>
-	<a href=<%= kites_path %>>
-	<div class="kites sidebar-button">
-		<div class="active-flag">Kites</div>
-	</div>
-	</a>
-	<a href=<%= groups_path%>>
-	<div class="groups sidebar-button">
-		<div class="active-flag">Groups</div>
-	</div>
-	</a>
-	<div class="help sidebar-button">
-		<div class="active-flag">Help</div>
-	</div>
-</div>
 <div class="wrapper detail has-sidebar has-navigation">
 <% else %>
 <div class="wrapper detail has-navigation">
@@ -43,8 +18,10 @@
 			<ul>
 			  <%= render @kite.comments(:order => "isHelpful DESC") %>
 			</ul>
-			<%= link_to new_comment_path(:kite => @kite.id), :class => "btn pull-right" do %>
-				<span><i class="icon-comment"></i>Add Comment</span>
+			<% if !current_user.nil? && @kite.user.id == current_user.id %>
+				<%= link_to new_comment_path(:kite => @kite.id), :class => "btn pull-right" do %>
+					<span><i class="icon-comment"></i>Add Comment</span>
+				<% end %>
 			<% end %>
 			<% if !current_user.nil? && @kite.user.id == current_user.id %>
 			    <%= link_to 'Update Description', edit_kite_path(@kite), :class => "btn" %> 

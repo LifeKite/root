@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :groups, :through => :assignments
   has_many :Invites
   has_many :Notifications
+  has_many :follwing
   
     
   # Include default devise modules. Others available are:
