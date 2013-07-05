@@ -6,14 +6,18 @@
 		<!-- Google fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Amaranth:400,700' rel='stylesheet' type='text/css'>
-		
+
+		<!-- styles needed by jScrollPane -->
+		<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+
 		<!-- Main stylesheet -->
+		
 		<link rel="stylesheet" href="css/styles.css" type="text/css">
 		
 		<!-- Sample data -->
 		<link rel="stylesheet" href="css/sample.css" type="text/css">
-	</head>	<body class="home has-navigation has-footer">
-			<header class="site-header">
+	</head>
+	<body>			<header class="site-header">
 			<div class="site-logo">
 				<a href="/">
 					<img src="graphics/big-logo.png" alt="LifeKite">
@@ -35,7 +39,7 @@
 					</ul>
 				</div>
 			</div>
-		</header>	<div class="wrapper">
+		</header>	<div class="wrapper home has-navigation has-footer">
 		<div class="content">
 			<div class="content-header">
 				<h1 class="page-title">Explore Kites</h1>
@@ -135,8 +139,13 @@
 		</div>
 	</div>
 </footer>		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
-		<script src="js/footer.js"></script>
-		<script src="js/filter.js"></script>
-		<script src="js/kite-nav.js"></script>
+
+		<!-- the mousewheel plugin - optional to provide mousewheel support -->
+		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+
+		<!-- the jScrollPane script -->
+		<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+
+		<script src="js/scripts.js"></script>
 	</body>
 </html>

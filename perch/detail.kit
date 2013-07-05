@@ -1,17 +1,152 @@
 <!-- @include includes/head.html -->
-	<body class="detail has-sidebar has-navigation">
 	<!-- @include includes/navigation.html -->
-	<!-- @include includes/sidebar.html -->
-	<div class="wrapper">
+	<div class="wrapper detail has-sidebar has-navigation">
+		<!-- @include includes/sidebar.html -->
 		<div class="content">
 			<div id="kite-nav" class="kite-nav">
 				<div class="kite-nav-tab">
-					<div class="kite-nav-button info"></div>
-					<div class="kite-nav-button heart"></div>
-					<div class="kite-nav-button comments"></div>
-					<div class="kite-nav-button members"></div>
-					<div class="kite-nav-button kite-nav-toggle show"></div>
-					<div class="kite-nav-button kite-nav-toggle hide"></div>
+					<div id="info" class="kite-nav-button info active">
+						<div class="active-flag"></div>
+					</div>
+					<div id="support" class="kite-nav-button heart">
+						<div class="active-flag"></div>
+					</div>
+					<div id="comments" class="kite-nav-button comments">
+						<div class="active-flag"></div>
+					</div>
+					<div id="members" class="kite-nav-button members">
+						<div class="active-flag"></div>
+					</div>
+					<div class="kite-nav-button kite-nav-toggle show">
+						<div class="active-flag"></div>
+					</div>
+					<div class="kite-nav-button kite-nav-toggle hide">
+						<div class="active-flag"></div>
+					</div>
+				</div>
+				<div class="kite-nav-content">
+					<div class="kite-settings">
+						<img src="graphics/kite-settings.png">
+					</div>
+					<div class="kite-nav-header">
+						<h1 class="detail-kite-title">Climb a Mountain in Maine</h1>
+						<p class="dateline">Created March 23, 2012</p>
+					</div>
+					<div class="detail-section info">
+						<div class="kite-nav-content-section">
+							<h3>Overview</h3>
+							<p>Onsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna amet. Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. at vero eos et accusam et justo duo dolores.</p>
+							<p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. at vero eos et accusam etet.</p>
+						</div>
+						<div class="kite-nav-content-section">
+							<h3>Additional Images</h3>
+						</div>
+						<div class="additional-images">
+							<img src="images/rafting.jpg">
+							<img src="images/safari.jpg">
+						</div>
+					</div>
+					<div class="detail-section support" style="display:none;">
+						<h2>Support</h2>
+						<ul class="hearts user-list">
+							<li>
+								<div class="name">John Doe</div>
+								<div class="details">3 kites | 234 hearts given | March 23, 2013</div>
+							</li>
+							<li>
+								<div class="name">John Doe</div>
+								<div class="details">3 kites | 234 hearts given | March 23, 2013</div>
+							</li>
+							<li>
+								<div class="name">John Doe</div>
+								<div class="details">3 kites | 234 hearts given | March 23, 2013</div>
+							</li>
+							<li>
+								<div class="name">John Doe</div>
+								<div class="details">3 kites | 234 hearts given | March 23, 2013</div>
+							</li>
+						</ul>
+					</div>
+					<div class="detail-section comments" style="display:none;">
+						<h2>Comments</h2>
+						<div class="comment">
+							<div class="comment-content">
+								<div class="options">
+									<div class="option-arrow">
+										<img src="graphics/down-arrow-big.png">
+									</div>
+									<div class="the-options">
+										<ul>
+											<li>Hide this comment</li>
+											<li>This was helpful</li>
+										</ul>
+									</div>
+								</div>
+								<div class="title">Lorem ipsum dolor sit amet</div>
+								<div class="date">March 23, 2013</div>
+								<div class="the-comment">Onsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna amet. Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores.</div>
+							</div>
+							<img src="graphics/comment-separator.png">
+							<div class="author-info">
+								<ul class="user-list">
+									<li>
+										<div class="name">John Doe</div>
+										<div class="details">3 kites | 234 hearts given</div>
+										<div class="reply"><img class="reply" src="graphics/reply-button.png"></div>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="comment">
+							<div class="comment-content">
+								<div class="options">
+									<img src="graphics/down-arrow-big.png">
+									<div class="the-options">
+										<ul>
+											<li>Hide this comment</li>
+											<li>This was helpful</li>
+										</ul>
+									</div>
+								</div>
+								<div class="title">Lorem ipsum dolor sit amet</div>
+								<div class="date">March 23, 2013</div>
+								<div class="the-comment">Onsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna amet. Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores.</div>
+							</div>
+							<img src="graphics/comment-separator.png">
+							<div class="author-info">
+								<ul class="user-list">
+									<li>
+										<div class="name">John Doe</div>
+										<div class="details">3 kites | 234 hearts given</div>
+										<div class="reply"><img class="reply" src="graphics/reply-button.png"></div>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+					<div class="detail-section members" style="display:none;">
+						<h2>Members</h2>
+						<ul class="members-list user-list">
+							<li>
+								<div class="name">John Doe</div>
+								<div class="details">3 kites | 234 hearts given</div>
+								<img class="delete" src="graphics/small-icon-delete.png">
+							</li>
+							<li>
+								<div class="name">John Doe</div>
+								<div class="details">3 kites | 234 hearts given</div>
+								<img class="delete" src="graphics/small-icon-delete.png">
+							</li>
+							<li>
+								<div class="name">John Doe</div>
+								<div class="details">3 kites | 234 hearts given</div>
+								<img class="delete" src="graphics/small-icon-delete.png">
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

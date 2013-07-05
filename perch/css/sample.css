@@ -5,3 +5,7 @@
 .detail .content {	
 	background-image: url('../graphics/sample-large-kite-background.jpg');
 }
+
+.members li, .author-info li {
+	background: url('../graphics/sample-member-portrait.png') no-repeat 5px center;
+}
