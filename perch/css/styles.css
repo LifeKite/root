@@ -541,7 +541,7 @@ h1 {
 	width: 390px;
 	height: 100%;
 	
-	box-shadow: -1px 0 5px #000;
+	box-shadow: -2px 0 3px rgba(0, 0, 0, .5);
 
 	transition: all .7s;
 	
@@ -561,10 +561,10 @@ h1 {
 	top: 70px;
 	width: 50px;
 
-	box-shadow: -3px 0 3px #000;
+	box-shadow: -2px 0 3px rgba(0, 0, 0, .5);
 }
 
-.kite-nav-button {
+.kite-nav-button, .kite-nav-toggle {
 	position: relative;
 	width: 50px;
 	height: 50px;
@@ -573,7 +573,7 @@ h1 {
 	cursor: pointer;
 }
 
-.kite-nav-button:hover, .kite-nav-button.active {
+.kite-nav-button:hover, .kite-nav-button.active, .kite-nav-toggle:hover {
 	background-color: #6a4256;
 }
 
@@ -602,23 +602,23 @@ h1 {
 .kite-nav-button.members:hover, .kite-nav-button.members.active {
 	background-image: url('../graphics/kite-nav-members-active.png');
 }
-.kite-nav-button.show {
+.kite-nav-toggle.show {
 	display: none;
 	background-image: url('../graphics/kite-nav-left-arrow.png');
 }
-.kite-nav-button.show:hover {
+.kite-nav-toggle.show:hover {
 	background-image: url('../graphics/kite-nav-left-arrow-active.png');
 }
-.kite-nav.hidden .kite-nav-button.show {
+.kite-nav.hidden .kite-nav-toggle.show {
 	display: block;
 }
-.kite-nav-button.hide {
+.kite-nav-toggle.hide {
 	background-image: url('../graphics/kite-nav-right-arrow.png');
 }
-.kite-nav-button.hide:hover {
+.kite-nav-toggle.hide:hover {
 	background-image: url('../graphics/kite-nav-right-arrow-active.png');
 }
-.kite-nav.hidden .kite-nav-button.hide {
+.kite-nav.hidden .kite-nav-toggle.hide {
 	display: none;
 }
 
