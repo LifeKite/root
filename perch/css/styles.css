@@ -541,7 +541,7 @@ h1 {
 	width: 390px;
 	height: 100%;
 	
-	box-shadow: -1px 0 5px #000;
+	box-shadow: -2px 0 3px rgba(0, 0, 0, .5);
 
 	transition: all .7s;
 	
@@ -561,7 +561,7 @@ h1 {
 	top: 70px;
 	width: 50px;
 
-	box-shadow: -3px 0 3px #000;
+	box-shadow: -2px 0 3px rgba(0, 0, 0, .5);
 }
 
 .kite-nav-button, .kite-nav-toggle {
