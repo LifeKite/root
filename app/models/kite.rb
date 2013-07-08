@@ -8,14 +8,22 @@ class Kite < ActiveRecord::Base
   has_many :comments
   has_many :sharedpurposekites
   has_many :sharedpurposes, :through => :sharedpurposekites
-  has_many :follwing
-  has_many :followers, :through => :follwing, :class_name => 'User', :foreign_key => 'id'
+  has_many :follwings
+  has_many :followers, :through => :follwings, :class_name => 'User', :foreign_key => 'id'
   require 'aws/s3'
   
   @@aws_bucket_id = ENV['AMAZON_BUCKET_ID']
   @@access_key_id = ENV['AMAZON_ACCESS_KEY_ID']
   @@secret_access_key = ENV['AMAZON_SECRET_ACCESS_KEY']
   
+  def self.NewKitesCount(time_range)
+    return Kite.any? && Kite.where(:CreateDate => time_range).any? ? Kite.where(:CreateDate => time_range).count : 0
+  end
+  
+  def self.CompletedKitesCount
+    Kite.any? ? Kite.where(:Completed => true).count : 0
+  end
+    
   # Upload an image file to the kite
   def upload(uploaded_file)
     
@@ -91,6 +99,8 @@ class Kite < ActiveRecord::Base
     return false
   end
   
-  
+  def FormattedCreateDate
+    return self.CreateDate.strftime("%B %d, %Y")
+  end
     
 end

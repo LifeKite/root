@@ -36,14 +36,14 @@ class CommentsController < ApplicationController
 
   # Edit an existing comment
   def edit
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:kite_id])
     @kite = Kite.find(@comment.kite_id)
   end
 
   # Persist a new comment in the data store
   def create
     @comment = Comment.new(params[:comment])
-    #@comment.kite = Kite.find(params[:kite_id])
+    @comment.kite = Kite.find(params[:comment][:kite_id])
     @comment.user = current_user
     @kite = Kite.find(@comment.kite_id)
   
@@ -65,7 +65,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to(@kite, :notice => 'Comment was successfully created.') }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :notice => params[:kite_id] }
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
       end
     end

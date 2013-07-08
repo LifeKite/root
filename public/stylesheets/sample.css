@@ -1,7 +1,11 @@
-.oite {
-	background: url('../graphics/sample-kite.jpg');
+.kite {
+	background: url('/images/sample-kite.jpg');
 }
 
-.oetail .oontent {	
-	background-image: url('../graphics/sample-large-kite-background.jpg');
+.detail .content {	
+	background-image: url('/images/sample-large-kite-background.jpg');
+}
+
+.members li, .author-info li {
+	background: url('/images/sample-member-portrait.png') no-repeat 5px center;
 }

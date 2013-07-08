@@ -1,0 +1,69 @@
+<div id="kite-nav" class="kite-nav">
+	<div class="kite-nav-tab">
+		<div id="info" class="kite-nav-button info active">
+			<div class="active-flag"></div>
+		</div>
+		<div id="support" class="kite-nav-button heart">
+			<div class="active-flag"></div>
+		</div>
+		<div id="comments" class="kite-nav-button comments">
+			<div class="active-flag"></div>
+		</div>
+		<div id="members" class="kite-nav-button members">
+			<div class="active-flag"></div>
+		</div>
+		<div class="kite-nav-button kite-nav-toggle show">
+			<div class="active-flag"></div>
+		</div>
+		<div class="kite-nav-button kite-nav-toggle hide">
+			<div class="active-flag"></div>
+		</div>
+	</div>
+	<div class="kite-nav-content">
+		<div class="kite-settings">
+			<%if @kite.user == current_user %>
+			<a href="<%= edit_kite_path(@kite)%>"><img src="/images/kite-settings.png"></a>
+			<% end %>
+		</div>
+		<div class="kite-nav-header">
+			<h1 class="detail-kite-title"><%=@kite.Description%></h1>
+			<p class="dateline">Created <%=@kite.FormattedCreateDate%></p>
+		</div>
+		<div class="detail-section info">
+			<div class="kite-nav-content-section">
+				<h3>Overview</h3>
+				<%= content_tag(:p, @kite.Details)%>
+			</div>
+			<div class="kite-nav-content-section">
+				<h3>Additional Images</h3>
+			</div>
+			<div class="additional-images">
+				
+			</div>
+		</div>
+		<div class="detail-section support" style="display:none;">
+			<h2>Support</h2>
+			
+			<%= render @kite.follwings.where(:Type => "like")%>
+			<% if current_user %>
+				<%= link_to 'Support this Kite', follow_kite_path(:type => "like"), { :class => "log-in-button" } %>
+			<% end %>
+		</div>
+		<div class="detail-section comments" style="display:none;">
+			<h2>Comments</h2>
+			
+			<%= render @kite.comments(:order => "isHelpful DESC") %>
+			<% if current_user %>
+				<%= link_to 'New Comment', new_comment_path(:kite => @kite.id), { :class => "log-in-button" } %>
+			<% end %>
+		</div>
+		<div class="detail-section members" style="display:none;">
+			<h2>Members</h2>
+			
+			<%= render @kite.follwings.where(:Type => "member")%>
+			<% if current_user %>
+				<%= link_to 'Follow this Kite', follow_kite_path(:type => "member"), { :class => "log-in-button" } %>
+			<% end %>
+		</div>
+	</div>
+</div>

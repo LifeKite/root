@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130628143555) do
+ActiveRecord::Schema.define(:version => 20130708155850) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130628143555) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "isHelpful"
+    t.text     "Title"
   end
 
   create_table "follwings", :force => true do |t|
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130628143555) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "Type"
   end
 
   create_table "groups", :force => true do |t|
@@ -63,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20130628143555) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.string   "sharelevel"
+    t.text     "Details"
   end
 
   create_table "notifications", :force => true do |t|

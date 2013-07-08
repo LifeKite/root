@@ -4,38 +4,7 @@
 <div class="wrapper detail has-navigation">
 <%end%>
 	<div class="content" style="background-image: url('<%= @kite.ImageLocation %>'); position: absolute; bottom: 0; width: 100%; height: 100%; z-index:-1;">
-		<div id="kite-nav" class="kite-nav">
-			<div class="kite-nav-tab">
-				<div class="kite-nav-button info"></div>
-				<div class="kite-nav-button heart"></div>
-				<div class="kite-nav-button comments"></div>
-				<div class="kite-nav-button members"></div>
-				<div class="kite-nav-button kite-nav-toggle show"></div>
-				<div class="kite-nav-button kite-nav-toggle hide"></div>
-			</div>
-			<%= content_tag(:p, @kite.Description)%>
-			<h3 style="padding-left: 10px;">Comments:</h3>
-			<ul>
-			  <%= render @kite.comments(:order => "isHelpful DESC") %>
-			</ul>
-			<% if !current_user.nil? && @kite.user.id == current_user.id %>
-				<%= link_to new_comment_path(:kite => @kite.id), :class => "btn pull-right" do %>
-					<span><i class="icon-comment"></i>Add Comment</span>
-				<% end %>
-			<% end %>
-			<% if !current_user.nil? && @kite.user.id == current_user.id %>
-			    <%= link_to 'Update Description', edit_kite_path(@kite), :class => "btn" %> 
-			    <%= link_to 'Delete', @kite, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
-				<% if @kite.sharelevel == "private" %>
-					<%= link_to 'Make your kite public', promote_kite_path(@kite), :class => "btn" %>
-				<% else %>
-					<%= link_to 'Make your kite private', demote_kite_path(@kite), :class => "btn" %>
-				<% end %>
-			<% end %>
-		</div>
+		<%= render :partial => 'kiteDetails', :object => @kite %>
 	</div>
 </div>
-<%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"%>
-<%= javascript_include_tag "filter.js" %>
-<%= javascript_include_tag "footer.js" %>
-<%= javascript_include_tag "kite-nav.js" %>
+

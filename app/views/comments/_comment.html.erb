@@ -1,24 +1,34 @@
-<div class="well" style="width: 85%;">
-	<div class="row">
-  		<%= comment.content %> - <%= link_to comment.user.username, comment.user %>
-	  	<% if comment.isHelpful %>
-			<i class="icon-thumbs-up"></i>
-		<% end %>
+<div class="comment">
+	<div class="comment-content">
+		<div class="options">
+			<div class="option-arrow">
+				<img src="/images/down-arrow-big.png">
+			</div>
+			<% if Kite.find(comment.kite_id).user == current_user %>
+			<div class="the-options">
+				<ul>
+					<li><%= link_to 'Hide this comment', unmarkHelpful_comment_path(comment)%></li>
+					<li><%= link_to 'This was helpful',markHelpful_comment_path(comment) %></li>
+				</ul>
+			</div>
+			<% end %>
+		</div>
+		<div class="title"><%=comment.Title%></div>
+		<div class="date"><%= comment.created_at.strftime("%B %d, %Y") %></div>
+		<div class="the-comment"><%= comment.content %></div>
 	</div>
-	<div class="row">
-
-		<% if Kite.find(comment.kite_id).user == current_user %>
-			<% if comment.isHelpful %>
-				<%= link_to 'This comment was not helpful', 
-					unmarkHelpful_comment_path(comment), :class=>"btn" %>
-			<% else %>
-				<%= link_to 'Mark this comment as helpful', 
-					markHelpful_comment_path(comment), :class=>"btn" %>
-			<% end %> 
-		<% end %>
-		<% if comment.user.id = current_user.id %>
-			<%= link_to 'Edit', edit_comment_path(comment), :class=>"btn" %>
-			
-		<% end %>
+	<img src="/images/comment-separator.png">
+	<div class="author-info">
+		<ul class="user-list">
+			<li>
+				<div class="name"><%=comment.user.username%></div>
+				<div class="details"><%=comment.user.KiteCount%> kites | <%=comment.user.CommentCount%> comments made</div>
+				<div class="reply">
+					<a href="<%= new_comment_path(:kite => @kite.id)%>">
+						<img class="reply" src="/images/reply-button.png">
+					</a>		
+				</div>
+			</li>
+		</ul>
 	</div>
 </div>

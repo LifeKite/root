@@ -1,5 +1,10 @@
+<% if !current_user.nil?  %>
+<div class="wrapper has-sidebar has-navigation" style="margin-left: 50px; margin-top: 50px;">
+<% else %>
+<div class="wrapper has-navigation">
+<%end%>
 <h1>New comment</h1>
 
 <%= render 'form' %>
-
+</div>
 

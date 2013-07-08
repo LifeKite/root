@@ -5,6 +5,8 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
   has_one :kite
+  validates_presence_of :user
+  validates_presence_of :kite
   
   #Mark the comment as helpful
   def markHelpful

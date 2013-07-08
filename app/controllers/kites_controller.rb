@@ -9,20 +9,20 @@ class KitesController < ApplicationController
   def index
     time_range = (1.week.ago..Time.now)
     
-
      @kites = Kite.where(:sharelevel => "public")
-
      @kites.any? do |k|
        @kites = @kites.sample(10)
      end
-     @kiteCount = @kites.any? ? @kites.count : 0
-     @newKites = @kites.any? && Kite.where(:CreateDate => time_range).any? ? Kite.where(:CreateDate => time_range).count : 0
-     @completedKites = @kites.any? ? @kites.count(:conditions => "Completed = true") : 0
+     
+     @kiteCount = Kite.any? ? Kite.count : 0
+          
+     @newKites = Kite.NewKitesCount(time_range)
+     @completedKites = Kite.CompletedKitesCount
        
      #Currently not supported since we don't have following yet, just randomly choose three
      @popularKites = @kites.sample(3)
      @function = "Explore Kites"
-     
+          
     respond_to do |format|
       format.html { render :template => 'kites/index' }# index.html.erb
       format.xml  { render :xml => @kites }
@@ -32,24 +32,20 @@ class KitesController < ApplicationController
   def personalIndex
     time_range = (1.week.ago..Time.now)
         
-        
-         @kites = current_user.kites
-        
-         @kites.any? do |k|
-           @kites = @kites.sample(10)
-         end
-         @kiteCount = @kites.any? ? @kites.count : 0
-         @newKites = @kites.any? && Kite.where(:CreateDate => time_range).any? ? Kite.where(:CreateDate => time_range).count : 0
-         @completedKites = @kites.any? ? @kites.count(:conditions => "Completed = true") : 0
-           
-         #Currently not supported since we don't have following yet, just randomly choose three
-         @popularKites = @kites.sample(3)
-         @function = "My Kites"
-             
-        respond_to do |format|
-          format.html { render :template => 'kites/index' } # index.html.erb
-          format.xml  { render :xml => @kites }
-        end
+     @kites = current_user.kites    
+     
+     @kiteCount = current_user.KiteCount
+     @newKites = current_user.NewKiteCount(time_range)
+     @completedKites = current_user.CompletedKitesCount
+       
+     #Currently not supported since we don't have following yet, just randomly choose three
+     @popularKites = @kites.sample(3)
+     @function = "My Kites"
+     
+    respond_to do |format|
+      format.html { render :template => 'kites/index' } # index.html.erb
+      format.xml  { render :xml => @kites }
+    end
   end
   
   # Retrieve a random sampling of all public kites, requires 
@@ -115,20 +111,20 @@ class KitesController < ApplicationController
   def Follow
     
     @kite = Kite.find(params[:id])
-    
-    if(! followers.exists?(id == params[:id]))
+   
+    if(@kite.follwings.empty? || !@kite.follwings.exists?(:user_id => current_user.id, :Type => params[:type]))
       @following = Follwing.new
-      @following.user = current_user
-      @following.kite = @kite
-      
+      @following.user_id = current_user.id
+      @following.Type = params[:type]
+      @following.kite = @kite 
     end
     
     respond_to do |format| 
-      if !@following.emtpy? && @following.save
-        format.html { redirect_to(@kites, :notice => 'Shared purpose was successfully created.')}
+      if @following && @following.save()
+        format.html { redirect_to(@kite, :notice => 'Kite has been followed.')}
         format.xml  { render :xml => @kites, :status => :created, :location => @kites }
       else  
-        format.html { render :action => "new" }
+        format.html { render :action => "owner_show" }
         format.xml  { render :xml => @following.errors, :status => :created }
       end
     end
@@ -138,14 +134,16 @@ class KitesController < ApplicationController
   # Remove a kite following
   def Unfollow
     @kite = Kite.find(params[:id])
-    @following = Follwing.find(params[:followingID])
+    if(@kite && @kite.follwings.any?)
+      @following = @kite.follwings.where(:user_id => current_user.id, :kite_id => @kite.id, :Type => params[:type]).first
+    end
         
     respond_to do |format| 
-      if !@following.emtpy? && @following.destroy
-        format.html { redirect_to(@kites, :notice => 'Shared purpose was successfully created.')}
-        format.xml  { render :xml => @kites, :status => :created, :location => @kites }
+      if @following && @following.destroy
+        format.html { redirect_to(@kite, :notice => 'Kite has been unfollowed.')}
+        format.xml  { render :xml => @kite, :status => :created, :location => @kite }
       else  
-        format.html { render :action => "new" }
+        format.html { render :action => "owner_show" }
         format.xml  { render :xml => @following.errors, :status => :created }
       end
     end
@@ -171,7 +169,7 @@ class KitesController < ApplicationController
 
     respond_to do |format|
       if @kite.save()
-        format.html { redirect_to(current_user, :notice => "Kite was created successfully") }
+        format.html { redirect_to(@kite, :notice => "Kite was created successfully") }
         format.xml  { render :xml => @kite, :status => :created, :location => @kite }
       else
         format.html { render :action => "new" }

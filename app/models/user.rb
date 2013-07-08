@@ -49,4 +49,30 @@ class User < ActiveRecord::Base
         @errors[friendly_id_config.method] = "is reserved.  Please choose something else."
         return false; 
    end
+   
+   def KiteCount
+     return kites.any? ? kites.count : 0
+   end
+   
+   def NewKites(time_range)
+     return Kite.where(:CreateDate => time_range)
+   end
+   
+   def NewKiteCount(time_range)
+     @newkites = NewKites(time_range)
+     return @newkites.any? ? @newkites.count : 0
+   end  
+   
+   def CompletedKitesCount
+     kites.any? ? kites.count(:conditions => "Completed = true") : 0
+   end
+   
+   def CommentCount
+     if kites.any?
+       return kites.collect{|a| a.comments}.flatten.any? ? kites.collect{|a| a.comments}.flatten.count : 0
+     else
+       return 0
+     end  
+   end
+     
 end
