@@ -135,7 +135,7 @@ class KitesController < ApplicationController
   def Unfollow
     @kite = Kite.find(params[:id])
     if(@kite && @kite.follwings.any?)
-      @following = @kite.follwings.where(:user_id => current_user.id, :kite_id => @kite.id, :Type => params[:type]).first
+      @following = @kite.follwings.where(:Type => params[:type]).first
     end
         
     respond_to do |format| 

@@ -21,13 +21,13 @@ goal and inspires you to achieve it.</p>
 <br/>
 <h2>Step 2</h2>
 <p>Choose a title for your kite</p>
-    <%= f.label :Description, :class => "control-label" %><br />
-    <%= f.text_area :Description, :size => "600x1", :style=> "width: 65%;"%>
+    <%= f.label "Overview", :class => "control-label" %><br />
+    <%= f.text_area :Description, :size => "600x1", :style=> "width: 65%;", :onkeyup => "CheckMaxLength(this);", :maxLength => 70 %>
 </div>
 <h2>Step 3</h2>
-<p>Optionally create a short description of your kite</p>
+<p>Optionally create a short description of your kite (140 characters)</p>
  	<%= f.label :Details, :class => "control-label" %><br/>
- 	<%= f.text_area :Details, :size => "600x5", :style=>"width: 65%;"%> 
+ 	<%= f.text_area :Details, :size => "600x5", :style=>"width: 65%;", :onkeyup => "CheckMaxLenth(this);", :maxLength => 140 %> 
   <br/>
     <%= f.submit "Create kite", {:class => "btn"} %>
     <%= link_to 'Cancel', current_user, :class => "btn" %>

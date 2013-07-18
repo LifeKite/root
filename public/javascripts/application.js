@@ -6,7 +6,14 @@
 
 $(document).ready(function(){
 	
-	
+	function CheckMaxLength(object) {
+		vat iMaxLen = parseInt(object.getAttribute('maxLength'));
+		var iCurLen = object.value.length;
+		
+		if(object.getAttribute && iCurLen > iMaxLen) {
+			object.value = object.value.substring(0, iMaxLen);
+		}
+	}
 	
 	function setCenterStage(image) {
 		

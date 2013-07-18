@@ -68,11 +68,7 @@ class User < ActiveRecord::Base
    end
    
    def CommentCount
-     if kites.any?
-       return kites.collect{|a| a.comments}.flatten.any? ? kites.collect{|a| a.comments}.flatten.count : 0
-     else
-       return 0
-     end  
+     return Comment.where(user_id = id).count
    end
      
 end

@@ -14,10 +14,10 @@
 
   <div class="field">
     <%= f.label :Description %><br />
-    <%= f.text_area :Description, :size => "600x5", :style=> "width: 65%;" %>
+    <%= f.text_area :Description, :size => "600x5", :style=> "width: 65%;",  :onkeyup => "CheckMaxLength(this);", :maxLength => 70%>
     
     <%= f.label :Details, :class => "control-label" %><br/>
- 	<%= f.text_area :Details, :size => "600x5", :style=>"width: 65%;"%> 
+ 	<%= f.text_area :Details, :size => "600x5", :style=>"width: 65%;",  :onkeyup => "CheckMaxLength(this);", :maxLength => 140%> 
   </div>
   <div class="actions">
     <%= f.submit %>
