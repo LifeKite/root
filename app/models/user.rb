@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
    end
    
    def CommentCount
-     return Comment.where(user_id = id).count
+     return Comment.where(user_id => id).count
    end
      
 end
