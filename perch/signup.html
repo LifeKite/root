@@ -33,22 +33,25 @@
 					</ul>
 				</nav>
 				<div class="user-controls">
-					<ul>
-						<li class="user-control log-in-button"><a>Log In</a></li>
-						<li class="user-control sign-up-button"><a>Sign Up</a></li>
-					</ul>
+					<div class="logged-out">
+						<ul>
+							<li class="user-control log-in-button"><a href="login.html">Log In</a></li>
+							<li class="user-control sign-up-button"><a href="signup.html">Sign Up</a></li>
+						</ul>
+					</div>
+					<div class="logged-in">Welcome, <span class="username">Stacy</span> | <a href="#logout">Logout</a></div>
 				</div>
 			</div>
 		</header>	<div class="wrapper login has-navigation">
 		<div class="content">
 			<img class="logo-color" src="graphics/logo-color.png" width="190" height="136" alt="Logo Color">
-			<h2 class="create-your-account">Create your account</h2>
-			<form class="signup-form">
+			<h2 class="form-header">Create your account</h2>
+			<form class="form signup-form">
 				<input type="text" name="email" placeholder="Email Address">
 				<input type="text" name="username" placeholder="Username">
 				<input type="password" name="password" placeholder="Password">
 				<input type="password" name="password-confirm" placeholder="Password Again">
-				<div class="create-button">Create</div>
+				<input class="signup-button button" value="Sign Up">
 				<img class="or" src="graphics/or.png" width="72" height="24" alt="Or">
 			</form>
 		</div>

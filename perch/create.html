@@ -42,14 +42,31 @@
 					<div class="logged-in">Welcome, <span class="username">Stacy</span> | <a href="#logout">Logout</a></div>
 				</div>
 			</div>
-		</header>	<div class="wrapper login has-navigation">
+		</header>	<div class="wrapper create has-navigation">
 		<div class="content">
-			<img class="logo-color" src="graphics/logo-color.png" width="190" height="136" alt="Logo Color">
-			<h2 class="form-header">Login</h2>
-			<form class="form login-form">
-				<input type="text" name="username" placeholder="Username">
-				<input type="password" name="password" placeholder="Password">
-				<input type="submit" class="login-button button" value="Login">
+			<h2 class="form-header-type-2">Create a new kite</h2>
+			<form class="form padded-form signup-form">
+				<div class="column-1">
+					<input type="text" name="name" placeholder="Name">
+					<select>
+						<option value="">Select an icon</option>
+						<!-- Icon options go here-->
+					</select>
+					<!-- PLACEHOLDER. I think your best bet is to use a javascript upload plugin that can integrate with Rails. I've styled these elements in hopes that you can reuse them within whatever plugin you choose -->
+					<input class="image-upload-field" type="text" name="image" placeholder="Upload an Image">
+				</div>
+				<div class="column-2">
+					<select>
+						<option value="">Category</option>
+						<!-- Category options go here-->
+					</select>
+					<input type="text" name="add-tags" placeholder="Add Tags">
+					<div class="button add-button add-image">+ Add image</div>
+				</div>
+				<textarea placeholder="Description"></textarea>
+				<div class="make-private"><input type="checkbox" name="make-private" value="private"><label for="make-private">Make private</label></div>
+				<!-- <div class="button add-button add-members">+ Add Members</div> -->
+				<input class="create-button button" value="Create">
 			</form>
 		</div>
 	</div>
