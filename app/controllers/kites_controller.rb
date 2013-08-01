@@ -153,7 +153,7 @@ class KitesController < ApplicationController
   # Commit a given kite to the data store
   def create
     if(params[:kite].has_key?(:Upload))
-      upload = params[:kite][:Upload]
+      # upload = params[:kite][:Upload]
       params[:kite].delete(:Upload)
       
       @kite = Kite.new(params[:kite])
@@ -247,12 +247,11 @@ class KitesController < ApplicationController
     @kite = Kite.find(params[:id])
       
     if @kite.user.id == current_user.id
-      @kite.cleanup
       @kite.destroy
     end
     
     respond_to do |format|
-      format.html { redirect_to(current_user) }
+      format.html { redirect_to(Kite) }
       format.xml  { head :ok }
     end
   end

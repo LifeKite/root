@@ -100,3 +100,24 @@ td pre {
     padding: 5px;
     margin: 5px 0;
 }
+
+.LockOff {
+     display: none;
+     visibility: hidden;
+  }
+
+  .LockOn {
+     display: block;
+     visibility: visible;
+     position: absolute;
+     z-index: 999;
+     top: 0px;
+     left: 0px;
+     width: 105%;
+     height: 105%;
+     background: #CCCCCC url('/images/ajax-loader.gif') no-repeat center;
+     text-align: center;
+     padding-top: 20%;
+     filter: alpha(opacity=75);
+     opacity: 0.75;
+  } 

@@ -10,12 +10,29 @@ class Kite < ActiveRecord::Base
   has_many :sharedpurposes, :through => :sharedpurposekites
   has_many :follwings
   has_many :followers, :through => :follwings, :class_name => 'User', :foreign_key => 'id'
+  
+  validates_presence_of :Description  
+  
+  require 'net/http'
   require 'aws/s3'
   
   @@aws_bucket_id = ENV['AMAZON_BUCKET_ID']
   @@access_key_id = ENV['AMAZON_ACCESS_KEY_ID']
   @@secret_access_key = ENV['AMAZON_SECRET_ACCESS_KEY']
   
+  attr_accessible :kiteimage
+  
+  # validates_attachment_size :kiteimage, :less_than => 3.megabtyes
+  has_attached_file :kiteimage, 
+  :styles => { :medium => {:geometry => "600x800>", :format => :png}, :thumb => {:geometry => "215x215>", :format => :png} },
+    :default_style => :original, 
+    :storage => :s3,
+    :s3_credentials => { :access_key_id => @@access_key_id, :secret_access_key => @@secret_access_key},
+    :bucket => @@aws_bucket_id, 
+    :default_url => "/images/missing_:style.png"
+    
+  validates_attachment_presence :kiteimage
+      
   def self.NewKitesCount(time_range)
     return Kite.any? && Kite.where(:CreateDate => time_range).any? ? Kite.where(:CreateDate => time_range).count : 0
   end
@@ -23,7 +40,15 @@ class Kite < ActiveRecord::Base
   def self.CompletedKitesCount
     Kite.any? ? Kite.where(:Completed => true).count : 0
   end
-    
+  
+  def self.ReformatStorage
+    @kites = Kite.all
+    @kites.each do |kite|
+      kite.kiteimage = open(kite.ImageLocation, 'rb')
+      kite.save!
+    end
+  end  
+  
   # Upload an image file to the kite
   def upload(uploaded_file)
     

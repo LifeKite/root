@@ -1,34 +1,62 @@
-<%= form_for(@kite, :html => {:class => "upload well", :multipart => true}) do |f| %>
-  <% if @kite.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@kite.errors.count, "error") %> prohibited this kite from being saved:</h2>
-
-      <ul>
-      <% @kite.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-<div class="form-vertical" style="padding-top: 200px;">
-<h2>Step 1</h2><p>Choose an image for your kite.  It should be something that reminds of your
-goal and inspires you to achieve it.</p>
-  	<%= f.label "Kite Image", :class => "control-label" %><br />
-  	<%= f.file_field :Upload, :class=>"input-file" %>
-<br/>
-<br/>
-<br/>
-<h2>Step 2</h2>
-<p>Choose a title for your kite</p>
-    <%= f.label "Overview", :class => "control-label" %><br />
-    <%= f.text_area :Description, :size => "600x1", :style=> "width: 65%;", :onkeyup => "CheckMaxLength(this);", :maxLength => 70 %>
-</div>
-<h2>Step 3</h2>
-<p>Optionally create a short description of your kite (140 characters)</p>
- 	<%= f.label :Details, :class => "control-label" %><br/>
- 	<%= f.text_area :Details, :size => "600x5", :style=>"width: 65%;", :onkeyup => "CheckMaxLenth(this);", :maxLength => 140 %> 
-  <br/>
-    <%= f.submit "Create kite", {:class => "btn"} %>
-    <%= link_to 'Cancel', current_user, :class => "btn" %>
-<% end %>
+<div class="wrapper create has-navigation">
+	<div class="content">
+		<h2 class="form-header-type-2">Create a new kite</h2>
+		<%= form_for(@kite, :html => {:class => "form padded-form signup-form", :multipart => true}) do |f| %>
+		  <% if @kite.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@kite.errors.count, "error") %> prohibited this kite from being saved:</h2>
+		
+		      <ul>
+		      <% @kite.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+			<div class="column-1">
+				<%= f.text_field :Description, :placeholder => "Name", :onkeyup => "CheckMaxLength(this);", :maxLength => 70 %>
+				<select>
+					<option value="">Select an icon</option>
+					<!-- Icon options go here-->
+				</select>
+				<!-- PLACEHOLDER. I think your best bet is to use a javascript upload plugin that can integrate with Rails. I've styled these elements in hopes that you can reuse them within whatever plugin you choose -->
+				<div style="position: relative;">
+					<input id="surrogate" type="text" class="image-upload-field" />
+				</div>
+			</div>
+			<div class="column-2">
+				<select>
+					<option value="">Category</option>
+					<!-- Category options go here-->
+				</select>
+				<input type="text" name="add-tags" placeholder="Add Tags">
+				<div id="btnAddImage" class="button add-button add-image">+ Add image</div>
+			</div>
+			<%= f.text_area :Details, :placeholder => "Description", :onkeyup => "CheckMaxLenth(this);", :maxLength => 140 %> 
+			<div class="make-private">
+				<%= f.check_box(:sharelevel, {:style => "float:left;"}, "private", "public") %>
+				<label for="kite_sharelevel" style="float: left;">Make private</label>
+			</div>
+			
+			<!-- <div class="button add-button add-members">+ Add Members</div> -->
+			<%= f.submit "Create", {:class => "create-button button"} %>
+			<%= f.file_field :kiteimage, :class=>"image-upload-field", :style=>"visibility: hidden;" %>
+		<% end %>
+	</div>
+</div>	
+<div id="lockpane" class="LockOff"></div> 
+<%= javascript_include_tag "vendor/jquire.ui.widget.js" %>
+<%= javascript_include_tag "jquery.iframe-transport.js" %>
+<%= javascript_include_tag "jquery.fileupload.js" %>
+<script type="text/javascript">
+	$('#btnAddImage').click(function(event){
+		$('#kite_kiteimage').click();
+	});
+	$('#kite_kiteimage').change(function(click) {
+		$('#surrogate').val(this.value);
+	});
+	$('.create-button').click(function(event) {
+		$('#lockpane').toggleClass('LockOn', true);
+		$('#lockpane').toggleClass('LockOff', false);
+	} )
+</script>

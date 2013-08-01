@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708155850) do
+ActiveRecord::Schema.define(:version => 20130801014045) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -62,10 +62,14 @@ ActiveRecord::Schema.define(:version => 20130708155850) do
     t.date     "CompleteDate"
     t.text     "ImageLocation"
     t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "sharelevel"
     t.text     "Details"
+    t.string   "kiteimage_file_name"
+    t.string   "kiteimage_content_type"
+    t.integer  "kiteimage_file_size"
+    t.datetime "kiteimage_updated_at"
   end
 
   create_table "notifications", :force => true do |t|

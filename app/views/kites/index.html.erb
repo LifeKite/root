@@ -21,7 +21,7 @@
 		<div class="kites">
 			<!-- Begin kite -->
 			<% for kite in @kites %>
-				<div class="kite" style="background: url('<%= kite.ImageLocation %>') no-repeat center; background-size: cover;">
+				<div class="kite" style="background: url('<%= kite.kiteimage.url(:thumb) %>') no-repeat center; background-size: cover;">
 					
 					<div class="overlay">
 						<h2 class="kite-name">

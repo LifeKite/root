@@ -3,7 +3,7 @@
 <% else %>
 <div class="wrapper detail has-navigation">
 <%end%>
-	<div class="content" style="background-image: url('<%= @kite.ImageLocation %>'); position: absolute; bottom: 0; width: 100%; height: 100%; z-index:-1;">
+	<div class="content" style="background-image: url('<%= @kite.kiteimage.url %>'); position: absolute; bottom: 0; width: 100%; height: 100%; z-index:-1;">
 		<%= render :partial => 'kiteDetails', :object => @kite %>
 	</div>
 </div>

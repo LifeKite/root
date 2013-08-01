@@ -3,4 +3,5 @@
 
 <%= render 'formEdit' %>
 
-<%= link_to 'Cancel', @kite %> 
+<%= link_to 'Cancel', @kite, :class => "create-button button"%> 
+<%= link_to 'Delete this kite', @kite, :confirm => 'Are you sure you want to delete this kite?', :method => :delete, :class => "create-button button"%>

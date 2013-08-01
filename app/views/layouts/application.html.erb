@@ -42,10 +42,7 @@
 		</nav>
 		<div class="user-controls">
 			<%if current_user %>
-				<ul>
-					<%= content_tag(:li, "Welcome, " + current_user.username, :class => "user-control")%>
-					<li class="user-control log-in-button"><%= link_to 'Log Out', destroy_user_session_path, :method => :delete %></li>
-				</ul>
+				<div class="logged-in">Welcome, <%= content_tag(:span, current_user.username, :class => "username")%> | <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %></div>
 			<%else%>
 				<ul>
 					<li class="user-control log-in-button"><%= link_to 'Log In', new_session_path(resource_name) %></li>
@@ -63,6 +60,7 @@
       <%= yield %>
   	</div>
   </div>
+  <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"%>
   <%= javascript_include_tag "jquery.mousewheel.js" %>
   <%= javascript_include_tag "jquery.jscrollpane.min.js" %>
   <%= javascript_include_tag "scripts.js" %>

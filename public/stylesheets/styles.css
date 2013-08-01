@@ -136,6 +136,108 @@ h1 {
 	padding: 3px 21px 3px 16px;
 }
 
+/* Form styles */
+
+.form-header {
+	font-family: 'Amaranth', sans-serif;
+	font-weight: normal;
+	color: #b0cf4d;
+	margin-bottom: 20px;
+	font-size: 34px;
+}
+
+.form-header-type-2 {
+	font-family: 'Amaranth', sans-serif;
+	font-weight: normal;
+	color: #6a4256;
+	margin-bottom: 20px;
+	font-size: 30px;
+	text-align: left;
+	margin: 0;
+}
+
+.form input[type="text"], .form input[type="file"], .form input[type="password"], .form select, .form textarea {
+	width: 100%;
+	height: 48px;
+	font-size: 18px;
+	color: #5d5d5d;
+	border: none;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-bottom: 8px;
+	
+	border-top: 1px solid #cecece;
+	border-left: 1px solid #cecece;
+	box-shadow: 1px 1px 1px #eee inset;
+	
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.form textarea {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	height: 96px;
+}
+
+.form option {
+	background: #fff;
+}
+
+.form .button {
+	padding: 10px 25px;
+	border: 0;
+	background-color: #b0cf4d;
+	color: #fff;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 20px;
+	margin-top: 20px;
+	letter-spacing: 1px;
+	cursor: pointer;
+	
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.form .add-button {
+	text-transform: none;
+	height: 48px;
+	padding: 10px 25px;
+	margin: 0;
+	font-weight: normal;
+	border-radius: 10px;
+}
+
+.or {
+	display: block;
+	margin: 20px auto;
+}
+
+.padded-form input, .padded-form select, .padded-form textarea, .padded-form .button {
+	margin: 10px 0;
+}
+
+/* 2 Column Form */
+.column-1, .column-2 {
+	float: left;
+	width: 50%;
+	
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.column-1 {
+	padding-right: 25px;
+}
+
+.column-2 {
+	padding-left: 25px;
+}
+
 /* Header
 *********************************/
 .site-logo {
@@ -146,6 +248,7 @@ h1 {
 }
 
 .site-header {
+	color: #fff;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -178,24 +281,43 @@ h1 {
 	color: #fff;
 }
 
+.logged-in {
+	display: none;
+}
+
+.logged-in {
+	font-size: 14px;
+	margin-top: 6px;
+	margin-left: 40px;
+}
+
+.username {
+	font-weight: bold;
+	color: #ffb524;
+}
+
 .user-controls {
 	font-size: 13px;
 }
 
 .user-control {
-	display: block;
 	float: left;
+	list-style-type: none;
+}
+
+.user-control a {
+	display: block;
 	padding: 6px 13px;
 	margin-right: 10px;
 	text-transform: uppercase;
 	color: #fff;
 }
 
-.log-in-button {
+.log-in-button a {
 	background: #8f6078;
 }
 
-.sign-up-button {
+.sign-up-button a {
 	background: #f9b540;
 	font-weight: bold;
 }
@@ -898,51 +1020,63 @@ h1 {
 	margin-bottom: 40px;
 }
 
-.signup-form input {
-	width: 100%;
-	height: 48px;
-	font-size: 18px;
-	color: #5d5d5d;
-	border: none;
-	padding-left: 15px;
-	padding-right: 15px;
-	margin-bottom: 8px;
-	
-	border-top: 1px solid #cecece;
-	border-left: 1px solid #cecece;
-	box-shadow: 1px 1px 1px #eee inset;
-	
-	.border-box;
-}
-
-.create-button {
-	display: inline-block;
-	padding: 17px 25px;
-	background-color: #b0cf4d;
-	color: #fff;
-	font-weight: bold;
-	text-transform: uppercase;
-	font-size: 20px;
-	margin-top: 20px;
-	letter-spacing: 1px;
-}
-
-.or {
-	display: block;
-	margin: 20px auto;
-}
-
-.create-your-account {
-	font-family: 'Amaranth', sans-serif;
-	font-weight: normal;
-	color: #b0cf4d;
-	margin-bottom: 20px;
-	font-size: 34px;
-}
-
-.wrapper.login {
+.wrapper.login, .wrapper.signup {
 	background-image: url('/images/big-logo-background.png'), url('/images/background.png');
 	background-position: bottom left, top left;
 	background-repeat: no-repeat, repeat;
 	background-size: 70% 70%, auto auto;
+	min-height: 100%;
+	
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.form .login-button {
+	width: 120px;
+	margin: 20px auto 0;
+}
+
+.form .signup-button {
+	width: 136px;
+	margin: 20px auto 0;
+}
+
+/* Create a new kite
+*********************************/
+.create .content {
+	width: 800px;
+	margin: 75px auto 0;
+	text-align: center;
+}
+
+.form .add-image {
+	margin-top: 30px;
+	margin-bottom: 20px;
+	width: 190px;
+	background-color: #6a4256;
+}
+
+.form .image-upload-field {
+	margin-top: 30px;
+}
+
+.form .add-members {
+	width: 210px;
+	background-color: #6a4256;
+}
+
+.form .create-button {
+	width: 130px;
+	float: right;
+}
+
+.make-private {
+	float: left;
+}
+
+.make-private label {
+	color: #64667b;
+	margin-left: 10px;
+	font-size: 13px;
 }
