@@ -20,7 +20,7 @@ class Kite < ActiveRecord::Base
   @@access_key_id = ENV['AMAZON_ACCESS_KEY_ID']
   @@secret_access_key = ENV['AMAZON_SECRET_ACCESS_KEY']
   
-  attr_accessible :kiteimage
+  attr_accessible :kiteimage, :Description
   
   # validates_attachment_size :kiteimage, :less_than => 3.megabtyes
   has_attached_file :kiteimage, 
@@ -41,13 +41,13 @@ class Kite < ActiveRecord::Base
     Kite.any? ? Kite.where(:Completed => true).count : 0
   end
   
-  def self.ReformatStorage
-    @kites = Kite.all
-    @kites.each do |kite|
-      kite.kiteimage = open(kite.ImageLocation, 'rb')
-      kite.save!
-    end
-  end  
+  #def self.ReformatStorage
+  #  @kites = Kite.all
+  #  @kites.each do |kite|
+  #    kite.kiteimage = open(kite.ImageLocation, 'rb')
+  #    kite.save!
+  #  end
+  #end  
   
   # Upload an image file to the kite
   def upload(uploaded_file)
