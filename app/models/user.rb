@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
    end  
    
    def CompletedKitesCount
-     kites.any? ? kites.count(:conditions => "Completed = 'true'") : 0
+     kites.any? ? kites.where(:Completed => true).count : 0
    end
    
    def CommentCount
