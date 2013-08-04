@@ -1,0 +1,10 @@
+<tr>
+	<td><%= tableRowKite.user.username%></td>
+	<td><%= tableRowKite.Description%></td>
+	<td><%= tableRowKite.FormattedCreateDate%></td>
+	<td><%= tableRowKite.sharelevel%></td>
+	<td><%= tableRowKite.LikeCount%></td>
+	<td><%= tableRowKite.CommentCount%></td>
+	<td><%= tableRowKite.FollowingCount%></td>
+	<td><%= link_to 'Delete', tableRowKite, :confirm => 'Are you sure you want to delete this kite?', :method => :delete%></td>
+</tr>

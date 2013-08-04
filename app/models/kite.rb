@@ -127,5 +127,17 @@ class Kite < ActiveRecord::Base
   def FormattedCreateDate
     return self.CreateDate.strftime("%B %d, %Y")
   end
-    
+  
+  def LikeCount
+    return follwings.where(:Type => "like").any? ? follwings.where(:Type => "like").count : 0 
+  end  
+  
+  def FollowingCount
+    return follwings.where(:Type => "member").any? ? follwings.where(:Type => "member").count : 0
+  end
+  
+  def CommentCount
+    return comments.count
+  end
+  
 end

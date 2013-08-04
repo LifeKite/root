@@ -6,10 +6,14 @@
 # owned by the user such as kites, comments, etc.
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  
+  before_filter :verify_is_admin, :only => [:index, :ForcePasswordReset, :destroy]
+  before_filter :verify_is_owner, :only => [:edit, :update]
+    
   # Show all users
   def index
+   
     @users = User.all
+    @kites = current_user.kites
   end
 
   # Retrieve an editable user based on id
@@ -72,4 +76,48 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+     @user = User.find(params[:id])
+     @user.destroy
+          
+     respond_to do |format|
+       format.html { redirect_to(request.referer) }
+       format.xml  { head :ok }
+     end
+  end
+  
+  def ForcePasswordReset
+          
+    @user =  User.find(params[:id]) 
+    random_password = User.send(:generate_token, 'encrypted_password').slice(0,8)
+    @user.password = random_password
+    UserMailer.password_reset(@user, random_password).deliver
+    
+    redirect_to(request.referer, :notify => "Password reset email has been sent")
+  end
+  
+  def GetKites
+    
+    @user =  User.find(params[:id])
+    @kites = @user.kites
+    
+    respond_to do |format|
+      format.html {render :action => "show" }
+      format.js {}
+      format.json { render json: @kites, status: :ok}
+      format.xml  { head :ok }
+    end
+  end
+  
+  private
+  def verify_is_admin
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == 1)
+  end
+  
+  def verify_is_owner
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == id)
+  end
+  
+  
+  
 end

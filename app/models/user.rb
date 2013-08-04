@@ -70,5 +70,13 @@ class User < ActiveRecord::Base
    def CommentCount
      return Comment.where(:user_id => id).count
    end
+   
+  def FormattedCreateDate
+    return self.created_at.strftime("%B %d, %Y")
+  end  
+  
+  def FormattedLastLoginDate
+    return self.last_sign_in_at.strftime("%B %d, %Y")
+  end
      
 end

@@ -1,0 +1,2 @@
+$("#kites").empty();
+$("<%= escape_javascript(render partial: "kites/tableRowKite", collection: @kites)%>").appendTo("#kites");

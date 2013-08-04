@@ -4,7 +4,10 @@
 # This class exposes methods to manipulate kite objects and their
 # associated assets (such as comments)
 class KitesController < ApplicationController
-  
+  before_filter :authenticate_user!
+  before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
+  before_filter :verify_is_owner, :only => [:personalIndex, :edit, :update, :complete]
+    
   # List all kites
   def index
     time_range = (1.week.ago..Time.now)
@@ -255,5 +258,14 @@ class KitesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-   
+  
+  private
+    def verify_is_admin_or_owner
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == 1 || current_user.id == id)
+    end
+    
+    def verify_is_owner
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == id)
+    end 
+  
 end

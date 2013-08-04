@@ -20,20 +20,7 @@
 		</div>
 		<div class="kites">
 			<!-- Begin kite -->
-			<% for kite in @kites %>
-				<div class="kite" style="background: url('<%= kite.kiteimage.url(:thumb) %>') no-repeat center; background-size: cover;">
-					
-					<div class="overlay">
-						<h2 class="kite-name">
-							<%=h link_to kite.Description, kite %>
-						</h2>
-						<p class="kite-byline">Created by <%=h link_to kite.user.username, kite.user, :class => "author-link" %></p>
-						<div class="kite-likes"><span class="like-count">23</span> Likes</div>
-						<div class="view-kite"><%=h link_to "View", kite, :class=>"view-kite-link"%></div>
-					</div>
-				</div>		
-			<% end %>
-
+			<%= render @kites %>
 			<!-- End kite -->
 		</div>
 		<footer id="page-footer" class="page-footer">
