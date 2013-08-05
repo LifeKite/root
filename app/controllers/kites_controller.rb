@@ -4,7 +4,7 @@
 # This class exposes methods to manipulate kite objects and their
 # associated assets (such as comments)
 class KitesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index, :show, :randomSample]
   before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
   before_filter :verify_is_owner, :only => [:personalIndex, :edit, :update, :complete]
     
