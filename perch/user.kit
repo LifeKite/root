@@ -1,0 +1,39 @@
+<!-- @include includes/head.html -->
+	<!-- @include includes/navigation.html -->
+	<div class="wrapper home has-navigation has-sidebar has-footer">
+		<!-- @include includes/sidebar.html -->
+		<div class="content">
+			<div class="content-header">
+				<h1 class="page-title">Kites You Follow</h1>
+				<div id="filter" class="filter">
+					<div id="filter-button" class="filter-button">Filter By</div>
+					<ul id="filter-list" class="filter-list" style="display:none;">
+						<!-- Begin kite categories -->
+						<li>Filter Type 1</li>
+						<li>Filter Type 2</li>
+						<li>Filter Type 3</li>
+						<li>Filter Type 4</li>
+						<!-- End kite categories -->
+					</ul>
+				</div>
+				<div class="search">
+					<input class="search-input" type="text" placeholder="Search">
+					<input class="search-button" type="image" src="graphics/search-button.png" width="38" height="36">
+				</div>
+			</div>
+			<div class="kites">
+				<!-- Begin kite -->
+				<div class="kite">
+					<div class="overlay">
+						<h2 class="kite-name"><a href="detail.html">Build a greenhouse in my backyard</a></h2>
+						<p class="kite-byline">Created by <a class="author-link">Jane Doe</a></p>
+						<div class="kite-likes"><span class="like-count">23</span> Likes</div>
+						<div class="view-kite"><a href="detail.html" class="view-kite-link">View Kite</a></div>
+					</div>
+				</div>
+				<!-- End kite -->
+			</div>
+		</div>
+		<!-- @include includes/user-footer.html -->
+	</div>
+<!-- @include includes/foot.html -->
