@@ -156,7 +156,7 @@ h1 {
 	margin: 0;
 }
 
-.form input[type="text"], .form input[type="file"], .form input[type="password"], .form select, .form textarea {
+.form input[type="text"], .form input[type="file"], .form input[type="password"], .form input[type="email"], .form select, .form textarea {
 	width: 100%;
 	height: 48px;
 	font-size: 18px;
