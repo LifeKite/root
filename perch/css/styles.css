@@ -1074,7 +1074,7 @@ h1 {
 	background-image: url('../graphics/big-logo-background.png'), url('../graphics/background.png');
 	background-position: bottom left, top left;
 	background-repeat: no-repeat, repeat;
-	background-size: 70% 70%, auto auto;
+	background-size: 70% auto, auto auto;
 	min-height: 100%;
 	
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
