@@ -19,6 +19,7 @@
 		</div>
 		<div class="feed-side">
 			<ul class="kite-feed">
+				<% if @popularKites.count > 0 %>
 				<% for item in @popularKites[0..2] %>
 					<% if item.instance_of?(Comment) %>
 						<li class="kite-feed-item kite-feed-comment">
@@ -33,10 +34,12 @@
 					<% end %>
 					</li>
 				<% end %>
+				<% end %>
 			</ul>
 		</div>
 		<div class="feed-side">
 			<ul class="kite-feed">
+				<% if @popularKites.count > 3 %>
 				<% for item in @popularKites[3..5]%>
 					<% if item.instance_of?(Comment) %>
 						<li class="kite-feed-item kite-feed-comment">
@@ -51,10 +54,12 @@
 					<% end %>
 					</li>
 				<% end %>
+				<% end %>
 			</ul>
 		</div>
 		<div class="feed-side">
 			<ul class="kite-feed">
+				<% if @popularKites.count > 6 %>
 				<% for item in @popularKites[6..8]%>
 					<% if item.instance_of?(Comment) %>
 						<li class="kite-feed-item kite-feed-comment">
@@ -65,6 +70,7 @@
 						<span class="details"><%=h link_to item.follower.username, item.kite%> | <a href='<%=h item.kite%>'><%=h item.kite.LikeCount%> Following</a></span>
 					<% end %>
 					</li>
+				<% end %>
 				<% end %>
 			</ul>
 		</div>
