@@ -1,0 +1,2 @@
+$("#comments").empty();
+$("<%= escape_javascript(render @comments)%>").appendTo("#comments");

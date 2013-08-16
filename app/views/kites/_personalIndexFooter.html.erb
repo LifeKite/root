@@ -1,0 +1,72 @@
+<footer id="page-footer" class="page-footer user-footer">
+	<div class="footer-tab"><a class="hide-this-bar footer-tab-link">Hide this bar</a><a class="show-this-bar footer-tab-link">Show this bar</a></div>
+	<div class="footer-box doubled-up">
+		<div class="stat-box stat-user-kites">
+			<img src="/images/big-icon-stacks.png" width="83" height="82">
+			<p class="stat"><%= @kiteCount %></p>
+			<p class="label">Kites</p>
+		</div>
+		<div class="stat-box stat-completed">
+			<img src="/images/big-icon-check.png" width="83" height="82">
+			<p class="stat"><%= @completedKites %></p>
+			<p class="label">Completed</p>
+		</div>
+	</div>
+	<div class="footer-box feed-box multiple-feeds">
+		<div class="label-side">
+			<img src="/images/big-icon-lightning-bolt.png" width="84" height="83">
+			<p class="label">Recent<br>Activity</p>
+		</div>
+		<div class="feed-side">
+			<ul class="kite-feed">
+				<% for item in @popularKites[0..2] %>
+					<% if item.instance_of?(Comment) %>
+						<li class="kite-feed-item kite-feed-comment">
+						<span class="headline"><%= link_to item.content, item.kite %></span><br>
+						<span class="details"><%=h link_to item.user.username, item.kite %> | 
+							<a href='<%=h kite_path(item.kite)%>'><%=h item.kite.LikeCount%> Following</a></span>
+					<% else %>
+						<li class="kite-feed-item kite-feed-heart">
+						<span class="headline">&nbsp;</span><br>
+						<span class="details"><%=h link_to item.follower.username, item.kite%> | 
+							<a href='<%=h kite_path(item.kite)%>'><%=h item.kite.LikeCount%> Following</a></span>
+					<% end %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+		<div class="feed-side">
+			<ul class="kite-feed">
+				<% for item in @popularKites[3..5]%>
+					<% if item.instance_of?(Comment) %>
+						<li class="kite-feed-item kite-feed-comment">
+						<span class="headline"><%= link_to item.content, item.kite %></span><br>
+						<span class="details"><%=h link_to item.user.username, item.kite %> | 
+							<a href='<%=h kite_path(item.kite)%>'><%=h item.kite.LikeCount%> Following</a></span>
+					<% else %>
+						<li class="kite-feed-item kite-feed-heart">
+						<span class="headline">&nbsp;</span><br>
+						<span class="details"><%=h link_to item.follower.username, item.kite%> | 
+							<a href='<%=h kite_path(item.kite)%>'><%=h item.kite.LikeCount%> Following</a></span>
+					<% end %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+		<div class="feed-side">
+			<ul class="kite-feed">
+				<% for item in @popularKites[6..8]%>
+					<% if item.instance_of?(Comment) %>
+						<li class="kite-feed-item kite-feed-comment">
+						<span class="headline"><%= link_to item.content, item.kite %></span><br>
+						<span class="details"><%=h link_to item.user.username, item.kite%> | <a href='<%=h item.kite%>'><%=h item.kite.LikeCount%> Following</a></span>
+					<% else %>
+						<li class="kite-feed-item kite-feed-heart">
+						<span class="details"><%=h link_to item.follower.username, item.kite%> | <a href='<%=h item.kite%>'><%=h item.kite.LikeCount%> Following</a></span>
+					<% end %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</footer>
