@@ -19,6 +19,7 @@ class KitesController < ApplicationController
           
      @newKites = Kite.NewKitesCount(time_range)
      @completedKites = Kite.CompletedKitesCount
+     @recentComments = Comment.order("created_at DESC").take(3)
        
      #Currently not supported since we don't have following yet, just randomly choose three
      @popularKites = Kite.PopularKites
