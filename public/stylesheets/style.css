@@ -37,10 +37,6 @@ h4 {
     margin-bottom: -10px;
 }
 
-p {
-    margin: 10px 0;
-    clear: both;
-}
 
 ul, ol {
     margin-left 0;
@@ -121,3 +117,7 @@ td pre {
      filter: alpha(opacity=75);
      opacity: 0.75;
   } 
+  
+.comment-field {
+	width: 90%;
+}

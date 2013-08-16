@@ -28,6 +28,11 @@ $(function() {
 			
 			setTimeout(function() {
 				$('.kite-nav-content').jScrollPane();
+				$('.kite-nav-content').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight){
+					if(isAtBottom) {
+						$('.next_page').trigger('click');
+					}
+				})
 			}, 201);
 
 		}, 201);
@@ -45,7 +50,7 @@ $(function() {
 	});
 
 	// Scroll Bar
-	$('.kite-nav-content').jScrollPane();
+	//$('.kite-nav-content').jScrollPane();
 
 	
 });

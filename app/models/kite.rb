@@ -41,6 +41,10 @@ class Kite < ActiveRecord::Base
     Kite.any? ? Kite.where(:Completed => true).count : 0
   end
   
+  def self.PopularKites
+    Kite.joins(:follwings).where('follwings.Type' => "like").select("*, count(follwings.id) as likes").group("kite_id").order("likes").take(20).sample(3)
+  end
+  
   #def self.ReformatStorage
   #  @kites = Kite.all
   #  @kites.each do |kite|

@@ -79,4 +79,11 @@ class User < ActiveRecord::Base
     return self.last_sign_in_at.strftime("%B %d, %Y")
   end
      
+  # Listing of most recent people commenting, following, or becomming members
+  # of our kites 
+  def RecentActivity
+    @followings = Follwing.where(:kite_id => kites.select("id"), :Type => "like").order("created_at DESC").take(5)
+    @comments = Comment.where(:kite_id => kites.select("id")).order("created_at DESC").take(5)
+    return (@followings + @comments).sort_by(&:created_at)
+  end
 end

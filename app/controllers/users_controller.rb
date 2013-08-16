@@ -104,7 +104,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html {render :action => "show" }
       format.js {}
-      format.json { render json: @kites, status: :ok}
+      format.json { render :json => {:kites => @kites, :status => :ok}}
       format.xml  { head :ok }
     end
   end

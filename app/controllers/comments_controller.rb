@@ -3,14 +3,18 @@
 
 # This class exposes methods to modify user comments
 class CommentsController < ApplicationController
-  
+  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
+    
   # List all comments
   def index
-    @comments = Comment.all
+    @comments = Comment.all.paginate(:page => params[:page], :per_page => 30)
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @comments }
+      format.js {}
+      format.json { render :json => {:comments => @comments, status => :ok}}
     end
   end
 
@@ -43,6 +47,7 @@ class CommentsController < ApplicationController
   # Persist a new comment in the data store
   def create
     @comment = Comment.new(params[:comment])
+    @comment.content = params[:comment][:content]
     @comment.kite = Kite.find(params[:comment][:kite_id])
     @comment.user = current_user
     @kite = Kite.find(@comment.kite_id)
@@ -64,9 +69,13 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to(@kite, :notice => 'Comment was successfully created.') }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
+        format.js {}
+        format.json { render :json => @comment, :status => :created}
       else
         format.html { render :action => "new", :notice => params[:kite_id] }
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
+        format.js {}
+        format.json { render :json => @comment.errors, :status => :unprocessable_entity }
       end
     end
   end

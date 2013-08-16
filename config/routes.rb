@@ -107,7 +107,6 @@ Rlifekite::Application.routes.draw do
   match "/comments/:id/unmarkHelpful" => "comments#unmarkHelpful"
   match "/kites/:id/follow" => "kites#Follow"
   match "/kites/:id/unfollow" => "kites#Unfollow"
-  # match "/users/:id/GetUserKites" => "user#GetUserKites"
   
   devise_scope :user do
     get "/login" => "devise/sessions#new"

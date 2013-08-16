@@ -6,16 +6,14 @@
 class KitesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :randomSample]
   before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
-  before_filter :verify_is_owner, :only => [:personalIndex, :edit, :update, :complete]
+  before_filter :verify_is_owner, :only => [:edit, :update, :complete]
     
   # List all kites
   def index
     time_range = (1.week.ago..Time.now)
     
-     @kites = Kite.where(:sharelevel => "public")
-     @kites.any? do |k|
-       @kites = @kites.sample(10)
-     end
+     @kites = Kite.where(:sharelevel => "public").paginate(:page => params[:page], :per_page => 12)
+     
      
      @kiteCount = Kite.any? ? Kite.count : 0
           
@@ -23,9 +21,10 @@ class KitesController < ApplicationController
      @completedKites = Kite.CompletedKitesCount
        
      #Currently not supported since we don't have following yet, just randomly choose three
-     @popularKites = @kites.sample(3)
+     @popularKites = Kite.PopularKites
      @function = "Explore Kites"
-          
+     
+              
     respond_to do |format|
       format.html { render :template => 'kites/index' }# index.html.erb
       format.xml  { render :xml => @kites }
@@ -35,14 +34,14 @@ class KitesController < ApplicationController
   def personalIndex
     time_range = (1.week.ago..Time.now)
         
-     @kites = current_user.kites    
+     @kites = current_user.kites.paginate(:page => params[:page], :per_page => 12)    
      
      @kiteCount = current_user.KiteCount
      @newKites = current_user.NewKiteCount(time_range)
      @completedKites = current_user.CompletedKitesCount
        
      #Currently not supported since we don't have following yet, just randomly choose three
-     @popularKites = @kites.sample(3)
+     @popularKites = current_user.RecentActivity
      @function = "My Kites"
      
     respond_to do |format|
@@ -72,15 +71,19 @@ class KitesController < ApplicationController
   def show
     @kite = Kite.find(params[:id])
     
-     if @kite.UserCanView(current_user)
-       if(current_user = @kite.user)
-         render :action => 'owner_show'
-       else
-         render :action => 'shared_show'
-       end
+    #Queue up a proto-comment
+    @comment = Comment.new
+    @comments = @kite.comments(:order => "isHelpful DESC").paginate(:page => params[:page], :per_page => 3)
+      
+    if @kite.UserCanView(current_user)
+     if(current_user = @kite.user)
+       render :action => 'owner_show'
      else
-       redirect_to(current_user, :error => "The kite you have selected is private and cannot be viewed.")
+       render :action => 'shared_show'
      end
+    else
+     redirect_to(current_user, :error => "The kite you have selected is private and cannot be viewed.")
+    end
       
     
 #    respond_to do |format|
@@ -261,11 +264,13 @@ class KitesController < ApplicationController
   
   private
     def verify_is_admin_or_owner
-      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == 1 || current_user.id == id)
+      @kite = Kite.find(params[:id])
+      (current_user.nil? || @kite.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == 1 || current_user.id == @kite.user.id)
     end
     
     def verify_is_owner
-      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == id)
+      @kite = Kite.find(params[:id])
+      (current_user.nil? || @kite.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == @kite.user.id)
     end 
   
 end

@@ -51,10 +51,12 @@
 		</div>
 		<div class="detail-section comments" style="display:none;">
 			<h2>Comments</h2>
-			
-			<%= render @kite.comments(:order => "isHelpful DESC") %>
+			<div id="commentslist">
+				<%= render @comments %>
+			</div>
+			<%= will_paginate @comments, :remote => true %>
 			<% if current_user %>
-				<%= link_to 'New Comment', new_comment_path(:kite => @kite.id), { :class => "log-in-button" } %>
+				<%= render 'comments/form'%>
 			<% end %>
 		</div>
 		<div class="detail-section members" style="display:none;">
