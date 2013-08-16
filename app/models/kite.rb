@@ -42,7 +42,7 @@ class Kite < ActiveRecord::Base
   end
   
   def self.PopularKites
-    Kite.joins(:follwings).where('follwings.Type' => "like").select("kites.id, kites.Description, kites.Completed, kites.CreateDate, kites.CompleteDate, kites.user_id, kites.created_at, kites.updated_at, kites.sharelevel, kites.Details, kites.kiteimage_file_name, kites.kiteimage_content_type, kites.kiteimage_file_size, kites.kiteimage_updated_at, count(follwings.id) as likes").group("kite_id").order("likes").take(20).sample(3)
+    Kite.joins(:follwings).where('follwings.Type' => "like").select("kites.id, kites.'Description', kites.'Completed', kites.'CreateDate', kites.'CompleteDate', kites.user_id, kites.created_at, kites.updated_at, kites.sharelevel, kites.Details, kites.kiteimage_file_name, kites.kiteimage_content_type, kites.kiteimage_file_size, kites.kiteimage_updated_at, count(follwings.id) as likes").group("kite_id").order("likes").take(20).sample(3)
   end
   
   #def self.ReformatStorage
