@@ -136,9 +136,7 @@ h1 {
 	padding: 3px 21px 3px 16px;
 }
 
-/* Form styles */
-
-.form-header {
+.form-header, .page-title-type-2 {
 	font-family: 'Amaranth', sans-serif;
 	font-weight: normal;
 	color: #b0cf4d;
@@ -155,6 +153,8 @@ h1 {
 	text-align: left;
 	margin: 0;
 }
+
+/* Form styles */
 
 .form input[type="text"], .form input[type="file"], .form input[type="password"], .form input[type="email"], .form select, .form textarea {
 	width: 100%;
@@ -185,7 +185,7 @@ h1 {
 	background: #fff;
 }
 
-.form .button {
+.button {
 	padding: 10px 25px;
 	border: 0;
 	background-color: #b0cf4d;
@@ -200,6 +200,12 @@ h1 {
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
+	
+	transition: all .2s;
+}
+
+.button:hover {
+	background-color: #723c55;
 }
 
 .form .add-button {
@@ -1046,7 +1052,7 @@ h1 {
 	background-color: #fff;
 }
 
-.delete {
+.members li .delete {
 	position: absolute;
 	display: none;
 	top: 20px;
@@ -1129,4 +1135,176 @@ h1 {
 	color: #64667b;
 	margin-left: 10px;
 	font-size: 13px;
+}
+
+/* Groups Page
+*********************************/
+
+.content {
+	padding-top: 75px;
+	padding-left: 75px;
+}
+
+.groups-page-title {
+	background: url('../graphics/groups-icon-green.png') left center no-repeat;
+	padding-left: 60px;
+}
+
+.groups-holder {
+	width: 680px;
+	padding-left: 35px;
+}
+
+.more-group-controls {
+	width: 680px;
+	padding-left: 35px;
+}
+
+.group-box {
+	background: #fff;
+	padding: 20px;
+	margin-bottom: 9px;
+	border: 1px solid #e4e4e4;
+}
+
+.group-box .group-content {
+	display: none;
+}
+
+.group-box.active .group-content {
+	display: block;
+}
+
+.group-name {
+	float: left;
+	color: #505050;
+	font-size: 22px;
+	font-weight: normal;
+	line-height: 1;
+}
+
+.group-name .number-holder {
+	color: #adadad;
+	font-size: 16px;
+}
+
+.group-members {
+	margin-top: 18px;
+}
+
+.group-member {
+	float: left;
+	padding: 7px;
+	margin-right: 12px;
+	margin-bottom: 9px;
+	border: 1px solid #aeaeae;
+}
+
+.group-control-bar {
+	padding-top: 20px;
+}
+
+.group-member h4 {
+	display: inline-block;
+	color: #aeaeae;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.group-member-delete {
+	float: left;
+	background-image: url('../graphics/delete-icon.png');
+	background-size: 100% 100%;
+	width: 18px;
+	height: 18px;
+	margin-top: 1px;
+	cursor: pointer;
+}
+
+.group-member-name {
+	float: left;
+	padding-left: 8px;
+}
+
+.group-icons {
+	float: right;
+	list-style-type: none;
+}
+
+.group-icons li {
+	float: left;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+.group-icons .edit {
+	background: url('../graphics/edit-icon.png');
+	width: 23px;
+	height: 22px;
+}
+
+.group-box.active .group-icons .edit {
+	background: url('../graphics/up-arrow-big.png');
+	width: 23px;
+	height: 18px;
+}
+
+.group-icons .delete {
+	background: url('../graphics/delete-icon.png');
+	width: 25px;
+	height: 24px;
+}
+
+.add-user-button {
+	float: left;
+	padding: 1px 25px;
+	margin: 0 0 0 40px;
+}
+
+.add-user {
+	float: left;
+	width: 300px;
+}
+
+.group-control-bar:after {
+	content: "."; 
+	visibility: hidden; 
+	display: block; 
+	height: 0; 
+	clear: both;
+}
+
+.cancel {
+	display: inline-block;
+	color: #aeaeae;
+	margin-left: 20px;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+.create-new-group {
+	display: inline-block;
+	margin-top: 9px;
+	color: #505050;
+	font-size: 16px;
+	text-transform: uppercase;
+	line-height: 1;
+	transition: all .1s;
+	cursor: pointer;
+}
+
+.create-new-group:hover {
+	color: #5a9fa6;
+}
+
+#group-box-template, #group-member-template {
+	display: none;
+}
+
+.group-members:after, .group-header:after { 
+	content: "."; 
+	visibility: hidden; 
+	display: block; 
+	height: 0; 
+	clear: both;
 }

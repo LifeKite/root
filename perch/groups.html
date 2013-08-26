@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<!-- Baseline -->
+		<link rel="stylesheet" href="css/normalize.css" type="text/css">
+		
+		<!-- Google fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Amaranth:400,700' rel='stylesheet' type='text/css'>
+
+		<!-- styles needed by jScrollPane -->
+		<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+		<link type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" media="all" />
+
+		<!-- Main stylesheet -->
+		
+		<link rel="stylesheet" href="css/styles.css" type="text/css">
+		
+		<!-- Sample data -->
+		<link rel="stylesheet" href="css/sample.css" type="text/css">
+	</head>
+	<body>			<header class="site-header">
+			<div class="site-logo">
+				<a href="/">
+					<img src="graphics/big-logo.png" alt="LifeKite">
+				</a>
+			</div>
+			<div class="header-controls">
+				<nav class="main-nav">
+					<ul>
+						<li class="nav-item"><a>Explore</a></li>
+						<li class="nav-item"><a>Tour</a></li>
+						<li class="nav-item"><a>Support</a></li>
+						<li class="nav-item"><a>Our Partners</a></li>
+					</ul>
+				</nav>
+				<div class="user-controls">
+					<div class="logged-out">
+						<ul>
+							<li class="user-control log-in-button"><a href="login.html">Log In</a></li>
+							<li class="user-control sign-up-button"><a href="signup.html">Sign Up</a></li>
+						</ul>
+					</div>
+					<div class="logged-in">Welcome, <span class="username">Stacy</span> | <a href="#logout">Logout</a></div>
+				</div>
+			</div>
+		</header>	<div class="wrapper groups has-sidebar has-navigation">
+		<div class="sidebar">
+	<div class="profile sidebar-button">
+		<div class="active-flag">Profile</div>
+	</div>
+	<div class="add-kite sidebar-button">
+		<div class="active-flag">Add Kite</div>
+	</div>
+	<div class="kites sidebar-button">
+		<div class="active-flag">Kites</div>
+	</div>
+	<div class="groups sidebar-button">
+		<div class="active-flag"><a href="/groups.html">Groups</a></div>
+	</div>
+	<div class="help sidebar-button">
+		<div class="active-flag">Help</div>
+	</div>
+</div>		<div class="content">
+			<h1 class="groups-page-title page-title-type-2">Groups</h1>
+			<div class="groups-holder" id="groups-holder"></div>
+			<div class="more-group-controls">
+				<div id="create-new-group" class="create-new-group">+ Create a new group</div>
+				<form class="form">
+					<input name="data" type="hidden" value="">
+					<input type="submit" class="save-button button" value="Save">
+					<div class="cancel"><a href="#">Cancel</a></div>
+				</form>
+			</div>
+			<!-- Group Box Template - LEAVE HERE, NEEDED FOR JAVASCRIPT -->
+			<div id="group-box-template">
+				<div class="group-box active">
+					<div class="group-header">
+						<h2 class="group-name">Group name template <span class="number-holder">(<span class="the-number">0</span>)</h2>
+						<ul class="group-icons">
+							<li class="edit"></li>
+							<li class="delete"></li>
+						</ul>
+					</div>
+					<div class="group-content">
+						<div class="group-control-bar">
+							<input class="add-user fresh" placeholder="Find a member">
+							<div class="button add-user-button">Add</div>
+						</div>
+						<div class="group-members"></div>
+					</div>
+				</div>
+			</div>
+			<!-- End Group Box Template -->
+			<!-- Member Template - LEAVE HERE, NEEDED FOR JAVASCRIPT -->
+			<div id="group-member-template">
+				
+				<div class="group-member">
+					<div class="group-member-delete"></div>
+					<h4 class="group-member-name fresh">%NAME%</h4>
+				</div>
+			</div>
+			<!-- End Member Template -->
+		</div>
+	</div>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		
+		<!-- the mousewheel plugin - optional to provide mousewheel support -->
+		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+
+		<!-- the jScrollPane script -->
+		<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+
+		<script src="js/scripts.js"></script>
+	</body>
+</html>
