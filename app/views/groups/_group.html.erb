@@ -1,0 +1,20 @@
+<div id="group-box">
+	<div class="group-box active">
+		<div class="group-header">
+			<h2 class="group-name"><%= group.name %> <span class="number-holder">(<span class="the-number"><%= group.users.count %></span>)</h2>
+			<ul class="group-icons">
+				<li class="edit"></li>
+				<li class="delete"></li>
+			</ul>
+		</div>
+		<div class="group-content">
+			<div class="group-control-bar">
+				<input class="add-user fresh" placeholder="Find a member">
+				<div class="button add-user-button">Add</div>
+			</div>
+			<div class="group-members">
+				<%= render partial: "user", collection: group.users %>
+			</div>
+		</div>
+	</div>
+</div>

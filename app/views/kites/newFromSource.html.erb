@@ -20,12 +20,21 @@
 		<script type="text/javascript">
 		
 			//Set initial values
-			$(".remote-image-field").text($("input[name^='imageSelect']:checked").val());
-			$(".remote-image-field").val($("input[name^='imageSelect']:checked").val());
+			var newVal = {};
+			newVal.imagePage = $("input[name^='imageSelect']:checked").val();
+			newVal.site = '<%= @site %>';
+			
+			$(".remote-image-field").text(newVal.imagePage);
+			$(".remote-image-field").val(JSON.stringify(newVal));
 		
 			$("input[name^='imageSelect']").change(function() {
-				$(".remote-image-field").text($("input[name^='imageSelect']:checked").val());
-				$(".remote-image-field").val($("input[name^='imageSelect']:checked").val());
+				
+				var newVal = {};
+				newVal.imagePage = $("input[name^='imageSelect']:checked").val();
+				newVal.site = '<%= @site %>';
+				
+				$(".remote-image-field").text(newVal.imagePage);
+				$(".remote-image-field").val(JSON.stringify(newVal));
 			});
 		
 		</script>

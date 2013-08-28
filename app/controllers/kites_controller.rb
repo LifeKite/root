@@ -147,7 +147,7 @@ class KitesController < ApplicationController
         end
       end
     end
-     
+    @site = site 
   
     respond_to do |format|
       format.html # new.html.erb
@@ -211,7 +211,8 @@ class KitesController < ApplicationController
   def create
     
     if params[:kite].has_key? :ImageLocation 
-      params[:kite][:kiteimage] = open(params[:kite][:ImageLocation], 'rb')
+      loc = JSON.parse params[:kite][:ImageLocation]
+      params[:kite][:kiteimage] = open(loc['imagePage'], 'rb')
     end     
     
     @kite = Kite.new(params[:kite])

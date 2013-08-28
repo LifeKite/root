@@ -1,25 +1,48 @@
-<h1>Listing groups</h1>
-
-<div id="groupSearch" class="span3 form-search form-inline">
-	<%= render :partial => 'groups/search' %>
+<div class="wrapper groups has-navigation <%if current_user %>has-sidebar<%end%>">
+	<div class="content">
+		<h1 class="groups-page-title page-title-type-2">Groups</h1>
+		<div class="groups-holder" id="groups-holder">
+			<%= render @groups %>
+		</div>
+		<div class="more-group-controls">
+			<div id="create-new-group" class="create-new-group">+ Create a new group</div>
+			<form class="form">
+				<input name="data" type="hidden" value="">
+				<input type="submit" class="save-button button" value="Save">
+				<div class="cancel"><a href="#">Cancel</a></div>
+			</form>
+		</div>
+		<!-- Group Box Template - LEAVE HERE, NEEDED FOR JAVASCRIPT -->
+		<div id="group-box-template">
+			<div class="group-box active">
+				<div class="group-header">
+					<h2 class="group-name">Group name template <span class="number-holder">(<span class="the-number">0</span>)</h2>
+					<ul class="group-icons">
+						<li class="edit"></li>
+						<li class="delete"></li>
+					</ul>
+				</div>
+				<div class="group-content">
+					<div class="group-control-bar">
+						<input class="add-user fresh" placeholder="Find a member">
+						<div class="button add-user-button">Add</div>
+					</div>
+					<div class="group-members"></div>
+				</div>
+			</div>
+		</div>
+		<!-- End Group Box Template -->
+		<!-- Member Template - LEAVE HERE, NEEDED FOR JAVASCRIPT -->
+		<div id="group-member-template">
+			
+			<div class="group-member">
+				<div class="group-member-delete"></div>
+				<h4 class="group-member-name fresh">%NAME%</h4>
+			</div>
+		</div>
+		<!-- End Member Template -->
+	</div>
 </div>
-
-<% if @groups.count ==0 %>
-	<p>No records found matching your criteria</p>
-<% else %>
-	<table class="table table-bordered table-striped">
-	  <tr>
-	    <th>Name</th>
-	    <th></th>
-	  </tr>
-	
-	<% @groups.each do |group| %>
-	  <tr>
-	    <td><%= group.name %></td>
-	    <td><%= link_to 'Show', group %></td>
-	  </tr>
-	<% end %>
-	</table>
-<% end %>
-
-
+<script id="myvars" type="text/json">
+	<%= @groups.to_json %>
+</script>

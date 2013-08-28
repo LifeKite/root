@@ -40,6 +40,11 @@
 			<div class="additional-images">
 				
 			</div>
+			<% if @kite.ImageLocation %>
+				<p class="dateline">Image original source: <a hef='<%= JSON.parse(@kite.ImageLocation)['site'] %>'>
+					<%= JSON.parse(@kite.ImageLocation)['site'] %>
+				</a></p>
+			<% end %>
 		</div>
 		<div class="detail-section support" style="display:none;">
 			<h2>Support</h2>
