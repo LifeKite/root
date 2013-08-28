@@ -21,7 +21,12 @@
 				</select>
 				<!-- PLACEHOLDER. I think your best bet is to use a javascript upload plugin that can integrate with Rails. I've styled these elements in hopes that you can reuse them within whatever plugin you choose -->
 				<div style="position: relative;">
-					<input id="surrogate" type="text" class="image-upload-field" />
+					<%if @isAutoAdd %>
+						<%= f.hidden_field :ImageLocation, :class => "remote-image-field" %>
+					<% else %>
+						<input id="surrogate" type="text" class="image-upload-field" />
+					<% end %>
+					
 				</div>
 			</div>
 			<div class="column-2">
@@ -30,7 +35,9 @@
 					<!-- Category options go here-->
 				</select>
 				<input type="text" name="add-tags" placeholder="Add Tags">
-				<div id="btnAddImage" class="button add-button add-image">+ Add image</div>
+				<% if @isAutoAdd.nil? %>
+					<div id="btnAddImage" class="button add-button add-image">+ Add image</div>
+				<% end %>
 			</div>
 			<%= f.text_area :Details, :placeholder => "Description", :onkeyup => "CheckMaxLenth(this);", :maxLength => 140 %> 
 			<div class="make-private">
@@ -45,7 +52,7 @@
 	</div>
 </div>	
 <div id="lockpane" class="LockOff"></div> 
-<%= javascript_include_tag "vendor/jquire.ui.widget.js" %>
+<%= javascript_include_tag "vendor/jquery.ui.widget.js" %>
 <%= javascript_include_tag "jquery.iframe-transport.js" %>
 <%= javascript_include_tag "jquery.fileupload.js" %>
 <script type="text/javascript">

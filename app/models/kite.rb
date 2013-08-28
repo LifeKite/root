@@ -20,7 +20,7 @@ class Kite < ActiveRecord::Base
   @@access_key_id = ENV['AMAZON_ACCESS_KEY_ID']
   @@secret_access_key = ENV['AMAZON_SECRET_ACCESS_KEY']
   
-  attr_accessible :kiteimage, :Description
+  attr_accessible :kiteimage, :Description, :ImageLocation, :sharelevel, :Details
   
   # validates_attachment_size :kiteimage, :less_than => 3.megabtyes
   has_attached_file :kiteimage, 
@@ -42,8 +42,12 @@ class Kite < ActiveRecord::Base
   end
   
   def self.PopularKites
-    Kite.joins(:follwings).where('follwings.Type' => "like").select("kites.id, kites.\"Description\", kites.\"Completed\", kites.\"CreateDate\", kites.\"CompleteDate\", kites.user_id, kites.created_at, kites.updated_at, kites.sharelevel, kites.\"Details\", kites.kiteimage_file_name, kites.kiteimage_content_type, kites.kiteimage_file_size, kites.kiteimage_updated_at, count(follwings.id) as likes")
-    .group("kites.id, kites.\"Description\", kites.\"Completed\", kites.\"CreateDate\", kites.\"CompleteDate\", kites.user_id, kites.created_at, kites.updated_at, kites.sharelevel, kites.\"Details\", kites.kiteimage_file_name, kites.kiteimage_content_type, kites.kiteimage_file_size, kites.kiteimage_updated_at").order("likes").take(20).sample(3)
+    Kite.joins(:follwings).where('follwings.Type' => "like")
+      .select("kites.id, kites.\"Description\", kites.\"Completed\", kites.\"CreateDate\", kites.\"CompleteDate\", kites.user_id, kites.created_at, kites.updated_at, kites.sharelevel, kites.\"Details\", kites.kiteimage_file_name, kites.kiteimage_content_type, kites.kiteimage_file_size, kites.kiteimage_updated_at, count(follwings.id) as likes") 
+      .group("kites.id, kites.\"Description\", kites.\"Completed\", kites.\"CreateDate\", kites.\"CompleteDate\", kites.user_id, kites.created_at, kites.updated_at, kites.sharelevel, kites.\"Details\", kites.kiteimage_file_name, kites.kiteimage_content_type, kites.kiteimage_file_size, kites.kiteimage_updated_at")
+      .order("likes")
+      .take(20)
+      .sample(3)
    
   end
   

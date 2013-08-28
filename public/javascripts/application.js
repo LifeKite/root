@@ -7,7 +7,7 @@
 $(document).ready(function(){
 	
 	function CheckMaxLength(object) {
-		vat iMaxLen = parseInt(object.getAttribute('maxLength'));
+		var iMaxLen = parseInt(object.getAttribute('maxLength'));
 		var iCurLen = object.value.length;
 		
 		if(object.getAttribute && iCurLen > iMaxLen) {
@@ -66,7 +66,7 @@ $(document).ready(function(){
 		}
 	}
 	
-	$('#kitesContainer').jcarousel({vertical:true, scroll: 1, wrap: "circular"});
+	//$('#kitesContainer').jcarousel({vertical:true, scroll: 1, wrap: "circular"});
 	
 	$('#kitelist li img').click(function(){
 		setCenterStage(this);	
@@ -81,29 +81,5 @@ $(document).ready(function(){
 		$(this).alert();
 		//$('.alert-error').show();
 	}
-	$( ".selectable" ).selectable({
-		stop: function() {
-			var name = "";
-			$(".ui-selected #thumbnail", this).each(function(){
-				if( $(this).attr('name') != undefined)
-					name = name + $(this).attr('name') + ", ";
-			})
-			$('#kite_ids').val(name.slice(0,-2));
-		}
-	});
 	
-	$('.SectionGroup').mouseenter(function(){
-		$(this).animate({opacity:1},1000);
-		$(this).css('border-color', 'white');
-	})
-	
-	$('.SectionGroup').mouseleave(function(){
-		$(this).animate({opacity:0.5},1000);
-		$(this).css('border-color', 'gray');
-	})
-	
-	//Automatically select the first
-	if($('#kitelist') != null && $('#kitelist').length > 0)
-		setCenterStage($('#kitelist li:first img'));
-
 });

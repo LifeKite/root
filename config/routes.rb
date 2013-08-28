@@ -33,7 +33,7 @@ Rlifekite::Application.routes.draw do
 
   get "home/index"
 
-  resources :kites
+  # resources :kites
   
   devise_for :users
   resources :users, :only => [:index, :show, :edit]
@@ -41,7 +41,7 @@ Rlifekite::Application.routes.draw do
   
   root :to => redirect('/splash/index.html')  
   # root :to => "home#index"
-  match ':page' => 'home#show'
+  # 
   # map.home ':page', :controller => 'home', :action => 'show', :page => /about|help|contact/
   # root :to => "users#show"
   # match '/' => "users#show", :as => :user_root
@@ -54,15 +54,19 @@ Rlifekite::Application.routes.draw do
   end
   
   resources :kites do
+    collection do
+      get :personalIndex
+      get :newFromSource
+    end
     member do
       put 'complete'
       put 'promote'
       put 'demote'
-      get 'personalIndex'
       put 'follow'
       put 'unfollow'
     end
   end
+  
   
   resources :invites do
     member do
@@ -112,4 +116,5 @@ Rlifekite::Application.routes.draw do
     get "/login" => "devise/sessions#new"
   end
 
+  match ':page' => 'home#show'
 end

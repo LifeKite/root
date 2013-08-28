@@ -3,10 +3,17 @@
 
 # This class exposes methods to manipulate kite objects and their
 # associated assets (such as comments)
+require 'nokogiri'
+require 'open-uri'
+require 'fastimage'
+
 class KitesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :randomSample]
   before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
   before_filter :verify_is_owner, :only => [:edit, :update, :complete]
+    
+  # Minimum supported dimensions for web images that we make kites out of
+  @@image_dimension_limit = 500
     
   # List all kites
   def index
@@ -105,6 +112,49 @@ class KitesController < ApplicationController
     end
   end
 
+  # First step to allowing users to select images from a web source
+  def newFromSource
+    
+    @kite = Kite.new
+    @images = []
+    @isAutoAdd = true
+    
+    if uri_is_valid?(params[:path])
+      site = URI.parse(params[:path])
+      
+      #grab the reference page passed in as parameter
+      doc = Nokogiri::HTML(open(site))
+      
+      #find all of the images
+      doc.css('img').each do |image|
+        #debugger
+        path = image.attribute('src').value
+        
+        if path[0..0] == '/'
+          path = URI.join(site, path).to_s
+        end  
+        
+        dimensions = FastImage.size(path, :timeout => 3.0)
+        
+        
+        if(!dimensions.nil? && dimensions.length > 1 && dimensions[0] > @@image_dimension_limit && dimensions[1] > @@image_dimension_limit )
+          img = {:path => image.attribute('src').value,
+            :source => doc.title,
+            :alttext => image.attribute('alt').value
+          }
+          
+          @images << img
+        end
+      end
+    end
+     
+  
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @kite }
+    end   
+  end
+  
   # Retrieve a kite for editing
   def edit
     @kite = Kite.find(params[:id])
@@ -159,20 +209,16 @@ class KitesController < ApplicationController
   
   # Commit a given kite to the data store
   def create
-    if(params[:kite].has_key?(:Upload))
-      # upload = params[:kite][:Upload]
-      params[:kite].delete(:Upload)
-      
-      @kite = Kite.new(params[:kite])
-      @kite.ImageLocation = @kite.upload(upload)
-    else
-      @kite = Kite.new(params[:kite])
-    end
     
+    if params[:kite].has_key? :ImageLocation 
+      params[:kite][:kiteimage] = open(params[:kite][:ImageLocation], 'rb')
+    end     
+    
+    @kite = Kite.new(params[:kite])
     @kite.CreateDate = Date.today
     @kite.user = current_user
     @kite.Completed = false
-    @kite.sharelevel = "public"
+    # @kite.sharelevel = "public"
 
     respond_to do |format|
       if @kite.save()
@@ -274,4 +320,10 @@ class KitesController < ApplicationController
       (current_user.nil? || @kite.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == @kite.user.id)
     end 
   
+    def uri_is_valid?(url)
+      uri = URI.parse(url)
+      uri.kind_of?(URI::HTTP)
+    rescue URI::InvalidURIError
+      false
+    end
 end

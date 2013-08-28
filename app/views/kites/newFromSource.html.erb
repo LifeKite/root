@@ -1,0 +1,33 @@
+<div class="wrapper create has-navigation">
+	<div class="content">
+		<table>
+			<% @images.each do |image| %>
+			<tr>
+			  	<td><%= image_tag image[:path], :alt => image[:alttext], :size => "100x100" %></td>
+				<td><%= content_tag :span, image[:source] %></td>
+				<td><%= radio_button_tag 'imageSelect', image[:path], class: "imageSelector" %></td>
+			</tr>			
+			<% end %>
+		</table>
+			
+		<% if @images.length == 0 %>
+			<h2>No suitable images were found at the selected site.</h2>
+			<p>Images must have dimensions of at least 500x500 in order to be used by LifeKite.</p>
+		<% end %>
+			
+		<%= render 'formNew' %>
+		
+		<script type="text/javascript">
+		
+			//Set initial values
+			$(".remote-image-field").text($("input[name^='imageSelect']:checked").val());
+			$(".remote-image-field").val($("input[name^='imageSelect']:checked").val());
+		
+			$("input[name^='imageSelect']").change(function() {
+				$(".remote-image-field").text($("input[name^='imageSelect']:checked").val());
+				$(".remote-image-field").val($("input[name^='imageSelect']:checked").val());
+			});
+		
+		</script>
+	</div>
+</div>
