@@ -138,7 +138,7 @@ class KitesController < ApplicationController
         
         
         if(!dimensions.nil? && dimensions.length > 1 && dimensions[0] > @@image_dimension_limit && dimensions[1] > @@image_dimension_limit )
-          img = {:path => image.attribute('src').value,
+          img = {:path => path,
             :source => doc.title,
             :alttext => image.attribute('alt').value
           }
