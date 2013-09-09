@@ -10,7 +10,7 @@ require 'fastimage'
 class KitesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :randomSample]
   before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
-  before_filter :verify_is_owner, :only => [:edit, :update, :complete]
+  before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia]
     
   # Minimum supported dimensions for web images that we make kites out of
   @@image_dimension_limit = 500
@@ -307,6 +307,23 @@ class KitesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(Kite) }
       format.xml  { head :ok }
+    end
+  end
+  
+  def ShareKiteToSocialMedia
+    
+    @kite = Kite.find(params[:id])
+    
+    #Check that kite is public before continuing...
+    if(@kite.sharelevel == "public")
+      
+      usr = FbGraph::User.me(session["devise.facebook_data"].credentials.token)
+      me.feed!(
+        :message => "I've shared a new goal on LifeKite",
+        :picture => @kite.kiteimage.url,
+        :link => @kite,
+        :name => @kite.Description,
+        :description => @kite.Details)
     end
   end
   

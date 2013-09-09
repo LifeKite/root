@@ -17,6 +17,7 @@ gem 'will_paginate', '~> 3.0.0'
 gem 'fastimage'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'fb_graph'
 
 # Use unicorn as the web server
 # gem 'unicorn'

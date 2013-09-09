@@ -64,6 +64,7 @@ Rlifekite::Application.routes.draw do
       put 'demote'
       put 'follow'
       put 'unfollow'
+      put 'ShareKiteToSocialMedia'
     end
   end
   
