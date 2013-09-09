@@ -9,10 +9,11 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name
   has_many :kites
   has_many :assignments
   has_many :groups, :through => :assignments
@@ -42,34 +43,57 @@ class User < ActiveRecord::Base
      where(conditions).where(["lower(username) = :value", { :value => login.strip.downcase }]).first
    end
    
-   def validate_reserved
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    unless user
+
+      user = User.create(:name => auth.extra.raw_info.name,
+                           :username => auth.extra.raw_info.name,
+                           :provider => auth.provider,
+                           :uid => auth.uid,
+                           :email => auth.info.email,
+                           :password => Devise.friendly_token[0,20]
+                           )
+    end
+    user
+  end
+  
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+    end
+  end 
+  
+  def validate_reserved
       slug_text
       rescue FriendlyId::BlankError
       rescue FriendlyId::ReservedError
         @errors[friendly_id_config.method] = "is reserved.  Please choose something else."
         return false; 
-   end
+  end
    
-   def KiteCount
+  def KiteCount
      return kites.any? ? kites.count : 0
-   end
+  end
    
-   def NewKites(time_range)
+  def NewKites(time_range)
      return Kite.where(:CreateDate => time_range)
-   end
+  end
    
-   def NewKiteCount(time_range)
+  def NewKiteCount(time_range)
      @newkites = NewKites(time_range)
      return @newkites.any? ? @newkites.count : 0
-   end  
+  end  
    
-   def CompletedKitesCount
+  def CompletedKitesCount
      kites.any? ? kites.where(:Completed => true).count : 0
-   end
+  end
    
-   def CommentCount
+  def CommentCount
      return Comment.where(:user_id => id).count
-   end
+  end
    
   def FormattedCreateDate
     return self.created_at.strftime("%B %d, %Y")

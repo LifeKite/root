@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130801014045) do
+ActiveRecord::Schema.define(:version => 20130909170031) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -134,6 +134,9 @@ ActiveRecord::Schema.define(:version => 20130801014045) do
     t.boolean  "notifyOnKiteComment"
     t.boolean  "notifyOnKitePromote"
     t.boolean  "sendEmailNotifications"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

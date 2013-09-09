@@ -15,6 +15,8 @@ gem 'aws-s3'
 gem 'devise_invitable', '~> 1.0.0'
 gem 'will_paginate', '~> 3.0.0'
 gem 'fastimage'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # Use unicorn as the web server
 # gem 'unicorn'

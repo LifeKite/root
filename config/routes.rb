@@ -35,7 +35,7 @@ Rlifekite::Application.routes.draw do
 
   # resources :kites
   
-  devise_for :users
+  # devise_for :users
   resources :users, :only => [:index, :show, :edit]
   resources :friendships
   
@@ -116,5 +116,7 @@ Rlifekite::Application.routes.draw do
     get "/login" => "devise/sessions#new"
   end
 
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  
   match ':page' => 'home#show'
 end
