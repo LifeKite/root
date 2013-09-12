@@ -35,7 +35,7 @@ Rlifekite::Application.routes.draw do
 
   # resources :kites
   
-  # devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users, :only => [:index, :show, :edit]
   resources :friendships
   
@@ -112,12 +112,13 @@ Rlifekite::Application.routes.draw do
   match "/comments/:id/unmarkHelpful" => "comments#unmarkHelpful"
   match "/kites/:id/follow" => "kites#Follow"
   match "/kites/:id/unfollow" => "kites#Unfollow"
+  match "/kites/:id/ShareKiteToSocialMedia" => "kites#ShareKiteToSocialMedia"
   
   devise_scope :user do
     get "/login" => "devise/sessions#new"
   end
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  
   
   match ':page' => 'home#show'
 end

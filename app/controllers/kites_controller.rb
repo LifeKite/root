@@ -317,13 +317,11 @@ class KitesController < ApplicationController
     #Check that kite is public before continuing...
     if(@kite.sharelevel == "public")
       
-      usr = FbGraph::User.me(session["devise.facebook_data"].credentials.token)
-      me.feed!(
-        :message => "I've shared a new goal on LifeKite",
-        :picture => @kite.kiteimage.url,
-        :link => @kite,
-        :name => @kite.Description,
-        :description => @kite.Details)
+      usr = FbGraph::User.me(@kite.user.name)
+      usr.link!(
+        :link => kite_url(@kite),
+        :message => "I've shared a new goal on LifeKite"
+      )
     end
   end
   

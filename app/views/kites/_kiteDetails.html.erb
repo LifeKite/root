@@ -23,6 +23,7 @@
 		<div class="kite-settings">
 			<%if @kite.user == current_user %>
 			<a href="<%= edit_kite_path(@kite)%>"><img src="/images/kite-settings.png"></a>
+			<!--<%= button_to "Post Kite to Facebook", action: "ShareKiteToSocialMedia" %>-->
 			<% end %>
 		</div>
 		<div class="kite-nav-header">
