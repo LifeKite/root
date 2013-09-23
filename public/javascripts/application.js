@@ -82,4 +82,18 @@ $(document).ready(function(){
 		//$('.alert-error').show();
 	}
 	
+	//Checkbox which controls enable/disable button (e.g. TOS for account create)
+	if ($('.mustAcceptSource').is(':checked')) {
+		$('.mustAcceptTarget').removeAttr("disabled");     
+	} else {
+		$('.mustAcceptTarget').attr("disabled", "disabled");
+	}
+	$('.mustAcceptSource').change(function() {
+		if ($(this).is(':checked')) {
+			$('.mustAcceptTarget').removeAttr("disabled");     
+		} else {
+			$('.mustAcceptTarget').attr("disabled", "disabled");
+		}
+	});
+	
 });

@@ -14,12 +14,15 @@
 			
 			  <%= f.password_field :password_confirmation, :placeholder=>"Password Again" %>
 			
-			  <%= f.submit "Sign up", {:class => "create-button"} %>
+			  <div class="tosCheckDiv">
+			  	<input id="tosCheck" class="mustAcceptSource" type="checkbox"/>
+			  	<label for="tosCheck">I have read and agree to the <a href="/TermsOfService.html">Terms of Service</a>.</label>
+			  </div>
+			
+			  <%= f.submit "Sign up", {:class => "create-button mustAcceptTarget"} %>
 			  
-				<img class="or" src="/images/or.png" width="72" height="24" alt="Or">
 			<% end %>
 			
-			<%= render :partial => "devise/shared/links" %>
 			
 		</div>
 	</div>

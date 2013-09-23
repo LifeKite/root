@@ -1308,3 +1308,13 @@ h1 {
 	height: 0; 
 	clear: both;
 }
+
+.tosCheckDiv {
+	clear: both;
+}
+
+.tosCheckDiv label a {
+	cursor: hand;
+	text-decoration: underline;
+	color:#0033CC;
+}

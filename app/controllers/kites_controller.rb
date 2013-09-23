@@ -118,9 +118,9 @@ class KitesController < ApplicationController
     @kite = Kite.new
     @images = []
     @isAutoAdd = true
-    
+
     if uri_is_valid?(params[:path])
-      site = URI.parse(params[:path])
+      site = URI.parse(URI.encode(params[:path]))
       
       #grab the reference page passed in as parameter
       doc = Nokogiri::HTML(open(site))
@@ -134,8 +134,8 @@ class KitesController < ApplicationController
           path = URI.join(site, path).to_s
         end  
         
-        dimensions = FastImage.size(path, :timeout => 3.0)
-        
+        dimensions = FastImage.size(path, :timeout => 10.0)
+        debugger
         
         if(!dimensions.nil? && dimensions.length > 1 && dimensions[0] > @@image_dimension_limit && dimensions[1] > @@image_dimension_limit )
           img = {:path => path,
@@ -337,6 +337,8 @@ class KitesController < ApplicationController
     end 
   
     def uri_is_valid?(url)
+      
+      url = URI.encode(url)
       uri = URI.parse(url)
       uri.kind_of?(URI::HTTP)
     rescue URI::InvalidURIError
