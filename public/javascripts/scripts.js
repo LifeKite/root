@@ -108,4 +108,10 @@ $(function() {
 		});
 	});
 
+	// Sidebar Button
+	//$('.sidebar-button').click(function() {
+	//	window.location=$(this).find("a").attr("href");
+	//	return false;
+	//});
+
 });

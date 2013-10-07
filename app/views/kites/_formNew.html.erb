@@ -1,5 +1,7 @@
 <div class="wrapper create has-navigation">
-	<div class="content">
+	<% if defined? child %>
+		<div class="content">
+	<%end%>
 		<h2 class="form-header-type-2">Create a new kite</h2>
 		<%= form_for(@kite, :html => {:class => "form padded-form signup-form", :multipart => true}) do |f| %>
 		  <% if @kite.errors.any? %>
@@ -46,10 +48,13 @@
 			</div>
 			
 			<!-- <div class="button add-button add-members">+ Add Members</div> -->
-			<%= f.submit "Create", {:class => "create-button button"} %>
+			<%= f.submit "Create", {:class => "create-button button"} %><br/>
+			<%= link_to 'Cancel', @kites, :class => "create-button button"%> 
 			<%= f.file_field :kiteimage, :class=>"image-upload-field", :style=>"visibility: hidden;" %>
 		<% end %>
-	</div>
+	<% if defined? child %>
+		</div>
+	<%end%>
 </div>	
 <div id="lockpane" class="LockOff"></div> 
 <%= javascript_include_tag "vendor/jquery.ui.widget.js" %>

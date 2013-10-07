@@ -1,9 +1,9 @@
-<ul class="members-list user-list">
-	<li>
+<li id="following-<%=follwing.id %>" style="position: relative;">
+	<div>
 		<div class="name"><%= follwing.follower.username%></div>
 		<div class="details"><%=follwing.follower.KiteCount%> kites | <%=follwing.follower.CommentCount%> comments made</div>
 		<% if current_user == @kite.user || current_user == follwing.follower %>
-			<a href="<%=unfollow_kite_path(@kite, :type => follwing.Type)%>"><img class="delete" src="/images/small-icon-delete.png"></a>
+			<%= render 'follwings/unfollow', :type => follwing.Type %>
 		<% end %>
-	</li>
-</ul>
+	</div>
+</li>

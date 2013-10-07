@@ -1,0 +1,3 @@
+<%= form_for(:follwing, :url => url_for(:controller => 'kites', :action => 'Unfollow', :type => type), :method => :put, :remote => true) do |f| %>
+	<%= f.submit "", :class => "smallDeleteButton button"%>
+<% end %>

@@ -24,7 +24,7 @@
 			<!-- End kite -->
 			<%= will_paginate @kites %>
 		</div>
-		<% if @function == "My Kites"%>
+		<% if @function == "My Kites" || @function == "Member Kites"%>
 			<%= render "personalIndexFooter" %>
 		<% else %>
 			<%= render "indexFooter"%>

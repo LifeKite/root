@@ -28,7 +28,7 @@
 			<h3>Get the LifeKite kite button</h3>
 			<p>Drag the Kite button into your browser's bookmark bar then click whenever you want to add
 				a kite image from a page</p>
-			<a href="javascript:document.body.innerHTML += '<div style=\'border:1px solid black;height:130px;width:300px;position:absolute;top:200px;left:50%;margin:-150px 0 0 -150px;text-align: center;z-index:1000; background: #ffffff url(<%= asset_url 'ajax-loader.gif' %>) no-repeat center center;\'>Please wait while LifeKite scans the page...<br/></div><div style=\'position: fixed; left: 0; top: 0; z-index:999; width:100%; height:100%; background-color: gray; opacity: 0.5; text-align: center;\'></div>';window.location.replace('<%= url_for(:controller => '/kites', :action => 'newFromSource', :only_path => false) %>?path='+window.location);">
+			<a href="javascript:document.body.innerHTML += '<div style=\'border:1px solid black;height:130px;width:300px;position:absolute;top:200px;left:50%;margin:-150px 0 0 -150px;text-align: center;z-index:1000; background: #ffffff url(<%= asset_url 'ajax-loader.gif' %>) no-repeat center center;\'>Please wait while LifeKite scans the page...<br/></div><div style=\'position: fixed; left: 0; top: 0; z-index:999; width:100%; height:100%; background-color: gray; opacity: 0.5; text-align: center;\'></div>';$(window).scrollTop(0);window.location.replace('<%= url_for(:controller => '/kites', :action => 'newFromSource', :only_path => false) %>?path='+window.location);">
 				
 				<%= image_tag path_to_image('logo-color.png'), :alt => 'Create a Kite', :height => 75, :width => 100 %>
 			

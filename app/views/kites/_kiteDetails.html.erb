@@ -49,10 +49,12 @@
 		</div>
 		<div class="detail-section support" style="display:none;">
 			<h2>Support</h2>
-			
-			<%= render @kite.follwings.where(:Type => "like")%>
+			<ul id="likelist" class="members-list user-list" >
+				<%= render @kite.follwings.where(:Type => "like")%>
+			</ul>
 			<% if current_user %>
-				<%= link_to 'Support this Kite', follow_kite_path(:type => "like"), { :class => "log-in-button" } %>
+				<%= render 'follwings/follow', :title => "Support this kite", :type => "like"%>
+				
 			<% end %>
 		</div>
 		<div class="detail-section comments" style="display:none;">
@@ -67,10 +69,12 @@
 		</div>
 		<div class="detail-section members" style="display:none;">
 			<h2>Members</h2>
-			
-			<%= render @kite.follwings.where(:Type => "member")%>
+			<ul id="memberslist" class="members-list user-list">
+				<%= render @kite.follwings.where(:Type => "member")%>
+			</ul>
 			<% if current_user %>
-				<%= link_to 'Follow this Kite', follow_kite_path(:type => "member"), { :class => "log-in-button" } %>
+				<%= render 'follwings/follow', :title => "Follow this kite", :type => "member"%>
+				
 			<% end %>
 		</div>
 	</div>

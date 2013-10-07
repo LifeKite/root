@@ -1,0 +1,5 @@
+<%if @following[:Type] == "member"%>
+$("<%= escape_javascript(render @following)%>").appendTo("#memberslist");
+<%else%>
+$("<%= escape_javascript(render @following)%>").appendTo("#likelist");
+<%end%>

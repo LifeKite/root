@@ -1,4 +1,13 @@
 <div class="kite" style="background: url('<%= kite.kiteimage.url(:thumb) %>') no-repeat center; background-size: cover;">				
+	<% if @function == "Member Kites" %>
+		<% if kite.follwings.where(:user_id => current_user) && 
+				kite.follwings.where(:user_id => current_user).first &&
+				kite.follwings.where(:user_id => current_user).first.Type == "member"%>
+				<img src="/images/kite-nav-members.png" style="position: absolute;">
+		<% else %>
+				<img src="/images/kite-nav-heart.png" style="position: absolute;">
+		<% end %>	
+	<% end %>
 	<div class="overlay">
 		<h2 class="kite-name">
 			<%=h link_to kite.Description, kite %>

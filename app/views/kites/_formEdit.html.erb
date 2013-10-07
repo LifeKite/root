@@ -20,6 +20,6 @@
  	<%= f.text_area :Details, :size => "600x5", :style=>"width: 65%;",  :onkeyup => "CheckMaxLength(this);", :maxLength => 140%> 
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update Kite", {:class => "create-button button"} %>
   </div>
 <% end %>

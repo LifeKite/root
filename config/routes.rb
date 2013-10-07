@@ -57,13 +57,14 @@ Rlifekite::Application.routes.draw do
     collection do
       get :personalIndex
       get :newFromSource
+      get :mySupportIndex
     end
     member do
       put 'complete'
       put 'promote'
       put 'demote'
-      put 'follow'
-      put 'unfollow'
+      put 'Follow'
+      put 'Unfollow'
       put 'ShareKiteToSocialMedia'
     end
   end
@@ -96,23 +97,23 @@ Rlifekite::Application.routes.draw do
     end
   end
   
-  match "/kites/:id/complete" => "kites#complete"
-  match "/kites/:id/promote" => "kites#promote"
-  match "/kites/:id/demote" => "kites#demote"
-  match "/invites/:id/accept" => "invites#accept"
-  match "/notifications/:id/markViewed" => "notification#markViewed"
-  match "/sharedpurpose/:id/selectKite" => "sharedpurposes#selectKite"
-  match "/sharedpurpose/:id/promote" => "sharedpurposes#promote"
-  match "/sharedpurpose/:id/demote" => "sharedpurposes#demote"
-  match "/sharedpurpose/:id/addKite" => "sharedpurposes#addKite"
-  match "/sharedpurpose/:id/removeKite" => "sharedpurposes#removeKite"
-  match "/groups/search" => "groups#search"
-  match "/sharedpurposes/search" => "sharedpurposes#search"
-  match "/comments/:id/markHelpful" => "comments#markHelpful"
-  match "/comments/:id/unmarkHelpful" => "comments#unmarkHelpful"
-  match "/kites/:id/follow" => "kites#Follow"
-  match "/kites/:id/unfollow" => "kites#Unfollow"
-  match "/kites/:id/ShareKiteToSocialMedia" => "kites#ShareKiteToSocialMedia"
+  #match "/kites/:id/complete" => "kites#complete"
+  #match "/kites/:id/promote" => "kites#promote"
+  #match "/kites/:id/demote" => "kites#demote"
+  #match "/invites/:id/accept" => "invites#accept"
+  #match "/notifications/:id/markViewed" => "notification#markViewed"
+  #match "/sharedpurpose/:id/selectKite" => "sharedpurposes#selectKite"
+  #match "/sharedpurpose/:id/promote" => "sharedpurposes#promote"
+  #match "/sharedpurpose/:id/demote" => "sharedpurposes#demote"
+  #match "/sharedpurpose/:id/addKite" => "sharedpurposes#addKite"
+  #match "/sharedpurpose/:id/removeKite" => "sharedpurposes#removeKite"
+  #match "/groups/search" => "groups#search"
+  #match "/sharedpurposes/search" => "sharedpurposes#search"
+  #match "/comments/:id/markHelpful" => "comments#markHelpful"
+  #match "/comments/:id/unmarkHelpful" => "comments#unmarkHelpful"
+  #match "/kites/:id/follow" => "kites#Follow"
+  #match "/kites/:id/unfollow" => "kites#Unfollow"
+  #match "/kites/:id/ShareKiteToSocialMedia" => "kites#ShareKiteToSocialMedia"
   
   devise_scope :user do
     get "/login" => "devise/sessions#new"
@@ -120,5 +121,5 @@ Rlifekite::Application.routes.draw do
 
   
   
-  match ':page' => 'home#show'
+  #match ':page' => 'kites#index'
 end

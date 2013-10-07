@@ -6,14 +6,15 @@
 require 'nokogiri'
 require 'open-uri'
 require 'fastimage'
+require 'will_paginate/array'
 
 class KitesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show, :randomSample]
-  before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
-  before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia]
+  #before_filter :authenticate_user!, :except => [:index, :show, :randomSample]
+  #before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
+  #before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia, :personalIndex]
     
   # Minimum supported dimensions for web images that we make kites out of
-  @@image_dimension_limit = 500
+  @@image_dimension_limit = 200
     
   # List all kites
   def index
@@ -39,7 +40,9 @@ class KitesController < ApplicationController
     end
   end
 
+  # Show my kites
   def personalIndex
+
     time_range = (1.week.ago..Time.now)
         
      @kites = current_user.kites.paginate(:page => params[:page], :per_page => 12)    
@@ -48,7 +51,6 @@ class KitesController < ApplicationController
      @newKites = current_user.NewKiteCount(time_range)
      @completedKites = current_user.CompletedKitesCount
        
-     #Currently not supported since we don't have following yet, just randomly choose three
      @popularKites = current_user.RecentActivity
      @function = "My Kites"
      
@@ -57,6 +59,26 @@ class KitesController < ApplicationController
       format.xml  { render :xml => @kites }
     end
   end
+  
+  # Show kites I follow and support
+  def mySupportIndex
+    time_range = (1.week.ago..Time.now)
+       
+     @kiteIDs = current_user.follwing.collect{|a| a.kite_id}.flatten
+     @kites = Kite.find(@kiteIDs).paginate(:page => params[:page], :per_page => 12)    
+     
+     @kiteCount = current_user.KiteCount
+     @newKites = current_user.NewKiteCount(time_range)
+     @completedKites = current_user.CompletedKitesCount
+       
+     @popularKites = current_user.RecentActivity
+     @function = "Member Kites"
+     
+    respond_to do |format|
+      format.html { render :template => 'kites/index' } # index.html.erb
+      format.xml  { render :xml => @kites }
+    end
+  end  
   
   # Retrieve a random sampling of all public kites, requires 
   # number of kites to retrieve, used for the initial page
@@ -135,8 +157,7 @@ class KitesController < ApplicationController
         end  
         
         dimensions = FastImage.size(path, :timeout => 10.0)
-        debugger
-        
+                
         if(!dimensions.nil? && dimensions.length > 1 && dimensions[0] > @@image_dimension_limit && dimensions[1] > @@image_dimension_limit )
           img = {:path => path,
             :source => doc.title,
@@ -166,23 +187,29 @@ class KitesController < ApplicationController
 
   # Add user to list of those following this kite
   def Follow
-    
+
     @kite = Kite.find(params[:id])
-   
+
     if(@kite.follwings.empty? || !@kite.follwings.exists?(:user_id => current_user.id, :Type => params[:type]))
       @following = Follwing.new
       @following.user_id = current_user.id
       @following.Type = params[:type]
       @following.kite = @kite 
-    end
+    else 
+      @following = @kite.follwings.where(:user_id => current_user.id, :Type => params[:type]).first() 
+    end 
     
     respond_to do |format| 
       if @following && @following.save()
         format.html { redirect_to(@kite, :notice => 'Kite has been followed.')}
         format.xml  { render :xml => @kites, :status => :created, :location => @kites }
+        format.js {}
+        format.json { render :json => @following, :status => :created}
       else  
         format.html { render :action => "owner_show" }
-        format.xml  { render :xml => @following.errors, :status => :created }
+        format.xml  { render :status => :failure }
+        format.js {}
+        format.json { render :status => :unprocessable_entity }
       end
     end
     
@@ -190,6 +217,7 @@ class KitesController < ApplicationController
   
   # Remove a kite following
   def Unfollow
+
     @kite = Kite.find(params[:id])
     if(@kite && @kite.follwings.any?)
       @following = @kite.follwings.where(:Type => params[:type]).first
@@ -199,9 +227,13 @@ class KitesController < ApplicationController
       if @following && @following.destroy
         format.html { redirect_to(@kite, :notice => 'Kite has been unfollowed.')}
         format.xml  { render :xml => @kite, :status => :created, :location => @kite }
+        format.js {}
+        format.json { render :json => @following, :status => :success }
       else  
         format.html { render :action => "owner_show" }
-        format.xml  { render :xml => @following.errors, :status => :created }
+        format.xml  { render :status => :failure }
+        format.js {}
+        format.json { render :status => :unprocessable_entity }
       end
     end
     
@@ -327,17 +359,27 @@ class KitesController < ApplicationController
   
   private
     def verify_is_admin_or_owner
-      @kite = Kite.find(params[:id])
-      (current_user.nil? || @kite.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == 1 || current_user.id == @kite.user.id)
+
+      if params[:id].nil?
+              redirect_to(root_path)
+      else
+        @kite = Kite.find(params[:id])
+        (current_user.nil? || @kite.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == 1 || current_user.id == @kite.user.id)
+      end
     end
     
     def verify_is_owner
-      @kite = Kite.find(params[:id])
-      (current_user.nil? || @kite.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == @kite.user.id)
+
+      if params[:id].nil?
+        redirect_to(root_path)
+      else
+        @kite = Kite.find(params[:id])
+        (current_user.nil? || @kite.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == @kite.user.id)
+      end
     end 
   
     def uri_is_valid?(url)
-      
+
       url = URI.encode(url)
       uri = URI.parse(url)
       uri.kind_of?(URI::HTTP)

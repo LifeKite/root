@@ -10,7 +10,7 @@
 			<ul>
 				<li class="nav-item"><a href=<%= kites_path%>>Explore</a></li>
 				<li class="nav-item"><a>Tour</a></li>
-				<li class="nav-item"><a>Support</a></li>
+				<li class="nav-item"><a href="https://lifekite.wufoo.com/forms/lifekite-support/">Support</a></li>
 				<li class="nav-item"><a>Our Partners</a></li>
 			</ul>
 			
@@ -21,7 +21,7 @@
 			<%else%>
 				<ul>
 					<li class="user-control log-in-button"><%= link_to 'Log In', new_session_path(resource_name) %></li>
-					<!--<li class="user-control log-in-button"><%= link_to "Log In with Facebook", user_omniauth_authorize_path(:facebook) %></li>-->
+					<li class="user-control log-in-button"><%= link_to "Log In with Facebook", user_omniauth_authorize_path(:facebook) %></li>
 					<li class="user-control sign-up-button"><%= link_to 'Sign Up', new_registration_path(resource_name) %></li>
 				</ul>
 			<%end%>
