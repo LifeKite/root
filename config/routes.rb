@@ -27,16 +27,16 @@ Rlifekite::Application.routes.draw do
 
   get "friend/destroy"
 
-  get "users/index"
+  #get "users/index"
 
-  get "users/show"
+  #get "users/show"
 
   get "home/index"
 
   # resources :kites
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  resources :users, :only => [:index, :show, :edit]
+  #resources :users, :only => [:index, :show, :edit]
   resources :friendships
   
   root :to => redirect('/splash/index.html')  
@@ -53,6 +53,16 @@ Rlifekite::Application.routes.draw do
     end
   end
   
+  resources :users do
+      member do
+        put 'update'
+        put 'ForcePasswordReset'
+        post 'GetKites'
+        put 'invite'
+        get 'showInvite'
+      end
+    end
+  
   resources :kites do
     collection do
       get :personalIndex
@@ -68,7 +78,6 @@ Rlifekite::Application.routes.draw do
       put 'ShareKiteToSocialMedia'
     end
   end
-  
   
   resources :invites do
     member do
@@ -89,13 +98,7 @@ Rlifekite::Application.routes.draw do
     end
   end
   
-  resources :users do
-    member do
-      put 'update'
-      put 'ForcePasswordReset'
-      post 'GetKites'
-    end
-  end
+  
   
   #match "/kites/:id/complete" => "kites#complete"
   #match "/kites/:id/promote" => "kites#promote"

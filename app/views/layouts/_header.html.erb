@@ -12,6 +12,9 @@
 				<li class="nav-item"><a>Tour</a></li>
 				<li class="nav-item"><a href="https://lifekite.wufoo.com/forms/lifekite-support/">Support</a></li>
 				<li class="nav-item"><a>Our Partners</a></li>
+				<%if current_user %>
+				<li class="nav-item"><%= link_to 'Invite a Friend', showInvite_user_path(current_user.id) %></li>
+				<% end %>
 			</ul>
 			
 		</nav>

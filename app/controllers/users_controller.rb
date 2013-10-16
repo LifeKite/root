@@ -109,6 +109,18 @@ class UsersController < ApplicationController
     end
   end
   
+  # Load the page for that invitation system
+  def showInvite
+    @user = current_user
+  end
+  
+  # A very simple invitation system
+  def invite
+    
+    UserMailer.invite_email(@user, params[:email]).deliver
+    redirect_to(kites_path, :notify => "Your invitation has been sent")
+  end
+  
   private
   def verify_is_admin
     (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == 1)
