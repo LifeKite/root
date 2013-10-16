@@ -1,8 +1,7 @@
 <div class="wrapper has-navigation <%if current_user %>has-sidebar<%end%>">
 	<div class="content">
 		<%= form_for(@user, url: {action: "invite"}) do %>
-		  <p>Who would you like to include? (Please separate multiple addresses with commas
-		  	 so that your invites don’t get lost!)</p>
+		  <p>Who would you like to invite?</p>
 		  <%= label_tag :email, "Email:"%>
 		  <%= email_field_tag :email %>
 		  <%= submit_tag "Send an Invitation" %>
