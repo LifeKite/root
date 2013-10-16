@@ -117,7 +117,7 @@ class UsersController < ApplicationController
   # A very simple invitation system
   def invite
     
-    UserMailer.invite_email(@user, params[:email]).deliver
+    UserMailer.invite_email(current_user, params[:email]).deliver
     redirect_to(kites_path, :notify => "Your invitation has been sent")
   end
   
