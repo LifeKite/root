@@ -16,6 +16,8 @@ class KitesController < ApplicationController
   # Minimum supported dimensions for web images that we make kites out of
   @@image_dimension_limit = 200
     
+  helper KitesHelper
+  
   # List all kites
   def index
     time_range = (1.week.ago..Time.now)
@@ -357,6 +359,7 @@ class KitesController < ApplicationController
     end
   end
   
+  
   private
     def verify_is_admin_or_owner
 
@@ -386,4 +389,6 @@ class KitesController < ApplicationController
     rescue URI::InvalidURIError
       false
     end
+    
+    
 end

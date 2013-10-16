@@ -41,7 +41,7 @@
 			<div class="additional-images">
 				
 			</div>
-			<% if @kite.ImageLocation %>
+			<% if !@kite.ImageLocation.nil? && valid_json?(@kite.ImageLocation) %>
 				<p class="dateline">Image original source: <a hef='<%= JSON.parse(@kite.ImageLocation)['site'] %>'>
 					<%= JSON.parse(@kite.ImageLocation)['site'] %>
 				</a></p>
