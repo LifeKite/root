@@ -36,11 +36,15 @@
 				<%= content_tag(:p, @kite.Details)%>
 			</div>
 			<div class="kite-nav-content-section">
-				<h3>Additional Images</h3>
+				<h3>Progress</h3>
 			</div>
 			<div class="additional-images">
-				
+				<%= render partial: "kite_posts/kite_post", collection: @kitePosts %>
 			</div>
+			<%= will_paginate @kitePosts, :remote => true %>
+			<% if current_user %>
+				<%= render 'kite_posts/form'%>
+			<% end %>
 			<% if !@kite.ImageLocation.nil? && valid_json?(@kite.ImageLocation) %>
 				<p class="dateline">Image original source: <a hef='<%= JSON.parse(@kite.ImageLocation)['site'] %>'>
 					<%= JSON.parse(@kite.ImageLocation)['site'] %>

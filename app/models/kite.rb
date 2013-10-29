@@ -10,6 +10,7 @@ class Kite < ActiveRecord::Base
   has_many :sharedpurposes, :through => :sharedpurposekites
   has_many :follwings
   has_many :followers, :through => :follwings, :class_name => 'User', :foreign_key => 'id'
+  has_many :kitePosts
   
   validates_presence_of :Description  
   

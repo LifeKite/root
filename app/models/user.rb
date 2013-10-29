@@ -104,7 +104,15 @@ class User < ActiveRecord::Base
   def FormattedLastLoginDate
     return self.last_sign_in_at.strftime("%B %d, %Y")
   end
-     
+  
+  def KosherUsername
+    if !self.firstname.nil? && !self.lastname.nil?
+      return "#{self.firstname} #{self.lastname}"
+    else
+      return self.username
+    end
+  end   
+  
   # Listing of most recent people commenting, following, or becomming members
   # of our kites 
   def RecentActivity

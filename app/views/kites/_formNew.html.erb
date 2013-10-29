@@ -26,7 +26,7 @@
 					<%if @isAutoAdd %>
 						<%= f.hidden_field :ImageLocation, :class => "remote-image-field" %>
 					<% else %>
-						<input id="surrogate" type="text" class="image-upload-field" />
+						<input id="surrogate" type="text" class="image-upload-field surrogate" />
 					<% end %>
 					
 				</div>
@@ -50,7 +50,7 @@
 			<!-- <div class="button add-button add-members">+ Add Members</div> -->
 			<%= f.submit "Create", {:class => "create-button button"} %><br/>
 			<%= link_to 'Cancel', @kites, :class => "create-button button"%> 
-			<%= f.file_field :kiteimage, :class=>"image-upload-field", :style=>"visibility: hidden;" %>
+			<%= f.file_field :kiteimage, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
 		<% end %>
 	<% if defined? child %>
 		</div>
@@ -60,15 +60,4 @@
 <%= javascript_include_tag "vendor/jquery.ui.widget.js" %>
 <%= javascript_include_tag "jquery.iframe-transport.js" %>
 <%= javascript_include_tag "jquery.fileupload.js" %>
-<script type="text/javascript">
-	$('#btnAddImage').click(function(event){
-		$('#kite_kiteimage').click();
-	});
-	$('#kite_kiteimage').change(function(click) {
-		$('#surrogate').val(this.value);
-	});
-	$('.create-button').click(function(event) {
-		$('#lockpane').toggleClass('LockOn', true);
-		$('#lockpane').toggleClass('LockOff', false);
-	} )
-</script>
+

@@ -8,6 +8,10 @@
 			  <%= devise_error_messages! %>
 			
 			  <%= f.email_field :email, :placeholder=>"Email Address" %>
+			  
+			  <%= f.text_field :firstname, :placeholder => "First Name"%>
+			  
+			  <%= f.text_field :lastname, :placeholder => "Last Name "%>
 			
 			  <%= f.text_field :username, :placeholder=>"Username" %>
 			
@@ -16,7 +20,12 @@
 			  <%= f.password_field :password_confirmation, :placeholder=>"New Password Again" %>
 			  
 			  <%= f.password_field :current_password, :placeholder=>"Current Password" %>
-			
+			  
+			  <h2>Options</h2>
+			  <div style="border: 1px solid black;">
+			  <%= f.label :sendEmailNotification, "Send email notification of events" %>
+			  <%= f.check_box :sendEmailNotifications %>
+			  </div>
 			  <%= f.submit "Update", {:class => "create-button"} %>
 			  
 				

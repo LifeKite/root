@@ -31,4 +31,15 @@ $(document).ready(function(){
 		}
 	});
 	
+	$('.add-image').click(function(event){
+		$('.upload-actual').click();
+	});
+	$('.upload-actual').change(function(click) {
+		$('.surrogate').val(this.value);
+	});
+	$('.create-button').click(function(event) {
+		$('.lockpane').toggleClass('LockOn', true);
+		$('.lockpane').toggleClass('LockOff', false);
+	} )
+	
 });

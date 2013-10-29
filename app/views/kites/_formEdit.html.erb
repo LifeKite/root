@@ -1,3 +1,4 @@
+<div class="wrapper create has-navigation">
 <%= form_for(@kite, :html => {:class => "well", :multipart => true}) do |f| %>
   <% if @kite.errors.any? %>
     <div id="error_explanation">
@@ -23,3 +24,4 @@
     <%= f.submit "Update Kite", {:class => "create-button button"} %>
   </div>
 <% end %>
+</div>

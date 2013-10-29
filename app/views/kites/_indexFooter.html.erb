@@ -26,7 +26,7 @@
 				<% for summarykite in @popularKites %>
 				<li class="kite-feed-item">
 					<span class="headline"><%=h link_to summarykite.Description, @summarykite%></span><br>
-					<span class="details"><%=h summarykite.user.username %> | <a>23 Following</a></span>
+					<span class="details"><%=h summarykite.user.KosherUsername %> | <a>23 Following</a></span>
 				</li>
 				<%end%>
 				<!-- End comment feed -->
@@ -44,7 +44,7 @@
 				<% for comment in @recentComments %>
 				<li class="kite-feed-item">
 					<span class="headline"><%= link_to truncate(comment.content, :length =>40, :omission => '...(continued)'), comment.kite %></span><br>
-					<span class="details"><%=h link_to comment.user.username, comment.kite %> | 
+					<span class="details"><%=h link_to comment.user.KosherUsername, comment.kite %> | 
 						<a href='<%=h kite_path(comment.kite)%>'><%=h comment.kite.LikeCount%> Following</a></span>
 				</li>
 				<%end%>

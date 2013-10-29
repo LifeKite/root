@@ -21,7 +21,7 @@
 	<div class="author-info">
 		<ul class="user-list">
 			<li>
-				<div class="name"><%=comment.user.username%></div>
+				<div class="name"><%=comment.user.KosherUsername%></div>
 				<div class="details"><%=comment.user.KiteCount%> kites | <%=comment.user.CommentCount%> comments made</div>
 				<div class="reply">
 					<a href="<%= new_comment_path(:kite => @kite.id)%>">

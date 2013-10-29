@@ -1,0 +1,31 @@
+<%= form_for(@kitePost, :remote => true) do |f| %>
+  <% if @kitePost.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kitePost.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @kitePost.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="comment-field-container">
+    <%= f.text_area :text, :size => "200x2", :placeholder => "What's new?", :class => "comment-field" %>
+  </div>
+  <div class="field">
+  	<%= f.hidden_field "kite_id", :value => @kite.id %>
+  </div>
+  <div class="field">
+  	<%= f.file_field :image, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
+  	<div >
+  		<input type="text" class="image-upload-field surrogate", placeholder="Select an image..." />
+  		<div class="button add-button add-image" style="display: inline-block; height:35px; padding-top: 2px;">...</div>
+  	</div>
+  </div>
+  <div class="actions">
+  	
+    <%= f.submit "Post", {:class => "create-button button"}%>
+  </div>
+<% end %>

@@ -14,7 +14,7 @@ class KitesController < ApplicationController
   #before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia, :personalIndex]
     
   # Minimum supported dimensions for web images that we make kites out of
-  @@image_dimension_limit = 200
+  @@image_dimension_limit = 150
     
   helper KitesHelper
   
@@ -107,6 +107,9 @@ class KitesController < ApplicationController
     @comment = Comment.new
     @comments = @kite.comments(:order => "isHelpful DESC").paginate(:page => params[:page], :per_page => 3)
       
+    @kitePost = KitePost.new
+    @kitePosts = @kite.kitePosts.paginate(:page => params[:page], :per_page => 3)
+
     if @kite.UserCanView(current_user)
      if(current_user = @kite.user)
        render :action => 'owner_show'

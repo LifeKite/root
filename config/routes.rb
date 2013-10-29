@@ -1,4 +1,10 @@
 Rlifekite::Application.routes.draw do
+  get "kite_post/create"
+
+  get "kite_post/edit"
+
+  get "kite_post/delete"
+
   get "followings/new"
 
   get "followings/index"
@@ -98,7 +104,7 @@ Rlifekite::Application.routes.draw do
     end
   end
   
-  
+  resources :kite_posts
   
   #match "/kites/:id/complete" => "kites#complete"
   #match "/kites/:id/promote" => "kites#promote"

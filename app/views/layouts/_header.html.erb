@@ -9,9 +9,9 @@
 		<nav class="main-nav">
 			<ul>
 				<li class="nav-item"><a href=<%= kites_path%>>Explore</a></li>
-				<li class="nav-item"><a>Tour</a></li>
+				<!--<li class="nav-item"><a>Tour</a></li>-->
 				<li class="nav-item"><a href="https://lifekite.wufoo.com/forms/lifekite-support/">Support</a></li>
-				<li class="nav-item"><a>Our Partners</a></li>
+				<!--<li class="nav-item"><a>Our Partners</a></li>-->
 				<%if current_user %>
 				<li class="nav-item"><%= link_to 'Invite a Friend', showInvite_user_path(current_user.id) %></li>
 				<% end %>
@@ -20,7 +20,7 @@
 		</nav>
 		<div class="user-controls">
 			<%if current_user %>
-				<div >Welcome, <%= content_tag(:span, current_user.username, :class => "username")%> | <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %></div>
+				<div >Welcome, <%= content_tag(:span, current_user.KosherUsername, :class => "username")%> | <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %></div>
 			<%else%>
 				<ul>
 					<li class="user-control log-in-button"><%= link_to 'Log In', new_session_path(resource_name) %></li>

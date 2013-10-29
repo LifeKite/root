@@ -52,16 +52,14 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @kite = Kite.find(@comment.kite_id)
   
-    if @kite.user.notifyOnKiteComment
+    if @kite.user.sendEmailNotifications
       @notification = Notification.new(
         :message => "Someone has commented on your kite",
         :user => @kite.user,
         :link => kite_url(@kite))   
-      
-      if @kite.user.sendEmailNotifications
-        NotificationMailer.notification_email(@notification).deliver
-      end
-      
+
+      NotificationMailer.notification_email(@notification).deliver
+
       @notification.save
     end
     
