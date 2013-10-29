@@ -32,9 +32,13 @@ class KitePostsController < ApplicationController
       if @kitePost.save()
         format.html { redirect_to(@kitePost.kite, :notice => "Post was created successfully") }
         format.xml  { render :xml => @kitePost, :status => :created, :location => @kitePost }
+        format.js {}
+        format.json { render :json => @kitePost, :status => :created}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @kitePost.errors, :status => :unprocessable_entity }
+        format.js {}
+        format.json { render :json => @kitePost.errors, :status => :unprocessable_entity }
       end
     end
   end

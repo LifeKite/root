@@ -38,7 +38,7 @@
 			<div class="kite-nav-content-section">
 				<h3>Progress</h3>
 			</div>
-			<div class="additional-images">
+			<div id="postlist" class="additional-images">
 				<%= render partial: "kite_posts/kite_post", collection: @kitePosts %>
 			</div>
 			<%= will_paginate @kitePosts, :remote => true %>
