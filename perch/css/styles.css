@@ -43,9 +43,6 @@ h1, h2, h3, h4, h5, h6, ul {
 
 /* Reused
 *********************************/
-.content-header {
-	margin-left: 215px;
-}
 
 h1 {
 	font-family: 'Amaranth', sans-serif;
@@ -627,6 +624,10 @@ h1 {
 /* Homepage
 *********************************/
 
+.kites-section {
+	margin-top: 35px;
+}
+
 .home .content {
 	padding: 20px 9px;
 }
@@ -695,6 +696,7 @@ h1 {
 /* Detail
 *********************************/
 .detail.wrapper {
+	background-color: #383838;
 	width: 100%;
 	height: 100%;
 	
@@ -704,8 +706,9 @@ h1 {
 }
 
 .detail .content {	
-	background-size: cover;
+	background-size: contain;
 	background-position: center center;
+	background-repeat: no-repeat;
 
 	width: 100%;
 	height: 100%;
@@ -784,6 +787,12 @@ h1 {
 }
 .kite-nav-button.members:hover, .kite-nav-button.members.active {
 	background-image: url('../graphics/kite-nav-members-active.png');
+}
+.kite-nav-button.settings {
+	background-image: url('../graphics/kite-nav-settings.png');
+}
+.kite-nav-button.settings:hover, .kite-nav-button.settings.active {
+	background-image: url('../graphics/kite-nav-settings-active.png');
 }
 .kite-nav-toggle.show {
 	display: none;
@@ -1068,6 +1077,16 @@ h1 {
 	display: block;
 }
 
+/* Settings Page */
+.delete-this-kite {
+	display: inline-block;
+	padding: 10px 10px 10px 45px;
+	margin-top: 20px;
+	border: 1px solid #e4e4e4;
+	background: #fff url('../graphics/delete-icon.png') no-repeat 10px center;
+	cursor: pointer;
+}
+
 /* Login
 *********************************/
 
@@ -1310,7 +1329,7 @@ h1 {
 	display: none;
 }
 
-.group-members:after, .group-header:after { 
+.group-members:after, .group-header:after, .kites-section:after { 
 	content: "."; 
 	visibility: hidden; 
 	display: block; 

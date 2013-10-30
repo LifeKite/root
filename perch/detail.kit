@@ -3,7 +3,7 @@
 	<div class="wrapper detail has-sidebar has-navigation">
 		<!-- @include includes/sidebar.html -->
 		<div class="content">
-			<div id="kite-nav" class="kite-nav">
+			<div id="kite-nav" class="kite-nav hidden">
 				<div class="kite-nav-tab">
 					<div id="info" class="kite-nav-button info active">
 						<div class="active-flag"></div>
@@ -17,6 +17,9 @@
 					<div id="members" class="kite-nav-button members">
 						<div class="active-flag"></div>
 					</div>
+					<div id="settings" class="kite-nav-button settings">
+						<div class="active-flag"></div>
+					</div>
 					<div class="kite-nav-toggle show">
 						<div class="active-flag"></div>
 					</div>
@@ -25,9 +28,6 @@
 					</div>
 				</div>
 				<div class="kite-nav-content">
-					<div class="kite-settings">
-						<img src="graphics/kite-settings.png">
-					</div>
 					<div class="kite-nav-header">
 						<h1 class="detail-kite-title">Climb a Mountain in Maine</h1>
 						<p class="dateline">Created March 23, 2012</p>
@@ -145,6 +145,10 @@
 								<img class="delete" src="graphics/small-icon-delete.png">
 							</li>
 						</ul>
+					</div>
+					<div class="detail-section settings" style="display:none;">
+						<h2>Settings</h2>
+						<div class="delete-this-kite">Delete this kite</div>
 					</div>
 				</div>
 			</div>

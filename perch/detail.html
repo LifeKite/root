@@ -9,6 +9,7 @@
 
 		<!-- styles needed by jScrollPane -->
 		<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+		<link type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" media="all" />
 
 		<!-- Main stylesheet -->
 		
@@ -33,10 +34,13 @@
 					</ul>
 				</nav>
 				<div class="user-controls">
-					<ul>
-						<li class="user-control log-in-button"><a>Log In</a></li>
-						<li class="user-control sign-up-button"><a>Sign Up</a></li>
-					</ul>
+					<div class="logged-out">
+						<ul>
+							<li class="user-control log-in-button"><a href="login.html">Log In</a></li>
+							<li class="user-control sign-up-button"><a href="signup.html">Sign Up</a></li>
+						</ul>
+					</div>
+					<div class="logged-in">Welcome, <span class="username">Stacy</span> | <a href="#logout">Logout</a></div>
 				</div>
 			</div>
 		</header>	<div class="wrapper detail has-sidebar has-navigation">
@@ -51,13 +55,13 @@
 		<div class="active-flag">Kites</div>
 	</div>
 	<div class="groups sidebar-button">
-		<div class="active-flag">Groups</div>
+		<div class="active-flag"><a href="/groups.html">Groups</a></div>
 	</div>
 	<div class="help sidebar-button">
 		<div class="active-flag">Help</div>
 	</div>
 </div>		<div class="content">
-			<div id="kite-nav" class="kite-nav">
+			<div id="kite-nav" class="kite-nav hidden">
 				<div class="kite-nav-tab">
 					<div id="info" class="kite-nav-button info active">
 						<div class="active-flag"></div>
@@ -71,6 +75,9 @@
 					<div id="members" class="kite-nav-button members">
 						<div class="active-flag"></div>
 					</div>
+					<div id="settings" class="kite-nav-button settings">
+						<div class="active-flag"></div>
+					</div>
 					<div class="kite-nav-toggle show">
 						<div class="active-flag"></div>
 					</div>
@@ -79,9 +86,6 @@
 					</div>
 				</div>
 				<div class="kite-nav-content">
-					<div class="kite-settings">
-						<img src="graphics/kite-settings.png">
-					</div>
 					<div class="kite-nav-header">
 						<h1 class="detail-kite-title">Climb a Mountain in Maine</h1>
 						<p class="dateline">Created March 23, 2012</p>
@@ -200,12 +204,17 @@
 							</li>
 						</ul>
 					</div>
+					<div class="detail-section settings" style="display:none;">
+						<h2>Settings</h2>
+						<div class="delete-this-kite">Delete this kite</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
-
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		
 		<!-- the mousewheel plugin - optional to provide mousewheel support -->
 		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
 

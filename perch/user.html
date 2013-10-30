@@ -9,6 +9,7 @@
 
 		<!-- styles needed by jScrollPane -->
 		<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+		<link type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" media="all" />
 
 		<!-- Main stylesheet -->
 		
@@ -54,41 +55,71 @@
 		<div class="active-flag">Kites</div>
 	</div>
 	<div class="groups sidebar-button">
-		<div class="active-flag">Groups</div>
+		<div class="active-flag"><a href="/groups.html">Groups</a></div>
 	</div>
 	<div class="help sidebar-button">
 		<div class="active-flag">Help</div>
 	</div>
 </div>		<div class="content">
-			<div class="content-header">
-				<h1 class="page-title">Kites You Follow</h1>
-				<div id="filter" class="filter">
-					<div id="filter-button" class="filter-button">Filter By</div>
-					<ul id="filter-list" class="filter-list" style="display:none;">
-						<!-- Begin kite categories -->
-						<li>Filter Type 1</li>
-						<li>Filter Type 2</li>
-						<li>Filter Type 3</li>
-						<li>Filter Type 4</li>
-						<!-- End kite categories -->
-					</ul>
-				</div>
-				<div class="search">
-					<input class="search-input" type="text" placeholder="Search">
-					<input class="search-button" type="image" src="graphics/search-button.png" width="38" height="36">
-				</div>
-			</div>
-			<div class="kites">
-				<!-- Begin kite -->
-				<div class="kite">
-					<div class="overlay">
-						<h2 class="kite-name"><a href="detail.html">Build a greenhouse in my backyard</a></h2>
-						<p class="kite-byline">Created by <a class="author-link">Jane Doe</a></p>
-						<div class="kite-likes"><span class="like-count">23</span> Likes</div>
-						<div class="view-kite"><a href="detail.html" class="view-kite-link">View Kite</a></div>
+			<div class="kites-section">
+				<div class="content-header">
+					<h1 class="page-title">My Kites</h1>
+					<div id="filter" class="filter">
+						<div id="filter-button" class="filter-button">Filter By</div>
+						<ul id="filter-list" class="filter-list" style="display:none;">
+							<!-- Begin kite categories -->
+							<li>Filter Type 1</li>
+							<li>Filter Type 2</li>
+							<li>Filter Type 3</li>
+							<li>Filter Type 4</li>
+							<!-- End kite categories -->
+						</ul>
+					</div>
+					<div class="search">
+						<input class="search-input" type="text" placeholder="Search">
+						<input class="search-button" type="image" src="graphics/search-button.png" width="38" height="36">
 					</div>
 				</div>
-				<!-- End kite -->
+				<div class="kites">
+					<!-- Begin kite -->
+					<div class="kite">
+						<div class="overlay">
+							<h2 class="kite-name"><a href="detail.html">Build a greenhouse in my backyard</a></h2>
+							<p class="kite-byline">Created by <a class="author-link">Jane Doe</a></p>
+							<div class="kite-likes"><span class="like-count">23</span> Likes</div>
+							<div class="view-kite"><a href="detail.html" class="view-kite-link">View Kite</a></div>
+						</div>
+					</div>
+					<!-- End kite -->
+				</div>
+			</div>
+			<div class="kites-section">
+				<div class="content-header">
+					<h1 class="page-title">Kites I Follow</h1>
+					<div id="filter" class="filter">
+						<div id="filter-button" class="filter-button">Filter By</div>
+						<ul id="filter-list" class="filter-list" style="display:none;">
+							<!-- Begin kite categories -->
+							<li>Filter Type 1</li>
+							<li>Filter Type 2</li>
+							<li>Filter Type 3</li>
+							<li>Filter Type 4</li>
+							<!-- End kite categories -->
+						</ul>
+					</div>
+				</div>
+				<div class="kites">
+					<!-- Begin kite -->
+					<div class="kite">
+						<div class="overlay">
+							<h2 class="kite-name"><a href="detail.html">Build a greenhouse in my backyard</a></h2>
+							<p class="kite-byline">Created by <a class="author-link">Jane Doe</a></p>
+							<div class="kite-likes"><span class="like-count">23</span> Likes</div>
+							<div class="view-kite"><a href="detail.html" class="view-kite-link">View Kite</a></div>
+						</div>
+					</div>
+					<!-- End kite -->
+				</div>
 			</div>
 		</div>
 		<footer id="page-footer" class="page-footer user-footer">
@@ -167,7 +198,8 @@
 	</div>
 </footer>	</div>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
-
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		
 		<!-- the mousewheel plugin - optional to provide mousewheel support -->
 		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
 
