@@ -1388,8 +1388,9 @@ h1 {
 	visibility: hidden;
 }
 
-
-.load-more {
-	float: left;
+.fake-kite {
+	background-color:#333333;
+	color: #FFFFFF;
+	text-align: center;
 	padding-top: 90px;
 }
