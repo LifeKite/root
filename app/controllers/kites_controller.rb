@@ -15,7 +15,7 @@ class KitesController < ApplicationController
     
   # Minimum supported dimensions for web images that we make kites out of
   @@image_dimension_limit = 150
-  @@kitesPerPage = 5
+  @@kitesPerPage = 12
   helper KitesHelper
   
   # List all kites
