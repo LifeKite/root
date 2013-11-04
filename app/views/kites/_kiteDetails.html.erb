@@ -39,7 +39,7 @@
 				<%= render partial: "kite_posts/kite_post", collection: @kitePosts %>
 			</div>
 			<%= will_paginate @kitePosts, :remote => true %>
-			<% if current_user %>
+			<% if current_user == @kite.user %>
 				<%= render 'kite_posts/form'%>
 			<% end %>
 			<% if !@kite.ImageLocation.nil? && valid_json?(@kite.ImageLocation) %>
@@ -79,7 +79,7 @@
 				
 			<% end %>
 		</div>
-		<% if current_user %>
+		<% if current_user==@kite.user %>
 			<div class="detail-section settings" style="display: none;">
 				<!--<%= button_to "Post Kite to Facebook", action: "ShareKiteToSocialMedia" %>-->
 				<%= link_to 'Edit this kite', edit_kite_path(@kite) %>
