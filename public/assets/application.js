@@ -21859,7 +21859,7 @@ $(document).ready(function(){
 		$('.lockpane').toggleClass('LockOff', false);
 	} )
 	 
-	$('.load-more').bind('inview', function(e, visible) {
+	$('#load-more').bind('inview', function(event, visible) {
 		if(visible) {
 			$(this).click();
 		}
