@@ -8,7 +8,7 @@ gem 'rails', '3.2.11'
 gem 'railties'
 gem 'devise', '>= 2.0.0'
 gem 'friendly_id', '3.2.1'
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 1.0.3'
 gem 'paperclip', "~> 3.0"
 gem 'aws-sdk'
 gem 'aws-s3'
@@ -18,6 +18,9 @@ gem 'fastimage'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'fb_graph'
+#gem 'uglifier-rails'
+#gem 'execjs'
+# gem 'therubyracer'
 
 # Use unicorn as the web server
 # gem 'unicorn'

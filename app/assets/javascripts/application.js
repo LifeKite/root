@@ -1,0 +1,11 @@
+// Place your application-specific JavaScript functions and classes here
+// This file is automatically included by javascript_include_tag :defaults
+//= require jquery
+//= require jquery_ujs
+//= require jquery-ui
+//= require jquery.inview.min.js
+//= require jquery.jscrollpane.min.js
+//= require jquery.ui.widget.js
+//= require scripts.js
+//= require script.js
+//= require kite-nav.js

@@ -5,12 +5,13 @@
 				<img src="/images/down-arrow-big.png">
 			</div>
 			<% if Kite.find(comment.kite_id).user == current_user %>
+			<!--
 			<div class="the-options">
 				<ul>
 					<li><%= link_to 'Hide this comment', unmarkHelpful_comment_path(comment)%></li>
 					<li><%= link_to 'This was helpful',markHelpful_comment_path(comment) %></li>
 				</ul>
-			</div>
+			</div>-->
 			<% end %>
 		</div>
 		<div class="title"><%=comment.Title%></div>
@@ -23,11 +24,11 @@
 			<li>
 				<div class="name"><%=comment.user.KosherUsername%></div>
 				<div class="details"><%=comment.user.KiteCount%> kites | <%=comment.user.CommentCount%> comments made</div>
-				<div class="reply">
+				<!--<div class="reply">
 					<a href="<%= new_comment_path(:kite => @kite.id)%>">
 						<img class="reply" src="/images/reply-button.png">
 					</a>		
-				</div>
+				</div>-->
 			</li>
 		</ul>
 	</div>

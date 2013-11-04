@@ -1,0 +1,6 @@
+$('.kitescontainer').append("<%= escape_javascript(render @kites )%>");
+$('a.load-more').attr('href', "<%= kites_path page: @kites.next_page%>");
+
+<%if !@kites.next_page%>
+$('a.load-more').remove();
+<%end%>

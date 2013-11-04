@@ -1,0 +1,86 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2013.10.30)  30 OCT 2013 12:07
+entering extended mode
+ %&-line parsing enabled.
+**"% Table created by stargazer v.4.5.1 by Marek Hlavac, Harvard University. E-
+mail: hlavac at fas.harvard.edu
+% Date and time: Wed, Oct 30, 2013 - 12:06:17 PM
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lccccc} 
+\[-1.8ex]\hline 
+\hline \[-1.8ex] 
+Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{
+c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \ 
+\hline \[-1.8ex] 
+TotalMeanCvg & 16 & 402.788 & 1,073.056 & 3.000 & 4,335.000 \ 
+PctCoverage & 16 & 8.056 & 21.461 & 0.060 & 86.700 \ 
+Occurances & 16 & 10.438 & 14.578 & 1 & 48 \ 
+PctFrequency & 16 & 0.209 & 0.292 & 0.020 & 0.960 \ 
+\hline \[-1.8ex] 
+\normalsize 
+\end{tabular} 
+\end{table} "
+
+*
+! Interruption.
+<*> 
+    
+? 
+(/usr/share/texmf-texlive/tex/latex/tools/.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+File ignored)
+(Please type a command or say `\end')
+*\end
+
+*quit
+
+! LaTeX Error: \begin{document} ended by \end{q}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+<*> q
+     uit
+? quit
+OK, entering \batchmode...
+! Extra \endgroup.
+<recently read> \endgroup 
+                          
+<*> q
+     uit
+Things are pretty mixed up, but I think the worst is over.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+<*> qu
+      it
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no u in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+! Emergency stop.
+<*> quit
+        
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 6 strings out of 495062
+ 236 string characters out of 1182643
+ 45108 words of memory out of 3000000
+ 3283 multiletter control sequences out of 15000+50000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 6i,0n,6p,80b,14s stack positions out of 5000i,500n,10000p,200000b,50000s
+No pages of output.

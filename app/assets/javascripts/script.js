@@ -1,9 +1,3 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
-//= require jquery
-//= require jquery_ujs
-//= require jquery-ui
-
 $(document).ready(function(){
 	
 	function CheckMaxLength(object) {
@@ -41,5 +35,11 @@ $(document).ready(function(){
 		$('.lockpane').toggleClass('LockOn', true);
 		$('.lockpane').toggleClass('LockOff', false);
 	} )
-	
+	 
+	$('#load-more').bind('inview', function(event, visible) {
+		if(visible) {
+			$(this).click();
+		}
+	});
+	$(window).scroll()
 });

@@ -5,15 +5,16 @@
   <%= stylesheet_link_tag "style" %>
   <%= stylesheet_link_tag "normalize" %>
   <%= stylesheet_link_tag "styles" %>
-  <%= stylesheet_link_tag "jquery.jscrollpane" %>
-  <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag "bootstrap.min.js" %>
-  <%= javascript_include_tag "jquery-ui.js" %>
-  <%= javascript_include_tag "jquery.jcarousel.min.js" %>
-  <%= javascript_include_tag "bootstrap-alert.js" %>
-  <%= javascript_include_tag "jquery.ui.widget.js" %>
-  <%= javascript_include_tag "jquery.iframe-transport.js" %>
-  <%= javascript_include_tag "jquery.fileupload.js" %>
+  <%= stylesheet_link_tag "jquery.jscrollpane"%>
+  <%= javascript_include_tag "jquery.min"%>
+  <%= javascript_include_tag "jquery.inview"%>
+  <%= javascript_include_tag "jquery.jscrollpane.min"%>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "script"%>
+  <%= javascript_include_tag "scripts"%>
+  <%= javascript_include_tag "kite-nav"%>
+  
+
   
   <link href='http://fonts.googleapis.com/css?family=Sofadi+One' rel='stylesheet' type='text/css'>
   <!-- Google fonts -->
@@ -34,11 +35,11 @@
       <%= yield %>
   	</div>
   </div>
-  
+  <!-->
   <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"%>
   <%= javascript_include_tag "http://code.jquery.com/ui/1.10.3/jquery-ui.js" %>
   <%= javascript_include_tag "jquery.mousewheel.js" %>
   <%= javascript_include_tag "jquery.jscrollpane.min.js" %>
-  <%= javascript_include_tag "scripts.js" %>
+  <%= javascript_include_tag "scripts.js" %>-->
 </body>
 </html>

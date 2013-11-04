@@ -1,0 +1,6 @@
+$('#commentslist').append("<%= escape_javascript(render @comments )%>");
+$('a.load-more').attr('href', "<%= comments_path page: @comments.next_page%>");
+
+<%if !@comments.next_page%>
+$('a.load-more').remove();
+<%end%>

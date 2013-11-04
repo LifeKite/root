@@ -2,7 +2,7 @@
 	<div class="content">
 		<div class="content-header">
 			<h1 class="page-title"><Explore Kites><%= @function%></h1>
-			<div id="filter" class="filter">
+			<div id="filter" class="filter" style="display: none;">
 				<div id="filter-button" class="filter-button">Filter By</div>
 				<ul id="filter-list" class="filter-list" style="display:none;">
 					<!-- Begin kite categories -->
@@ -18,12 +18,12 @@
 				<input class="search-button" type="image" src="/images/search-button.png" width="38" height="36">
 			</div>
 		</div>
-		<div class="kites">
+		<div class="kitescontainer">
 			<!-- Begin kite -->
 			<%= render @kites %>
-			<!-- End kite -->
-			<%= will_paginate @kites %>
-		</div>
+			<!-- End kite -->			
+		</div><br/>
+		<%= link_to 'Load More Kites', kites_path(:page => @kites.next_page), :class => 'load-more', :remote => true if @kites.next_page %>
 		<% if @function == "My Kites" || @function == "Member Kites"%>
 			<%= render "personalIndexFooter" %>
 		<% else %>

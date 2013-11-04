@@ -15,14 +15,14 @@ class KitesController < ApplicationController
     
   # Minimum supported dimensions for web images that we make kites out of
   @@image_dimension_limit = 150
-    
+  @@kitesPerPage = 12
   helper KitesHelper
   
   # List all kites
   def index
     time_range = (1.week.ago..Time.now)
     
-     @kites = Kite.where(:sharelevel => "public").paginate(:page => params[:page], :per_page => 12)
+     @kites = Kite.where(:sharelevel => "public").paginate(:page => params[:page], :per_page => @@kitesPerPage)
      
      
      @kiteCount = Kite.any? ? Kite.count : 0
@@ -34,11 +34,11 @@ class KitesController < ApplicationController
      #Currently not supported since we don't have following yet, just randomly choose three
      @popularKites = Kite.PopularKites
      @function = "Explore Kites"
-     
-              
+                        
     respond_to do |format|
       format.html { render :template => 'kites/index' }# index.html.erb
       format.xml  { render :xml => @kites }
+      format.js   { render :template => 'kites/index' }
     end
   end
 
@@ -47,7 +47,7 @@ class KitesController < ApplicationController
 
     time_range = (1.week.ago..Time.now)
         
-     @kites = current_user.kites.paginate(:page => params[:page], :per_page => 12)    
+     @kites = current_user.kites.paginate(:page => params[:page], :per_page => @@kitesPerPage)    
      
      @kiteCount = current_user.KiteCount
      @newKites = current_user.NewKiteCount(time_range)
@@ -59,6 +59,7 @@ class KitesController < ApplicationController
     respond_to do |format|
       format.html { render :template => 'kites/index' } # index.html.erb
       format.xml  { render :xml => @kites }
+      format.js   { render :template => 'kites/index' }
     end
   end
   
@@ -67,7 +68,7 @@ class KitesController < ApplicationController
     time_range = (1.week.ago..Time.now)
        
      @kiteIDs = current_user.follwing.collect{|a| a.kite_id}.flatten
-     @kites = Kite.find(@kiteIDs).paginate(:page => params[:page], :per_page => 12)    
+     @kites = Kite.find(@kiteIDs).paginate(:page => params[:page], :per_page => @@kitesPerPage)    
      
      @kiteCount = current_user.KiteCount
      @newKites = current_user.NewKiteCount(time_range)
@@ -79,6 +80,7 @@ class KitesController < ApplicationController
     respond_to do |format|
       format.html { render :template => 'kites/index' } # index.html.erb
       format.xml  { render :xml => @kites }
+      format.js   { render :template => 'kites/index' }
     end
   end  
   
@@ -105,26 +107,23 @@ class KitesController < ApplicationController
     
     #Queue up a proto-comment
     @comment = Comment.new
-    @comments = @kite.comments(:order => "isHelpful DESC").paginate(:page => params[:page], :per_page => 3)
+    @comments = @kite.comments(:order => "isHelpful DESC").paginate(:page => params[:page], :per_page => @@kitesPerPage)
       
     @kitePost = KitePost.new
     @kitePosts = @kite.kitePosts.paginate(:page => params[:page], :per_page => 3)
 
     if @kite.UserCanView(current_user)
-     if(current_user = @kite.user)
-       render :action => 'owner_show'
-     else
-       render :action => 'shared_show'
-     end
+     
     else
      redirect_to(current_user, :error => "The kite you have selected is private and cannot be viewed.")
     end
       
     
-#    respond_to do |format|
-#      format.html # show.html.erb
-#      format.xml  { render :xml => @kite }
-#    end
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @kite }
+      format.js { render :template => 'kites/show' }
+    end
   end
 
   # Create a new kite object (will not persist untill passed
