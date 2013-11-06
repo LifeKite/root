@@ -1,5 +1,10 @@
+<% if !current_user.nil? %>
+<div class="wrapper create has-sidebar has-navigation">
+<% else %>
 <div class="wrapper create has-navigation">
-<%= form_for(@kite, :html => {:class => "well", :multipart => true}) do |f| %>
+<%end%>
+<h2 class="page-title">Modify Kite</h2><br />
+<%= form_for(@kite, :html => {:class => "form padded-form signup-form", :multipart => true}) do |f| %>
   <% if @kite.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@kite.errors.count, "error") %> prohibited this kite from being saved:</h2>
@@ -13,15 +18,18 @@
   <% end %>
  
 
-  <div class="field">
-    <%= f.label :Description %><br />
-    <%= f.text_area :Description, :size => "600x5", :style=> "width: 65%;",  :onkeyup => "CheckMaxLength(this);", :maxLength => 70%>
+  <div class="">
+    <%= f.text_area :Description, :size => "600x5", :style=> "width: 65%;",  
+    	:onkeyup => "CheckMaxLength(this);", :maxLength => 70, :placeholder => "Kite description"%>
     
-    <%= f.label :Details, :class => "control-label" %><br/>
- 	<%= f.text_area :Details, :size => "600x5", :style=>"width: 65%;",  :onkeyup => "CheckMaxLength(this);", :maxLength => 140%> 
+ 	<%= f.text_area :Details, :size => "600x5", :style=>"width: 65%;",  
+ 		:onkeyup => "CheckMaxLength(this);", :maxLength => 140, :placeholder => "Kite details"%> 
   </div>
   <div class="actions">
-    <%= f.submit "Update Kite", {:class => "create-button button"} %>
+    <%= f.submit "Update Kite", {:class => "button"} %>
+    <%= link_to 'Cancel', @kite, :class => "button"%> 
+	<%= link_to 'Delete this kite', @kite, :confirm => 'Are you sure you want to delete this kite?', :method => :delete, :class => "button"%>
+
   </div>
 <% end %>
 </div>

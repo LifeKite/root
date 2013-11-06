@@ -22,7 +22,7 @@ body {
 }
 
 .has-navigation.wrapper {
-	padding-top: 56px;
+	padding-top: 66px;
 }
 
 .has-footer.wrapper {
@@ -219,6 +219,10 @@ h1 {
 	margin: 20px auto;
 }
 
+.padded-form {
+	margin: 50px;
+}
+
 .padded-form input, .padded-form select, .padded-form textarea, .padded-form .button {
 	margin: 10px 0;
 }
@@ -235,6 +239,7 @@ h1 {
 
 .column-1 {
 	padding-right: 25px;
+	clear: left;
 }
 
 .column-2 {
@@ -637,7 +642,7 @@ h1 {
 }
 
 .page-title {
-	margin-left: 23px;
+	margin-left: 123px;
 }
 
 .filter {

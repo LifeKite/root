@@ -1,8 +1,12 @@
+<% if !current_user.nil? %>
+<div class="wrapper create has-sidebar has-navigation">
+<% else %>
 <div class="wrapper create has-navigation">
+<%end%>
 	<% if defined? child %>
 		<div class="content">
 	<%end%>
-		<h2 class="form-header-type-2">Create a new kite</h2>
+		<h2 class="page-title">Create a new kite</h2><br />
 		<%= form_for(@kite, :html => {:class => "form padded-form signup-form", :multipart => true}) do |f| %>
 		  <% if @kite.errors.any? %>
 		    <div id="error_explanation">
@@ -17,25 +21,22 @@
 		  <% end %>
 			<div class="column-1">
 				<%= f.text_field :Description, :placeholder => "Name", :onkeyup => "CheckMaxLength(this);", :maxLength => 70 %>
-				<select>
+				<!--<select>
 					<option value="">Select an icon</option>
-					<!-- Icon options go here-->
-				</select>
+					
+				</select>-->
 				<!-- PLACEHOLDER. I think your best bet is to use a javascript upload plugin that can integrate with Rails. I've styled these elements in hopes that you can reuse them within whatever plugin you choose -->
-				<div style="position: relative;">
+				<div >
 					<%if @isAutoAdd %>
 						<%= f.hidden_field :ImageLocation, :class => "remote-image-field" %>
 					<% else %>
-						<input id="surrogate" type="text" class="image-upload-field surrogate" />
+						<input id="surrogate" type="text" class="image-upload-field surrogate" placeholder="Filename" />
 					<% end %>
 					
 				</div>
 			</div>
 			<div class="column-2">
-				<select>
-					<option value="">Category</option>
-					<!-- Category options go here-->
-				</select>
+				
 				<input type="text" name="add-tags" placeholder="Add Tags">
 				<% if @isAutoAdd.nil? %>
 					<div id="btnAddImage" class="button add-button add-image">+ Add image</div>
