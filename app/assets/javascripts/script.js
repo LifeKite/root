@@ -25,6 +25,15 @@ $(document).ready(function(){
 		}
 	});
 	
+	$(document).bind("keyup keydown", function(e) {
+		if(e.ctrlKey && e.keyCode == 220) {
+			$('.admin-only').toggleClass('admin-only');
+		}
+	})
+	
+	$('.add-image').click(function(event) {
+		$('.upload-actual').click();
+	});
 	
 	$('.upload-actual').change(function(click) {
 		$('.surrogate').val(this.value);

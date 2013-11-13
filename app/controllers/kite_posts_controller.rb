@@ -26,7 +26,6 @@ class KitePostsController < ApplicationController
         @notification.save
       end
     end
-    
           
     respond_to do |format|
       if @kitePost.save()
@@ -62,7 +61,7 @@ class KitePostsController < ApplicationController
   
   def index
 
-    @kitePosts = KitePost.all.paginate(:page => params[:page], :per_page => 30)
+    @kitePosts = KitePost.all(:order => "CreateDate DESC").paginate(:page => params[:page], :per_page => 30)
     
     respond_to do |format|
       format.html # index.html.erb

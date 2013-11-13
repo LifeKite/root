@@ -19,6 +19,9 @@ $(function() {
 		// Toggle the button active state
 		$('.kite-nav-button').removeClass('active');
 		$(this).addClass('active');
+		
+		//expand nav bar if not already expanded
+		$('#kite-nav').toggleClass('hidden', false);
 
 		// Switch the content out
 		var switch_to = $(this).attr('id');

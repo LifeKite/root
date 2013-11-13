@@ -107,10 +107,11 @@ class KitesController < ApplicationController
     
     #Queue up a proto-comment
     @comment = Comment.new
-    @comments = @kite.comments(:order => "isHelpful DESC").paginate(:page => params[:page], :per_page => @@kitesPerPage)
+    @comments = @kite.comments.order("created_at DESC").paginate(:page => params[:commentpage], :per_page => @@kitesPerPage)
       
     @kitePost = KitePost.new
-    @kitePosts = @kite.kitePosts.paginate(:page => params[:page], :per_page => 3)
+    @kitePosts = @kite.kitePosts.order("created_at DESC").paginate(:page => params[:postpage], :per_page => 3)
+
 
     if @kite.UserCanView(current_user)
      
@@ -118,7 +119,7 @@ class KitesController < ApplicationController
      redirect_to(current_user, :error => "The kite you have selected is private and cannot be viewed.")
     end
       
-    
+        
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @kite }
@@ -336,6 +337,11 @@ class KitesController < ApplicationController
   def destroy
     @kite = Kite.find(params[:id])
       
+    # Destroy dependent objects
+    Comment.where(:kite_id => @kite.id).destroy_all
+    Follwing.where(:kite_id => @kite.id).destroy_all
+    KitePost.where(:kite_id => @kite.id).destroy_all
+    
     if @kite.user.id == current_user.id
       @kite.destroy
     end
@@ -353,11 +359,14 @@ class KitesController < ApplicationController
     #Check that kite is public before continuing...
     if(@kite.sharelevel == "public")
       
-      usr = FbGraph::User.me(@kite.user.name)
-      usr.link!(
-        :link => kite_url(@kite),
-        :message => "I've shared a new goal on LifeKite"
-      )
+      #check that the user is associated with a facebook profile
+      if current_user.provider == :facebook
+        usr = FbGraph::User.me(@kite.user.name)
+        usr.link!(
+          :link => kite_url(@kite),
+          :message => "I've shared a new goal on LifeKite"
+        )
+      end
     end
   end
   

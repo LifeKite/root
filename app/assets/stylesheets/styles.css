@@ -1086,7 +1086,16 @@ h1 {
 	padding: 10px 10px 10px 45px;
 	margin-top: 20px;
 	border: 1px solid #e4e4e4;
-	background: #fff url('../graphics/delete-icon.png') no-repeat 10px center;
+	background: #fff url('/images/delete-icon.png') no-repeat 10px center;
+	cursor: pointer;
+}
+
+.edit-this-kite {
+	display: inline-block;
+	padding: 10px 10px 10px 45px;
+	margin-top: 20px;
+	border: 1px solid #e4e4e4;
+	background: #fff url('/images/kite-nav-settings.png') no-repeat 10px center;
 	cursor: pointer;
 }
 
@@ -1136,7 +1145,6 @@ h1 {
 .form .add-image {
 	margin-top: 30px;
 	margin-bottom: 20px;
-	width: 180px;
 	background-color: #6a4256;
 }
 
@@ -1152,6 +1160,8 @@ h1 {
 .form .create-button {
 	width: 130px;
 	float: right;
+	margin-left: 10px;
+	height: 50px;
 }
 
 .make-private {
@@ -1397,4 +1407,48 @@ h1 {
 	background-color:#333333;
 	color: #FFFFFF;
 	text-align: center;
+}
+
+.comment-button {
+	float: right;
+	margin-right: 30px;
+}
+
+.like-button {
+	margin: 40px;
+}
+
+.admin-only {
+	display:none;
+}
+
+#commentslist {
+	clear: both;
+	
+}
+
+.kitepost {
+	padding-top: 19px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #cccccc;
+}
+
+.kitepost:last-child {
+	border: none;
+}
+
+a.load-more-posts {
+	text-align: center;
+	display: block;
+	border: 1px solid #cccccc;
+	background-color: #4F4F4F;
+	color: white;
+}
+
+a.load-more-comments {
+	text-align: center;
+	display: block;
+	border: 1px solid #cccccc;
+	background-color: #4F4F4F;
+	color: white;
 }

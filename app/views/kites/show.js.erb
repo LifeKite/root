@@ -1,6 +1,17 @@
-$('#commentslist').append("<%= escape_javascript(render @comments )%>");
-$('a.load-more').attr('href', "<%= comments_path page: @comments.next_page%>");
+<% if params.has_key?(:commentpage)%>
+	$('#commentslist').append("<%= escape_javascript(render @comments )%>");
+	$('a.load-more-comments').attr('href', "<%= kite_path commentpage: @comments.next_page%>");
+	
+	<%if !@comments.next_page%>
+		$('a.load-more-comments').remove();
+	<%end%>
+<% else %>
+	$('#postlist').append("<%= escape_javascript(render @kitePosts )%>");
+	$('a.load-more-posts').attr('href', "<%= kite_path postpage: @kitePosts.next_page%>");
+	
+	<%if !@kitePosts.next_page%>
+		$('a.load-more-posts').remove();
+	<%end%>
 
-<%if !@comments.next_page%>
-$('a.load-more').remove();
-<%end%>
+<% end %>
+$('.kite-nav-content').jScrollPane();

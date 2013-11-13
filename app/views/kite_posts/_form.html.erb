@@ -18,14 +18,13 @@
   	<%= f.hidden_field "kite_id", :value => @kite.id %>
   </div>
   <div class="field">
-  	<%= f.file_field :image, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
   	<div >
   		<input type="text" class="image-upload-field surrogate", placeholder="Select an image..." />
   		<div class="button add-button add-image" style="display: inline-block; height:35px; padding-top: 2px;">...</div>
   	</div>
   </div>
+  <%= f.file_field :image, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
   <div class="actions">
-  	
     <%= f.submit "Post", {:class => "create-button button"}%>
   </div>
 <% end %>

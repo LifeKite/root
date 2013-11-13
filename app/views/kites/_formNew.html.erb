@@ -30,7 +30,7 @@
 					<%if @isAutoAdd %>
 						<%= f.hidden_field :ImageLocation, :class => "remote-image-field" %>
 					<% else %>
-						<input id="surrogate" type="text" class="image-upload-field surrogate" placeholder="Filename" />
+						<input id="surrogate" type="text" class="image-upload-field surrogate" placeholder="Filename" readonly="readonly" />
 					<% end %>
 					
 				</div>
@@ -49,7 +49,7 @@
 			</div>
 			
 			<!-- <div class="button add-button add-members">+ Add Members</div> -->
-			<%= f.submit "Create", {:class => "create-button button"} %><br/>
+			<%= f.submit "Create", {:class => "create-button button"} %>
 			<%= link_to 'Cancel', @kites, :class => "create-button button"%> 
 			<%= f.file_field :kiteimage, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
 		<% end %>

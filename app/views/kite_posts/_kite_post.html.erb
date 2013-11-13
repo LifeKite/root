@@ -1,7 +1,7 @@
-<div>
+<div class="kitepost">
+	<%= content_tag(:p, kite_post.FormattedCreateDate, :class => "dateline") %>
 	<%= content_tag(:p, kite_post.text)%>
 	<% if !kite_post.image.nil? %>
 		<%= image_tag kite_post.image.url %>
 	<% end %>	
-	<%= content_tag(:p, kite_post.FormattedCreateDate, :class => "dateline") %>
 </div>
