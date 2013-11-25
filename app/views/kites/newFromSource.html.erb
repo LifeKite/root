@@ -1,5 +1,10 @@
+<% if !current_user.nil? %>
+<div class="wrapper create has-sidebar has-navigation">
+<% else %>
 <div class="wrapper create has-navigation">
-	<div class="content">
+<%end%>
+	<div class="content newfromsource">
+		<h1 class="form-header">Create a new Kite</h1>
 		<h2 class="form-header-type-2">Select an image</h2>
 		<div class="grid">
 			<% @images.each do |image| %>
@@ -43,6 +48,8 @@
 		
 			
 		</script>
-		<%= render 'formNew', :child => true %>
+		<div class="childWindowWrapper">
+			<%= render 'formNew', :child => true %>
+		</div>
 	</div>
 </div>

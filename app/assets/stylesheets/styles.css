@@ -1452,3 +1452,12 @@ a.load-more-comments {
 	background-color: #4F4F4F;
 	color: white;
 }
+
+.childWindowWrapper {
+	position: absolute;
+	left: -70px;
+}
+
+.newfromsource {
+	padding-top: 0;
+}

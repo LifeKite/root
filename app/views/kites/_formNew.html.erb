@@ -1,12 +1,16 @@
-<% if !current_user.nil? %>
-<div class="wrapper create has-sidebar has-navigation">
-<% else %>
-<div class="wrapper create has-navigation">
-<%end%>
-	<% if defined? child %>
-		<div class="content">
+<% if defined? child %>
+	<% if !current_user.nil? %>
+	<div class="wrapper create has-sidebar has-navigation">
+	<% else %>
+	<div class="wrapper create has-navigation">
 	<%end%>
+	
+		<div class="content">
+	<% else %>
+		<div><div>
 		<h2 class="page-title">Create a new kite</h2><br />
+	<%end%>
+		
 		<%= form_for(@kite, :html => {:class => "form padded-form signup-form", :multipart => true}) do |f| %>
 		  <% if @kite.errors.any? %>
 		    <div id="error_explanation">
@@ -39,7 +43,7 @@
 				
 				<input type="text" name="add-tags" placeholder="Add Tags">
 				<% if @isAutoAdd.nil? %>
-					<div id="btnAddImage" class="button add-button add-image">+ Add image</div>
+					<div id="btnAddImage" class="button add-button add-image">+ Upload image</div>
 				<% end %>
 			</div>
 			<%= f.text_area :Details, :placeholder => "Description", :onkeyup => "CheckMaxLenth(this);", :maxLength => 140 %> 

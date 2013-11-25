@@ -23,9 +23,11 @@
 			<%= render @kites %>
 			<!-- End kite -->			
 		</div>
+		<% if @kites.next_page %>
 		<div class="kite fake-kite">
 			<%= link_to 'Load More Kites', kites_path(:page => @kites.next_page), :class => 'load-more', :remote => true if @kites.next_page %>
 		</div>
+		<% end %>
 		<% if @function == "My Kites" || @function == "Member Kites"%>
 			<%= render "personalIndexFooter" %>
 		<% else %>

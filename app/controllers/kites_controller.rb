@@ -145,7 +145,7 @@ class KitesController < ApplicationController
     @kite = Kite.new
     @images = []
     @isAutoAdd = true
-
+    
     if uri_is_valid?(params[:path])
       site = URI.parse(URI.encode(params[:path]))
       
@@ -160,9 +160,11 @@ class KitesController < ApplicationController
         if path[0..0] == '/'
           path = URI.join(site, path).to_s
         end  
-        
+        begin
         dimensions = FastImage.size(path, :timeout => 10.0)
-                
+          rescue => ex
+            logger.error("Failed to retrieve image dimensions for image: #{ex}")        
+        end
         if(!dimensions.nil? && dimensions.length > 1 && dimensions[0] > @@image_dimension_limit && dimensions[1] > @@image_dimension_limit )
           img = {:path => path,
             :source => doc.title,
@@ -170,8 +172,12 @@ class KitesController < ApplicationController
           }
           
           @images << img
+        else
+          logger.debug "The image #{path} was rejected as under size limit"
         end
       end
+    else
+      logger.error "The image was rejected as invalid path #{path}" 
     end
     @site = site 
   
