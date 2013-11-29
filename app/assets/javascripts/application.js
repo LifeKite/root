@@ -8,3 +8,4 @@
 //= require jquery.ui.widget.js
 //= require scripts.js
 //= require script.js
+//= require autocomplete-rails

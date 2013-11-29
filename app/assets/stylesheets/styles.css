@@ -1418,6 +1418,10 @@ h1 {
 	margin: 40px;
 }
 
+.like-button:disabled {
+	display: none;
+}
+
 .admin-only {
 	display:none;
 }
@@ -1460,4 +1464,8 @@ a.load-more-comments {
 
 .newfromsource {
 	padding-top: 0;
+}
+
+.membername-input {
+	width: 100%;
 }

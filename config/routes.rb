@@ -82,6 +82,8 @@ Rlifekite::Application.routes.draw do
       put 'Follow'
       put 'Unfollow'
       put 'ShareKiteToSocialMedia'
+      put 'Join'
+      put 'Unjoin'
     end
   end
   
@@ -101,6 +103,12 @@ Rlifekite::Application.routes.draw do
     member do
       put 'promote'
       put 'demote'
+    end
+  end
+  
+  resources :follwings do
+    collection do
+      get :autocomplete_user_name
     end
   end
   

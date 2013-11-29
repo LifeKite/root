@@ -4,4 +4,5 @@ class Follwing < ActiveRecord::Base
   belongs_to :kite
   
   validates :Type, :inclusion => %w(member like)
+  validates  :user_id, :kite_id, :Type, :presence => true
 end

@@ -74,13 +74,12 @@
 		</div>
 		<div class="detail-section members" style="display:none;">
 			<h2>Members</h2>
+			<% if !current_user.nil? && current_user == @kite.user %>
+				<%= render 'follwings/member', :title => "Add a new member"%>
+			<% end %>
 			<ul id="memberslist" class="members-list user-list">
 				<%= render @kite.follwings.where(:Type => "member")%>
 			</ul>
-			<% if !current_user.nil? && current_user != @kite.user %>
-				<%= render 'follwings/follow', :title => "Follow this kite", :type => "member"%>
-				
-			<% end %>
 		</div>
 		<% if current_user==@kite.user %>
 			<div class="detail-section settings" style="display: none;">

@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
   has_many :Notifications
   has_many :follwing
   
+  scope :search_by_fullname_or_username, lambda { |name|
+    (name ? where(["firstname LIKE ? or lastname LIKE ? or username LIKE ? or firstname || ' ' || lastname LIKE ?", '%'+ name + '%', '%'+ name + '%', '%'+ name + '%','%'+ name + '%' ])  : {})
+  }
     
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -112,6 +115,10 @@ class User < ActiveRecord::Base
       return self.username
     end
   end   
+  
+  def KosherUsernameAndEmail
+    return "#{self.KosherUsername} (#{self.username})"
+  end
   
   # Listing of most recent people commenting, following, or becomming members
   # of our kites 

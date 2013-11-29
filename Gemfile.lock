@@ -145,6 +145,8 @@ GEM
       activesupport (= 3.2.11)
       bundler (~> 1.0)
       railties (= 3.2.11)
+    rails3-jquery-autocomplete (1.0.11)
+      rails (~> 3.0)
     railties (3.2.11)
       actionpack (= 3.2.11)
       activesupport (= 3.2.11)
@@ -199,6 +201,7 @@ DEPENDENCIES
   paperclip (~> 3.0)
   pg
   rails (= 3.2.11)
+  rails3-jquery-autocomplete
   railties
   sqlite3
   thin

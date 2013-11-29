@@ -9,14 +9,16 @@ require 'fastimage'
 require 'will_paginate/array'
 
 class KitesController < ApplicationController
-  #before_filter :authenticate_user!, :except => [:index, :show, :randomSample]
-  #before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
-  #before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia, :personalIndex]
+  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
+  before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia, :Join, :Unjoin]
     
   # Minimum supported dimensions for web images that we make kites out of
   @@image_dimension_limit = 150
   @@kitesPerPage = 12
   helper KitesHelper
+  
+  
   
   # List all kites
   def index
@@ -196,6 +198,55 @@ class KitesController < ApplicationController
      end
   end
 
+  def Join
+    @kite = Kite.find(params[:id])
+    @userID = params[:follwing][:user_id]
+    
+    if(@kite.follwings.empty? || !@kite.follwings.exists?(:user_id => @userID, :Type => "member"))
+      @following = Follwing.new
+      @following.user_id = @userID
+      @following.Type = "member"
+      @following.kite = @kite
+    else
+      @following = @kite.follwings.where(:user_id => @user.id, :Type => "member").first()
+    end
+    
+    respond_to do |format| 
+      if @following && @following.save()
+        format.html { redirect_to(@kite, :notice => 'Kite has been followed.')}
+        format.xml  { render :xml => @kites, :status => :created, :location => @kites }
+        format.js {}
+        format.json { render :json => @following, :status => :created}
+      else  
+        format.html { redirect_to(@kite, :notice => 'Could not create following.')}
+        format.xml  { render :status => :failure }
+        format.js {}
+        format.json { render :status => :unprocessable_entity }
+      end
+    end
+  end
+  
+  def Unjoin
+    @kite = Kite.find(params[:id])
+    if(@kite && @kite.follwings.any?)
+      @following = @kite.follwings.where(:Type => "member").first
+    end
+        
+    respond_to do |format| 
+      if @following && @following.destroy
+        format.html { redirect_to(@kite, :notice => 'Kite has been unfollowed.')}
+        format.xml  { render :xml => @kite, :status => :created, :location => @kite }
+        format.js {}
+        format.json { render :json => @following, :status => :success }
+      else  
+        format.html { render :action => "owner_show" }
+        format.xml  { render :status => :failure }
+        format.js {}
+        format.json { render :status => :unprocessable_entity }
+      end
+    end
+  end
+    
   # Add user to list of those following this kite
   def Follow
 
