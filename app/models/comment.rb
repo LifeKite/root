@@ -25,6 +25,10 @@ class Comment < ActiveRecord::Base
     :bucket => @@aws_bucket_id, 
     :default_url => "/images/missing_:style.png"
   
+  scope :search_by_tag, lambda { |tag|
+        (tag ? where(["tag LIKE ?", '%#'+ name + '%'])  : {})
+  } 
+    
   #Mark the comment as helpful
   def markHelpful
     update_attribute(:isHelpful, true)

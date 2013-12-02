@@ -3,6 +3,7 @@
 
 # This class exposes methods to modify user comments
 class CommentsController < ApplicationController
+  
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
     
@@ -50,6 +51,7 @@ class CommentsController < ApplicationController
     @comment.content = params[:comment][:content]
     @comment.kite = Kite.find(params[:comment][:kite_id])
     @comment.user = current_user
+    @comment.tag = @comment.content.scan(/#\S+/).join(",")
     @kite = Kite.find(@comment.kite_id)
   
     if @kite.user.sendEmailNotifications

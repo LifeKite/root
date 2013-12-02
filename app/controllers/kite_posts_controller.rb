@@ -1,5 +1,5 @@
 class KitePostsController < ApplicationController
-
+  
   def new
     @kitePost = Comment.new
     @kite = Kite.find(params[:kite])
@@ -12,7 +12,8 @@ class KitePostsController < ApplicationController
   def create
     @kitePost = KitePost.new(params["kite_post"])
     @kitePost.kite = Kite.find(params[:kite_post][:kite_id])    
-
+    @kitePost.tag = @kitePost.text.scan(/#\S+/).join(",")
+    
     # Notify all subscribers
     @kitePost.kite.follwings.where(:Type => "member").each do |member|
       if member.follower.sendEmailNotifications

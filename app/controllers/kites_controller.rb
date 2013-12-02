@@ -18,23 +18,27 @@ class KitesController < ApplicationController
   @@kitesPerPage = 12
   helper KitesHelper
   
-  
+  # Hashtag search
+  def hashIndex
+    
+    @function = "#{params[:tag]} kites"
+    
+    @kites = Kite.TagSearch(current_user.id, params[:tag]).paginate(:page => params[:page], :per_page => @@kitesPerPage)
+    get_common_stats()
+    respond_to do |format|
+      format.html { render :template => 'kites/index' }# index.html.erb
+      format.xml  { render :xml => @kites }
+      format.js   { render :template => 'kites/index' }
+    end
+    
+  end
   
   # List all kites
   def index
     time_range = (1.week.ago..Time.now)
     
-     @kites = Kite.where(:sharelevel => "public").paginate(:page => params[:page], :per_page => @@kitesPerPage)
-     
-     
-     @kiteCount = Kite.any? ? Kite.count : 0
-          
-     @newKites = Kite.NewKitesCount(time_range)
-     @completedKites = Kite.CompletedKitesCount
-     @recentComments = Comment.order("created_at DESC").take(3)
-       
-     #Currently not supported since we don't have following yet, just randomly choose three
-     @popularKites = Kite.PopularKites
+     @kites = Kite.public_kites.paginate(:page => params[:page], :per_page => @@kitesPerPage)
+     get_common_stats()
      @function = "Explore Kites"
                         
     respond_to do |format|
@@ -47,15 +51,11 @@ class KitesController < ApplicationController
   # Show my kites
   def personalIndex
 
-    time_range = (1.week.ago..Time.now)
+    
         
      @kites = current_user.kites.paginate(:page => params[:page], :per_page => @@kitesPerPage)    
+     get_personal_stats()
      
-     @kiteCount = current_user.KiteCount
-     @newKites = current_user.NewKiteCount(time_range)
-     @completedKites = current_user.CompletedKitesCount
-       
-     @popularKites = current_user.RecentActivity
      @function = "My Kites"
      
     respond_to do |format|
@@ -67,16 +67,12 @@ class KitesController < ApplicationController
   
   # Show kites I follow and support
   def mySupportIndex
-    time_range = (1.week.ago..Time.now)
+    
        
      @kiteIDs = current_user.follwing.collect{|a| a.kite_id}.flatten
      @kites = Kite.find(@kiteIDs).paginate(:page => params[:page], :per_page => @@kitesPerPage)    
+     get_personal_stats()
      
-     @kiteCount = current_user.KiteCount
-     @newKites = current_user.NewKiteCount(time_range)
-     @completedKites = current_user.CompletedKitesCount
-       
-     @popularKites = current_user.RecentActivity
      @function = "Member Kites"
      
     respond_to do |format|
@@ -313,7 +309,7 @@ class KitesController < ApplicationController
     @kite.CreateDate = Date.today
     @kite.user = current_user
     @kite.Completed = false
-    # @kite.sharelevel = "public"
+    @kite.tag = (@kite.Description.scan(/#\S+/) + @kite.Details.scan(/#\S+/)).uniq
 
     respond_to do |format|
       if @kite.save()
@@ -330,11 +326,14 @@ class KitesController < ApplicationController
   # as parameters
   def update
     @kite = Kite.find(params[:id])
-      
+    
     if @kite.UserCanView(current_user) == false
       redirect_to(current_user, :error => "The kite you have selected is private and cannot be viewed.")
     else
-
+      
+      #Need to re-extract tags
+      @kite.tag = ((@kite.Description.scan(/#\S+/) + @kite.Details.scan(/#\S+/)).uniq).join(",")
+      
       respond_to do |format|
         if @kite.update_attributes(params[:kite])
           format.html { redirect_to(@kite, :notice => 'Kite was successfully updated.') }
@@ -458,5 +457,23 @@ class KitesController < ApplicationController
       false
     end
     
+    def get_common_stats
+      time_range = (1.week.ago..Time.now)
+      @kiteCount = Kite.any? ? Kite.count : 0
+                
+       @newKites = Kite.NewKitesCount(time_range)
+       @completedKites = Kite.CompletedKitesCount
+       @recentComments = Comment.order("created_at DESC").take(3)
+       @popularKites = Kite.PopularKites
+    end
+    
+    def get_personal_stats
+      time_range = (1.week.ago..Time.now)
+      @kiteCount = current_user.KiteCount
+       @newKites = current_user.NewKiteCount(time_range)
+       @completedKites = current_user.CompletedKitesCount
+         
+       @popularKites = current_user.RecentActivity
+    end
     
 end

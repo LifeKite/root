@@ -25,11 +25,7 @@
 		  <% end %>
 			<div class="column-1">
 				<%= f.text_field :Description, :placeholder => "Name", :onkeyup => "CheckMaxLength(this);", :maxLength => 70 %>
-				<!--<select>
-					<option value="">Select an icon</option>
-					
-				</select>-->
-				<!-- PLACEHOLDER. I think your best bet is to use a javascript upload plugin that can integrate with Rails. I've styled these elements in hopes that you can reuse them within whatever plugin you choose -->
+				
 				<div >
 					<%if @isAutoAdd %>
 						<%= f.hidden_field :ImageLocation, :class => "remote-image-field" %>
@@ -40,8 +36,8 @@
 				</div>
 			</div>
 			<div class="column-2">
+				<%= f.text_field :category, :placeholder => "Add Category"%>
 				
-				<input type="text" name="add-tags" placeholder="Add Tags">
 				<% if @isAutoAdd.nil? %>
 					<div id="btnAddImage" class="button add-button add-image">+ Upload image</div>
 				<% end %>

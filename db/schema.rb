@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131028174823) do
+ActiveRecord::Schema.define(:version => 20131129151141) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20131028174823) do
     t.datetime "updated_at", :null => false
     t.boolean  "isHelpful"
     t.text     "Title"
+    t.text     "tag"
   end
 
   create_table "follwings", :force => true do |t|
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20131028174823) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "kite_id"
+    t.text     "tag"
   end
 
   create_table "kites", :force => true do |t|
@@ -81,6 +83,8 @@ ActiveRecord::Schema.define(:version => 20131028174823) do
     t.string   "kiteimage_content_type"
     t.integer  "kiteimage_file_size"
     t.datetime "kiteimage_updated_at"
+    t.string   "category"
+    t.text     "tag"
   end
 
   create_table "notifications", :force => true do |t|

@@ -26,13 +26,13 @@
 	</div>
 	<div class="kite-nav-content">
 		<div class="kite-nav-header">
-			<h1 class="detail-kite-title"><%=@kite.Description%></h1>
+			<h1 class="detail-kite-title"><%=formatless_tags(@kite.Description)%></h1>
 			<p class="dateline">Created <%=@kite.FormattedCreateDate%></p>
 		</div>
 		<div class="detail-section info">
 			<div class="kite-nav-content-section">
 				<h3>Overview</h3>
-				<%= content_tag(:p, @kite.Details)%>
+				<%= format_tags(@kite.Details)%>
 			</div>
 			<div class="kite-nav-content-section">
 				<h3>Progress</h3>

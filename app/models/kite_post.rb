@@ -14,7 +14,13 @@ class KitePost < ActiveRecord::Base
         :storage => :s3,
         :s3_credentials => { :access_key_id => @@access_key_id, :secret_access_key => @@secret_access_key},
         :bucket => @@aws_bucket_id
+       
+  scope :associated_kite, joins(:kite)
         
+  scope :search_by_tag, lambda { |tag|
+        (tag ? where(["kite_posts.tag LIKE ?", '%#'+ tag + '%'])  : {})
+  } 
+         
   def FormattedCreateDate
     return self.created_at.strftime("%B %d, %Y")
   end

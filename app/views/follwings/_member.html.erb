@@ -4,26 +4,26 @@
 		<%= f.autocomplete_field :user_email, autocomplete_user_name_follwings_path,
 			:id_element => ".idholder", :class => "membername-input" %>
 		<%= f.hidden_field :user_id, :class => "idholder" %>
-	<%= f.submit title, {:class => "create-button button like-button" , disabled: true}%>
+	<%= f.submit title, {:class => "create-button button like-button member-create" , disabled: true}%>
 	
 <% end %>
 <script type="text/javascript">
 	$('#follwing_user_email').val("");
 	$('#follwing_user_id').val("");
-	$('.create-button').prop('disabled',true);
+	$('.member-create').prop('disabled',true);
 	$('#follwing_user_email').bind('railsAutocomplete.select', function(event, data){
 		  if($('#follwing_user_id').val() != "") {
-		  	$('.create-button').prop('disabled',false);
+		  	$('.member-create').prop('disabled',false);
 		  } else {
-		  	$('.create-button').prop('disabled',true);
+		  	$('.member-create').prop('disabled',true);
 		  }
 	});
 	$('#follwing_user_email').change(function(){
 		if($('#follwing_user_email').text() != "") {
-		  	$('.create-button').prop('disabled',false);
+		  	$('.member-create').prop('disabled',false);
 		  } else {
 		  	$('#follwing_user_id').val("");
-		  	$('.create-button').prop('disabled',true);
+		  	$('.member-create').prop('disabled',true);
 		  }
 	});
 </script>

@@ -16,6 +16,7 @@ class Kite < ActiveRecord::Base
   
   require 'net/http'
   require 'aws/s3'
+
   
   @@aws_bucket_id = ENV['AMAZON_BUCKET_ID']
   @@access_key_id = ENV['AMAZON_ACCESS_KEY_ID']
@@ -33,7 +34,39 @@ class Kite < ActiveRecord::Base
     :default_url => "/images/missing_:style.png"
     
   validates_attachment_presence :kiteimage
-      
+    
+  #Scopes
+  
+  #public kites
+  scope :public_kites,lambda { where(:sharelevel => "public" )}
+  
+  #my kites
+  scope :my_kites, lambda { |user_id|
+    (user_id ? where(:user_id => user_id) : {})
+  }
+  
+  #kites shared with me
+  scope :kites_shared_with_me, lambda { |user_id|
+    (user_id ? Kite.joins(:follwings).where('follwings.Type' => "member").where('follwings.user_id' => user_id) : {})
+  }
+  
+  #kites visible to me
+  scope :kites_visible_to_me, lambda { |user_id|
+    (user_id ? (public_kites.merge(my_kites(user_id)).merge(kites_shared_with_me(user_id))).uniq : {})
+  }
+  
+  
+  
+  #search for kite by tag
+  scope :search_by_tag, lambda { |tag|
+      (tag ? where(["kites.tag LIKE ?", '%#'+ tag + '%'])  : {})
+  } 
+  
+  #search by post tag
+  scope :search_by_postTag, lambda { |tag|
+    (tag ? where(["kite_posts.tag LIKE ?", '%#' + tag + '%']) : {})
+  }
+  
   def self.NewKitesCount(time_range)
     return Kite.any? && Kite.where(:CreateDate => time_range).any? ? Kite.where(:CreateDate => time_range).count : 0
   end
@@ -49,7 +82,13 @@ class Kite < ActiveRecord::Base
       .order("likes")
       .take(20)
       .sample(3)
-   
+  end
+  
+  def self.TagSearch(current_user, tag)
+    @kites = kites_visible_to_me(current_user).search_by_tag(tag)
+    @kitePostKites = Kite.joins(:kitePosts).search_by_postTag(tag) 
+    
+    return (@kites + @kitePostKites).uniq
   end
   
   #def self.ReformatStorage
