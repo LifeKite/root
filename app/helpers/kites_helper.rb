@@ -11,6 +11,10 @@ module KitesHelper
     content_tag(:p, formatless_tags(text))
   end
   def formatless_tags text
-  raw(text ? text.gsub(/#\S+/) { |m| link_to(m,hashIndex_kites_path(:tag=>m.strip[1..-1]))}: "")
+    # Replace hashtags with links to the coresponding hash index search
+    raw(text ? text.gsub(/#\S+/) { |m| link_to(m,hashIndex_kites_path(:tag=>m.strip[1..-1]))}: "")
+    
+    # Replace address tags with links to the coresponding user index search
+    raw(text ? text.gsub(/@\S+/) { |m| link_to(m,userPublicKitesIndex_kites_path(:username=>m.strip[1..-1]))} : "")
   end
 end

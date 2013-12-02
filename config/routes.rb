@@ -75,6 +75,7 @@ Rlifekite::Application.routes.draw do
       get :newFromSource
       get :mySupportIndex
       get :hashIndex
+      get :userPublicKitesIndex
     end
     member do
       put 'complete'

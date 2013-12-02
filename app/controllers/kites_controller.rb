@@ -18,6 +18,21 @@ class KitesController < ApplicationController
   @@kitesPerPage = 12
   helper KitesHelper
   
+  # Show the public and shared kites of a given user
+  def userPublicKitesIndex
+    
+    @function = "#{params[:username]}'s kites"
+    @kites = Kite.public_kites.joins(:user).where("users.username" => params[:username]).paginate(:page => params[:page], :per_page => @@kitesPerPage)
+    get_common_stats()
+    
+    respond_to do |format|
+      format.html { render :template => 'kites/index' }# index.html.erb
+      format.xml  { render :xml => @kites }
+      format.js   { render :template => 'kites/index' }
+    end
+    
+  end
+  
   # Hashtag search
   def hashIndex
     
@@ -51,8 +66,6 @@ class KitesController < ApplicationController
   # Show my kites
   def personalIndex
 
-    
-        
      @kites = current_user.kites.paginate(:page => params[:page], :per_page => @@kitesPerPage)    
      get_personal_stats()
      
