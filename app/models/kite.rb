@@ -40,6 +40,9 @@ class Kite < ActiveRecord::Base
   #public kites
   scope :public_kites,lambda { where(:sharelevel => "public" )}
   
+  #private kites
+  scope :private_kites, lambda { where(:sharelevel => "private")}
+    
   #my kites
   scope :my_kites, lambda { |user_id|
     (user_id ? where(:user_id => user_id) : {})
@@ -52,7 +55,7 @@ class Kite < ActiveRecord::Base
   
   #kites visible to me
   scope :kites_visible_to_me, lambda { |user_id|
-    (user_id ? (public_kites.merge(my_kites(user_id)).merge(kites_shared_with_me(user_id))).uniq : {})
+    (user_id ? (Kite.public_kites + Kite.my_kites(user_id) + Kite.kites_shared_with_me(user_id)).uniq : {})
   }
   
   
@@ -85,7 +88,8 @@ class Kite < ActiveRecord::Base
   end
   
   def self.TagSearch(current_user, tag)
-    @kites = kites_visible_to_me(current_user).search_by_tag(tag)
+    @kites = (public_kites.search_by_tag(tag) + my_kites(current_user).private_kites.search_by_tag(tag) +
+      kites_shared_with_me(current_user).search_by_tag(tag)).uniq
     @kitePostKites = Kite.joins(:kitePosts).search_by_postTag(tag) 
     
     return (@kites + @kitePostKites).uniq

@@ -25,7 +25,7 @@
 				<!-- Begin comment feed -->
 				<% for summarykite in @popularKites %>
 				<li class="kite-feed-item">
-					<span class="headline"><%=h link_to summarykite.Description, @summarykite%></span><br>
+					<span class="headline"><%=h link_to summarykite.Description, summarykite%></span><br>
 					<span class="details"><%=h summarykite.user.KosherUsername %> | <a>23 Following</a></span>
 				</li>
 				<%end%>
