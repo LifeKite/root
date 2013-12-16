@@ -253,6 +253,9 @@ class KitesController < ApplicationController
       @following = @kite.follwings.where(:user_id => @user.id, :Type => "member").first()
     end
     
+    user = User.find(@userID)
+    send_kite_update_notification("You have been added as a member of a kite.", @kite, user)
+    
     respond_to do |format| 
       if @following && @following.save()
         format.html { redirect_to(@kite, :notice => 'Kite has been followed.')}
@@ -364,7 +367,7 @@ class KitesController < ApplicationController
     #Check for at addressing, notify target user
     targetUsers.each do |tu|
       user = User.where(:username => tu..strip[1..-1]).first
-      send_kite_update_notification(message, kite, user)
+    send_kite_update_notification("Someone has mentioned you on their kite.", @kite, user)
     end
     
     respond_to do |format|
