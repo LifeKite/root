@@ -1,0 +1,5 @@
+<li class="kite-feed-item kite-feed-heart">
+		<span class="headline">&nbsp;</span><br>
+		<span class="details"><%=h link_to item.follower.KosherUsername, item.kite%> | 
+			<a href='<%=h kite_path(item.kite)%>'><%=h item.kite.LikeCount%> Following</a></span>
+</li>

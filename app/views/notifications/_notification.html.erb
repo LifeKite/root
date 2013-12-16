@@ -1,0 +1,6 @@
+<li id="notification-<%=notification.id%>" class="kite-feed-item kite-feed-comment">
+	<span class="headline"><a href="<%=h notification.link%>"><%=notification.message%></span>
+	<span class="details"><%=h link_to notification.user.KosherUsername, userPublicKitesIndex_kites_path(notification.user.username)%></span>
+	<%= link_to "Clear",  notification, :method => :delete, 
+		:remote => true, :disable_with => "", :class => "delete-link"%>
+</li>

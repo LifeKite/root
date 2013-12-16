@@ -12,20 +12,19 @@ class KitePostsController < ApplicationController
   def create
     @kitePost = KitePost.new(params["kite_post"])
     @kitePost.kite = Kite.find(params[:kite_post][:kite_id])    
-    @kitePost.tag = @kitePost.text.scan(/#\S+/).join(",")
+    @kitePost.tag = @kitePost.text.scan(HASHTAG_REGEX).join(",")
+    targetUsers = @kitePost.text.scan(USERTAG_REGEX).join(",")
     
     # Notify all subscribers
-    @kitePost.kite.follwings.where(:Type => "member").each do |member|
-      if member.follower.sendEmailNotifications
-        @notification = Notification.new(
-                :message => "One of the kites you follow has been updated.",
-                :user => member.follower,
-                :link => kite_url(@kitePost.kite))   
-        
-        NotificationMailer.notification_email(@notification).deliver
-        
-        @notification.save
-      end
+    @kitePost.kite.followers.each do |member|
+      send_kite_post_update_notification("One of the kites that you follow has been updated.", 
+        @kitePost.kite, member)
+    end
+    
+    # Notify anyone who has been specifically mentioned as well
+    targetUsers.each do |tu|
+      user = User.first(:username => tu..strip[1..-1])
+      send_kite_update_notification("Someone has mentioned you in their kite status.", @kitePost.kite, user)
     end
           
     respond_to do |format|
@@ -79,5 +78,17 @@ class KitePostsController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @kitePost }
     end
+  end
+  
+  private
+  def send_kite_post_update_notification(message, kite, user)
+    @notification = Notification.new(
+      :message => message,
+      :user => user,
+      :link => kite_url(kite)) 
+    if user && kite.user.sendEmailNotifications
+      NotificationMailer.notification_email(@notification).deliver
+    end    
+    @notification.save
   end
 end

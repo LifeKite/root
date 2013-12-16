@@ -1,0 +1,6 @@
+<li class="kite-feed-item kite-feed-comment">
+	<span class="headline"><%= link_to truncate(item.content, :length =>40, :omission => '...(continued)'), item.kite %></span><br>
+	<span class="details"><%=h link_to item.user.KosherUsername, item.kite %> | 
+		<a href='<%=h kite_path(item.kite)%>'><%=h item.kite.LikeCount%> Following</a>
+	</span>
+</li>

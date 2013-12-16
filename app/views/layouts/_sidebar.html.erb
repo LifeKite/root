@@ -20,9 +20,24 @@
 		<div class="active-flag">Member Kites</div>
 	</div>
 	</a>
+	<% if current_user && current_user.Notifications.count > 0 %>
+	
+		<div class="show-notifications sidebar-button sidebar-nav-button notification">
+			<span><%= current_user.Notifications.count %></span>
+			<div class="active-flag">Notifications</div>
+		</div>
+	
+	<%end%>
 	<a href="">
 	<div class="help sidebar-button">
 		<div class="active-flag">Help</div>
 	</div>
 	</a>
 </div>
+<% if current_user %>
+<div class="notification-nav sidebar-detail-section notification hidden">
+	<h2>Notifications</h2>
+	<%= render current_user.Notifications.order("created_at DESC") %>
+</div>
+<%end%>
+	

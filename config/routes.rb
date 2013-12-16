@@ -23,7 +23,7 @@ Rlifekite::Application.routes.draw do
   
   resources :home
   
-  resources :notification
+  resources :notifications
   
   resources :sharedpurposes
   
@@ -76,6 +76,7 @@ Rlifekite::Application.routes.draw do
       get :mySupportIndex
       get :hashIndex
       get :userPublicKitesIndex
+      get :kite_general_search
     end
     member do
       put 'complete'
@@ -95,12 +96,7 @@ Rlifekite::Application.routes.draw do
     end
   end
   
-  resources :notification do
-    member do
-      put 'markViewed'
-    end
-  end
-  
+    
   resources :sharedpurpose do
     member do
       put 'promote'

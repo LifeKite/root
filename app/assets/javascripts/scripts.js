@@ -14,6 +14,12 @@ $(function() {
 		$('#page-footer').toggleClass('hidden');
 	});
 
+	$('.sidebar-nav-button').click(function() {
+		
+		$('.sidebar-detail-section').toggleClass('hidden');
+		$('.sidebar-detail-section').jScrollPane();
+	});
+
 	// Kite Nav Navigation
 	$('.kite-nav-button').click(function() {
 		// Toggle the button active state

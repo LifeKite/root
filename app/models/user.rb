@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   has_many :follwing
   
   scope :search_by_fullname_or_username, lambda { |name|
-    (name ? where(["firstname LIKE ? or lastname LIKE ? or username LIKE ? or firstname || ' ' || lastname LIKE ?", '%'+ name + '%', '%'+ name + '%', '%'+ name + '%','%'+ name + '%' ])  : {})
+    (name ? where(["lower(firstname) LIKE ? or lower(lastname) LIKE ? or lower(username) LIKE ? or lower(firstname) || ' ' || lower(lastname) LIKE ?", '%'+ name.downcase + '%', '%'+ name.downcase + '%', '%'+ name.downcase + '%','%'+ name.downcase + '%' ])  : {})
   }
     
   # Include default devise modules. Others available are:

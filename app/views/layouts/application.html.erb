@@ -16,8 +16,7 @@
 <div id="container" class="container-fluid">
 	
   <%= render 'layouts/header'%>
-  <div class="alert alert-success span12" style="display: none;"><%= notice %></div>
-  <div class="alert alert-error span12" style="display: none;"><%= alert %></div>
+  <%= render 'layouts/messages' %>
   	  <% if !current_user.nil? %>
   	  	<%= render 'layouts/sidebar' %>
   	  <% end %>

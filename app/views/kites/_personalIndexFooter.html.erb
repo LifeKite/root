@@ -20,59 +20,23 @@
 		<div class="feed-side">
 			<ul class="kite-feed">
 				<% if @popularKites.count > 0 %>
-				<% for item in @popularKites[0..2] %>
-					<% if item.instance_of?(Comment) %>
-						<li class="kite-feed-item kite-feed-comment">
-						<span class="headline"><%= link_to truncate(item.content, :length =>40, :omission => '...(continued)'), item.kite %></span><br>
-						<span class="details"><%=h link_to item.user.KosherUsername, item.kite %> | 
-							<a href='<%=h kite_path(item.kite)%>'><%=h item.kite.LikeCount%> Following</a></span>
-					<% else %>
-						<li class="kite-feed-item kite-feed-heart">
-						<span class="headline">&nbsp;</span><br>
-						<span class="details"><%=h link_to item.follower.KosherUsername, item.kite%> | 
-							<a href='<%=h kite_path(item.kite)%>'><%=h item.kite.LikeCount%> Following</a></span>
+					<% for item in @popularKites[0..2] %>
+						<%= render item.instance_of?(Comment) ? 'comments/commentSummary' : 'follwings/follwingSummary',
+						  :item => item %>
 					<% end %>
-					</li>
-				<% end %>
 				<% end %>
 			</ul>
 		</div>
 		<div class="feed-side">
 			<ul class="kite-feed">
 				<% if @popularKites.count > 3 %>
-				<% for item in @popularKites[3..5]%>
-					<% if item.instance_of?(Comment) %>
-						<li class="kite-feed-item kite-feed-comment">
-						<span class="headline"><%= link_to truncate(item.content, :length =>40, :omission => '...(continued)'), item.kite %></span><br>
-						<span class="details"><%=h link_to item.user.KosherUsername, item.kite %> | 
-							<a href='<%=h kite_path(item.kite)%>'><%=h item.kite.LikeCount%> Following</a></span>
-					<% else %>
-						<li class="kite-feed-item kite-feed-heart">
-						<span class="headline">&nbsp;</span><br>
-						<span class="details"><%=h link_to item.follower.KosherUsername, item.kite%> | 
-							<a href='<%=h kite_path(item.kite)%>'><%=h item.kite.LikeCount%> Following</a></span>
+					<% for item in @popularKites[3..5]%>
+						<%= render item.instance_of?(Comment) ? 'comments/commentSummary' : 'follwings/follwingSummary',
+							:item => item %>
 					<% end %>
-					</li>
-				<% end %>
 				<% end %>
 			</ul>
 		</div>
-		<div class="feed-side">
-			<ul class="kite-feed">
-				<% if @popularKites.count > 6 %>
-				<% for item in @popularKites[6..8]%>
-					<% if item.instance_of?(Comment) %>
-						<li class="kite-feed-item kite-feed-comment">
-						<span class="headline"><%= link_to truncate(item.content, :length =>40, :omission => '...(continued)'), item.kite %></span><br>
-						<span class="details"><%=h link_to item.user.KosherUsername, item.kite%> | <a href='<%=h item.kite%>'><%=h item.kite.LikeCount%> Following</a></span>
-					<% else %>
-						<li class="kite-feed-item kite-feed-heart">
-						<span class="details"><%=h link_to item.follower.KosherUsername, item.kite%> | <a href='<%=h item.kite%>'><%=h item.kite.LikeCount%> Following</a></span>
-					<% end %>
-					</li>
-				<% end %>
-				<% end %>
-			</ul>
-		</div>
+		
 	</div>
 </footer>

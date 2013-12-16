@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
    
   def after_sign_in_path_for(resource)
 
-    debugger
     sign_in_url = new_session_path(resource, :only_path => false)
     sign_up_url = new_registration_path(resource, :only_path => false)  
     

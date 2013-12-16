@@ -12,17 +12,14 @@ class KitesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
   before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia, :Join, :Unjoin]
-    
-  # Minimum supported dimensions for web images that we make kites out of
-  @@image_dimension_limit = 150
-  @@kitesPerPage = 12
+   
   helper KitesHelper
   
   # Show the public and shared kites of a given user
   def userPublicKitesIndex
     
     @function = "#{params[:username]}'s kites"
-    @kites = Kite.public_kites.joins(:user).where("users.username" => params[:username]).paginate(:page => params[:page], :per_page => @@kitesPerPage)
+    @kites = Kite.public_kites.joins(:user).where("users.username" => params[:username]).paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
     get_common_stats()
     
     respond_to do |format|
@@ -38,7 +35,7 @@ class KitesController < ApplicationController
     
     @function = "#{params[:tag]} kites"
     
-    @kites = Kite.TagSearch(current_user.id, params[:tag]).paginate(:page => params[:page], :per_page => @@kitesPerPage)
+    @kites = Kite.TagSearch(current_user.id, params[:tag]).paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
     get_common_stats()
     respond_to do |format|
       format.html { render :template => 'kites/index' }# index.html.erb
@@ -52,7 +49,7 @@ class KitesController < ApplicationController
   def index
     time_range = (1.week.ago..Time.now)
     
-     @kites = Kite.public_kites.paginate(:page => params[:page], :per_page => @@kitesPerPage)
+     @kites = Kite.public_kites.paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
      get_common_stats()
      @function = "Explore Kites"
                         
@@ -66,7 +63,7 @@ class KitesController < ApplicationController
   # Show my kites
   def personalIndex
 
-     @kites = current_user.kites.paginate(:page => params[:page], :per_page => @@kitesPerPage)    
+     @kites = current_user.kites.paginate(:page => params[:page], :per_page => KITES_PER_PAGE)    
      get_personal_stats()
      
      @function = "My Kites"
@@ -83,7 +80,7 @@ class KitesController < ApplicationController
     
        
      @kiteIDs = current_user.follwing.collect{|a| a.kite_id}.flatten
-     @kites = Kite.find(@kiteIDs).paginate(:page => params[:page], :per_page => @@kitesPerPage)    
+     @kites = Kite.find(@kiteIDs).paginate(:page => params[:page], :per_page => KITES_PER_PAGE)    
      get_personal_stats()
      
      @function = "Member Kites"
@@ -112,16 +109,49 @@ class KitesController < ApplicationController
     end
   end
   
+  def kite_general_search
+    
+    text = params[:text]
+    searchresults = []
+    
+    #attempt to pull out hash and at tags first, search for them independently
+    hashtags = text.scan(HASHTAG_REGEX)
+    attags = text.scan(USERTAG_REGEX)
+   
+    hashtags.each do |h|
+      searchresults  = Kite.TagSearch(current_user.id, h.strip[1..-1])
+    end
+    attags.each do |a|
+      searchresults  = (searchresults + Kite.public_kites.joins(:user).where("users.username" => a.strip[1..-1])).uniq
+    end
+    
+    # Now that we've used those tags to death, strip them out so we can search everything else
+    text.gsub!(HASHTAG_REGEX)
+    text.gsub!(USERTAG_REGEX)
+    
+    #do a more general search of kite names, descriptions and details
+    searchresults  = (searchresults + Kite.where(Kite.arel_table[:Description].matches("%#{text}%").or(Kite.arel_table[:Details].matches("%#{text}%")))).uniq
+    @function = "Search Results"
+        
+    @kites = searchresults.paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
+    get_common_stats()
+    respond_to do |format|
+      format.html { render :template => 'kites/index' }# index.html.erb
+      format.xml  { render :xml => @kites }
+      format.js   { render :template => 'kites/index' }
+    end
+  end
+  
   # Open the view for a given kite
   def show
     @kite = Kite.find(params[:id])
     
     #Queue up a proto-comment
     @comment = Comment.new
-    @comments = @kite.comments.order("created_at DESC").paginate(:page => params[:commentpage], :per_page => @@kitesPerPage)
+    @comments = @kite.comments.order("created_at DESC").paginate(:page => params[:commentpage], :per_page => COMMENTS_PER_PAGE)
       
     @kitePost = KitePost.new
-    @kitePosts = @kite.kitePosts.order("created_at DESC").paginate(:page => params[:postpage], :per_page => 3)
+    @kitePosts = @kite.kitePosts.order("created_at DESC").paginate(:page => params[:postpage], :per_page => KITE_POSTS_PER_PAGE)
 
 
     if @kite.UserCanView(current_user)
@@ -145,7 +175,10 @@ class KitesController < ApplicationController
     @kite = Kite.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { if current_user.KiteCount >= ARBITRARY_KITE_LIMIT
+                      redirect_to(Kites, flash[:notice] => 'You cannot create more than #{@@arbitraryKiteLimit} kites.')
+                    end
+      } # new.html.erb
       format.xml  { render :xml => @kite }
     end
   end
@@ -176,7 +209,7 @@ class KitesController < ApplicationController
           rescue => ex
             logger.error("Failed to retrieve image dimensions for image: #{ex}")        
         end
-        if(!dimensions.nil? && dimensions.length > 1 && dimensions[0] > @@image_dimension_limit && dimensions[1] > @@image_dimension_limit )
+        if(!dimensions.nil? && dimensions.length > 1 && dimensions[0] > IMAGE_SQUARE_DIMENSION_LIMIT && dimensions[1] > IMAGE_SQUARE_DIMENSION_LIMIT )
           img = {:path => path,
             :source => doc.title,
             :alttext => image.attribute('alt').value
@@ -322,8 +355,18 @@ class KitesController < ApplicationController
     @kite.CreateDate = Date.today
     @kite.user = current_user
     @kite.Completed = false
-    @kite.tag = (@kite.Description.scan(/#\S+/) + @kite.Details.scan(/#\S+/)).uniq
-
+    text = @kite.Description + @kite.Details
+    if text
+      @kite.tag = text.scan(HASHTAG_REGEX).uniq.join(",")
+      targetUsers = text.scan(USERTAG_REGEX).uniq
+    end
+      
+    #Check for at addressing, notify target user
+    targetUsers.each do |tu|
+      user = User.where(:username => tu..strip[1..-1]).first
+      send_kite_update_notification(message, kite, user)
+    end
+    
     respond_to do |format|
       if @kite.save()
         format.html { redirect_to(@kite, :notice => "Kite was created successfully") }
@@ -344,8 +387,25 @@ class KitesController < ApplicationController
       redirect_to(current_user, :error => "The kite you have selected is private and cannot be viewed.")
     else
       
+      targetUsers = []
+      
       #Need to re-extract tags
-      @kite.tag = ((@kite.Description.scan(/#\S+/) + @kite.Details.scan(/#\S+/)).uniq).join(",")
+      text = @kite.Description + @kite.Details
+      if text
+        @kite.tag = text.scan(HASHTAG_REGEX).uniq.join(",")
+        targetUsers = text.scan(USERTAG_REGEX).uniq
+      end
+      
+      #Check for at addressing, notify target user
+      targetUsers.each do |tu|
+        user = User.where(:username => tu..strip[1..-1]).first
+        send_kite_update_notification("Someone has mentioned you on their kite.", @kite, user)
+      end
+      
+      #Let anyone following this kite know as well
+      @kite.followers.each do |fol|
+        send_kite_update_notification("A kite you are following has been updated.", @kite, fol)
+      end
       
       respond_to do |format|
         if @kite.update_attributes(params[:kite])
@@ -488,5 +548,17 @@ class KitesController < ApplicationController
          
        @popularKites = current_user.RecentActivity
     end
+    
+    def send_kite_update_notification(message, kite, user)
+      @notification = Notification.new(
+        :message => message,
+        :user => user,
+        :link => kite_url(kite)) 
+      if user && kite.user.sendEmailNotifications
+        NotificationMailer.notification_email(@notification).deliver
+      end    
+      @notification.save
+    end
+    
     
 end

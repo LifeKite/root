@@ -51,18 +51,24 @@ class CommentsController < ApplicationController
     @comment.content = params[:comment][:content]
     @comment.kite = Kite.find(params[:comment][:kite_id])
     @comment.user = current_user
-    @comment.tag = @comment.content.scan(/#\S+/).join(",")
+    @comment.tag = @comment.content.scan(HASHTAG_REGEX).join(",")
     @kite = Kite.find(@comment.kite_id)
-  
-    if @kite.user.sendEmailNotifications
-      @notification = Notification.new(
-        :message => "Someone has commented on your kite",
-        :user => @kite.user,
-        :link => kite_url(@kite))   
-
-      NotificationMailer.notification_email(@notification).deliver
-
-      @notification.save
+    targetUsers = @comment.content.scan(USERTAG_REGEX)
+    
+    send_comment_update_notification("Someone has commented on your kite", @comment.kite, 
+      @comment.content, @kite.user)
+    
+    # Also, anyone who was specifically mentioned should be notified
+    targetUsers.each do |tu|
+      user = User.where(:username => tu.strip[1..-1]).first
+      send_comment_update_notification("Someone has mentioned you in their kite status.", @comment.kite, 
+        @comment.content, user)
+    end
+      
+    # Also, let those following the kite know
+    @comment.kite.followers.each do |member|
+      send_comment_update_notification("A comment has been made on one of the kites you follow.", 
+      @comment.kite, @comment.content, member)
     end
     
     respond_to do |format|
@@ -151,5 +157,17 @@ class CommentsController < ApplicationController
       format.html { redirect_to(comments_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  private
+  def send_comment_update_notification(message, kite, comment, user)
+    @notification = Notification.new(
+      :message => message + ": " + comment,
+      :user => user,
+      :link => kite_url(kite)) 
+    if user && kite.user.sendEmailNotifications
+      NotificationMailer.notification_email(@notification).deliver
+    end    
+    @notification.save
   end
 end

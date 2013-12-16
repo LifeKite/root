@@ -43,7 +43,7 @@
 			
 			<!-- <div class="button add-button add-members">+ Add Members</div> -->
 			<%= f.submit "Update", {:class => "create-button button"} %>
-			<%= link_to 'Cancel', @kites, :class => "create-button button"%> 
+			<%= link_to 'Cancel', kite_path(@kite), :class => "create-button button"%> 
 			<%= f.file_field :kiteimage, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
 		<% end %>
 </div>
