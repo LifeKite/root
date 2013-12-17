@@ -1,19 +1,19 @@
 <div id="kite-nav" class="kite-nav hidden">
 	<div class="kite-nav-tab">
-		<div id="info" class="kite-nav-button info active">
+		<div id="info" class="kite-nav-button info active" title="Info">
 			<div class="active-flag">Info</div>
 		</div>
-		<div id="support" class="kite-nav-button heart">
+		<div id="support" class="kite-nav-button heart" title="Support">
 			<div class="active-flag">Support</div>
 		</div>
-		<div id="comments" class="kite-nav-button comments">
+		<div id="comments" class="kite-nav-button comments" title="Comments">
 			<div class="active-flag">Comments</div>
 		</div>
-		<div id="members" class="kite-nav-button members">
+		<div id="members" class="kite-nav-button members" title="Membership">
 			<div class="active-flag">Membership</div>
 		</div>
 		<% if current_user==@kite.user %>
-		<div id="settings" class="kite-nav-button settings">
+		<div id="settings" class="kite-nav-button settings" title="Settings">
 			<div class="active-flag">Settings</div>
 		</div>
 		<% end %>

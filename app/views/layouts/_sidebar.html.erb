@@ -37,7 +37,7 @@
 <% if current_user %>
 <div class="notification-nav sidebar-detail-section notification hidden">
 	<h2>Notifications</h2>
-	<%= render current_user.Notifications.order("created_at DESC") %>
+	<%= render partial: "notifications/notification" , collection: current_user.Notifications.order("created_at DESC")%>
 </div>
 <%end%>
 	

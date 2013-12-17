@@ -803,11 +803,31 @@ h1 {
 	background-color: #6a4256;
 }
 
+.kite-nav-button[title]:hover:before {
+	content: attr(title);
+	padding: 4px 8px;
+	color: #FFF;
+	position: absolute;
+	width: 110px;
+	left: -125px;
+	height: 42px;
+	top: 0;
+	white-space: nowrap;
+	z-index: 100;
+	-moz-border-radius: 5px; 
+  	-webkit-border-radius: 5px;  
+  	border-radius: 5px;  
+  	-moz-box-shadow: 0px 0px 4px #222;  
+  	-webkit-box-shadow: 0px 0px 4px #222;  
+  	box-shadow: 0px 0px 4px #222;  
+  	background-color: #6A4256; 
+}
+
 .kite-nav-button.active-flag {
 	display: none;
 }
 
-.kite-nav-button:hover.active-flag {
+.kite-nav-button.active-flag:hover {
 	position: absolute;
 	top: 0;
 	right: 52px;
@@ -821,6 +841,7 @@ h1 {
 .kite-nav-button.info:hover, .kite-nav-button.info.active {
 	background-image: url('/images/kite-nav-info-active.png');
 }
+
 .kite-nav-button.heart {
 	background-image: url('/images/kite-nav-heart.png');
 }
