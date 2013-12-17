@@ -4,6 +4,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.jscrollpane.min.js
+//= require jquery.touchdrag.js
+//= require jquery.mousewheel.js
 //= require jquery.inview.min.js
 //= require jquery.ui.widget.js
 //= require scripts.js
