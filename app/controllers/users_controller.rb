@@ -119,7 +119,7 @@ class UsersController < ApplicationController
     @user = current_user
     UserMailer.invite_email(current_user, params[:email]).deliver
     redirect_to(kites_path, :notify => "Your invitation has been sent")
-  end
+  end 
   
   private
   def verify_is_admin

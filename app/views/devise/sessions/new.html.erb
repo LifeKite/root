@@ -8,5 +8,8 @@
 			<%= f.password_field :password, :placeholder => "Password" %>
 			<%= f.submit "Login", {:class => "login-button button"} %>
 		<%end%>
+		<%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+  			<%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+		<% end -%>
 	</div>
 </div>
