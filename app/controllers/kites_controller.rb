@@ -366,7 +366,7 @@ class KitesController < ApplicationController
       
     #Check for at addressing, notify target user
     targetUsers.each do |tu|
-      user = User.where(:username => tu..strip[1..-1]).first
+      user = User.where(:username => tu.strip[1..-1]).first
     send_kite_update_notification("Someone has mentioned you on their kite.", @kite, user)
     end
     
@@ -401,7 +401,7 @@ class KitesController < ApplicationController
       
       #Check for at addressing, notify target user
       targetUsers.each do |tu|
-        user = User.where(:username => tu..strip[1..-1]).first
+        user = User.where(:username => tu.strip[1..-1]).first
         send_kite_update_notification("Someone has mentioned you on their kite.", @kite, user)
       end
       
