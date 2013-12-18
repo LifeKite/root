@@ -6,16 +6,19 @@ class ApplicationController < ActionController::Base
 
     sign_in_url = new_session_path(resource, :only_path => false)
     sign_up_url = new_registration_path(resource, :only_path => false)  
-    password_reset_url = edit_password_path(resource, :only_path => false)
-    
-    if (request.referer == sign_in_url || request.referer == sign_up_url || request.referer == password_reset_url)
+       
+    if (request.referer == sign_in_url || request.referer == sign_up_url )
         kites_path
-      else
+    else
         request.referer
-      end
+    end
   end
   
   def after_sign_out_path_for(resource_or_scope)
     root_path
+  end
+  
+  def after_reseting_password_path_for(resource)
+    kites_path
   end
 end
