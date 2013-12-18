@@ -6,8 +6,9 @@ class ApplicationController < ActionController::Base
 
     sign_in_url = new_session_path(resource, :only_path => false)
     sign_up_url = new_registration_path(resource, :only_path => false)  
+    password_reset_url = edit_password_path(resource, :only_path => false)
     
-    if (request.referer == sign_in_url || request.referer == sign_up_url)
+    if (request.referer == sign_in_url || request.referer == sign_up_url || request.referer == password_reset_url)
         kites_path
       else
         request.referer
