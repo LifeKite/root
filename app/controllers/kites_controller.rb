@@ -553,14 +553,16 @@ class KitesController < ApplicationController
     end
     
     def send_kite_update_notification(message, kite, user)
-      @notification = Notification.new(
-        :message => message,
-        :user => user,
-        :link => kite_url(kite)) 
-      if user && kite.user.sendEmailNotifications
-        NotificationMailer.notification_email(@notification).deliver
-      end    
-      @notification.save
+      if kite.user != user
+        @notification = Notification.new(
+          :message => message,
+          :user => user,
+          :link => kite_url(kite)) 
+        if user && kite.user.sendEmailNotifications
+          NotificationMailer.notification_email(@notification).deliver
+        end    
+        @notification.save
+      end
     end
     
     
