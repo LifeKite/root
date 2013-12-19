@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
       logger.info "Received login from " + request.path
     end
     
-    if (request.path == sign_in_url || request.path == sign_up_url || request.path.nil? )
+    if (request.path == sign_in_url || request.path == sign_up_url || request.path.nil? || request.path == paswd_rst_url )
       logger.info "Directing to kites path"  
       kites_path
     else
