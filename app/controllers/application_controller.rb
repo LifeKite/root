@@ -7,14 +7,15 @@ class ApplicationController < ActionController::Base
     sign_in_url = new_session_path(resource, :only_path => true)
     sign_up_url = new_registration_path(resource, :only_path => true) 
     paswd_rst_url = edit_password_path(resource, :only_path => true) 
-    debugger
+    passwd_url = password_path(resource, :only_path => true)
     if request.path.nil?
       logger.info "Null referrer"
     else
       logger.info "Received login from " + request.path
     end
     
-    if (request.path == sign_in_url || request.path == sign_up_url || request.path.nil? || request.path == paswd_rst_url )
+    if (request.path == sign_in_url || request.path == sign_up_url || 
+         request.path.nil? || request.path == paswd_rst_url || request.path == passwd_url)
       logger.info "Directing to kites path"  
       kites_path
     else

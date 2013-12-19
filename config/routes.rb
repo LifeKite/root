@@ -60,9 +60,6 @@ Rlifekite::Application.routes.draw do
   end
   
   resources :users do
-      collection do
-        put 'ForcePasswordReset'
-      end
       member do
         put 'update'
         post 'GetKites'
