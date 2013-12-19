@@ -7,11 +7,13 @@ class ApplicationController < ActionController::Base
     sign_in_url = new_session_path(resource, :only_path => false)
     sign_up_url = new_registration_path(resource, :only_path => false) 
     paswd_rst_url = edit_password_path(resource, :only_path => false) 
-       
+    logger.info "Received login from " + request.referer
     if (request.referer == sign_in_url || request.referer == sign_up_url || request.referer.nil? )
-        kites_path
+      logger.info "Directing to kites path"  
+      kites_path
     else
-        request.referer
+      logger.info "Directing to referer path"
+      request.referer
     end
   end
   
@@ -20,6 +22,7 @@ class ApplicationController < ActionController::Base
   end
   
   def after_reseting_password_path_for(resource)
+    logger.info "Completed password reset, redirecting to kites..."
     kites_path
   end
 end
