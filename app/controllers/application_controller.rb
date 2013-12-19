@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     sign_up_url = new_registration_path(resource, :only_path => false) 
     paswd_rst_url = edit_password_path(resource, :only_path => false) 
        
-    if (request.referer == sign_in_url || request.referer == sign_up_url || request.referer.nil? || request.referer == paswd_rst_url)
+    if (request.referer == sign_in_url || request.referer == sign_up_url || request.referer.nil? )
         kites_path
     else
         request.referer
@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
   end
   
   def after_reseting_password_path_for(resource)
-    debugger
     kites_path
   end
 end
