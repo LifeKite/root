@@ -4,21 +4,22 @@ class ApplicationController < ActionController::Base
    
   def after_sign_in_path_for(resource)
     
-    sign_in_url = new_session_path(resource, :only_path => false)
-    sign_up_url = new_registration_path(resource, :only_path => false) 
-    paswd_rst_url = edit_password_path(resource, :only_path => false) 
-    if request.referer.nil?
+    sign_in_url = new_session_path(resource, :only_path => true)
+    sign_up_url = new_registration_path(resource, :only_path => true) 
+    paswd_rst_url = edit_password_path(resource, :only_path => true) 
+    debugger
+    if request.path.nil?
       logger.info "Null referrer"
     else
-      logger.info "Received login from " + request.referer
+      logger.info "Received login from " + request.path
     end
     
-    if (request.referer == sign_in_url || request.referer == sign_up_url || request.referer.nil? )
+    if (request.path == sign_in_url || request.path == sign_up_url || request.path.nil? )
       logger.info "Directing to kites path"  
       kites_path
     else
       logger.info "Directing to referer path"
-      request.referer
+      request.path
     end
   end
   

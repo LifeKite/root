@@ -9,6 +9,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of :kite
   
   require 'aws/s3'
+  require 'rails_autolink'
     
   @@aws_bucket_id = ENV['AMAZON_BUCKET_ID']
   @@access_key_id = ENV['AMAZON_ACCESS_KEY_ID']
