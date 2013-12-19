@@ -16,7 +16,7 @@
 		</div>
 		<div class="title"><%=comment.Title%></div>
 		<div class="date"><%= comment.created_at.strftime("%B %d, %Y") %></div>
-		<div class="the-comment"><%= simple_format(comment.content) %></div>
+		<div class="the-comment"><%= auto_link(simple_format(comment.content)) %></div>
 	</div>
 	<img src="/images/comment-separator.png">
 	<div class="author-info">
