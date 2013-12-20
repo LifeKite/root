@@ -20,7 +20,7 @@ class KitesController < ApplicationController
   # Show the public and shared kites of a given user
   def userPublicKitesIndex
     check_and_handle_kites_per_page_update(current_user, params)
-    @kitesPerPage = current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE
+    
     @function = "#{params[:username]}'s kites"
     @kites = Kite.public_kites.joins(:user).where("users.username" => params[:username]).paginate(:page => params[:page], :per_page => @kitesPerPage)
     get_common_stats()
@@ -37,7 +37,7 @@ class KitesController < ApplicationController
   def hashIndex
     check_and_handle_kites_per_page_update(current_user, params)
     @function = "#{params[:tag]} kites"
-    @kitesPerPage = current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE
+    
     @kites = Kite.TagSearch(current_user.id, params[:tag]).paginate(:page => params[:page], :per_page => @kitesPerPage)
     get_common_stats()
     respond_to do |format|
@@ -52,7 +52,7 @@ class KitesController < ApplicationController
   def index
      time_range = (1.week.ago..Time.now)
     check_and_handle_kites_per_page_update(current_user, params)
-     @kitesPerPage = current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE
+    
      @kites = Kite.public_kites.paginate(:page => params[:page], :per_page => @kitesPerPage)
      get_common_stats()
      @function = "Explore Kites"
@@ -67,7 +67,7 @@ class KitesController < ApplicationController
   # Show my kites
   def personalIndex
     check_and_handle_kites_per_page_update(current_user, params)
-     @kitesPerPage = current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE
+     
      @kites = current_user.kites.paginate(:page => params[:page], :per_page => @kitesPerPage)    
      get_personal_stats()
      
@@ -83,7 +83,7 @@ class KitesController < ApplicationController
   # Show kites I follow and support
   def mySupportIndex
     check_and_handle_kites_per_page_update(current_user, params)
-     @kitesPerPage = current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE
+    
      @kiteIDs = current_user.follwing.collect{|a| a.kite_id}.flatten
      @kites = Kite.find(@kiteIDs).paginate(:page => params[:page], :per_page => @kitesPerPage)    
      get_personal_stats()
@@ -138,7 +138,7 @@ class KitesController < ApplicationController
     searchresults  = (searchresults + Kite.where(Kite.arel_table[:Description].matches("%#{text}%").or(Kite.arel_table[:Details].matches("%#{text}%")))).uniq
     @function = "Search Results"
     check_and_handle_kites_per_page_update(current_user, params)
-    @kitesPerPage = current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE  
+    
     @kites = searchresults.paginate(:page => params[:page], :per_page => @kitesPerPage)
     get_common_stats()
     respond_to do |format|
@@ -577,5 +577,8 @@ class KitesController < ApplicationController
         current_user.kitesperpage = params[:kpp]
         current_user.save
       end
+      
+      @kitesPerPage = current_user && current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE
+      
     end
 end
