@@ -1529,6 +1529,29 @@ a.load-more-comments {
 	left: -70px;
 }
 
+.kitesPerPage {
+	padding-left: 50px;
+	padding-top: 4px;
+	clear: both;
+	float: right;
+	font-size: large;
+}
+
+.kitesPerPage ol {
+	list-style: none;
+	display: inline;
+	padding-left: 3px;
+}
+
+.kitesPerPage li {
+	display: inline;
+}
+
+.kitesPerPage li a {
+	color: blue;
+	font-weiht: bold;
+}
+
 .newfromsource {
 	padding-top: 0;
 }
@@ -1570,4 +1593,8 @@ a.load-more-comments {
 
 .field_with_errors input {
 	border: 1px solid red;
+}
+
+.kitesperpage-active {
+	font-weight: bold;
 }

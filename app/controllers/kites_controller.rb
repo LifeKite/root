@@ -15,11 +15,14 @@ class KitesController < ApplicationController
    
   helper KitesHelper
   
+  
+  
   # Show the public and shared kites of a given user
   def userPublicKitesIndex
-    
+    check_and_handle_kites_per_page_update(current_user, params)
+    @kitesPerPage = current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE
     @function = "#{params[:username]}'s kites"
-    @kites = Kite.public_kites.joins(:user).where("users.username" => params[:username]).paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
+    @kites = Kite.public_kites.joins(:user).where("users.username" => params[:username]).paginate(:page => params[:page], :per_page => @kitesPerPage)
     get_common_stats()
     
     respond_to do |format|
@@ -32,10 +35,10 @@ class KitesController < ApplicationController
   
   # Hashtag search
   def hashIndex
-    
+    check_and_handle_kites_per_page_update(current_user, params)
     @function = "#{params[:tag]} kites"
-    
-    @kites = Kite.TagSearch(current_user.id, params[:tag]).paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
+    @kitesPerPage = current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE
+    @kites = Kite.TagSearch(current_user.id, params[:tag]).paginate(:page => params[:page], :per_page => @kitesPerPage)
     get_common_stats()
     respond_to do |format|
       format.html { render :template => 'kites/index' }# index.html.erb
@@ -47,12 +50,13 @@ class KitesController < ApplicationController
   
   # List all kites
   def index
-    time_range = (1.week.ago..Time.now)
-    
-     @kites = Kite.public_kites.paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
+     time_range = (1.week.ago..Time.now)
+    check_and_handle_kites_per_page_update(current_user, params)
+     @kitesPerPage = current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE
+     @kites = Kite.public_kites.paginate(:page => params[:page], :per_page => @kitesPerPage)
      get_common_stats()
      @function = "Explore Kites"
-                        
+                             
     respond_to do |format|
       format.html { render :template => 'kites/index' }# index.html.erb
       format.xml  { render :xml => @kites }
@@ -62,8 +66,9 @@ class KitesController < ApplicationController
 
   # Show my kites
   def personalIndex
-
-     @kites = current_user.kites.paginate(:page => params[:page], :per_page => KITES_PER_PAGE)    
+    check_and_handle_kites_per_page_update(current_user, params)
+     @kitesPerPage = current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE
+     @kites = current_user.kites.paginate(:page => params[:page], :per_page => @kitesPerPage)    
      get_personal_stats()
      
      @function = "My Kites"
@@ -77,10 +82,10 @@ class KitesController < ApplicationController
   
   # Show kites I follow and support
   def mySupportIndex
-    
-       
+    check_and_handle_kites_per_page_update(current_user, params)
+     @kitesPerPage = current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE
      @kiteIDs = current_user.follwing.collect{|a| a.kite_id}.flatten
-     @kites = Kite.find(@kiteIDs).paginate(:page => params[:page], :per_page => KITES_PER_PAGE)    
+     @kites = Kite.find(@kiteIDs).paginate(:page => params[:page], :per_page => @kitesPerPage)    
      get_personal_stats()
      
      @function = "Member Kites"
@@ -132,8 +137,9 @@ class KitesController < ApplicationController
     #do a more general search of kite names, descriptions and details
     searchresults  = (searchresults + Kite.where(Kite.arel_table[:Description].matches("%#{text}%").or(Kite.arel_table[:Details].matches("%#{text}%")))).uniq
     @function = "Search Results"
-        
-    @kites = searchresults.paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
+    check_and_handle_kites_per_page_update(current_user, params)
+    @kitesPerPage = current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE  
+    @kites = searchresults.paginate(:page => params[:page], :per_page => @kitesPerPage)
     get_common_stats()
     respond_to do |format|
       format.html { render :template => 'kites/index' }# index.html.erb
@@ -565,5 +571,11 @@ class KitesController < ApplicationController
       end
     end
     
-    
+    def check_and_handle_kites_per_page_update(current_user, params)
+     
+      if(params.include?(:kpp) && current_user.kitesperpage != params[:kpp] && ALLOWABLE_KITES_PER_PAGE.include?(params[:kpp].to_i))
+        current_user.kitesperpage = params[:kpp]
+        current_user.save
+      end
+    end
 end

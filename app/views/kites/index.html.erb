@@ -13,6 +13,7 @@
 					<!-- End kite categories -->
 				</ul>
 			</div>
+			
 			<%= render "layouts/search"%>
 		</div>
 		<div class="kitescontainer">
@@ -22,13 +23,31 @@
 		</div>
 		<% if @kites.next_page %>
 		<div class="kite fake-kite">
-			<%= link_to 'Load More Kites', kites_path(:page => @kites.next_page), :class => 'load-more', :remote => true if @kites.next_page %>
+			<%= link_to 'Load More Kites', true_kites_path(:page => @kites.next_page), :class => 'load-more', :remote => true if @kites.next_page %>
 		</div>
 		<% end %>
+		
+		<div class="kitesPerPage">
+			<span>Show 
+				<ol id="kitesPerPage">
+					<% ALLOWABLE_KITES_PER_PAGE.each do |kpp| %>
+						<% if kpp == @kitesPerPage %>
+							<li class="kitesperpage-active"><%=kpp%></option>
+						<% else %>
+							<li><%= link_to "[#{kpp}]", true_kites_path(:page => @kites.current_page, :kpp => kpp) %></li>
+						<% end %>
+					<% end %>
+				</ol>
+				kites per page.
+			 </span>
+		</div>
+		
 		<% if @function == "My Kites" || @function == "Member Kites"%>
 			<%= render "personalIndexFooter" %>
 		<% else %>
 			<%= render "indexFooter"%>
 		<% end %>
+		
+		
 	</div>
 </div>

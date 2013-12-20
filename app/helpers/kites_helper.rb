@@ -6,5 +6,7 @@ module KitesHelper
     return false  
   end 
   
-  
+  def true_kites_path(parameters = {})
+    "/kites/#{params[:action]}#{"?#{parameters.to_query}" if parameters.present? }"
+  end
 end
