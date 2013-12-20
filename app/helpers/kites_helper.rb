@@ -7,6 +7,10 @@ module KitesHelper
   end 
   
   def true_kites_path(parameters = {})
-    "/kites/#{params[:action]}#{"?#{parameters.to_query}" if parameters.present? }"
+    if params[:action] == "index"
+      "/kites#{"?#{parameters.to_query}" if parameters.present? }"
+    else 
+      "/kites/#{params[:action]}#{"?#{parameters.to_query}" if parameters.present? }"
+    end
   end
 end

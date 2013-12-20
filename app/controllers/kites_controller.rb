@@ -51,7 +51,8 @@ class KitesController < ApplicationController
   # List all kites
   def index
      time_range = (1.week.ago..Time.now)
-    check_and_handle_kites_per_page_update(current_user, params)
+     
+     check_and_handle_kites_per_page_update(current_user, params)
     
      @kites = Kite.public_kites.paginate(:page => params[:page], :per_page => @kitesPerPage)
      get_common_stats()
@@ -573,7 +574,7 @@ class KitesController < ApplicationController
     
     def check_and_handle_kites_per_page_update(current_user, params)
      
-      if(params.include?(:kpp) && current_user.kitesperpage != params[:kpp] && ALLOWABLE_KITES_PER_PAGE.include?(params[:kpp].to_i))
+      if(current_user && params.include?(:kpp) && current_user.kitesperpage != params[:kpp] && ALLOWABLE_KITES_PER_PAGE.include?(params[:kpp].to_i))
         current_user.kitesperpage = params[:kpp]
         current_user.save
       end
