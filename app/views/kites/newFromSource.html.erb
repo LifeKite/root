@@ -11,7 +11,7 @@
 			<div style="background: url('<%= image[:path] %>') no-repeat center; background-size: cover; width:200px;height: 200px;">
 				<div class="overlay"><%= content_tag :span, image[:source] %></div>
 				<div class="imageSelector">
-					<%= radio_button_tag 'imageSelect', image[:path] %>
+					<%= radio_button_tag 'imageSelect', image[:path], image[:first] %>
 				</div>
 			</div>			
 			<% end %>

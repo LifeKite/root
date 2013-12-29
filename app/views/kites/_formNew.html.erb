@@ -1,15 +1,17 @@
-<% if !defined? child %>
+
+<% if !local_assigns.has_key? :child %>
+	
 	<% if !current_user.nil? %>
 	<div class="wrapper create has-sidebar has-navigation">
 	<% else %>
 	<div class="wrapper create has-navigation">
 	<%end%>
-	
+		<h1 class="page-title">Create a new kite</h1><br />
 		<div class="content">
-	<% else %>
-		<div><div>
-		<h2 class="page-title">Create a new kite</h2><br />
-	<%end%>
+<% else %>
+	<div>
+	<div>	
+<%end%>
 		
 		<%= form_for(@kite, :html => {:class => "form padded-form signup-form", :multipart => true}) do |f| %>
 		  <% if @kite.errors.any? %>
@@ -49,7 +51,7 @@
 			</div>
 			
 			<!-- <div class="button add-button add-members">+ Add Members</div> -->
-			<%= f.submit "Create", {:class => "create-button button"} , :disable_with => "Loading..."%>
+			<%= f.submit "Create", {:class => "create-button button", :disable_with => "Loading..."} %>
 			<%= link_to 'Cancel', @kites, :class => "create-button button"%> 
 			<%= f.file_field :kiteimage, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
 		<% end %>

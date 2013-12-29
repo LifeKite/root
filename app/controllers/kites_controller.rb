@@ -194,7 +194,7 @@ class KitesController < ApplicationController
         if(!dimensions.nil? && dimensions.length > 1 && dimensions[0] > IMAGE_SQUARE_DIMENSION_LIMIT && dimensions[1] > IMAGE_SQUARE_DIMENSION_LIMIT )
           img = {:path => path,
             :source => doc.title,
-            :alttext => image.attribute('alt').value
+            :alttext => image.attribute('alt').nil? ? "" : image.attribute('alt').value
           }
           
           @images << img
@@ -206,6 +206,9 @@ class KitesController < ApplicationController
       logger.error "The image was rejected as invalid path #{path}" 
     end
     @site = site 
+    if @images.count > 0
+      @images[0][:first] = true
+    end
   
     respond_to do |format|
       format.html # new.html.erb
