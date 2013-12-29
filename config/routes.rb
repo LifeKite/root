@@ -45,11 +45,11 @@ Rlifekite::Application.routes.draw do
   #resources :users, :only => [:index, :show, :edit]
   resources :friendships
   
-  root :to => redirect('/splash/index.html')  
+  # root :to => redirect('/splash/index.html')  
   # root :to => "home#index"
   # 
   # map.home ':page', :controller => 'home', :action => 'show', :page => /about|help|contact/
-  # root :to => "users#show"
+  root :to => "kites#index"
   # match '/' => "users#show", :as => :user_root
   
   resources :comments do
