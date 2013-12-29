@@ -9,7 +9,7 @@ require 'fastimage'
 require 'will_paginate/array'
 
 class KitesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :kite_general_search, :userPublicKitesIndex]
   before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
   before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia, :Join, :Unjoin]
    
@@ -54,7 +54,7 @@ class KitesController < ApplicationController
      
      check_and_handle_kites_per_page_update(current_user, params)
     
-     @kites = Kite.public_kites.paginate(:page => params[:page], :per_page => @kitesPerPage)
+     @kites = Kite.public_kites.shuffle.paginate(:page => params[:page], :per_page => @kitesPerPage)
      get_common_stats()
      @function = "Explore Kites"
                              
@@ -98,45 +98,15 @@ class KitesController < ApplicationController
     end
   end  
   
-  # Retrieve a random sampling of all public kites, requires 
-  # number of kites to retrieve, used for the initial page
-  def randomSample
-    time_range = (1.week.ago..Time.now)
-    @kites = Kite.all.where(:sharelevel => "public").sample(params[:count])
-    @kiteCount = @kites.count
-    @newKites = @kites.all.where(:CreateDate => time_range).count
-    @completedKites = @kites.count(:conditions => "Completed = true")
     
-    #Currently not supported since we don't have following yet, just randomly choose three
-    @popularKites = @kites.sample(3)
-    respond_to do |format|
-      format.html 
-      format.xml { render :xml => @kites}
-    end
-  end
-  
   def kite_general_search
     
     text = params[:text]
     searchresults = []
-    
-    #attempt to pull out hash and at tags first, search for them independently
-    hashtags = text.scan(HASHTAG_REGEX)
-    attags = text.scan(USERTAG_REGEX)
-   
-    hashtags.each do |h|
-      searchresults  = Kite.TagSearch(current_user.id, h.strip[1..-1])
-    end
-    attags.each do |a|
-      searchresults  = (searchresults + Kite.public_kites.joins(:user).where("users.username" => a.strip[1..-1])).uniq
-    end
-    
-    # Now that we've used those tags to death, strip them out so we can search everything else
-    text.gsub!(HASHTAG_REGEX)
-    text.gsub!(USERTAG_REGEX)
-    
+        
     #do a more general search of kite names, descriptions and details
-    searchresults  = (searchresults + Kite.where(Kite.arel_table[:Description].matches("%#{text}%").or(Kite.arel_table[:Details].matches("%#{text}%")))).uniq
+    searchresults = (searchresults + Kite.where(Kite.arel_table[:Description].matches("%#{text}%").or(Kite.arel_table[:Details].matches("%#{text}%")))).uniq
+    searchresults = (searchresults + User.where(User.arel_table[:username].matches("%#{text}%").or(User.arel_table[:firstname].matches("%#{text}%")).or(User.arel_table[:lastname].matches("%#{text}%"))))     
     @function = "Search Results"
     check_and_handle_kites_per_page_update(current_user, params)
     
