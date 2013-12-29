@@ -1,4 +1,4 @@
-<div id="kite-nav" class="kite-nav hidden">
+<div id="kite-nav" <% if @showComments || @showPosts %>class="kite-nav" <%else%>class="kite-nav hidden"<%end%>>
 	<div class="kite-nav-tab">
 		<div id="info" class="kite-nav-button info active" title="Info">
 			<div class="active-flag">Info</div>
@@ -29,7 +29,7 @@
 			<h1 class="detail-kite-title"><%=formatless_tags(@kite.Description)%></h1>
 			<p class="dateline">Created <%=@kite.FormattedCreateDate%></p>
 		</div>
-		<div class="detail-section info">
+		<div class="detail-section info" <%if @showComments %> style="display: none;"<%end%>>
 			<div class="kite-nav-content-section">
 				<h3>Overview</h3>
 				<%= format_tags(@kite.Details)%>
@@ -62,7 +62,7 @@
 				
 			<% end %>
 		</div>
-		<div class="detail-section comments" style="display:none;">
+		<div class="detail-section comments" <% if !@showComments %>style="display:none;" <%end%>>
 			<h2>Comments</h2>
 			<% if current_user %>
 				<%= render 'comments/form'%>

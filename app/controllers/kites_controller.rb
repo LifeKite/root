@@ -127,9 +127,13 @@ class KitesController < ApplicationController
     @comment = Comment.new
     @comments = @kite.comments.order("created_at DESC").paginate(:page => params[:commentpage], :per_page => COMMENTS_PER_PAGE)
       
+    #Queue up a proto-kitepost  
     @kitePost = KitePost.new
     @kitePosts = @kite.kitePosts.order("created_at DESC").paginate(:page => params[:postpage], :per_page => KITE_POSTS_PER_PAGE)
-
+    
+    @showComments = params.has_key?(:showComments)
+    @showPosts = params.has_key?(:showPosts) 
+      
 
     if @kite.UserCanView(current_user)
      
@@ -534,7 +538,8 @@ class KitesController < ApplicationController
         @notification = Notification.new(
           :message => message,
           :user => user,
-          :link => kite_url(kite)) 
+          :link => kite_url(kite, :showPosts => true),
+          :flavor => "kite") 
         if user && kite.user.sendEmailNotifications
           NotificationMailer.notification_email(@notification).deliver
         end    

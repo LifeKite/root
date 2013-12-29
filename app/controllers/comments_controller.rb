@@ -164,7 +164,8 @@ class CommentsController < ApplicationController
       @notification = Notification.new(
         :message => message + ": " + comment.content,
         :user => user,
-        :link => kite_url(comment.kite)) 
+        :link => kite_url(comment.kite, :showComments=>true),
+        :flavor => "comment") 
       if user && comment.kite.user.sendEmailNotifications
         NotificationMailer.notification_email(@notification).deliver
       end    

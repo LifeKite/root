@@ -13,7 +13,7 @@ class KitePostsController < ApplicationController
     @kitePost = KitePost.new(params["kite_post"])
     @kitePost.kite = Kite.find(params[:kite_post][:kite_id])    
     @kitePost.tag = @kitePost.text.scan(HASHTAG_REGEX).join(",")
-    targetUsers = @kitePost.text.scan(USERTAG_REGEX).join(",")
+    targetUsers = @kitePost.text.scan(USERTAG_REGEX)
     
     # Notify all subscribers
     @kitePost.kite.followers.each do |member|
