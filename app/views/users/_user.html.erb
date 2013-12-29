@@ -1,0 +1,12 @@
+<div class="user-kite">				
+	<div class="overlay">
+		<h2 class="kite-name">
+			<%=h link_to user.KosherUsername, userPublicKitesIndex_kites_path(:username=>user.username) %>
+		</h2>
+		<div class="miniKitesContainer">
+			<%= render user.kites.take(3) %>
+		</div>
+		<div class="view-kite"><%=h link_to "View", userPublicKitesIndex_kites_path(:username=>user.username),
+			 :class=>"view-kite-link"%></div>
+	</div>
+</div>	
