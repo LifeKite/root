@@ -7,6 +7,16 @@ module KitesHelper
   end 
   
   def true_kites_path(parameters = {})
+    
+    # Pull in latent state information
+    if !@text.nil?
+      parameters[:text] = @text
+    end
+    
+    if !@username.nil?
+      parameters[:username] = @username
+    end
+    
     if params[:action] == "index"
       "/kites#{"?#{parameters.to_query}" if parameters.present? }"
     else 

@@ -21,6 +21,7 @@ class KitesController < ApplicationController
   def userPublicKitesIndex
     check_and_handle_kites_per_page_update(current_user, params)
     
+    @username = params[:username]
     @function = "#{params[:username]}'s kites"
     @kites = Kite.public_kites.joins(:user).where("users.username" => params[:username]).paginate(:page => params[:page], :per_page => @kitesPerPage)
     get_common_stats()
@@ -101,12 +102,12 @@ class KitesController < ApplicationController
     
   def kite_general_search
     
-    text = params[:text]
+    @text = params[:text]
     searchresults = []
         
     #do a more general search of kite names, descriptions and details
-    searchresults = (searchresults + Kite.where(Kite.arel_table[:Description].matches("%#{text}%").or(Kite.arel_table[:Details].matches("%#{text}%")))).uniq
-    searchresults = (searchresults + User.where(User.arel_table[:username].matches("%#{text}%").or(User.arel_table[:firstname].matches("%#{text}%")).or(User.arel_table[:lastname].matches("%#{text}%"))))     
+    searchresults = (searchresults + Kite.where(Kite.arel_table[:Description].matches("%#{@text}%").or(Kite.arel_table[:Details].matches("%#{@text}%")))).uniq
+    searchresults = (searchresults + User.where(User.arel_table[:username].matches("%#{@text}%").or(User.arel_table[:firstname].matches("%#{@text}%")).or(User.arel_table[:lastname].matches("%#{@text}%"))))     
     @function = "Search Results"
     check_and_handle_kites_per_page_update(current_user, params)
     
