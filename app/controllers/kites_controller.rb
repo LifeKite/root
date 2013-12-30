@@ -497,9 +497,7 @@ class KitesController < ApplicationController
         else
           
           #Let the user know they need to adjust permissions
-          
-        end
-        
+                 
       end
     end
     
