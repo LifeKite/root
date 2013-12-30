@@ -477,14 +477,24 @@ class KitesController < ApplicationController
     if(@kite.sharelevel == "public")
       
       #check that the user is associated with a facebook profile
-      if current_user.provider == :facebook
+      if current_user.provider == "facebook"
         usr = FbGraph::User.me(@kite.user.name)
-        usr.link!(
+        fs = usr.feed!(
+          :picture => @kite.kiteimage.url(:thumb),
           :link => kite_url(@kite),
-          :message => "I've shared a new goal on LifeKite"
+          :message => "I've shared a new goal on LifeKite",
+          :name => "LifeKite",
+          :description => 'Share your goals!'
         )
+        
       end
     end
+    
+    respond_to do |format|
+      format.html { redirect_to(@kite, :notice => 'Kite was successfully posted.') }
+      format.xml  { head :ok }
+    end
+    
   end
   
   
