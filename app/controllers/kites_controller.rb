@@ -482,7 +482,7 @@ class KitesController < ApplicationController
         
         #Check permissions
         logger.info "The user has the following permissions:"
-        usr.permissions each do |permission|
+        usr.permissions.each do |permission|
           logger.info permission
         end
         
