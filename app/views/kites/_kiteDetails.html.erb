@@ -84,10 +84,11 @@
 		<% if current_user==@kite.user %>
 			<div class="detail-section settings" style="display: none;">
 				
-				<%= button_to "Post Kite to Facebook", {action: "ShareKiteToSocialMedia", :id => @kite.id}, :method => :put %>
-				
 				<%= link_to 'Edit this kite', edit_kite_path(@kite), :class => "edit-this-kite" %>
 				<%= link_to 'Delete this kite', @kite, :confirm => 'Are you sure you want to delete this kite?', :method => :delete, :class => "delete-this-kite"%>
+				<% if current_user.provider == "facebook" %>
+					<%= button_to "Post Kite to Facebook", {action: "ShareKiteToSocialMedia", :id => @kite.id}, :method => :put, :class => "facebook-this-kite" %>
+				<% end %>
 			</div>
 		<% end %>
 	</div>

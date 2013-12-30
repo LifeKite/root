@@ -32,7 +32,9 @@
 			<% end %>
 			
 			<%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete, :class=>"btn btn-danger" %>.</p>
-			
+			<% if current_user.provider != "facebook" %>
+			<span class="admin-only"><%= link_to "Link to Facebook Account", user_omniauth_authorize_path(:facebook) %></span>
+			<% end %><br/>
 			<div style="border: 1px solid black;">
 			<h3>Get the LifeKite kite button</h3>
 			<p>Drag the Kite button into your browser's bookmark bar then click whenever you want to add

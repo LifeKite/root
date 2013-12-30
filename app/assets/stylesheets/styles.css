@@ -1183,6 +1183,7 @@ h1 {
 	border: 1px solid #e4e4e4;
 	background: #fff url('/images/delete-icon.png') no-repeat 10px center;
 	cursor: pointer;
+	width: 100%;
 }
 
 .edit-this-kite {
@@ -1192,6 +1193,18 @@ h1 {
 	border: 1px solid #e4e4e4;
 	background: #fff url('/images/kite-nav-settings.png') no-repeat 10px center;
 	cursor: pointer;
+	width: 100%;
+}
+
+.facebook-this-kite {
+	display: inline-block;
+	padding: 10px 10px 10px 45px;
+	margin-top: 20px;
+	border: 1px solid #e4e4e4;
+	background: #fff url('/images/FB-f-Logo__blue_29.png') no-repeat 10px center;
+	cursor: pointer;
+	width: 100%;
+	text-align: left;
 }
 
 /* Login
