@@ -83,7 +83,7 @@
 		</div>
 		<% if current_user==@kite.user %>
 			<div class="detail-section settings" style="display: none;">
-				<% if current_user.provider == :facebook %>
+				<% if current_user.provider.eq? :facebook %>
 				<%= button_to "Post Kite to Facebook", action: "ShareKiteToSocialMedia" %>
 				<% end %>
 				<%= link_to 'Edit this kite', edit_kite_path(@kite), :class => "edit-this-kite" %>
