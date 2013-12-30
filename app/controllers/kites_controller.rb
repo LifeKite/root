@@ -481,9 +481,9 @@ class KitesController < ApplicationController
         usr = FbGraph::User.me(@kite.user.name)
         
         #Check permissions
-        logger.debug 'The user has the following permissions:'
+        logger.info "The user has the following permissions:"
         usr.permissions each do |permission|
-          logger.debug permission
+          logger.info permission
         end
         
         fs = usr.feed!(
