@@ -479,6 +479,13 @@ class KitesController < ApplicationController
       #check that the user is associated with a facebook profile
       if current_user.provider == "facebook"
         usr = FbGraph::User.me(@kite.user.name)
+        
+        #Check permissions
+        logger.debug 'The user has the following permissions:'
+        usr.permissions each do |permission|
+          logger.debug permission
+        end
+        
         fs = usr.feed!(
           :picture => @kite.kiteimage.url(:thumb),
           :link => kite_url(@kite),
@@ -486,6 +493,12 @@ class KitesController < ApplicationController
           :name => "LifeKite",
           :description => 'Share your goals!'
         )
+        
+        else
+          
+          #Let the user know they need to adjust permissions
+          
+        end
         
       end
     end
