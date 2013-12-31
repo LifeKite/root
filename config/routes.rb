@@ -65,6 +65,7 @@ Rlifekite::Application.routes.draw do
         post 'GetKites'
         put 'invite'
         get 'showInvite'
+        put :ForcePasswordReset
       end
     end
   
