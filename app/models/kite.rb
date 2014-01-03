@@ -58,7 +58,13 @@ class Kite < ActiveRecord::Base
     (user_id ? (Kite.public_kites + Kite.my_kites(user_id) + Kite.kites_shared_with_me(user_id)).uniq : {})
   }
   
+  #new kites
+  scope :new_kites, lambda { |time_range|
+    (time_range ? where(:CreateDate => time_range) : {})
+  }
   
+  #completed kites
+  scope :completed_kites, lambda { where(:Completed => true)}
   
   #search for kite by tag
   scope :search_by_tag, lambda { |tag|
@@ -71,11 +77,11 @@ class Kite < ActiveRecord::Base
   }
   
   def self.NewKitesCount(time_range)
-    return Kite.any? && Kite.where(:CreateDate => time_range).any? ? Kite.where(:CreateDate => time_range).count : 0
+    return new_kites(time_range).count
   end
   
   def self.CompletedKitesCount
-    Kite.any? ? Kite.where(:Completed => true).count : 0
+    return completed_kites.count
   end
   
   def self.PopularKites
@@ -180,6 +186,10 @@ class Kite < ActiveRecord::Base
   
   def FormattedCreateDate
     return self.CreateDate.strftime("%B %d, %Y")
+  end
+  
+  def FormattedCompletedDate
+    return self.CompleteDate.strftime("%B %d, %Y")
   end
   
   def LikeCount

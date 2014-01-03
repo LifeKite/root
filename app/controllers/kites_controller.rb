@@ -65,7 +65,41 @@ class KitesController < ApplicationController
       format.js   { render :template => 'kites/index' }
     end
   end
+  
+  # List new kites only
+  def newIndex
+     time_range = (1.week.ago..Time.now)
+     
+     check_and_handle_kites_per_page_update(current_user, params)
+    
+     @kites = Kite.new_kites(time_range).paginate(:page => params[:page], :per_page => @kitesPerPage)
+     get_common_stats()
+     @function = "New Kites"
+                             
+    respond_to do |format|
+      format.html { render :template => 'kites/index' }# index.html.erb
+      format.xml  { render :xml => @kites }
+      format.js   { render :template => 'kites/index' }
+    end
+  end
 
+  # List completed kites only
+  def completedIndex
+     time_range = (1.week.ago..Time.now)
+     
+     check_and_handle_kites_per_page_update(current_user, params)
+    
+     @kites = Kite.completed_kites.paginate(:page => params[:page], :per_page => @kitesPerPage)
+     get_common_stats()
+     @function = "Completed Kites"
+                             
+    respond_to do |format|
+      format.html { render :template => 'kites/index' }# index.html.erb
+      format.xml  { render :xml => @kites }
+      format.js   { render :template => 'kites/index' }
+    end
+  end
+  
   # Show my kites
   def personalIndex
     check_and_handle_kites_per_page_update(current_user, params)
@@ -157,9 +191,9 @@ class KitesController < ApplicationController
     @kite = Kite.new
 
     respond_to do |format|
-      format.html { if current_user.KiteCount >= ARBITRARY_KITE_LIMIT
-                      redirect_to(Kites, flash[:notice] => 'You cannot create more than #{@@arbitraryKiteLimit} kites.')
-                    end
+      format.html { if current_user.ActiveKiteCount >= ARBITRARY_KITE_LIMIT
+          redirect_to(Kites, flash[:notice] => 'You cannot create more than #{@@arbitraryKiteLimit} kites.')
+        end
       } # new.html.erb
       format.xml  { render :xml => @kite }
     end
@@ -415,9 +449,13 @@ class KitesController < ApplicationController
       @kite.complete
     end
     
+    #Let anyone following this kite know as well
+    @kite.followers.each do |fol|
+      send_kite_update_notification("A kite you are following has been completed!", @kite, fol)
+    end
     
     respond_to do |format|
-      format.html { redirect_to(current_user) }
+      format.html { redirect_to(@kite, :notice => 'Congratulations, on completing your kite!') }
       format.xml  { head :ok }
     end
   end

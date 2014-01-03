@@ -28,6 +28,9 @@
 		<div class="kite-nav-header">
 			<h1 class="detail-kite-title"><%=formatless_tags(@kite.Description)%></h1>
 			<p class="dateline">Created <%=@kite.FormattedCreateDate%></p>
+			<% if @kite.Completed %>
+				<p class="dateline">Completed <%=@kite.FormattedCompletedDate%></p>
+			<%end%>
 		</div>
 		<div class="detail-section info" <%if @showComments %> style="display: none;"<%end%>>
 			<div class="kite-nav-content-section">
@@ -89,6 +92,9 @@
 				<% if current_user.provider == "facebook" %>
 					<%= button_to "Post Kite to Facebook", {action: "ShareKiteToSocialMedia", :id => @kite.id}, :method => :put, :class => "facebook-this-kite" %>
 				<% end %>
+				<% if !@kite.Completed %>
+					<%= link_to 'Complete this kite', complete_kite_path(@kite), :method => :put, :class => "edit-this-kite" %>
+				<%end%>
 			</div>
 		<% end %>
 	</div>

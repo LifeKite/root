@@ -71,6 +71,8 @@ Rlifekite::Application.routes.draw do
   
   resources :kites do
     collection do
+      get :newIndex
+      get :completedIndex
       get :personalIndex
       get :newFromSource
       get :mySupportIndex

@@ -79,23 +79,33 @@ class User < ActiveRecord::Base
         return false; 
   end
    
+  # List the count of all kites
   def KiteCount
      return kites.any? ? kites.count : 0
   end
+  
+  # Show only uncompleted kites
+  def ActiveKiteCount
+    return kites.where(:Completed => true).any? ? kites.where(:Completed => true).count : 0
+  end
    
+  # Show kites newer than the time range
   def NewKites(time_range)
      return Kite.where(:CreateDate => time_range)
   end
    
+  # Count those new kites
   def NewKiteCount(time_range)
      @newkites = NewKites(time_range)
      return @newkites.any? ? @newkites.count : 0
   end  
    
+  # Return the count of completed kites
   def CompletedKitesCount
      kites.any? ? kites.where(:Completed => true).count : 0
   end
    
+  # Number of comments made by this user
   def CommentCount
      return Comment.where(:user_id => id).count
   end

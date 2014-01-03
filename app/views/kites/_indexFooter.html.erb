@@ -1,19 +1,25 @@
 <footer id="page-footer" class="page-footer hidden">
 	<div class="footer-tab"><a class="hide-this-bar footer-tab-link">Hide this bar</a><a class="show-this-bar footer-tab-link">Show this bar</a></div>
 	<div class="footer-box stat-box stat-new">
+		<a href="<%= newIndex_kites_path %>">
 		<img src="/images/big-icon-flag.png" width="83" height="82">
 		<p class="stat"><%= @newKites %></p>
 		<p class="label">New!</p>
+		</a>
 	</div>
 	<div class="footer-box stat-box stat-user-kites">
+		<a href="<%= kites_path %>">
 		<img src="/images/big-icon-stacks.png" width="84" height="82">
 		<p class="stat"><%= @kiteCount %></p>
 		<p class="label">User Kites</p>
+		</a>
 	</div>
 	<div class="footer-box stat-box stat-completed">
+		<a href="<%= completedIndex_kites_path %>">
 		<img src="/images/big-icon-check.png" width="83" height="82">
 		<p class="stat"><%= @completedKites %></p>
 		<p class="label">Completed</p>
+		</a>
 	</div>
 	<div class="footer-box feed-box">
 		<div class="label-side">
