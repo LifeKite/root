@@ -23,7 +23,7 @@
 			</ul>
 		</div>
 		<% if Kite.find(comment.kite_id).user == current_user || 
-			Kite.user == current_user %>
+			comment.user == current_user %>
 			<div class="hard-options">
 				<%= button_to '', comment, :confirm => 'Are you sure?', :method => :delete, :class => "smallDeleteButton button" %>
 			</div>
