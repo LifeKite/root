@@ -1,35 +1,37 @@
 <div class="comment">
 	<div class="comment-content">
-		<div class="options">
+		<!--<div class="options">
 			<div class="option-arrow">
 				<img src="/images/down-arrow-big.png">
 			</div>
-			<% if Kite.find(comment.kite_id).user == current_user %>
-			<!--
+			<% if Kite.find(comment.kite_id).user == current_user ||
+				Kite.user == current_user %>
+			
 			<div class="the-options">
 				<ul>
-					<li><%= link_to 'Hide this comment', unmarkHelpful_comment_path(comment)%></li>
-					<li><%= link_to 'This was helpful',markHelpful_comment_path(comment) %></li>
+					<li></li>
 				</ul>
-			</div>-->
+			</div>
 			<% end %>
+		</div>-->
+		<div class="author-info">
+			<ul class="user-list">
+				<li>
+					<div class="name"><%=link_to(comment.user.KosherUsername,userPublicKitesIndex_kites_path(:username=>comment.user.username))%></div>
+					<div class="date"><%= comment.created_at.strftime("%B %d, %Y") %></div>
+				</li>
+			</ul>
 		</div>
+		<% if Kite.find(comment.kite_id).user == current_user || 
+			Kite.user == current_user %>
+			<div class="hard-options">
+				<%= button_to '', comment, :confirm => 'Are you sure?', :method => :delete, :class => "smallDeleteButton button" %>
+			</div>
+		<% end %>
 		<div class="title"><%=comment.Title%></div>
-		<div class="date"><%= comment.created_at.strftime("%B %d, %Y") %></div>
+		
 		<div class="the-comment"><%= auto_link(simple_format(formatless_tags(comment.content))) %></div>
 	</div>
-	<img src="/images/comment-separator.png">
-	<div class="author-info">
-		<ul class="user-list">
-			<li>
-				<div class="name"><%=link_to(comment.user.KosherUsername,userPublicKitesIndex_kites_path(:username=>comment.user.username))%></div>
-				<div class="details"><%=comment.user.KiteCount%> kites | <%=comment.user.CommentCount%> comments made</div>
-				<!--<div class="reply">
-					<a href="<%= new_comment_path(:kite => @kite.id)%>">
-						<img class="reply" src="/images/reply-button.png">
-					</a>		
-				</div>-->
-			</li>
-		</ul>
-	</div>
+	<!--<img src="/images/comment-separator.png">-->
+	
 </div>

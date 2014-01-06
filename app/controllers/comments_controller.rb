@@ -5,7 +5,7 @@
 class CommentsController < ApplicationController
   
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
+  before_filter :verify_is_owner, :only => [:delete, :destroy]
     
   # List all comments
   def index
@@ -149,11 +149,14 @@ class CommentsController < ApplicationController
   # Delete a comment
   def destroy
     @comment = Comment.find(params[:id])
+    @kite = Kite.find(@comment.kite_id)   
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to(comments_url) }
-      format.xml  { head :ok }
+      format.html { redirect_to(@kite, :notice => 'Comment was removed.') }
+      format.xml  { render :status => :deleted }
+      format.js {}
+      format.json { render :json => @comment, :status => :deleted}
     end
   end
   
@@ -172,4 +175,15 @@ class CommentsController < ApplicationController
       @notification.save
     end
   end
+  
+def verify_is_owner
+
+    if params[:id].nil?
+      redirect_to(root_path)
+    else
+      @comment = Comment.find(params[:id])
+      (current_user.nil? || @comment.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == @comment.user.id || current_user.id == @comment.kite.user.id)
+    end
+  end 
+  
 end

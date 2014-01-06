@@ -168,6 +168,7 @@ class KitesController < ApplicationController
     
     @showComments = params.has_key?(:showComments)
     @showPosts = params.has_key?(:showPosts) 
+    @showFollowings = params.has_key?(:showFollowings)
       
 
     if @kite.UserCanView(current_user)
@@ -324,6 +325,10 @@ class KitesController < ApplicationController
     else 
       @following = @kite.follwings.where(:user_id => current_user.id, :Type => params[:type]).first() 
     end 
+    
+    # Let the kite owner know they are loved
+    send_kite_update_notification("#{current_user.KosherUsername} has liked your kite", @kite, @kite.user,
+      true, true)
     
     respond_to do |format| 
       if @following && @following.save()
@@ -588,12 +593,12 @@ class KitesController < ApplicationController
        @popularKites = current_user.RecentActivity
     end
     
-    def send_kite_update_notification(message, kite, user)
-      if kite.user != user
+    def send_kite_update_notification(message, kite, user, showLikes = false, suppressSelfCheck = false)
+      if kite.user != user || suppressSelfCheck
         @notification = Notification.new(
           :message => message,
           :user => user,
-          :link => kite_url(kite, :showPosts => true),
+          :link => showLikes ? kite_url(kite, :showFollowings => true) : kite_url(kite, :showPosts => true),
           :flavor => "kite") 
         if user && kite.user.sendEmailNotifications
           NotificationMailer.notification_email(@notification).deliver

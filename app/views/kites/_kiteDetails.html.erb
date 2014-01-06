@@ -1,4 +1,4 @@
-<div id="kite-nav" <% if @showComments || @showPosts %>class="kite-nav" <%else%>class="kite-nav hidden"<%end%>>
+<div id="kite-nav" <% if @showComments || @showPosts || @showFollowings%>class="kite-nav" <%else%>class="kite-nav hidden"<%end%>>
 	<div class="kite-nav-tab">
 		<div id="info" class="kite-nav-button info active" title="Info">
 			<div class="active-flag">Info</div>
@@ -32,7 +32,7 @@
 				<p class="dateline">Completed <%=@kite.FormattedCompletedDate%></p>
 			<%end%>
 		</div>
-		<div class="detail-section info" <%if @showComments %> style="display: none;"<%end%>>
+		<div class="detail-section info" <%if @showComments || @showFollowings %> style="display: none;"<%end%>>
 			<div class="kite-nav-content-section">
 				<h3>Overview</h3>
 				<%= format_tags(@kite.Details)%>
@@ -55,7 +55,7 @@
 				</a></p>
 			<% end %>
 		</div>
-		<div class="detail-section support" style="display:none;">
+		<div class="detail-section support" <% if !@showFollowings %>style="display:none;" <%end%>>
 			<h2>Support</h2>
 			<ul id="likelist" class="members-list user-list" >
 				<%= render @kite.follwings.where(:Type => "like")%>
