@@ -47,7 +47,17 @@ class User < ActiveRecord::Base
    end
    
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    if !signed_in_resource
+      user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    else
+      #If we were passed in a signed in user, we need to associate that user to 
+      # the facebook auth that we've received
+      user = User.where(:id => signed_in_resource.id)
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth.credentials.token
+    end
     if user
       user.name = auth.credentials.token
       user.save!
