@@ -52,11 +52,17 @@ class User < ActiveRecord::Base
     else
       #If we were passed in a signed in user, we need to associate that user to 
       # the facebook auth that we've received
+      logger.info "Received request to associate #{signed_in_resource.username} with facebook auth"
       user = User.where(:id => signed_in_resource.id)
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.password = Devise.friendly_token[0,20]
-      user.name = auth.credentials.token
+      if !user
+        logger.info "User not found in database"
+      else
+      
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.password = Devise.friendly_token[0,20]
+        user.name = auth.credentials.token
+      end
     end
     if user
       user.name = auth.credentials.token
