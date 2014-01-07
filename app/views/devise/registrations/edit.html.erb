@@ -33,7 +33,7 @@
 			
 			<%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete, :class=>"btn btn-danger" %>.</p>
 			<% if current_user.provider != "facebook" %>
-			<span class="admin-only"><%= link_to "Link to Facebook Account", user_omniauth_authorize_path(:facebook) %></span>
+			<span><%= link_to "Link to Facebook Account", user_omniauth_authorize_path(:facebook) %></span>
 			<% end %><br/>
 			<div style="border: 1px solid black;">
 			<h3>Get the LifeKite kite button</h3>
