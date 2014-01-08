@@ -1703,3 +1703,21 @@ a.load-more-comments {
 .alert-error {
 	background-color: #F1837C;
 }
+
+.explain {
+	display: block;
+	clear: both;
+	position: relative;
+	font-size: 10px;
+	color: #4F4F4F;
+	font-style: italic;
+	margin: 5px;
+}
+
+.userSettingsBlock {
+	padding: 5px;
+}
+
+.uwidth-button {
+	width: 100%;
+}
