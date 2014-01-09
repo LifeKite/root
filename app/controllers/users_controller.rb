@@ -129,6 +129,7 @@ class UsersController < ApplicationController
   def verify_is_owner
     if params[:id].nil?
       redirect_to(root_path)
+    end
     (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == params[:id])
   end
   
