@@ -14,12 +14,12 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name
-  has_many :kites
-  has_many :assignments
+  has_many :kites, :dependent => :delete_all
+  has_many :assignments, :dependent => :delete_all
   has_many :groups, :through => :assignments
   has_many :Invites
-  has_many :Notifications
-  has_many :follwing
+  has_many :Notifications, :dependent => :delete_all
+  has_many :follwing, :dependent => :delete_all
   
   scope :search_by_fullname_or_username, lambda { |name|
     (name ? where(["lower(firstname) LIKE ? or lower(lastname) LIKE ? or lower(username) LIKE ? or lower(firstname) || ' ' || lower(lastname) LIKE ?", '%'+ name.downcase + '%', '%'+ name.downcase + '%', '%'+ name.downcase + '%','%'+ name.downcase + '%' ])  : {})

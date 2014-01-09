@@ -5,12 +5,12 @@
 # the kite image and initial description
 class Kite < ActiveRecord::Base
   belongs_to :user
-  has_many :comments
+  has_many :comments, :dependent => :delete_all
   has_many :sharedpurposekites
   has_many :sharedpurposes, :through => :sharedpurposekites
-  has_many :follwings
+  has_many :follwings, :dependent => :delete_all
   has_many :followers, :through => :follwings, :class_name => 'User', :foreign_key => 'id'
-  has_many :kitePosts
+  has_many :kitePosts, :dependent => :delete_all
   
   validates_presence_of :Description  
   
