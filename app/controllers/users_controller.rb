@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html {redirect_to(Kites)}
+        format.html redirect_to(edit_user_registration_path, :notify => "Profile updated successfully")
         format.xml {head :ok}
       else
         format.html {render :action => "edit" }
