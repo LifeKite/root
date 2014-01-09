@@ -3,7 +3,7 @@
 		<div class="content">
 			<img class="logo-color" src="/images/logo-color.png" width="190" height="136" alt="Logo Color">
 			
-			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),
+			<%= safe_user_edit_form_for(resource, :as => resource_name, :url => registration_path(resource_name),
 				:html => {:class => "signup-form", :method => :put }) do |f| %>
 				
 				
