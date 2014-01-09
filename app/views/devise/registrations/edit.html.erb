@@ -4,7 +4,7 @@
 			<img class="logo-color" src="/images/logo-color.png" width="190" height="136" alt="Logo Color">
 			
 			<%= form_for(resource, :as => resource_name, 
-				:url => resource.provider == "facebook" ? edit_user_path(resource_name) : registration_path(resource_name),
+				:url => resource.provider == "facebook" ? user_path(resource_name) : registration_path(resource_name),
 				:html => {:class => "signup-form", :method => :put }) do |f| %>
 				
 				
