@@ -18,12 +18,9 @@ class UsersController < ApplicationController
 
   # Retrieve an editable user based on id
   def edit
-    if (params.has_key?(:id))
-          @user =  User.find(params[:id])   
-            
-    else
-      @user = current_user
-    end
+    debugger
+    flash.keep
+    redirect_to(edit_user_registration_path)
   end
   
   # Updated the user information based on id and user object
@@ -32,10 +29,14 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html redirect_to(edit_user_registration_path, :notify => "Profile updated successfully")
+        flash[:notice] = "Profile updated successfully"
+        
+        format.html {redirect_to(edit_user_registration_path)}
         format.xml {head :ok}
       else
-        format.html {render :action => "edit" }
+        flash[:error] = "Unable to save profile changes"
+        
+        format.html {redirect_to(edit_user_registration_path)}
         format.xml {render :xml => @user.errors}
       end
     end
@@ -127,10 +128,17 @@ class UsersController < ApplicationController
   end
   
   def verify_is_owner
-    if params[:user][:id].nil?
+    if params[:id].nil?
+      logger.error("Owner only function called for with no user parameter") 
       redirect_to(root_path)
     end
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.id == params[:user][:id])
+    if current_user.nil?
+      logger.error("Owner only function with no user logged in")
+      redirect_to(root_path) 
+    else 
+      logger.info("Checking access for user #{params[:id]}")
+      (redirect_to(root_path) unless current_user.id == params[:id].to_i)
+    end
   end
   
   

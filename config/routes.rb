@@ -134,6 +134,7 @@ Rlifekite::Application.routes.draw do
   
   devise_scope :user do
     get "/login" => "devise/sessions#new"
+    get "/edit" => "devise/registrations#edit"
   end
 
   
