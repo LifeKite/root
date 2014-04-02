@@ -9,22 +9,20 @@
 		<nav class="main-nav">
 			<ul>
 				<% if current_user %>
-					<li class="nav-item"><%= link_to 'About', home_path('about')%></li>
+					<li class="nav-item"><%= link_to 'Add a Kite', new_kite_path %></li>
+					<li class="nav-item"><%= link_to 'My Profile', edit_user_registration_path %></li>
+					<li class="nav-item"><%= link_to 'Help', "" %></li>
 					<li class="nav-item"><%= link_to 'Invite a Friend', showInvite_user_path(current_user.id) %></li>
-				<% end %>
-			</ul>
-
-		</nav>
-		<div class="user-controls">
-			<%if current_user %>
-				<div >Welcome, <%= content_tag(:span, current_user.KosherUsername, :class => "username")%> | <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %></div>
-			<%else%>
-				<ul>
+					<li class="nav-item"><%= link_to 'Log Out', destroy_user_session_path, :method => :delete %></li>
+				<%else%>
 					<li class="user-control log-in-button"><%= link_to 'Log In', new_session_path(resource_name) %></li>
 					<li class="user-control log-in-button"><%= link_to "Log In with Facebook", user_omniauth_authorize_path(:facebook) %></li>
 					<li class="user-control sign-up-button"><%= link_to 'Sign Up', new_registration_path(resource_name) %></li>
-				</ul>
-			<%end%>
-		</div>
+				<% end %>
+				<li class="nav-item">|</li>
+				<li class="nav-item">Search</li>
+				<li class="nav-item"><%= render "layouts/search"%></li>
+			</ul>
+		</nav>
 	</div>
 </div>
