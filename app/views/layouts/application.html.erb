@@ -14,12 +14,9 @@
 <body>
 
 <div id="container" class="container-fluid">
-	
+
   <%= render 'layouts/header'%>
   <%= render 'layouts/messages' %>
-  	  <% if !current_user.nil? %>
-  	  	<%= render 'layouts/sidebar' %>
-  	  <% end %>
       <%= yield %>
   	</div>
   </div>

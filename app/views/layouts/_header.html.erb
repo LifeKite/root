@@ -4,19 +4,16 @@
 			<img src="/images/big-logo.png" alt="LifeKite">
 		</a>
 	</div>
-  	
+
 	<div class="header-controls">
 		<nav class="main-nav">
 			<ul>
-				<li class="nav-item"><a href=<%= kites_path%>>Explore</a></li>
-				<!--<li class="nav-item"><a>Tour</a></li>-->
-				<li class="nav-item"><a href="https://lifekite.wufoo.com/forms/lifekite-support/">Support</a></li>
-				<li class="nav-item"><%= link_to 'About', home_path('about')%></li>
-				<%if current_user %>
-				<li class="nav-item"><%= link_to 'Invite a Friend', showInvite_user_path(current_user.id) %></li>
+				<% if current_user %>
+					<li class="nav-item"><%= link_to 'About', home_path('about')%></li>
+					<li class="nav-item"><%= link_to 'Invite a Friend', showInvite_user_path(current_user.id) %></li>
 				<% end %>
 			</ul>
-			
+
 		</nav>
 		<div class="user-controls">
 			<%if current_user %>
