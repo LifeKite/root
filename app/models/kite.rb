@@ -21,7 +21,10 @@ class Kite < ActiveRecord::Base
 
   # validates_attachment_size :kiteimage, :less_than => 3.megabtyes
   has_attached_file :kiteimage,
-  :styles => { :medium => {:geometry => "600x800>", :format => :png}, :thumb => {:geometry => "215x215>", :format => :png} },
+  :styles => { :medium => {:geometry => "600x800>", :format => :png},
+               :thumb => {:geometry => "215x215>", :format => :png},
+               :mini => {:geometry => "100x100>", :format => :png},
+             },
     :default_style => :original,
     :default_url => "/images/missing_:style.png"
 

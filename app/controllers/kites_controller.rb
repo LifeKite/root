@@ -54,11 +54,16 @@ class KitesController < ApplicationController
 
      check_and_handle_kites_per_page_update(current_user, params)
 
-     @kites = Kite.public_kites.shuffle.paginate(:page => params[:page], :per_page => @kitesPerPage)
-     get_common_stats()
+    @kites = Kite.public_kites.shuffle.paginate(:page => params[:page], :per_page => @kitesPerPage)
+
+    get_common_stats()
 
     if current_user
       @function = "Welcome #{current_user.KosherUsername}"
+      kiteIDs = current_user.follwing.collect{|a| a.kite_id}.flatten
+      @tied_kites = Kite.find(kiteIDs).paginate(:page => params[:page], :per_page => @kitesPerPage)
+
+      @my_kites = current_user.kites.paginate(:page => params[:page], :per_page => @kitesPerPage)
     end
 
     respond_to do |format|
@@ -109,7 +114,6 @@ class KitesController < ApplicationController
      @kites = current_user.kites.paginate(:page => params[:page], :per_page => @kitesPerPage)
      get_personal_stats()
 
-     @function = "My Kites"
 
     respond_to do |format|
       format.html { render :template => 'kites/index' } # index.html.erb

@@ -11,3 +11,4 @@
 //= require scripts.js
 //= require script.js
 //= require autocomplete-rails
+//= require kites.js
