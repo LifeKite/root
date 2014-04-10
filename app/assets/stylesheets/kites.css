@@ -17,6 +17,12 @@
   vertical-align: top;
 }
 
+.side-kites ul {
+  height: 1.5em;
+  border-bottom-style:dotted;
+  padding-bottom: 5px;
+}
+
 .side-kites li {
   list-style: none;
   float: left;
@@ -66,4 +72,9 @@
 .side-nav h2 {
   display: inline-block;
   width: 49%;
+}
+
+.dotted {
+  border-bottom-style:dotted;
+  padding-bottom: 5px;
 }
