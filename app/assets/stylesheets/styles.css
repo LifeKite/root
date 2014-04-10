@@ -1541,10 +1541,9 @@ h1 {
 }
 
 .fake-kite {
-	display: none;
-/*	background-color:#333333;
-	color: #FFFFFF;
-	text-align: center;*/
+	background-color:#FFFFFF;
+	color: #333333;
+	text-align: center;
 }
 
 .comment-button {

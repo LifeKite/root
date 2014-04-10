@@ -2,7 +2,7 @@
 	<div class="content">
 		<% if current_user %>
 			<div class="content-header">
-	  		<h1><%= @function %></h1>
+				<h1><%= @function %></h1>
 			</div>
 
 			<div class="kites">
@@ -14,13 +14,16 @@
 							<%= will_paginate @my_kites %>
 						</div>
 					</div>
+          <div class="kite fake-kite">
+            <%= link_to 'Click here to add a kite', new_kite_path %>
+          </div>
 				</div>
 
 				<div class="side-kites">
 					<ul class="side-nav">
-					  <li><h3><a href="#all-kitescontainer">All Kites</a></h3></li>
-					  <li><h3><a href="#tied-kitescontainer">Kites I'm Tied To</a></h3></li>
-					  </ul>
+						<li><h3><a href="#all-kitescontainer">All Kites</a></h3></li>
+						<li><h3><a href="#tied-kitescontainer">Kites I'm Tied To</a></h3></li>
+						</ul>
 					<div id="all-kitescontainer">
 						<%= render @kites, size: :mini %>
 						<div class="hidden">
