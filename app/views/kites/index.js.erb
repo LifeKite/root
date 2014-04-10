@@ -1,6 +1,7 @@
-$('.kitescontainer').append("<%= escape_javascript(render @kites )%>");
-$('a.load-more').attr('href', "<%= kites_path page: @kites.next_page%>");
-
-<%if !@kites.next_page%>
-$('a.load-more').remove();
-<%end%>
+<% if current_user %>
+  <%= render 'scroll', kites_container: '.my-kitescontainer', size: :thumb, kites: @my_kites %>
+  <%= render 'scroll', kites_container: '#tied-kitescontainer', size: :mini, kites: @tied_kites %>
+  <%= render 'scroll', kites_container: '#all-kitescontainer', size: :mini, kites: @kites %>
+<% else %>
+  <%= render 'scroll', kites_container: '.kitescontainer', size: :thumb, kites: @kites %>
+<% end %>

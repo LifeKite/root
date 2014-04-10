@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-    
+
     color: #333;
     padding: 0;
 }
@@ -116,8 +116,12 @@ td pre {
      padding-top: 20%;
      filter: alpha(opacity=75);
      opacity: 0.75;
-  } 
-  
+  }
+
 .comment-field {
 	width: 90%;
+}
+
+.hidden {
+    display: none;
 }
