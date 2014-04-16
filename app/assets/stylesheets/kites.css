@@ -1,9 +1,3 @@
-.kites {
-  border-top-style:dotted;
-  margin-top: 20px;
-  padding-top: 20px;
-}
-
 .main-kites {
   display: inline-block;
   width: 70%;
@@ -13,21 +7,21 @@
 
 .side-kites {
   display: inline-block;
-  width: 24%;
+  width: 386px;
   vertical-align: top;
 }
 
 .side-kites ul {
   height: 1.5em;
-  border-bottom-style:dotted;
-  padding-bottom: 5px;
 }
 
 .side-kites li {
   list-style: none;
   float: left;
-  width: 49%;
+  width: 170px;
+  height: 30px;
   text-align: center;
+  vertical-align: middle;
 }
 
 .side-kites li.ui-state-active {
@@ -41,7 +35,7 @@
 
 #all-kitescontainer, #tied-kitescontainer {
   display: inline-block;
-  padding: 20px;
+  padding: 10px;
 }
 
 .kitescontainer {
@@ -102,4 +96,12 @@
   width: 70%;
   border-bottom: 2px dashed #6a4256;
   margin: 15px auto;
+}
+
+.wide-10 {
+  width: 10%;
+}
+
+.wide-90 {
+  width: 90%;
 }

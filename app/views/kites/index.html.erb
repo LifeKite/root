@@ -3,11 +3,13 @@
 		<% if current_user %>
 			<div class="content-header">
 				<h1><%= @function %></h1>
+				<div class="dashed-separator"></div>
 			</div>
 
 			<div class="kites">
 				<div class="main-kites">
-					<h2><span class="dotted">My Kites</span></h2>
+					<h2>My Kites</h2>
+					<div class="dashed-separator wide-10"></div>
 					<div class="my-kitescontainer">
 						<%= render @my_kites, size: :thumb %>
 						<div class="hidden">
@@ -23,7 +25,8 @@
 					<ul class="side-nav">
 						<li><h3><a href="#all-kitescontainer">All Kites</a></h3></li>
 						<li><h3><a href="#tied-kitescontainer">Kites I'm Tied To</a></h3></li>
-						</ul>
+					</ul>
+					<div class="dashed-separator wide-90"></div>
 					<div id="all-kitescontainer">
 						<%= render @kites, size: :mini %>
 						<div class="hidden">
