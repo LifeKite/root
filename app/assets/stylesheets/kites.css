@@ -44,6 +44,10 @@
   padding: 20px;
 }
 
+.kitescontainer {
+  display: inline-block;
+}
+
 #all-kitescontainer.ui-tabs-hide, #tied-kitescontainer.ui-tabs-hide {
    display: none;
 }
@@ -60,7 +64,7 @@
   float: left;
   width: 215px;
   height: 215px;
-  margin: 11px;
+  margin: 10px;
 }
 
 
@@ -77,4 +81,25 @@
 .dotted {
   border-bottom-style:dotted;
   padding-bottom: 5px;
+}
+
+.content-header.welcome {
+  margin-bottom: 75px;
+}
+
+.signup-img{
+  width:20%;
+  display:block;
+  position:absolute;
+  left:0;
+  right:0;
+  top: 290px;
+  margin:auto;
+  z-index: 1000;
+}
+
+.dashed-separator {
+  width: 70%;
+  border-bottom: 2px dashed #6a4256;
+  margin: 15px auto;
 }

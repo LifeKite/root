@@ -40,12 +40,16 @@
 			</div>
 
 		<% else %>
-			<div class="content-header">
+			<div class="content-header welcome">
 				<h1 class="page-title">Welcome to <span class="red">LifeKite</span></h1>
+				<div class="dashed-separator"></div>
 				<h3><span class="bold">What is LifeKite?</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget nisl quam. </h3>
 				<h3>Vestibulum et risus interdum risus tincidunt fringilla.</h3>
 				<h3 class="red bold italic">Click on any image below to take a peak at what other people are kiting!</h3>
 				<h3 class="red bold italic">OR</h3>
+				<div class="signup-img">
+					<%= link_to image_tag('home-signup-click.png'), new_user_registration_path %>
+				</div>
 			</div>
 			<div class="kitescontainer">
 				<!-- Begin kite -->
