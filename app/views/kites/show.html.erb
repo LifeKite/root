@@ -4,7 +4,29 @@
 <% else %>
 <div class="wrapper detail has-navigation">
 <%end%>
-	<div class="content" style="background-image: url('<%= @kite.kiteimage.url %>'); position: absolute; bottom: 0; width: 94%; height: 100%; z-index:-1;">
+	<div class="content">
+    <div class="detail-kite-header">
+      <h1><%=formatless_tags(@kite.Description)%></h1>
+      <div class="info">
+        <div class="arrow">
+          <%= image_tag('landing-arrow.png') %>
+        </div>
+        <div class="dateline">
+          <%= raw(kite_date_formated(@kite.CreateDate)) %>
+        </div>
+        <div class="heart">
+          <%= image_tag('landing_heart_open.png') %>
+        </div>
+<!--         <% if @kite.Completed %>
+          <div class="dateline">
+            <%= raw(kite_date_formated(@kite.CompleteDate, 'Completed')) %>
+          </div>
+        <%end%> -->
+      </div>
+    </div>
+    <div class="detail-kite-img">
+      <%= image_tag(@kite.kiteimage) %>
+    </div>
 		<%= render :partial => 'kiteDetails', :object => @kite %>
 	</div>
 </div>

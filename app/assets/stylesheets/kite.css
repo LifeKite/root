@@ -1,0 +1,66 @@
+/* styles for kite details */
+
+.detail-kite-header {
+  width: 80%;
+  border: 2px dashed #44878E;
+  display: inline-block;
+}
+
+.detail-kite-header h1 {
+  font-size: 2em;
+  font-weight: normal;
+  padding: 18px;
+  width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #0A3448;
+  float: left;
+}
+
+.detail-kite-header .info {
+  float: right;
+}
+
+.detail-kite-header .arrow, .detail-kite-header .heart {
+  float: left;
+}
+
+.detail-kite-header .arrow  img{
+  padding: 25px;
+}
+
+.detail-kite-header .heart  img{
+  padding: 10px 20px;
+}
+
+
+
+.detail-kite-header .dateline {
+  float: left;
+  color: #44878E;
+  border-left: 2px dashed #44878E;
+  border-right: 2px dashed #44878E;
+  width: 60px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.detail-kite-header .created-text {
+  /*font-size: 2em;*/
+}
+
+.detail-kite-header .created-month {
+  /*font-size: 0.5em;*/
+}
+
+.detail-kite-header .created-year {
+  font-size: 1.5em;
+  font-style: bold;
+}
+
+
+
+.detail-kite-img img{
+  width: 80%;
+}

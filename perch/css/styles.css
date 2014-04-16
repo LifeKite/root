@@ -33,11 +33,11 @@ h1, h2, h3, h4, h5, h6, ul {
 	margin: 0;
 }
 
-.content:after, .content-header:after { 
-   content: "."; 
-   visibility: hidden; 
-   display: block; 
-   height: 0; 
+.content:after, .content-header:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
    clear: both;
 }
 
@@ -65,11 +65,11 @@ h1 {
 	height: 100%;
 	text-align: center;
 	padding: 45px 20px 20px;
-	
+
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
-	
+
 	transition: all .2s;
 }
 
@@ -162,11 +162,11 @@ h1 {
 	padding-left: 15px;
 	padding-right: 15px;
 	margin-bottom: 8px;
-	
+
 	border-top: 1px solid #cecece;
 	border-left: 1px solid #cecece;
 	box-shadow: 1px 1px 1px #eee inset;
-	
+
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
@@ -193,11 +193,11 @@ h1 {
 	margin-top: 20px;
 	letter-spacing: 1px;
 	cursor: pointer;
-	
+
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
-	
+
 	transition: all .2s;
 }
 
@@ -227,7 +227,7 @@ h1 {
 .column-1, .column-2 {
 	float: left;
 	width: 50%;
-	
+
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
@@ -259,7 +259,7 @@ h1 {
 	height: 56px;
 	background-color: #6a4256;
 	z-index: 100;
-	
+
 	box-shadow: 0 0 5px #000;
 }
 
@@ -336,11 +336,11 @@ h1 {
 	background-repeat: repeat;
 	width: 150px;
 	height: 45px;
-	
+
 	color: #ccd9d2;
 	font-weight: bold;
 	font-size: 14px;
-	
+
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
@@ -383,7 +383,7 @@ h1 {
 	z-index: 100;
 	height: 195px;
 	z-index: 10;
-	
+
 	transition: all .7s;
 }
 
@@ -534,7 +534,7 @@ h1 {
 	height: 100%;
 	width: 63px;
 	z-index: 20;
-	
+
 	box-shadow: 1px 0px 5px #000;
 
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -608,7 +608,7 @@ h1 {
 	font-size: 16px;
 	text-transform: uppercase;
 	white-space: nowrap;
-	
+
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
@@ -699,13 +699,13 @@ h1 {
 	background-color: #383838;
 	width: 100%;
 	height: 100%;
-	
+
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-.detail .content {	
+.detail .content {
 	background-size: contain;
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -726,11 +726,11 @@ h1 {
 	padding-top: 56px;
 	width: 390px;
 	height: 100%;
-	
+
 	box-shadow: -2px 0 3px rgba(0, 0, 0, .5);
 
 	transition: all .7s;
-	
+
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
@@ -826,7 +826,7 @@ h1 {
 	width: 356px;
 	height: 100%;
 	overflow: auto;
-	
+
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
@@ -1106,7 +1106,7 @@ h1 {
 	background-repeat: no-repeat, repeat;
 	background-size: 70% auto, auto auto;
 	min-height: 100%;
-	
+
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
@@ -1291,10 +1291,10 @@ h1 {
 }
 
 .group-control-bar:after {
-	content: "."; 
-	visibility: hidden; 
-	display: block; 
-	height: 0; 
+	content: ".";
+	visibility: hidden;
+	display: block;
+	height: 0;
 	clear: both;
 }
 
@@ -1329,10 +1329,10 @@ h1 {
 	display: none;
 }
 
-.group-members:after, .group-header:after, .kites-section:after { 
-	content: "."; 
-	visibility: hidden; 
-	display: block; 
-	height: 0; 
+.group-members:after, .group-header:after, .kites-section:after {
+	content: ".";
+	visibility: hidden;
+	display: block;
+	height: 0;
 	clear: both;
 }
