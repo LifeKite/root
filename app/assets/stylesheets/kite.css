@@ -1,7 +1,7 @@
 /* styles for kite details */
 
 .detail-kite-header {
-  width: 80%;
+  width: 100%;
   border: 2px dashed #44878E;
   display: inline-block;
 }
@@ -10,7 +10,7 @@
   font-size: 2em;
   font-weight: normal;
   padding: 18px;
-  width: 70%;
+  width: 75%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -34,15 +34,12 @@
   padding: 10px 20px;
 }
 
-
-
 .detail-kite-header .dateline {
   float: left;
   color: #44878E;
   border-left: 2px dashed #44878E;
   border-right: 2px dashed #44878E;
   width: 60px;
-  padding: 0 10px;
   text-align: center;
 }
 
@@ -61,6 +58,14 @@
 
 
 
+.detail-section {
+  width: 100%;
+  z-index: 1000;
+  position: absolute;
+  background: white;
+  opacity: 0.5;
+}
+
 .detail-kite-img img{
-  width: 80%;
+  width: 100%;
 }

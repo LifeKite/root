@@ -4,6 +4,10 @@
   vertical-align: top;
 }
 
+.content-header.user h1 {
+  color: #0A3448;
+}
+
 
 .side-kites {
   display: inline-block;
@@ -21,7 +25,6 @@
   width: 170px;
   height: 30px;
   text-align: center;
-  vertical-align: middle;
 }
 
 .h3-like {
@@ -72,7 +75,7 @@
 
 .main-kites h2, .side-kites h2 {
   text-align: center;
-  color: #4088B8;
+  color: #44878E !important;
 }
 
 .side-nav h2 {

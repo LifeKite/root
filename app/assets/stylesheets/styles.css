@@ -19,6 +19,7 @@ body {
 /* Compensate for fixed position bars */
 .has-sidebar.wrapper {
 	padding-left: 63px;
+	padding-right: 63px;
 }
 
 .has-navigation.wrapper {
@@ -290,7 +291,6 @@ h1 {
 .site-logo {
 	position: absolute;
 	top: 10px;
-	left: 63px;
 	z-index: 200;
 }
 
@@ -777,24 +777,24 @@ h1 {
 /* Detail
 *********************************/
 .detail.wrapper {
-	background-color: #383838;
+/*	background-color: #383838;
 	width: 100%;
-	height: 100%;
+	height: 100%;*/
 
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
-	box-sizing: border-box;         /* Opera/IE 8+ */
+/*	-webkit-box-sizing: border-box;*/ /* Safari/Chrome, other WebKit */
+	/*-moz-box-sizing: border-box;   */ /* Firefox, other Gecko */
+	/*box-sizing: border-box;         *//* Opera/IE 8+ */
 }
 
 .detail .content {
-	background-size: contain;
+/*	background-size: contain;
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-color:#222222;
+	background-color:#222222;*/
 
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
-	box-sizing: border-box;         /* Opera/IE 8+ */
+/*	-webkit-box-sizing: border-box;*/ /* Safari/Chrome, other WebKit */
+	/*-moz-box-sizing: border-box;    *//* Firefox, other Gecko */
+	/*box-sizing: border-box;         *//* Opera/IE 8+ */
 }
 
 .kite-nav {
@@ -945,10 +945,6 @@ h1 {
 	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-.detail-kite-title {
-	font-size: 32px;
-}
-
 .kite-nav-content-section {
 	padding: 15px 6px 0;
 	border-bottom: 1px solid #cccccc;
@@ -957,12 +953,6 @@ h1 {
 .kite-nav-content h3, .kite-nav-content p {
 	color: #404040;
 	font-size: 13px;
-}
-
-.kite-nav-content .dateline {
-	font-size: 13px;
-	color: #9f9f9f;
-	margin-bottom: 0;
 }
 
 .kite-nav-content h2 {
@@ -990,12 +980,6 @@ h1 {
 	display: none;
 }
 
-
-
-.detail-section {
-	margin: 0;
-	color: #444444;
-}
 
 .kite-settings {
 	position: absolute;
@@ -1317,6 +1301,7 @@ h1 {
 
 .content {
 	padding-left: 75px;
+	padding-right: 75px;
 }
 
 .groups-page-title {
