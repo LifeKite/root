@@ -1,30 +1,15 @@
-.main-kites {
-  display: inline-block;
-  width: 70%;
-  vertical-align: top;
-}
-
 .content-header.user h1 {
   color: #0A3448;
-}
-
-
-.side-kites {
-  display: inline-block;
-  width: 386px;
-  vertical-align: top;
-}
-
-.side-kites ul {
-  height: 1.5em;
 }
 
 .side-kites li {
   list-style: none;
   float: left;
-  width: 170px;
-  height: 30px;
+  width: 49%;
+  padding: 5px;
   text-align: center;
+  border-right: 2px dashed #36878C;
+  margin-right: 5px;
 }
 
 .h3-like {
@@ -35,8 +20,7 @@
 }
 
 .side-kites li a {
-  height: 100%;
-  width: 95%;
+  padding: 5px;
 }
 
 .side-kites li.ui-state-active a {
@@ -78,10 +62,6 @@
   color: #44878E !important;
 }
 
-.side-nav h2 {
-  display: inline-block;
-  width: 49%;
-}
 
 .dotted {
   border-bottom-style:dotted;
@@ -104,13 +84,13 @@
 }
 
 .dashed-separator {
-  width: 70%;
   border-bottom: 2px dashed #053448;
-  margin: 15px auto;
+  margin: 15px;
 }
 
-.dashed-separator.light {
-  border-bottom-color: #36878C;
+.dashed-separator-light {
+  border-bottom: 2px dashed #36878C;
+  margin: 5px auto 10px auto;
 }
 
 .wide-10 {
@@ -121,16 +101,11 @@
   width: 90%;
 }
 
-.side-kites .side-nav li {
-  border-right: 2px dashed #36878C;
-  margin-right: 5px;
-}
-
-.side-kites .side-nav li.tab-last {
+.side-kites .nav-tabs li.tab-last {
   border-right: 0 none;
   margin-right: 0;
 }
 
-.ui-tabs-nav {
-  padding-left: 20px;
+.nav-tabs {
+  border-bottom: none;
 }

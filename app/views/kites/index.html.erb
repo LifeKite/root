@@ -7,9 +7,9 @@
 			</div>
 
 			<div class="kites">
-				<div class="main-kites">
+				<div class="main-kites col-md-8">
 					<h2>My Kites</h2>
-					<div class="dashed-separator wide-10"></div>
+					<div class="dashed-separator-light wide-10"></div>
 					<div class="my-kitescontainer">
 						<%= render @my_kites, size: :thumb %>
 						<div class="hidden">
@@ -21,12 +21,12 @@
           </div>
 				</div>
 
-				<div class="side-kites">
-          <ul class="side-nav">
+				<div class="side-kites col-md-4">
+          <ul class="side-nav nav nav-tabs">
             <li><a class="h3-like" href="#all-kitescontainer">All Kites</a></li>
             <li class="tab-last"><a class="h3-like" href="#tied-kitescontainer">Kites I'm Tied To</a></li>
           </ul>
-					<div class="dashed-separator light wide-90"></div>
+					<div class="dashed-separator-light"></div>
 					<div id="all-kitescontainer">
 						<%= render @kites, size: :mini %>
 						<div class="hidden">
