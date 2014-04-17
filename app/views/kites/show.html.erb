@@ -27,7 +27,19 @@
     <div class="detail-kite-img">
       <%= image_tag(@kite.kiteimage) %>
     </div>
-		<%= render :partial => 'kiteDetails', :object => @kite %>
+    <div class="kite-details-frame">
+      <div class="kite-details">
+    		<div class="row">
+          <div class="col-md-1 vertical-dashing">Comments</div>
+          <div class="col-md-1 vertical-dashing"><%=pluralize(@kite.supporters_count, 'supporter') %></div>
+          <div class="col-md-1">Add category</div>
+        </div>
+
+        <div id="commentslist">
+          <%= render @comments %>
+        </div>
+      </div>
+    </div>
 	</div>
 </div>
 

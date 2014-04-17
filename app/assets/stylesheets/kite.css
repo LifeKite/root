@@ -67,5 +67,24 @@
 }
 
 .detail-kite-img img{
-  width: 100%;
+  /*width: 100%;*/
+  width: 30%;
+}
+
+.kite-details-frame {
+  border: 2px dashed #44878E;
+}
+
+.kite-details {
+  padding: 10px;
+  background-color: #EAEFED;
+}
+
+.kite-details .col-md-1 {
+  text-align: center;
+  font-style: bold;
+  padding: 5px;
+}
+.kite-details .vertical-dashing {
+  border-right: 2px dashed #44878E;
 }

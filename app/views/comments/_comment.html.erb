@@ -1,24 +1,12 @@
 <div class="comment">
-	<div class="comment-content">
-		
-		<div class="author-info">
-			<ul class="user-list">
-				<li>
-					<div class="name"><%=link_to(comment.user.KosherUsername,userPublicKitesIndex_kites_path(:username=>comment.user.username))%></div>
-					<div class="date"><%= comment.created_at.strftime("%B %d, %Y") %></div>
-				</li>
-			</ul>
+	<div class="name"><%=link_to(comment.user.KosherUsername,userPublicKitesIndex_kites_path(:username=>comment.user.username))%></div>
+	<div class="title"><%=comment.Title%></div>
+	<div class="comment-content"><%= auto_link(simple_format(formatless_tags(comment.content))) %></div>
+
+	<% if comment.kite.user == current_user || comment.user == current_user %>
+		<div class="hard-options">
+			<%= button_to '', comment, :confirm => 'Are you sure?', :method => :delete, :class => "smallDeleteButton button" %>
 		</div>
-		<% if comment.kite.user == current_user || 
-			comment.user == current_user %>
-			<div class="hard-options">
-				<%= button_to '', comment, :confirm => 'Are you sure?', :method => :delete, :class => "smallDeleteButton button" %>
-			</div>
-		<% end %>
-		<div class="title"><%=comment.Title%></div>
-		
-		<div class="the-comment"><%= auto_link(simple_format(formatless_tags(comment.content))) %></div>
-	</div>
-	<!--<img src="/images/comment-separator.png">-->
-	
+	<% end %>
+	<div class="created-ago">(<%= distance_of_time_in_words_to_now(comment.created_at) %> ago)</div>
 </div>

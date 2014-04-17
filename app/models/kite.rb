@@ -199,4 +199,7 @@ class Kite < ActiveRecord::Base
     return comments.count
   end
 
+  def supporters_count
+    followers.count
+  end
 end
