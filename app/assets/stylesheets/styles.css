@@ -909,11 +909,6 @@ h1 {
 	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-.kite-nav-content-section {
-	padding: 15px 6px 0;
-	border-bottom: 1px solid #cccccc;
-}
-
 .kite-nav-content h3, .kite-nav-content p {
 	color: #404040;
 	font-size: 13px;

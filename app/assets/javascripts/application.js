@@ -12,3 +12,4 @@
 //= require script.js
 //= require autocomplete-rails
 //= require kites.js
+//= require bootstrap.js

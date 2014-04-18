@@ -9,7 +9,9 @@
       <h1><%=formatless_tags(@kite.Description)%></h1>
       <div class="info">
         <div class="arrow">
-          <%= image_tag('landing-arrow.png') %>
+          <a data-toggle="collapse" data-target="#kite-details-frame">
+            <%= image_tag('landing-arrow.png') %>
+          </a>
         </div>
         <div class="dateline">
           <%= raw(kite_date_formated(@kite.CreateDate)) %>
@@ -24,10 +26,40 @@
         <%end%> -->
       </div>
     </div>
+
+    <div id="kite-details-frame" class="collapse col-md-10">
+      <%= image_tag('remove-icon.png') %>
+      <h1 class="kite-full-title">
+        <%= @kite.Description %>
+      </h1>
+      <div>
+        <h3><p>Overview</p></h3>
+        <p>
+          <%= format_tags(@kite.Details)%>
+        </p>
+      </div>
+      <div>
+        <h3><p>Progress</p></h3>
+      </div>
+      <% if current_user == @kite.user %>
+        <%= render 'kite_posts/form'%>
+      <% end %>
+      <div id="postlist" class="additional-images">
+        <%= render partial: "kite_posts/kite_post", collection: @kitePosts %>
+      </div>
+      <%= link_to 'Load More', kite_path(@kite, :postpage => @kitePosts.next_page), :class => 'load-more load-more-posts', :remote => true if @kitePosts.next_page %>
+
+
+      <% if !@kite.ImageLocation.nil? && valid_json?(@kite.ImageLocation) %>
+        <p class="dateline">Image original source: <a hef='<%= JSON.parse(@kite.ImageLocation)['site'] %>'>
+          <%= JSON.parse(@kite.ImageLocation)['site'] %>
+        </a></p>
+      <% end %>
+    </div>
     <div class="detail-kite-img">
       <%= image_tag(@kite.kiteimage) %>
     </div>
-    <div class="kite-details-frame">
+    <div class="kite-comments-frame">
       <div class="kite-details">
     		<div class="row">
           <div class="col-md-1 vertical-dashing">Comments</div>
