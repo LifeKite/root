@@ -9,11 +9,18 @@
 		<% end %>
 	<% end %>
 	<div class="overlay">
-		<h2 class="kite-name">
-			<%=h link_to kite.Description, kite %>
-		</h2>
-		<p class="kite-byline">Created by <%=h link_to kite.user.KosherUsername, userPublicKitesIndex_kites_path(:username=>kite.user.username), :class => "author-link" %></p>
-		<div class="kite-likes"><span class="like-count"><%= kite.LikeCount %></span> Likes</div>
-		<div class="view-kite"><%=h link_to "View", kite, :class=>"view-kite-link"%></div>
+		<% if size == :thumb %>
+			<h2 class="kite-name">
+				<%=h link_to kite.Description, kite %>
+			</h2>
+			<p class="kite-byline">Created by <%=h link_to kite.user.KosherUsername, userPublicKitesIndex_kites_path(:username=>kite.user.username), :class => "author-link" %></p>
+			<div class="kite-likes"><span class="like-count"><%= kite.LikeCount %></span> Likes</div>
+			<div class="view-kite"><%=h link_to "View", kite, :class=>"view-kite-link"%></div>
+		<% else %>
+			<h4 class="kite-name">
+				<%=h link_to kite.Description, kite %>
+			</h4>
+			<p class="kite-byline">Created by <%=h link_to kite.user.KosherUsername, userPublicKitesIndex_kites_path(:username=>kite.user.username), :class => "author-link" %></p>
+		<% end %>
 	</div>
 </div>

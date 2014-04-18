@@ -52,8 +52,6 @@ class KitesController < ApplicationController
   def index
     time_range = (1.week.ago..Time.now)
 
-    check_and_handle_kites_per_page_update(current_user, params)
-
     @kites = Kite.public_kites.shuffle.paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
 
     get_common_stats()
