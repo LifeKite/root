@@ -52,7 +52,7 @@
       <% if !current_user.nil? && current_user == @kite.user %>
         <%= render 'follwings/member', :title => "Add a new member"%>
       <% end %>
-      <ul id="memberslist" class="members-list user-list">
+      <ul id="memberslist" class="members-list user-list col-md-offset-1">
         <%= render @kite.follwings.where(:Type => "member")%>
       </ul>
 
