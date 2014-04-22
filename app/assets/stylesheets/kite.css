@@ -82,14 +82,20 @@
 
 }
 
-#kite-details-frame h3 ~ h3 {
+#kite-details-frame .details-section ~ .details-section {
   margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 #kite-details-frame .remove-icon {
   position: absolute;
   right: 10px;
   top: 10px;
+}
+
+#kite-details-frame .col-md-12 {
+  padding-left:0;
+  padding-right:0;
 }
 
 .detail-kite-img img{

@@ -17,7 +17,20 @@
           <%= raw(kite_date_formated(@kite.CreateDate)) %>
         </div>
         <div class="heart">
-          <%= image_tag('landing-heart-open.png') %>
+          <%= link_to image_tag('landing-heart-closed.png'),
+            Unfollow_kite_path(@kite),
+            :method => :put,
+            :remote => true,
+            :class => "following #{'hidden' if current_user.is_following?(@kite.id)}"
+          %>
+
+          <%= link_to image_tag('landing-heart-open.png'),
+            Follow_kite_path(@kite, :type => :like),
+            :method => :put,
+            :remote => true,
+            :class => "not-following #{'hidden' unless current_user.is_following?(@kite.id)}"
+          %>
+
         </div>
 <!--         <% if @kite.Completed %>
           <div class="dateline">
@@ -35,27 +48,32 @@
         <%= @kite.Description %>
       </h1>
 
-      <h3><p class="col-md-offset-1">Overview</p></h3>
-      <%= format_tags(@kite.Details, :class => 'col-md-offset-1') %>
-
-      <h3><p class="col-md-offset-1">Progress</p></h3>
-      <% if current_user == @kite.user %>
-        <%= render 'kite_posts/form'%>
-      <% end %>
-
-      <div id="postlist" class="additional-images col-md-offset-1">
-        <%= render partial: "kite_posts/kite_post", collection: @kitePosts %>
+      <div class="col-md-12 details-section">
+        <h3><p class="col-md-offset-1">Overview</p></h3>
+        <%= format_tags(@kite.Details, :class => 'col-md-offset-1') %>
       </div>
-      <%= link_to 'Load More', kite_path(@kite, :postpage => @kitePosts.next_page), :class => 'load-more load-more-posts', :remote => true if @kitePosts.next_page %>
 
-      <h3><p class="col-md-offset-1">Members</p></h3>
-      <% if !current_user.nil? && current_user == @kite.user %>
-        <%= render 'follwings/member', :title => "Add a new member"%>
-      <% end %>
-      <ul id="memberslist" class="members-list user-list col-md-offset-1">
-        <%= render @kite.follwings.where(:Type => "member")%>
-      </ul>
+      <div class="col-md-12 details-section">
+        <h3><p class="col-md-offset-1">Progress</p></h3>
+        <% if current_user == @kite.user %>
+          <%= render 'kite_posts/form'%>
+        <% end %>
 
+        <div id="postlist" class="additional-images col-md-offset-1">
+          <%= render partial: "kite_posts/kite_post", collection: @kitePosts %>
+        </div>
+        <%= link_to 'Load More', kite_path(@kite, :postpage => @kitePosts.next_page), :class => 'load-more load-more-posts', :remote => true if @kitePosts.next_page %>
+      </div>
+
+      <div class="col-md-12 details-section">
+        <h3><p class="col-md-offset-1">Members</p></h3>
+        <% if !current_user.nil? && current_user == @kite.user %>
+          <%= render 'follwings/member', :title => "Add a new member"%>
+        <% end %>
+        <ul id="memberslist" class="members-list user-list col-md-offset-1">
+          <%= render @kite.follwings.where(:Type => "member")%>
+        </ul>
+      </div>
 
       <% if !@kite.ImageLocation.nil? && valid_json?(@kite.ImageLocation) %>
         <p class="dateline">Image original source: <a hef='<%= JSON.parse(@kite.ImageLocation)['site'] %>'>
@@ -63,6 +81,13 @@
         </a></p>
       <% end %>
 
+      <div class="col-md-12 details-section">
+
+        <div class="btn-group">
+          <button type="button" class="btn<%= ' selected' if @kite.public? %>"><%= image_tag('icon-lock-opened-green.png') %>Public</button>
+          <button type="button" class="btn<%= ' selected' if @kite.private? %>"><%= image_tag('icon-lock-closed-green.png') %>Private</button>
+        </div>
+      </div>
     </div>
     <div class="detail-kite-img">
       <%= image_tag(@kite.kiteimage) %>
