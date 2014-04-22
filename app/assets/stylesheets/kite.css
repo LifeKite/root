@@ -56,11 +56,16 @@
   font-style: bold;
 }
 
+.details-container {
+  position: relative;
+}
+
 #kite-details-frame {
-  z-index: 1000;
+  z-index: 50;
   position: absolute !important;
   background: rgba(255, 255, 255, 0.8);
-  margin-right: 90px;
+  left: 15px;
+  right: 15px;
 }
 
 .kite-full-title {

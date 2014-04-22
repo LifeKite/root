@@ -4,7 +4,7 @@
 <% else %>
 <div class="wrapper detail has-navigation">
 <%end%>
-	<div class="content">
+	<div class="container details-container">
     <div class="detail-kite-header">
       <h1><%=formatless_tags(@kite.Description)%></h1>
       <div class="info">
@@ -27,8 +27,7 @@
       </div>
     </div>
 
-    <div id="kite-details-frame" class="collapse col-md-10">
-      <%= image_tag('remove-icon.png') %>
+    <div id="kite-details-frame" class="collapse">
       <h1 class="kite-full-title">
         <%= @kite.Description %>
       </h1>
