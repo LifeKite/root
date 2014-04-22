@@ -79,6 +79,12 @@
   color: white;
 }
 
+#kite-details-frame .remove-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
 #kite-details-frame p, #kite-details-frame .field, #kite-details-frame .comment-field-container {
   margin: 30px;
 }

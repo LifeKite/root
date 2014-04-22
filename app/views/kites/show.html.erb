@@ -29,7 +29,11 @@
 
     <div id="kite-details-frame" class="collapse">
       <h1 class="kite-full-title">
+        <a data-toggle="collapse" data-target="#kite-details-frame">
+          <%= image_tag('remove-icon.png', :class => 'remove-icon' ) %>
+        </a>
         <%= @kite.Description %>
+
       </h1>
       <div>
         <h3><p>Overview</p></h3>
