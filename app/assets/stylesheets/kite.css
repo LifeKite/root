@@ -77,16 +77,18 @@
 #kite-details-frame h3 {
   background-color: #EB615E;
   color: white;
+  margin-bottom: 15px;
+
+}
+
+#kite-details-frame h3 ~ h3 {
+  margin-top: 15px;
 }
 
 #kite-details-frame .remove-icon {
   position: absolute;
   right: 10px;
   top: 10px;
-}
-
-#kite-details-frame p, #kite-details-frame .field, #kite-details-frame .comment-field-container {
-  margin: 30px;
 }
 
 .detail-kite-img img{

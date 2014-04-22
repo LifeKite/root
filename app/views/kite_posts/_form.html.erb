@@ -1,4 +1,4 @@
-<%= form_for(@kitePost, :remote => true) do |f| %>
+<%= form_for(@kitePost, :remote => true, :html => {:class => "col-md-offset-1"}) do |f| %>
   <% if @kitePost.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@kitePost.errors.count, "error") %> prohibited this post from being saved:</h2>

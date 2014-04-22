@@ -1,11 +1,11 @@
-<%= form_for(:follwing, :url => url_for(:controller => 'kites', :action => 'Join'), :method => :put, :remote => true) do |f| %>
-	
+<%= form_for(:follwing, :url => url_for(:controller => 'kites', :action => 'Join'), :method => :put, :remote => true, :html => {:class => "col-md-offset-1"}) do |f| %>
+
 		Enter the name of another LifeKite member, then add them to your members list.</br/>
 		<%= f.autocomplete_field :user_email, autocomplete_user_name_follwings_path,
 			:id_element => ".idholder", :class => "membername-input" %>
 		<%= f.hidden_field :user_id, :class => "idholder" %>
 	<%= f.submit title, {:class => "create-button button like-button member-create" , disabled: true}%>
-	
+
 <% end %>
 <script type="text/javascript">
 	$('#follwing_user_email').val("");
