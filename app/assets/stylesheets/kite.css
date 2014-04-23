@@ -117,6 +117,30 @@
   font-style: bold;
   padding: 5px;
 }
+
 .kite-details .vertical-dashing {
   border-right: 2px dashed #44878E;
+}
+
+.privacy {
+  float: left;
+}
+
+.privacy .active {
+  background-color: #EB615E;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  padding: 10px;
+}
+
+.privacy .clickable {
+  color: #44878E;
+  font-weight: bold;
+  display: inline-block;
+  padding: 10px;
+}
+
+.privacy .clickable a {
+  text-decoration: none;
 }

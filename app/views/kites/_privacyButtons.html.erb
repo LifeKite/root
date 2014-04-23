@@ -1,0 +1,27 @@
+<div class="privacy col-md-offset-1">
+  <div class="is-public <%= 'hidden' if kite.private? %>">
+    <div class="active">
+      <%= image_tag('icon-lock-opened-white.png') + ' Public' %>
+    </div>
+    <div class="clickable">
+      <%= link_to image_tag('icon-lock-closed-green.png') + 'Private',
+        kite_path(@kite, {:kite => {:sharelevel => "private"}}),
+        :method => :put,
+        :remote => true
+      %>
+    </div>
+  </div>
+
+  <div class="is-private <%= 'hidden' if kite.public? %>">
+    <div class="clickable">
+      <%= link_to image_tag('icon-lock-opened-green.png') + 'Public',
+        kite_path(@kite, {:kite => {:sharelevel => "public"}}),
+        :method => :put,
+        :remote => true
+      %>
+    </div>
+    <div class="active">
+      <%= image_tag('icon-lock-closed-white.png') + ' Private' %>
+    </div>
+  </div>
+</div>

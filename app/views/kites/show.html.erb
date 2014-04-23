@@ -17,19 +17,23 @@
           <%= raw(kite_date_formated(@kite.CreateDate)) %>
         </div>
         <div class="heart">
-          <%= link_to image_tag('landing-heart-closed.png'),
-            Unfollow_kite_path(@kite),
-            :method => :put,
-            :remote => true,
-            :class => "following #{'hidden' if current_user.is_following?(@kite.id)}"
-          %>
+          <% if current_user %>
+            <%= link_to image_tag('landing-heart-closed.png'),
+              Unfollow_kite_path(@kite),
+              :method => :put,
+              :remote => true,
+              :class => "following #{'hidden' if current_user.is_following?(@kite.id)}"
+            %>
 
-          <%= link_to image_tag('landing-heart-open.png'),
-            Follow_kite_path(@kite, :type => :like),
-            :method => :put,
-            :remote => true,
-            :class => "not-following #{'hidden' unless current_user.is_following?(@kite.id)}"
-          %>
+            <%= link_to image_tag('landing-heart-open.png'),
+              Follow_kite_path(@kite, :type => :like),
+              :method => :put,
+              :remote => true,
+              :class => "not-following #{'hidden' unless current_user.is_following?(@kite.id)}"
+            %>
+          <% else %>
+           <%= image_tag('landing-heart-open.png') %>
+          <% end %>
 
         </div>
 <!--         <% if @kite.Completed %>
@@ -67,7 +71,7 @@
 
       <div class="col-md-12 details-section">
         <h3><p class="col-md-offset-1">Members</p></h3>
-        <% if !current_user.nil? && current_user == @kite.user %>
+        <% if current_user == @kite.user %>
           <%= render 'follwings/member', :title => "Add a new member"%>
         <% end %>
         <ul id="memberslist" class="members-list user-list col-md-offset-1">
@@ -82,11 +86,9 @@
       <% end %>
 
       <div class="col-md-12 details-section">
-
-        <div class="btn-group">
-          <button type="button" class="btn<%= ' selected' if @kite.public? %>"><%= image_tag('icon-lock-opened-green.png') %>Public</button>
-          <button type="button" class="btn<%= ' selected' if @kite.private? %>"><%= image_tag('icon-lock-closed-green.png') %>Private</button>
-        </div>
+        <% if current_user == @kite.user %>
+          <%= render 'privacyButtons', kite: @kite %>
+        <% end %>
       </div>
     </div>
     <div class="detail-kite-img">

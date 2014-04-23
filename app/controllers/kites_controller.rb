@@ -26,9 +26,9 @@ class KitesController < ApplicationController
     get_common_stats()
 
     respond_to do |format|
-      format.html { render :template => 'kites/index' }# index.html.erb
+      format.html { render :template => 'kites/indexPublic' }# indexPublic.html.erb
       format.xml  { render :xml => @kites }
-      format.js   { render :template => 'kites/index' }
+      format.js   { render :template => 'kites/indexPublic' }
     end
 
   end
@@ -442,9 +442,11 @@ class KitesController < ApplicationController
         if @kite.update_attributes(params[:kite])
           format.html { redirect_to(@kite, :notice => 'Kite was successfully updated.') }
           format.xml  { head :ok }
+          format.js {}
         else
           format.html { render :action => "edit" }
           format.xml  { render :xml => @kite.errors, :status => :unprocessable_entity }
+          format.js {}
         end
       end
     end

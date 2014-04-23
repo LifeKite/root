@@ -202,4 +202,12 @@ class Kite < ActiveRecord::Base
   def supporters_count
     followers.count
   end
+
+  def private?
+    sharelevel == "private"
+  end
+
+  def public?
+    sharelevel == "public"
+  end
 end
