@@ -8,8 +8,9 @@
 //= require jquery.mousewheel.js
 //= require jquery.inview.min.js
 //= require jquery.ui.widget.js
+//= require bootstrap.js
 //= require scripts.js
 //= require script.js
 //= require autocomplete-rails
 //= require kites.js
-//= require bootstrap.js
+//= require kite.js
