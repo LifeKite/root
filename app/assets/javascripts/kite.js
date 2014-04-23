@@ -7,6 +7,29 @@ $(document).ready(function () {
     img.data('posTop', img.position().top);
     img.height(img.height()).width('auto');
 
+    $('.detail-kite-header').css({
+      position: 'fixed',
+      width: '1140px',
+      'margin-top': 0
+    });
+
+    $(".detail-kite-img").css({
+      position: 'fixed',
+      top: '150px'
+    });
+
+    $(".kite-comments-frame").css({
+      'margin-top': parseInt($('.detail-kite-img').position().top, 10) + parseInt(img.height(), 10) - 60
+    });
+
+    $("#kite-details-frame").css({
+      top: '150px',
+      width: '1140px',
+      left: 'auto',
+      right: 'auto',
+      position: 'fixed'
+    });
+
     $(window).scroll(function () {
 
       if (window.resizing) return;
@@ -26,12 +49,61 @@ $(document).ready(function () {
       var originalHeight = parseInt(img.data('height'), 10);
 
       var height = originalHeight - scrollTop;
-      if (height < minHeight) {
-        height = minHeight;
-      }
+
       if (height > originalHeight) {
         height = originalHeight;
       }
+
+      if (height < minHeight) {
+        height = minHeight;
+
+        //set header and image to position: static
+        $('.detail-kite-header').css({
+          position: 'static',
+          width: '1140px',
+          'margin-top': '460px'
+        });
+
+        $(".detail-kite-img").css({
+          position: 'static',
+          top: ''
+        });
+
+        $(".kite-comments-frame").css({
+          'margin-top': '10px'
+        });
+
+        $("#kite-details-frame").css({
+          top: '',
+          position: ''
+        })
+      } else {
+
+        //set header and image to position: fixed
+        $('.detail-kite-header').css({
+          position: 'fixed',
+          width: '1140px',
+          'margin-top': 0
+        });
+
+        $(".detail-kite-img").css({
+          position: 'fixed',
+          top: '150px'
+        });
+
+        $(".kite-comments-frame").css({
+          'margin-top': parseInt($('.detail-kite-img').position().top, 10) + parseInt(img.height(), 10) - 60
+        });
+
+        $("#kite-details-frame").css({
+          top: '150px',
+          width: '1140px',
+          left: 'auto',
+          right: 'auto',
+          position: 'fixed'
+        })
+      }
+
 
       img.height(height);
 

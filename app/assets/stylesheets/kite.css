@@ -63,7 +63,7 @@
 
 #kite-details-frame {
   z-index: 50;
-  position: absolute !important;
+  position: absolute;
   background: rgba(255, 255, 255, 0.8);
   left: 15px;
   right: 15px;
@@ -105,6 +105,7 @@
 
 .kite-comments-frame {
   border: 2px dashed #44878E;
+  margin-top: 10px;
 }
 
 .kite-details {
