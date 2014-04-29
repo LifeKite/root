@@ -1,9 +1,55 @@
 /* styles for kite details */
 
 .detail-kite-header {
-  width: 100%;
   border: 2px dashed #44878E;
   display: inline-block;
+  position: fixed;
+  margin-top: 0;
+}
+
+.detail-kite-header.static {
+  position: static;
+}
+
+@media (min-width: 1200px) {
+  .detail-kite-header {
+    width: 1140px;
+  }
+
+  .detail-kite-header.static {
+    margin-top: 460px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .detail-kite-header {
+    width: 1140px;
+  }
+
+  .detail-kite-header.static {
+    width: 1140px;
+    margin-top: 180px;
+  }
+}
+
+@media (max-width: 767px) {
+  .detail-kite-header {
+    width: 538px;
+  }
+
+  .detail-kite-header.static {
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-kite-header {
+    width: 440px;
+  }
+
+  .detail-kite-header.static {
+    margin-top: 0px;
+  }
 }
 
 .detail-kite-header h1 {
@@ -26,11 +72,11 @@
   float: left;
 }
 
-.detail-kite-header .arrow  img{
+.detail-kite-header .arrow img {
   padding: 25px;
 }
 
-.detail-kite-header .heart  img{
+.detail-kite-header .heart img {
   padding: 10px 20px;
 }
 
@@ -94,11 +140,11 @@
 }
 
 #kite-details-frame .col-md-12 {
-  padding-left:0;
-  padding-right:0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.detail-kite-img img{
+.detail-kite-img img {
   width: 100%;
   /*width: 30%;*/
 }

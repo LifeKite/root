@@ -9,12 +9,6 @@ $(document).ready(function () {
       img.data('posTop', img.position().top);
       img.height(img.height()).width('auto');
 
-      $('.detail-kite-header').css({
-        position: 'fixed',
-        width: '1140px',
-        'margin-top': 0
-      });
-
       $(".detail-kite-img").css({
         position: 'fixed',
         top: '150px'
@@ -60,11 +54,7 @@ $(document).ready(function () {
           height = minHeight;
 
           //set header and image to position: static
-          $('.detail-kite-header').css({
-            position: 'static',
-            width: '1140px',
-            'margin-top': '460px'
-          });
+          $('.detail-kite-header').addClass('static');
 
           $(".detail-kite-img").css({
             position: 'static',
@@ -82,11 +72,7 @@ $(document).ready(function () {
         } else {
 
           //set header and image to position: fixed
-          $('.detail-kite-header').css({
-            position: 'fixed',
-            width: '1140px',
-            'margin-top': 0
-          });
+          $('.detail-kite-header').removeClass('static');
 
           $(".detail-kite-img").css({
             position: 'fixed',
