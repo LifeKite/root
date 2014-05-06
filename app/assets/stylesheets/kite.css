@@ -123,17 +123,34 @@
 
 #kite-details-frame h4 {
   background-color: #EB615E;
-  color: white;
   margin-bottom: 15px;
 }
 
 #kite-details-frame h4 p {
   padding: 4px 0;
+  color: white;
 }
 
 #kite-details-frame .details-section ~ .details-section {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+#kite-details-frame ::-webkit-input-placeholder { /* WebKit browsers */
+  color: #44878E;
+}
+#kite-details-frame :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #44878E;
+}
+#kite-details-frame ::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #44878E;
+}
+#kite-details-frame :-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #44878E;
+}
+
+#kite-details-frame p {
+  color: #44878E;
 }
 
 #kite-details-frame .remove-icon {
