@@ -50,6 +50,10 @@ h1, h2, h3, h4, h5, h6, ul {
 	font-weight: normal;
 }
 
+.content-header h3  {
+	font-size: 1.4em;
+}
+
 .bold, .content-header h3.bold {
 	font-weight: bold;
 }
