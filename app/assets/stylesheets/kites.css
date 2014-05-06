@@ -8,7 +8,7 @@
   width: 49%;
   padding: 5px;
   text-align: center;
-  border-right: 2px dashed #36878C;
+  border-right: 1px dashed #36878C;
   margin-right: 5px;
 }
 
@@ -124,12 +124,12 @@
 }
 
 .dashed-separator {
-  border-bottom: 2px dashed #053448;
+  border-bottom: 1px dashed #053448;
   margin: 15px;
 }
 
 .dashed-separator-light {
-  border-bottom: 2px dashed #36878C;
+  border-bottom: 1px dashed #36878C;
   margin: 5px auto 10px auto;
 }
 

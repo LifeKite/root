@@ -1,7 +1,7 @@
 /* styles for kite details */
 
 .detail-kite-header {
-  border: 2px dashed #44878E;
+  border: 1px dashed #44878E;
   display: inline-block;
   position: fixed;
   margin-top: 0;
@@ -83,8 +83,8 @@
 .detail-kite-header .dateline {
   float: left;
   color: #44878E;
-  border-left: 2px dashed #44878E;
-  border-right: 2px dashed #44878E;
+  border-left: 1px dashed #44878E;
+  border-right: 1px dashed #44878E;
   padding-left: 5px;
   padding-right: 5px;
   text-align: center;
@@ -150,7 +150,7 @@
 }
 
 .kite-comments-frame {
-  border: 2px dashed #44878E;
+  border: 1px dashed #44878E;
   margin-top: 10px;
 }
 
@@ -166,7 +166,7 @@
 }
 
 .kite-details .vertical-dashing {
-  border-right: 2px dashed #44878E;
+  border-right: 1px dashed #44878E;
 }
 
 .privacy {
