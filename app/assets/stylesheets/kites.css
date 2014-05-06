@@ -146,6 +146,10 @@
   margin: 5px auto 10px auto;
 }
 
+.my-kites-separator {
+  width: 120px;
+}
+
 .wide-10 {
   width: 10%;
 }
