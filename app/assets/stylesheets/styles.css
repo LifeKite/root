@@ -1363,12 +1363,6 @@ h1 {
 	visibility: hidden;
 }
 
-.fake-kite {
-	background-color:#FFFFFF;
-	color: #333333;
-	text-align: center;
-}
-
 .comment-button {
 	float: right;
 	margin-right: 30px;

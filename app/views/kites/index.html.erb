@@ -16,9 +16,7 @@
 							<%= will_paginate @my_kites %>
 						</div>
 					</div>
-          <div class="kite fake-kite">
-            <%= link_to 'Click here to add a kite', new_kite_path %>
-          </div>
+          <%= link_to content_tag(:div, content_tag(:p, raw('Click here <br/>to add a kite')), class: "kite fake-kite" ), new_kite_path %>
 				</div>
 
 				<div class="side-kites col-md-4">

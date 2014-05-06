@@ -76,6 +76,18 @@
   margin: 10px;
 }
 
+.fake-kite {
+  background-color:#FFFFFF;
+  color: #C0D0C8;
+  text-align: center;
+  font-size: 1.5em;
+  border: 1px dashed;
+}
+
+.fake-kite p {
+  margin-top: 77px;
+}
+
 .kite:hover .overlay, .mini-kite:hover .overlay {
   display: block;
   opacity: 100;
