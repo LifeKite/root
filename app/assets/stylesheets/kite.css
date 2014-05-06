@@ -211,3 +211,12 @@
 .privacy .clickable a {
   text-decoration: none;
 }
+
+#new_kite_post input.add-image{
+  width: 100%;
+}
+
+
+#kite_post_text {
+  margin-bottom: 20px;
+}

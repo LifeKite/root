@@ -11,17 +11,18 @@
     </div>
   <% end %>
 
-  <div class="comment-field-container">
-    <%= f.text_area :text, :size => "200x2", :placeholder => "What's new?", :class => "comment-field" %>
+  <div class="row">
+    <div class="col-md-11">
+      <%= f.text_area :text, :rows => 2, :placeholder => "What's new?", :class => "comment-field" %>
+    </div>
   </div>
-  <div class="field">
+  <div class="row">
   	<%= f.hidden_field "kite_id", :value => @kite.id %>
   </div>
-  <div class="field">
-  	<div >
-  		<input type="text" class="image-upload-field surrogate", placeholder="Upload an image..." />
-  		<div class="button add-button add-image" style="display: inline-block; height:35px; padding-top: 2px;">...</div>
-  	</div>
+  <div class="row">
+    <div class="col-md-11">
+      <input type="text" class="add-image image-upload-field surrogate", placeholder="Upload an image..." />
+    </div>
   </div>
   <%= f.file_field :image, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
   <div class="actions">
