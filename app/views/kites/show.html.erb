@@ -53,12 +53,12 @@
       </h1>
 
       <div class="col-md-12 details-section">
-        <h3><p class="col-md-offset-1">Overview</p></h3>
+        <h4><p class="col-md-offset-1">Overview</p></h4>
         <%= format_tags(@kite.Details, :class => 'col-md-offset-1') %>
       </div>
 
       <div class="col-md-12 details-section">
-        <h3><p class="col-md-offset-1">Progress</p></h3>
+        <h4><p class="col-md-offset-1">Progress</p></h4>
         <% if current_user == @kite.user %>
           <%= render 'kite_posts/form'%>
         <% end %>
@@ -70,7 +70,7 @@
       </div>
 
       <div class="col-md-12 details-section">
-        <h3><p class="col-md-offset-1">Members</p></h3>
+        <h4><p class="col-md-offset-1">Members</p></h4>
         <% if current_user == @kite.user %>
           <%= render 'follwings/member', :title => "Add a new member"%>
         <% end %>
@@ -101,6 +101,10 @@
           <div class="col-md-1 vertical-dashing"><%=pluralize(@kite.supporters_count, 'supporter') %></div>
           <div class="col-md-1">Add category</div>
         </div>
+
+        <% if current_user %>
+          <%= render 'comments/form'%>
+        <% end %>
 
         <div id="commentslist">
           <%= render @comments %>
