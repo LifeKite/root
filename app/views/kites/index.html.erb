@@ -50,11 +50,12 @@
 				<h3>Vestibulum et risus interdum risus tincidunt fringilla.</h3>
 				<h3 class="red bold italic">Click on any image below to take a peak at what other people are kiting!</h3>
 				<h3 class="red bold italic">OR</h3>
+			</div>
+			<div class="kitescontainer">
 				<div class="signup-img">
 					<%= link_to image_tag('home-signup-click.png'), new_user_registration_path %>
 				</div>
-			</div>
-			<div class="kitescontainer">
+
 				<!-- Begin kite -->
 				<%= render @kites, size: :thumb %>
 				<!-- End kite -->
