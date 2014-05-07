@@ -136,18 +136,50 @@
   margin-bottom: 15px;
 }
 
+/* weird stuff for inputs and text areas */
+
+#kite-details-frame input, #kite-details-frame textarea {
+  border: #44878E 1px solid;
+  resize: vertical;
+}
+
+#kite-details-frame .comment-field::-webkit-input-placeholder {
+  padding: 10px;
+}
+
+#kite-details-frame .comment-field:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  padding: 10px;
+}
+
+#kite-details-frame .comment-field::-moz-placeholder { /* Mozilla Firefox 19+ */
+  padding: 10px;
+}
+
+#kite-details-frame .comment-field:-ms-input-placeholder { /* Internet Explorer 10+ */
+  padding: 10px;
+}
+
 #kite-details-frame ::-webkit-input-placeholder { /* WebKit browsers */
   color: #44878E;
+  padding-left: 10px;
 }
+
 #kite-details-frame :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
   color: #44878E;
+  padding-left: 10px;
 }
+
 #kite-details-frame ::-moz-placeholder { /* Mozilla Firefox 19+ */
   color: #44878E;
+  padding-left: 10px;
 }
+
 #kite-details-frame :-ms-input-placeholder { /* Internet Explorer 10+ */
   color: #44878E;
+  padding-left: 10px;
 }
+
+/* end of weird stuff for inputs and text areas */
 
 #kite-details-frame p {
   color: #44878E;
