@@ -5,11 +5,11 @@
 .side-kites li {
   list-style: none;
   float: left;
-  width: 49%;
-  padding: 5px;
+  width: 190px;
+  padding: 10px;
   text-align: center;
   border-right: 1px dashed #36878C;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .h3-like {
@@ -20,7 +20,7 @@
 }
 
 .side-kites li a {
-  padding: 5px;
+  padding: 5px !important;
   border-radius: 0px !important;
 }
 
