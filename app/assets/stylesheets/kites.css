@@ -21,7 +21,7 @@
 
 .side-kites li a {
   padding: 5px;
-  border-radius: 4px !important;
+  border-radius: 0px !important;
 }
 
 .side-kites li.ui-state-active a {
