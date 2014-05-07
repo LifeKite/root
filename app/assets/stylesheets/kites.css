@@ -40,15 +40,6 @@
   width: 1410px;
 }
 
-
-/* Tablet styles */
-@media screen and (min-width:501px) and (max-width:1024px) {
- .kitescontainer {
-    width: 940px;
-  }
-}
-
-
 #all-kitescontainer.ui-tabs-hide, #tied-kitescontainer.ui-tabs-hide {
    display: none;
 }
@@ -174,4 +165,21 @@
 
 .side-kites .nav-tabs {
   border-bottom: none;
+}
+
+
+/* Tablet styles */
+@media screen and (min-width:501px) and (max-width:1024px) {
+ .kitescontainer {
+    width: 940px;
+  }
+
+  .side-kites li {
+    width: 124px;
+    padding: 7px;
+  }
+
+  .h3-like {
+    font-size: 12px;
+  }
 }
