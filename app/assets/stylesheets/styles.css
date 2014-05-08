@@ -298,6 +298,11 @@ h1 {
 	color: #fff;
 }
 
+.nav-item a:hover, .nav-item a:focus {
+  text-decoration: none;
+ 	color: #fff;
+}
+
 .logged-in {
 	display: none;
 }

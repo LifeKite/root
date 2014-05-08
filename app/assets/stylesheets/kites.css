@@ -27,12 +27,16 @@
   width: 47%;
 }
 
+.nav.lk-side-nav > li.lk-first-tab {
+  padding-right: 3%;
+}
+
 .nav.lk-side-nav > li.lk-last-tab {
   padding-left: 3%;
 }
 
 .nav.lk-side-nav > li.lk-dashed-v {
-  width: 3%;
+  width: 1px;
 }
 
 .nav.lk-side-nav > li > a  {
@@ -48,7 +52,7 @@
 }
 
 .nav.lk-side-nav > li.active > a:hover, .nav.lk-side-nav > li.active > a:focus {
-  background-color: #E78684;
+  background-color: #EB615E;
 }
 
 .mini-kite{
