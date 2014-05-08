@@ -18,8 +18,8 @@ body {
 
 /* Compensate for fixed position bars */
 .has-sidebar.wrapper {
-	padding-left: 63px;
-	padding-right: 63px;
+	padding-left: 100px;
+	padding-right: 100px;
 }
 
 .has-navigation.wrapper {
