@@ -12,6 +12,4 @@ $(document).ready(function(){
       return $(window).scroll();
     }
   });
-
-  $('.side-kites').tabs();
 });

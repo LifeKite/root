@@ -1,15 +1,9 @@
-.content-header.user h1 {
-  color: #0A3448;
+.no-corners {
+  border-radius: 0 !important;
 }
 
-.side-kites li {
-  list-style: none;
-  float: left;
-  width: 190px;
-  padding: 10px;
-  text-align: center;
-  border-right: 1px dashed #36878C;
-  margin-right: 10px;
+.content-header.user h1 {
+  color: #0A3448;
 }
 
 .h3-like {
@@ -19,29 +13,42 @@
   display: inline-block;
 }
 
-.side-kites li a {
-  padding: 5px !important;
-  border-radius: 0px !important;
-}
-
-.side-kites li.ui-state-active a {
-  background-color: #EB615E;
-  color: white;
-}
-
-#all-kitescontainer, #tied-kitescontainer {
-  display: inline-block;
-  padding: 10px;
-}
-
 .kitescontainer {
   margin: 0 auto;
   position: relative;
   width: 1410px;
 }
 
-#all-kitescontainer.ui-tabs-hide, #tied-kitescontainer.ui-tabs-hide {
-   display: none;
+.nav.lk-side-nav{
+  display: table;
+}
+
+.nav.lk-side-nav > li {
+  width: 47%;
+}
+
+.nav.lk-side-nav > li.lk-last-tab {
+  padding-left: 3%;
+}
+
+.nav.lk-side-nav > li.lk-dashed-v {
+  width: 3%;
+}
+
+.nav.lk-side-nav > li > a  {
+  color: #44878E;
+  font-family: 'Asap', sans-serif;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.nav.lk-side-nav > li.active > a {
+  background-color: #EB615E;
+  color: white;
+}
+
+.nav.lk-side-nav > li.active > a:hover, .nav.lk-side-nav > li.active > a:focus {
+  background-color: #E78684;
 }
 
 .mini-kite{
@@ -110,11 +117,10 @@
 }
 
 
-.main-kites h3.title, .side-kites h2.title {
+.main-kites h3.title {
   text-align: center;
   color: #44878E !important;
 }
-
 
 .dotted {
   border-bottom-style:dotted;
@@ -134,6 +140,10 @@
   top: -66px;
   margin: auto;
   z-index: 1000;
+}
+
+.lk-dashed-v {
+  border-right: 1px dashed #36878C;
 }
 
 .dashed-separator {
@@ -158,25 +168,10 @@
   width: 90%;
 }
 
-.side-kites .nav-tabs li.tab-last {
-  border-right: 0 none;
-  margin-right: 0;
-}
-
-.side-kites .nav-tabs {
-  border-bottom: none;
-}
-
-
 /* Tablet styles */
 @media screen and (min-width:501px) and (max-width:1024px) {
  .kitescontainer {
-    width: 940px;
-  }
-
-  .side-kites li {
-    width: 124px;
-    padding: 7px;
+    width: 100%;
   }
 
   .h3-like {

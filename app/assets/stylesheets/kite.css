@@ -1,3 +1,15 @@
+.font-open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.font-sofadi {
+  font-family: 'Sofadi One', cursive;
+}
+
+.font-asap {
+  font-family: 'Asap', sans-serif;
+}
+
 /* styles for kite details */
 
 .detail-kite-header {

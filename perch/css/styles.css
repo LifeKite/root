@@ -1151,7 +1151,7 @@ h1 {
 	float: right;
 }
 
-.form .create-button:hover, .form .create-button:focus {
+.form a:hover, .form a:focus {
   color: white;
   text-decoration: none;
 }

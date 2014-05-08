@@ -7,7 +7,7 @@
 			</div>
 
 			<div class="kites">
-				<div class="main-kites col-md-8">
+				<div class="main-kites col-md-8 col-sm-8">
 					<h3 class="title">My Kites</h3>
 					<div class="dashed-separator-light my-kites-separator"></div>
 					<div class="my-kitescontainer">
@@ -19,25 +19,27 @@
           <%= link_to content_tag(:div, content_tag(:p, raw('Click here <br/>to add a kite')), class: "kite fake-kite" ), new_kite_path %>
 				</div>
 
-				<div class="side-kites col-md-4">
-          <ul class="side-nav nav nav-tabs">
-            <li><a class="h3-like title" href="#all-kitescontainer">All Kites</a></li>
-            <li class="tab-last"><a class="h3-like" href="#tied-kitescontainer">Kites I'm Tied To</a></li>
+
+        <div class="col-sm-4">
+          <!-- Nav tabs -->
+          <ul class="nav nav-pills nav-justified lk-side-nav">
+            <li class="active"><a href="#all-kitescontainer" data-toggle="pill" class="no-corners">All&nbsp;Kites</a></li>
+            <li class="lk-dashed-v"></li>
+            <li class="lk-last-tab"><a href="#tied-kitescontainer" data-toggle="pill" class="no-corners">Kites&nbsp;I'm&nbsp;Tied&nbsp;To</a></li>
           </ul>
-					<div class="dashed-separator-light"></div>
-					<div id="all-kitescontainer">
-						<%= render @kites, size: :mini %>
-						<div class="hidden">
-							<%= will_paginate @kites %>
-						</div>
-					</div>
-					<div id="tied-kitescontainer">
-						<%= render @tied_kites, size: :mini %>
-						<div class="hidden">
-							<%= will_paginate @tied_kites %>
-						</div>
-					</div>
-				</div>
+          <div class="dashed-separator-light"></div>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="all-kitescontainer">
+              <%= render @kites, size: :mini %>
+            </div>
+            <div class="tab-pane" id="tied-kitescontainer">
+              <%= render @tied_kites, size: :mini %>
+            </div>
+          </div>
+        </div>
+
 			</div>
 
 		<% else %>

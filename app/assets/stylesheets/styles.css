@@ -70,7 +70,7 @@ h1, h2, h3, h4, h5, h6, ul {
 *********************************/
 
 h1 {
-	font-family: 'Amaranth', sans-serif;
+	font-family: 'Asap', sans-serif;
 	color: #6a4256;
 	font-size: 27px;
 }
@@ -82,7 +82,7 @@ h1 {
 }
 
 .kite-name {
-	font-family: 'Amaranth', sans-serif;
+	font-family: 'Asap', sans-serif;
 	font-size: 18px;
 	color: #000;
 }
@@ -142,7 +142,7 @@ h1 {
 }
 
 .form-header, .page-title-type-2 {
-	font-family: 'Amaranth', sans-serif;
+	font-family: 'Asap', sans-serif;
 	font-weight: normal;
 	color: #b0cf4d;
 	margin-bottom: 20px;
@@ -150,7 +150,7 @@ h1 {
 }
 
 .form-header-type-2 {
-	font-family: 'Amaranth', sans-serif;
+	font-family: 'Asap', sans-serif;
 	font-weight: normal;
 	color: #6a4256;
 	margin-bottom: 20px;
@@ -277,6 +277,7 @@ h1 {
 }
 
 .header-controls {
+	font-family: 'Asap', sans-serif;
 	position: absolute;
 	top: 13px;
 	right: 24px;
