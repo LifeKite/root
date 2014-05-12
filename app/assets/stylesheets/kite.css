@@ -103,7 +103,8 @@
 }
 
 .detail-kite-header .created-text {
-  /*font-size: 2em;*/
+  font-size: 20px;
+  margin-bottom: -5px;
 }
 
 .detail-kite-header .created-month {
@@ -111,8 +112,9 @@
 }
 
 .detail-kite-header .created-year {
-  font-size: 1.5em;
-  font-style: bold;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: -8px;
 }
 
 .details-container {

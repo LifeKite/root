@@ -21,12 +21,6 @@ body {
 	margin: 0;
 }
 
-/* Compensate for fixed position bars */
-.has-sidebar.wrapper {
-	padding-left: 100px;
-	padding-right: 100px;
-}
-
 .has-navigation.wrapper {
 	padding-top: 66px;
 }
