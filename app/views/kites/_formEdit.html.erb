@@ -8,7 +8,7 @@
 		  <% if @kite.errors.any? %>
 		    <div id="error_explanation">
 		      <h2><%= pluralize(@kite.errors.count, "error") %> prohibited this kite from being saved:</h2>
-		
+
 		      <ul>
 		      <% @kite.errors.full_messages.each do |msg| %>
 		        <li><%= msg %></li>
@@ -18,32 +18,32 @@
 		  <% end %>
 			<div class="column-1">
 				<%= f.text_field :Description, :placeholder => "Name", :onkeyup => "CheckMaxLength(this);", :maxLength => 70 %>
-				
+
 				<div >
 					<%if @isAutoAdd %>
 						<%= f.hidden_field :ImageLocation, :class => "remote-image-field" %>
 					<% else %>
 						<input id="surrogate" type="text" class="image-upload-field surrogate" placeholder="Filename" readonly="readonly" />
 					<% end %>
-					
+
 				</div>
 			</div>
 			<div class="column-2">
 				<%= f.text_field :category, :placeholder => "Add Category"%>
-				
+
 				<% if @isAutoAdd.nil? %>
 					<div id="btnAddImage" class="button add-button add-image">+ Upload image</div>
 				<% end %>
 			</div>
-			<%= f.text_area :Details, :placeholder => "Description", :onkeyup => "CheckMaxLenth(this);", :maxLength => 140 %> 
+			<%= f.text_area :Details, :placeholder => "Description", :onkeyup => "CheckMaxLenth(this);", :maxLength => 140 %>
 			<div class="make-private">
 				<%= f.check_box(:sharelevel, {:style => "float:left;"}, "private", "public") %>
 				<label for="kite_sharelevel" style="float: left;">Make private</label>
 			</div>
-			
+
 			<!-- <div class="button add-button add-members">+ Add Members</div> -->
 			<%= f.submit "Update", {:class => "create-button button", :disable_with => "Loading..."} %>
-			<%= link_to 'Cancel', kite_path(@kite), :class => "create-button button"%> 
+			<%= link_to 'Cancel', :back, :class => "create-button button"%>
 			<%= f.file_field :kiteimage, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
 		<% end %>
 </div>
