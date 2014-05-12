@@ -6,6 +6,11 @@ a {
 	text-decoration: none;
 }
 
+a:hover, a:focus {
+  text-decoration: none;
+ 	color: #fff;
+}
+
 html {
 	font-family: 'Open Sans', sans-serif;
 }
@@ -296,11 +301,6 @@ h1 {
 	list-style-type: none;
 	margin-right: 22px;
 	color: #fff;
-}
-
-.nav-item a:hover, .nav-item a:focus {
-  text-decoration: none;
- 	color: #fff;
 }
 
 .logged-in {
@@ -1555,3 +1555,14 @@ a.load-more-comments {
 .uwidth-button {
 	width: 100%;
 }
+
+
+/* Tablet styles */
+@media screen and (min-width:501px) and (max-width:1024px) {
+ .site-logo {
+    left: 5px;;
+  }
+}
+
+
+

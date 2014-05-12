@@ -136,7 +136,6 @@
 }
 
 .signup-img{
-  width: 236px;
   display: block;
   position: absolute;
   left: 0;
@@ -144,6 +143,12 @@
   top: -66px;
   margin: auto;
   z-index: 1000;
+}
+
+.signup-img img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .lk-dashed-v {
