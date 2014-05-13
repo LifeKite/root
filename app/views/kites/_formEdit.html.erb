@@ -32,7 +32,7 @@
 				<%= f.text_field :category, :placeholder => "Add Category"%>
 
 				<% if @isAutoAdd.nil? %>
-					<div id="btnAddImage" class="button add-button add-image">+ Upload image</div>
+					<div id="btnAddImage" class="button add-button add-image no-corners">+ Upload image</div>
 				<% end %>
 			</div>
 			<%= f.text_area :Details, :placeholder => "Description", :onkeyup => "CheckMaxLenth(this);", :maxLength => 140 %>

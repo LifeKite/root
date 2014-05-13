@@ -168,7 +168,7 @@
   float: left;
   width: 92px;
   height: 92px;
-  margin: 4px;
+  margin: 4px;`
 }
 
 .mini-kite .overlay {
@@ -193,5 +193,6 @@
 
 
 .details-container {
-  padding: 0 20px;
+  margin-top: 70px;
+  display: inline-block;
 }

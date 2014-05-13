@@ -65,10 +65,7 @@ $(document).ready(function () {
             'margin-top': '10px'
           });
 
-          $("#kite-details-frame").css({
-            top: '',
-            position: ''
-          })
+          $("#kite-details-frame").addClass('static');
         } else {
 
           //set header and image to position: fixed
@@ -83,13 +80,7 @@ $(document).ready(function () {
             'margin-top': parseInt($('.detail-kite-img').position().top, 10) + parseInt(img.height(), 10) - 60
           });
 
-          $("#kite-details-frame").css({
-            top: '150px',
-            width: '1140px',
-            left: 'auto',
-            right: 'auto',
-            position: 'fixed'
-          })
+          $("#kite-details-frame").removeClass('static');
         }
 
 
