@@ -1,4 +1,4 @@
-.no-corners {
+/*.no-corners {
   border-radius: 0 !important;
 }
 
@@ -71,9 +71,9 @@
   text-align: center;
   padding: 5px;
 
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box;         /* Opera/IE 8+ */
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko
+  box-sizing: border-box;         /* Opera/IE 8+
 
   transition: all .2s;
 }
@@ -113,9 +113,9 @@
   text-align: center;
   padding: 45px 20px 20px;
 
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box;         /* Opera/IE 8+ */
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko
+  box-sizing: border-box;         /* Opera/IE 8+
 
   transition: all .2s;
 }
@@ -177,7 +177,7 @@
   width: 90%;
 }
 
-/* Tablet styles */
+/* Tablet styles
 @media screen and (min-width:501px) and (max-width:1024px) {
  .kitescontainer {
     width: 100%;
@@ -191,3 +191,4 @@
     margin: 8px;
   }
 }
+*/

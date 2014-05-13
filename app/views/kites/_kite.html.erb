@@ -1,4 +1,4 @@
-<div class="col-xs-3">
+<div class="<%= size == :thumb ? 'col-xs-3' : ''%>">
   <div class="<%= size%>-kite" style="background: url('<%= kite.kiteimage.url(size) %>') no-repeat center; background-size: cover;">
     <% if @function == "Member Kites" %>
       <% if kite.follwings.where(:user_id => current_user).first.try(:Type) == "member"%>

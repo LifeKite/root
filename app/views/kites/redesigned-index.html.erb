@@ -1,21 +1,25 @@
 <% if current_user %>
-  <div class="content">
-    <div class="content-header user">
+  <div class="content lk-kites-user">
+    <div class="lk-header">
       <h1><%= @function %></h1>
       <div class="dashed-separator"></div>
     </div>
 
-    <div class="kites">
-      <div class="main-kites col-md-8 col-sm-8">
+    <div class="lk-kites">
+      <div class="main-kites col-xs-8">
         <h3 class="title">My Kites</h3>
         <div class="dashed-separator-light my-kites-separator"></div>
         <div class="my-kitescontainer">
           <%= render @my_kites, size: :thumb %>
-          <div class="hidden">
-            <%= will_paginate @my_kites %>
-          </div>
+          <% if @my_kites.next_page %>
+            <div class="hidden">
+              <%= will_paginate @my_kites %>
+            </div>
+          <% end %>
         </div>
-        <%= link_to content_tag(:div, content_tag(:p, raw('Click here <br/>to add a kite')), class: "kite fake-kite" ), new_kite_path %>
+        <div class="col-xs-3">
+          <%= link_to content_tag(:div, content_tag(:p, raw('Click here <br/>to add a kite')), class: "kite fake-kite" ), new_kite_path %>
+        </div>
       </div>
 
 
