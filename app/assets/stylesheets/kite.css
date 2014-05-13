@@ -68,7 +68,6 @@
   font-size: 2em;
   font-weight: normal;
   padding: 18px;
-  width: 75%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -123,10 +122,10 @@
 
 #kite-details-frame {
   z-index: 50;
-  position: absolute;
   background: rgba(255, 255, 255, 0.8);
   left: 15px;
   right: 15px;
+  position: fixed !important;
 }
 
 .kite-full-title {
@@ -265,4 +264,17 @@
 
 #kite_post_text {
   margin-bottom: 20px;
+}
+
+
+.lk-new-kite {
+  margin-top: 60px;
+}
+
+.lk-kite {
+  margin-top: 70px;
+}
+
+.detail-kite-header h1, #kite-details-frame h1{
+  font-size: 30px;
 }

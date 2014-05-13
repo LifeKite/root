@@ -190,3 +190,8 @@
 .lk-dashed-v {
   border-right: 1px dashed #36878C;
 }
+
+
+.details-container {
+  padding: 0 20px;
+}
