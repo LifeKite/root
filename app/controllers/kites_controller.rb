@@ -65,7 +65,7 @@ class KitesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :template => 'kites/index' }# index.html.erb
+      format.html { render :template => 'kites/redesigned-index' }# index.html.erb
       format.xml  { render :xml => @kites }
       format.js   { render :template => 'kites/index' }
     end

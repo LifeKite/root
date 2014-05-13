@@ -1,26 +1,26 @@
-<div class="kite <%= size%>-kite" style="background: url('<%= kite.kiteimage.url(size) %>') no-repeat center; background-size: cover;">
-	<% if @function == "Member Kites" %>
-		<% if kite.follwings.where(:user_id => current_user) &&
-				kite.follwings.where(:user_id => current_user).first &&
-				kite.follwings.where(:user_id => current_user).first.Type == "member"%>
-				<img src="/images/kite-nav-members.png" style="position: absolute;">
-		<% else %>
-				<img src="/images/kite-nav-heart.png" style="position: absolute;">
-		<% end %>
-	<% end %>
-	<div class="overlay">
-		<% if size == :thumb %>
-			<h2 class="kite-name">
-				<%=h link_to kite.Description, kite %>
-			</h2>
-			<p class="kite-byline">Created by <%=h link_to kite.user.KosherUsername, userPublicKitesIndex_kites_path(:username=>kite.user.username), :class => "author-link" %></p>
-			<div class="kite-likes"><span class="like-count"><%= kite.LikeCount %></span> Likes</div>
-			<div class="view-kite"><%=h link_to "View", kite, :class=>"view-kite-link"%></div>
-		<% else %>
-			<h4 class="kite-name">
-				<%=h link_to kite.Description, kite %>
-			</h4>
-			<p class="kite-byline">Created by <%=h link_to kite.user.KosherUsername, userPublicKitesIndex_kites_path(:username=>kite.user.username), :class => "author-link" %></p>
-		<% end %>
-	</div>
+<div class="col-xs-3">
+  <div class="<%= size%>-kite" style="background: url('<%= kite.kiteimage.url(size) %>') no-repeat center; background-size: cover;">
+    <% if @function == "Member Kites" %>
+      <% if kite.follwings.where(:user_id => current_user).first.try(:Type) == "member"%>
+          <img src="/images/kite-nav-members.png" style="position: absolute;">
+      <% else %>
+          <img src="/images/kite-nav-heart.png" style="position: absolute;">
+      <% end %>
+    <% end %>
+    <div class="overlay">
+      <% if size == :thumb %>
+        <h2 class="kite-name">
+          <%=h link_to kite.Description, kite %>
+        </h2>
+        <p class="kite-byline">Created by <%=h link_to kite.user.KosherUsername, userPublicKitesIndex_kites_path(:username=>kite.user.username), :class => "author-link" %></p>
+        <div class="kite-likes"><span class="like-count"><%= kite.LikeCount %></span> Likes</div>
+        <div class="view-kite"><%=h link_to "View", kite, :class=>"view-kite-link"%></div>
+      <% else %>
+        <h4 class="kite-name">
+          <%=h link_to kite.Description, kite %>
+        </h4>
+        <p class="kite-byline">Created by <%=h link_to kite.user.KosherUsername, userPublicKitesIndex_kites_path(:username=>kite.user.username), :class => "author-link" %></p>
+      <% end %>
+    </div>
+  </div>
 </div>
