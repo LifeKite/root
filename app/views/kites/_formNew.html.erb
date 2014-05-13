@@ -1,17 +1,6 @@
-<div class="container">
-<% if !local_assigns.has_key? :child %>
-
-	<% if !current_user.nil? %>
-	<div class="wrapper create has-sidebar has-navigation">
-	<% else %>
-	<div class="wrapper create has-navigation">
-	<%end%>
+<div class="content lk-new-kite">
 		<h1 class="page-title">Create a new kite</h1><br />
-		<div class="content">
-<% else %>
-	<div>
-	<div>
-<%end%>
+
 		<%= form_for(@kite, :html => {:class => "form padded-form signup-form", :multipart => true}) do |f| %>
 		  <% if @kite.errors.any? %>
 		    <div id="error_explanation">
@@ -60,8 +49,4 @@
 	</div>
 </div>
 <div id="lockpane" class="LockOff"></div>
-
-<!--<%= javascript_include_tag "vendor/jquery.ui.widget.js" %>
-<%= javascript_include_tag "jquery.iframe-transport.js" %>
-<%= javascript_include_tag "jquery.fileupload.js" %>-->
 
