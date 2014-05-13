@@ -1,3 +1,7 @@
+.no-corners {
+  border-radius: 0 !important;
+}
+
 .lk-kites-public {
   margin-top: 60px;
 }
@@ -83,6 +87,10 @@
 
 .lk-kites-user {
   margin-top: 70px;
+}
+
+.lk-kites-user h1 {
+  color: #0A3448;
 }
 
 .lk-kites-user .lk-header{
@@ -177,4 +185,8 @@
   box-sizing: border-box;
 
   transition: all .2s;
+}
+
+.lk-dashed-v {
+  border-right: 1px dashed #36878C;
 }

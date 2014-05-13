@@ -52,16 +52,17 @@ class KitesController < ApplicationController
   def index
     time_range = (1.week.ago..Time.now)
 
-    @kites = Kite.public_kites.shuffle.paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
-
     get_common_stats()
 
     if current_user
       @function = "Welcome #{current_user.KosherUsername}"
       kiteIDs = current_user.follwing.collect{|a| a.kite_id}.flatten
-      @tied_kites = Kite.find(kiteIDs).paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
+      @tied_kites = Kite.find(kiteIDs).paginate(:page => params[:page], :per_page => KITES_PER_PAGE * 3)
 
       @my_kites = current_user.kites.paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
+      @kites = Kite.public_kites.shuffle.paginate(:page => params[:page], :per_page => KITES_PER_PAGE * 3)
+    else
+      @kites = Kite.public_kites.shuffle.paginate(:page => params[:page], :per_page => KITES_PER_PAGE)
     end
 
     respond_to do |format|
