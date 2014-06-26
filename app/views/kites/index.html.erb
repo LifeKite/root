@@ -1,68 +1,13 @@
-<div class="wrapper home has-navigation has-footer <%if current_user %>has-sidebar<%end%>">
-	<div class="content">
-		<% if current_user %>
-			<div class="content-header user">
-				<h1><%= @function %></h1>
-				<div class="dashed-separator"></div>
-			</div>
-
-			<div class="kites">
-				<div class="main-kites col-md-8 col-sm-8">
-					<h3 class="title">My Kites</h3>
-					<div class="dashed-separator-light my-kites-separator"></div>
-					<div class="my-kitescontainer">
-						<%= render @my_kites, size: :thumb %>
-						<div class="hidden">
-							<%= will_paginate @my_kites %>
-						</div>
-					</div>
-          <%= link_to content_tag(:div, content_tag(:p, raw('Click here <br/>to add a kite')), class: "kite fake-kite" ), new_kite_path %>
-				</div>
-
-
-        <div class="col-sm-4">
-          <!-- Nav tabs -->
-          <ul class="nav nav-pills nav-justified lk-side-nav">
-            <li class="lk-first-tab active"><a href="#all-kitescontainer" data-toggle="pill" class="no-corners">All&nbsp;Kites</a></li>
-            <li class="lk-dashed-v"></li>
-            <li class="lk-last-tab"><a href="#tied-kitescontainer" data-toggle="pill" class="no-corners">Kites&nbsp;With&nbsp;Friends</a></li>
-          </ul>
-          <div class="dashed-separator-light"></div>
-
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div class="tab-pane active" id="all-kitescontainer">
-              <%= render @kites, size: :mini %>
-            </div>
-            <div class="tab-pane" id="tied-kitescontainer">
-              <%= render @tied_kites, size: :mini %>
-            </div>
-          </div>
-        </div>
-
-			</div>
-
-		<% else %>
-			<div class="content-header welcome">
-				<h1 class="page-title">Welcome to <span class="red">LifeKite</span></h1>
-				<div class="dashed-separator"></div>
-				<h3><span class="bold">What is LifeKite?</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget nisl quam. </h3>
-				<h3>Vestibulum et risus interdum risus tincidunt fringilla.</h3>
-				<h3 class="red bold italic">Click on any image below to take a peak at what other people are kiting!</h3>
-				<h3 class="red bold italic">OR</h3>
-			</div>
-			<div class="kitescontainer">
-				<div class="signup-img">
-					<%= link_to image_tag('home-signup-click.png'), new_user_registration_path %>
-				</div>
-
-				<!-- Begin kite -->
-				<%= render @kites, size: :thumb %>
-				<!-- End kite -->
-				<div class="hidden">
-					<%= will_paginate @kites %>
-				</div>
-			</div>
-		<% end %>
+<div class="content lk-index">
+	<div class="lk-header">
+		<h1><%= @function%></h1>
+	</div>
+	<div class="lk-kites">
+		<!-- Begin kite -->
+		<%= render @kites, size: :thumb %>
+		<!-- End kite -->
+		<div class="hidden">
+			<%= will_paginate @kites %>
+		</div>
 	</div>
 </div>

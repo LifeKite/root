@@ -18,7 +18,7 @@
   position: relative;
 }
 
-.lk-kites-public  .lk-kites {
+.lk-kites-public .lk-kites {
   display: inline-block;
   margin-top: -168px;
 }
@@ -42,6 +42,10 @@
 .lk-kites .thumb-kite:hover .overlay, .mini-kite:hover .overlay {
   display: block;
   opacity: 100;
+}
+
+.lk-index {
+  margin-top: 100px;
 }
 
 @media screen and (min-width:1024px) {
@@ -93,7 +97,7 @@
   color: #0A3448;
 }
 
-.lk-kites-user .lk-header{
+.lk-header{
   text-align: center;
 }
 

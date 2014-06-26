@@ -26,9 +26,9 @@ class KitesController < ApplicationController
     get_common_stats()
 
     respond_to do |format|
-      format.html { render :template => 'kites/indexPublic' }# indexPublic.html.erb
+      format.html { render :template => 'kites/index' }# indexPublic.html.erb
       format.xml  { render :xml => @kites }
-      format.js   { render :template => 'kites/indexPublic' }
+      format.js   { render :template => 'kites/index' }
     end
 
   end
