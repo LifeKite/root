@@ -125,7 +125,7 @@
   background: rgba(255, 255, 255, 0.8);
   left: 15px;
   right: 15px;
-  position: fixed !important;
+  position: absolute !important;
 }
 
 .kite-full-title {
