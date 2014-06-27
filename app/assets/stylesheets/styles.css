@@ -295,6 +295,14 @@ h1 {
 	list-style-type: none;
 	margin-right: 22px;
 	color: #fff;
+	margin-top: 4px;
+}
+
+.nav-item-icon {
+	float: left;
+	list-style-type: none;
+	margin-right: 22px;
+	color: #fff;
 }
 
 .logged-in {
