@@ -27,19 +27,20 @@
     width: 990px;
   }
 
-  .detail-kite-header.static {
-    margin-top: 460px;
+  .detail-kite-header h1 {
+      width: 740px;
+  }
+}
+
+@media (min-width: 979px)  and (max-width: 1200px) {
+  .detail-kite-header h1 {
+    width: 540px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
   .detail-kite-header {
     width: 1140px;
-  }
-
-  .detail-kite-header.static {
-    width: 1140px;
-    margin-top: 180px;
   }
 }
 
