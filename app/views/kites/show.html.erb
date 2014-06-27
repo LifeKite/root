@@ -17,13 +17,13 @@
               Unfollow_kite_path(@kite, type:'like'),
               :method => :put,
               :remote => true,
-              :class => "following #{'hidden' unless current_user.is_following?(@kite.id)}"
+              :class => "following #{'hidden' if current_user.is_following?(@kite.id)}"
             %>
             <%= link_to image_tag('landing-heart-closed.png'),
               Follow_kite_path(@kite, type:'like'),
               :method => :put,
               :remote => true,
-              :class => "not-following #{'hidden' if current_user.is_following?(@kite.id)}"
+              :class => "not-following #{'hidden' unless current_user.is_following?(@kite.id)}"
             %>
           <% else %>
            <%= image_tag('landing-heart-open.png') %>
