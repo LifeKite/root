@@ -353,10 +353,8 @@ class KitesController < ApplicationController
 
   # Remove a kite following
   def Unfollow
-
-    @kite = Kite.find(params[:id])
-    if(@kite && @kite.follwings.any?)
-      @following = @kite.follwings.where(:Type => params[:type]).first
+    if current_user
+      @following = current_user.follwing.where(:Type => params[:type], :kite_id =>params[:id]).first
     end
 
     respond_to do |format|
