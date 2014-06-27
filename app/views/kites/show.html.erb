@@ -90,10 +90,10 @@
     </div>
     <div class="kite-comments-frame">
       <div class="kite-details">
-    		<div class="row">
-          <div class="col-md-1 vertical-dashing">Comments</div>
-          <div class="col-md-1 vertical-dashing"><%=pluralize(@kite.supporters_count, 'supporter') %></div>
-          <div class="col-md-1">Add category</div>
+        <div class="lk-comments-info">
+          <div class="lk-comments-info-tab vertical-dashing">Comments</div>
+          <div class="lk-comments-info-tab vertical-dashing"><%=pluralize(@kite.supporters_count, 'supporter') %></div>
+          <div class="lk-comments-info-tab">Add category</div>
         </div>
 
         <% if current_user %>

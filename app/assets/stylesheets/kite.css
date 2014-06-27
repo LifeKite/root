@@ -278,3 +278,16 @@
 .detail-kite-header h1, #kite-details-frame h1{
   font-size: 30px;
 }
+
+.lk-comments-info-tab {
+  display: inline-block;
+  padding: 0 15px 10px 15px;
+  font-weight: bold;
+  color: #0A3448;
+
+}
+
+.lk-comments-info {
+  margin-bottom: 6px;
+  border-bottom: 1px dashed #44878E;
+}
