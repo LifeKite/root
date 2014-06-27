@@ -9,7 +9,9 @@
 		<nav class="main-nav">
 			<ul>
 				<% if current_user %>
-					<li class="nav-item"><%= link_to(image_tag('home-icon.png'), root_path) %></li>
+					<% if !current_page?(root_url) %>
+						<li class="nav-item"><%= link_to(image_tag('home-icon.png'), root_path) %></li>
+					<% end %>
 					<li class="nav-item"><%= link_to 'Add a Kite', new_kite_path %></li>
 					<li class="nav-item"><%= link_to 'My Profile', edit_user_registration_path %></li>
 					<li class="nav-item"><%= link_to 'Help', "https://lifekite.wufoo.com/forms/lifekite-support/" %></li>
