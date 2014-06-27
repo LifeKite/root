@@ -84,6 +84,11 @@ h1 {
 	font-family: 'Asap', sans-serif;
 	font-size: 18px;
 	color: #000;
+	word-wrap: break-word;
+}
+
+.mini-kite .kite-name {
+  font-size: 12px;
 }
 
 .miniKitesContainer .kite:hover .overlay {
