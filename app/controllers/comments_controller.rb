@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :verify_is_owner, :only => [:delete, :destroy]
-    
+
   # List all comments
   def index
     @comments = Comment.all.paginate(:page => params[:page], :per_page => 30)
@@ -65,10 +65,10 @@ class CommentsController < ApplicationController
       
     # Also, let those following the kite know
     @comment.kite.followers.each do |member|
-      send_comment_update_notification("A comment has been made on one of the kites you follow.", 
+      send_comment_update_notification("A comment has been made on one of the kites you follow.",
       @comment, member)
     end
-    
+
     respond_to do |format|
       if @comment.save
         format.html { redirect_to(@kite, :notice => 'Comment was successfully created.') }
@@ -165,7 +165,7 @@ class CommentsController < ApplicationController
     
     if(comment.user != user)
       @notification = Notification.new(
-        :message => message + ": " + comment.content,
+        :message => "#{message} : #{comment.content}".truncate(255),
         :user => user,
         :link => kite_url(comment.kite, :showComments=>true),
         :flavor => "comment") 
