@@ -142,15 +142,21 @@ class KitesController < ApplicationController
   def kite_general_search
 
     @text = params[:text]
-    searchresults = []
-
+    found_kites = []
     #do a more general search of kite names, descriptions and details
-    searchresults = (searchresults + Kite.where(Kite.arel_table[:Description].matches("%#{@text}%").or(Kite.arel_table[:Details].matches("%#{@text}%")))).uniq
-    searchresults = (searchresults + User.where(User.arel_table[:username].matches("%#{@text}%").or(User.arel_table[:firstname].matches("%#{@text}%")).or(User.arel_table[:lastname].matches("%#{@text}%"))))
+    found_kites = (found_kites + Kite.where(Kite.arel_table[:Description].matches("%#{@text}%").or(Kite.arel_table[:Details].matches("%#{@text}%"))))
+
+    found_users = User.where(User.arel_table[:username].matches("%#{@text}%").or(User.arel_table[:firstname].matches("%#{@text}%")).or(User.arel_table[:lastname].matches("%#{@text}%")))
+    found_users.each do |found_user|
+      found_kites = (found_kites + found_user.kites)
+    end
+
+    found_kites = found_kites.uniq
+
     @function = "Search Results"
     check_and_handle_kites_per_page_update(current_user, params)
 
-    @kites = searchresults.paginate(:page => params[:page], :per_page => @kitesPerPage)
+    @kites = found_kites.paginate(:page => params[:page], :per_page => @kitesPerPage)
     get_common_stats()
     respond_to do |format|
       format.html { render :template => 'kites/index' }# index.html.erb
