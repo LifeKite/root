@@ -1524,16 +1524,14 @@ a.load-more-comments {
 
 .alert {
 	z-index: 99;
-	width: 99%;
-	position: absolute;
+	width: 100%;
+	position: relative;
 	top: 55px;
 	box-shadow: 1px 0 5px #000000;
 	transition: all .9s;
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
-	margin-left: 5px;
-	margin-right: 5px;
 	text-align: center;
 }
 
