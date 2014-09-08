@@ -10,10 +10,12 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]
+         :omniauthable, :invitable,
+         :omniauth_providers => [:facebook],
+         :authentication_keys => [:username]
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name
+         # Setup accessible (or protected) attributes for your model
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :notifyOnKiteComment, :notifyOnKitePromote, :sendEmailNotifications, :provider, :uid, :name
   has_many :kites, :dependent => :delete_all
   has_many :assignments, :dependent => :delete_all
   has_many :groups, :through => :assignments
@@ -25,19 +27,15 @@ class User < ActiveRecord::Base
     (name ? where(["lower(firstname) LIKE ? or lower(lastname) LIKE ? or lower(username) LIKE ? or lower(firstname) || ' ' || lower(lastname) LIKE ?", '%'+ name.downcase + '%', '%'+ name.downcase + '%', '%'+ name.downcase + '%','%'+ name.downcase + '%' ])  : {})
   }
 
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-  :authentication_keys => [:username]
+  validates_presence_of :email,
+                        :if => lambda { |a| a.errors[:email].blank? }
+  validates_uniqueness_of :email, :case_sensitive => false,
+                          :if => lambda { |a| a.errors[:email].blank? }
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :notifyOnKiteComment, :notifyOnKitePromote, :sendEmailNotifications
+  validates_presence_of :username, :firstname, :lastname
+  validates_uniqueness_of :username, :case_sensitive=>false,
+                          :if => lambda { |a| a.errors[:username].blank? }
 
-
-  validates_presence_of :email
-  validates_uniqueness_of :username, :case_sensitive=>false
-  validates_uniqueness_of :email, :case_sensitive=>true
   has_friendly_id :username, :use_slug=>true, :strip_non_ascii=>true
 
   def self.find_for_database_authentication(warden_conditions)

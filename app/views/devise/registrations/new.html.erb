@@ -2,6 +2,7 @@
 		<div class="content">
 			<img class="logo-color" src="/images/logo-color.png" width="190" height="136" alt="Logo Color">
 			<h2 class="create-your-account">Create your account</h2>
+      <p>(all fields are required)</p>
 			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),
 				:html => {:class => "signup-form" }) do |f| %>
 			  <%= devise_error_messages! %>
