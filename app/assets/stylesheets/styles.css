@@ -1382,6 +1382,10 @@ h1 {
 	margin-right: 30px;
 }
 
+.comment-button[disabled] {
+    background-color: #6a4256;
+}
+
 .like-button {
 	margin: 40px;
 }
@@ -1526,8 +1530,8 @@ a.load-more-comments {
 	z-index: 99;
 	width: 100%;
 	position: relative;
-	top: 55px;
-	box-shadow: 1px 0 5px #000000;
+    top: 63px;
+    border: 1px solid #ccc;
 	transition: all .9s;
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
