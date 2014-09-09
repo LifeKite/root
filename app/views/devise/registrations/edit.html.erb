@@ -3,14 +3,17 @@
 		<div class="content">
 			<img class="logo-color" src="/images/logo-color.png" width="190" height="136" alt="Logo Color">
 			
+      <div>
+        <%= devise_error_messages! %>
+      </div>
+
 			<%= safe_user_edit_form_for(resource, :as => resource_name, :url => registration_path(resource_name),
 				:html => {:class => "signup-form", :method => :put }) do |f| %>
-				
-				
+
+
 				<div class ="userSettingsBlock">
-				  <h2 class="create-your-account">Username and Password</h2>
-				  <%= devise_error_messages! %>
-				
+				  <h2 class="create-your-account">Account details</h2>
+
 				  <%= f.email_field :email, :placeholder=>"Email Address" %>
 				  
 				  <%= f.text_field :firstname, :placeholder => "First Name"%>
@@ -18,23 +21,26 @@
 				  <%= f.text_field :lastname, :placeholder => "Last Name "%>
 				
 				  <%= f.text_field :username, :placeholder=>"Username" %>
-				  <% if !current_user.provider %>
-				  <%= f.password_field :password, :placeholder=>"New Password" %>
-				
-				  <%= f.password_field :password_confirmation, :placeholder=>"New Password Again" %>
-				  <span class="explain">(required)</span>
-				  <%= f.password_field :current_password, :placeholder=>"Current Password" %>
-				  <% end %>
 				</div>
-			    <div class="userSettingsBlock">
-			    	<h2>Options</h2>
-					  
-					  <%= f.check_box :sendEmailNotifications %>
-					  <%= f.label :sendEmailNotification, "Sign up for email notifications" %>
-					  <span class='explain'>When a kite you follow is changed or someone comments on
+
+        <div class="userSettingsBlock">
+          <h2 class="create-your-account">Password change</h2>
+          <% unless current_user.provider %>
+            <%= f.password_field :current_password, :placeholder=>"Current Password", :AutoComplete=>"off" %>
+            <%= f.password_field :password, :placeholder=>"New Password", :AutoComplete=>"off" %>
+            <%= f.password_field :password_confirmation, :placeholder=>"New Password Again", :AutoComplete=>"off" %>
+          <% end %>
+        </div>
+
+        <div class="userSettingsBlock">
+          <h2>Other options</h2>
+
+          <%= f.check_box :sendEmailNotifications %>
+          <%= f.label :sendEmailNotification, "Sign up for email notifications" %>
+          <span class='explain'>When a kite you follow is changed or someone comments on
 					  	or likes one of your kites you can choose to receive an email notification.</span>
-					  
-			    </div>
+
+        </div>
 			    
 			  	<%= f.submit "Save Changes", {:class => "button uwidth-button"} %>
 			  	
@@ -56,3 +62,4 @@
 			</a>
 		</div>
 	</div>
+</div>

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :verify_is_admin, :only => [:index, :ForcePasswordReset, :destroy]
   before_filter :verify_is_owner, :only => [:edit, :update]
-    
+
   # Show all users
   def index
    
@@ -22,27 +22,39 @@ class UsersController < ApplicationController
     flash.keep
     redirect_to(edit_user_registration_path)
   end
-  
+
   # Updated the user information based on id and user object
   def update
     @user = User.find(params[:id])
     
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      successfully_updated = if password_being_changed?(params[:user])
+                               @user.update_with_password(params[:user])
+                             else
+                               # remove the virtual current_password attribute
+                               # update_without_password doesn't know how to ignore it
+                               params[:user].delete(:current_password)
+                               @user.update_without_password(params[:user])
+                             end
+
+      if successfully_updated
         flash[:notice] = "Profile updated successfully"
-        
+
+        # Sign in the user bypassing validation in case their password changed
+        sign_in @user, :bypass => true
+
         format.html {redirect_to(edit_user_registration_path)}
         format.xml {head :ok}
       else
-        flash[:error] = "Unable to save profile changes"
-        
+        flash[:error] = @user.errors.full_messages.map {|msg| "<div>#{msg}</div>" }.join.html_safe
+
         format.html {redirect_to(edit_user_registration_path)}
         format.xml {render :xml => @user.errors}
       end
     end
   end
-  
-  # Generate user view 
+
+  # Generate user view
   def show
     if (params.has_key?(:id))
       @user =  User.find(params[:id])   
@@ -140,7 +152,12 @@ class UsersController < ApplicationController
       (redirect_to(root_path) unless current_user.id == params[:id].to_i)
     end
   end
-  
-  
-  
+
+  # per https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-edit-their-account-without-providing-a-password
+  # check if we need password to update user data, i.e. if password was changed
+  def password_being_changed?(user)
+    user[:password].present? ||
+        user[:password_confirmation].present?
+  end
+
 end
