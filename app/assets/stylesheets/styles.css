@@ -194,7 +194,7 @@ h1 {
 	background: #fff;
 }
 
-.button {
+.button, .lk-btn {
 	padding: 10px 25px;
 	border: 0;
 	background-color: #F9AA22;
@@ -213,8 +213,20 @@ h1 {
 	transition: all .2s;
 }
 
-.button:hover {
+.button:hover,
+.lk-btn:hover {
 	background-color: #723c55;
+}
+
+.button-small,
+.lk-btn-sm {
+    font-size: 12px;
+    font-weight: normal;
+    padding: 5px 10px;
+    text-transform: none;
+    transition: all .15s;
+    margin: 5px;
+    display: inline-block;
 }
 
 .form .add-button {

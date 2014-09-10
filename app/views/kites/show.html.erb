@@ -47,6 +47,13 @@
       </h1>
 
       <div class="col-md-12 details-section">
+        <% if @kite.user == current_user %>
+          <!--<a href="#" class="lk-btn lk-btn-sm pull-right">Delete Kite</a>-->
+          <%= link_to 'Delete Kite', @kite, :confirm => 'Are you sure you want to delete this kite? This cannot be undone.', :method => :delete, :class => "lk-btn lk-btn-sm pull-right" %>
+        <% end %>
+      </div>
+
+      <div class="col-md-12 details-section">
         <h4><p class="col-md-offset-1">Overview</p></h4>
         <%= format_tags(@kite.Details, :class => 'col-md-offset-1') %>
       </div>

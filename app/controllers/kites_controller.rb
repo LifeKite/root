@@ -515,6 +515,7 @@ class KitesController < ApplicationController
 
     if @kite.user.id == current_user.id
       @kite.destroy
+      flash[:notice] = "The kite has been deleted"
     end
 
     respond_to do |format|
