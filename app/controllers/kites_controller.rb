@@ -471,7 +471,7 @@ class KitesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to(@kite, :notice => 'Congratulations, on completing your kite!') }
+      format.html { redirect_to(@kite, :notice => 'Congratulations on completing your kite!') }
       format.xml  { head :ok }
     end
   end

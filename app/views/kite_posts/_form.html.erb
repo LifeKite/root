@@ -21,10 +21,10 @@
   </div>
   <div class="row">
     <div class="col-md-11">
-      <input type="text" class="add-image image-upload-field surrogate", placeholder="Upload an image..." />
+      <input type="text" class="add-image image-upload-field surrogate" placeholder="Upload an image..." />
     </div>
   </div>
-  <%= f.file_field :image, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
+  <%= f.file_field :image, :class=>"image-upload-field upload-actual hidden" %>
   <div class="actions">
     <%= f.submit "Post", {:class => "create-button button"}%>
   </div>

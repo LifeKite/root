@@ -28,13 +28,13 @@
   }
 
   .detail-kite-header h1 {
-      width: 740px;
+      width: 724px;
   }
 }
 
 @media (min-width: 979px)  and (max-width: 1200px) {
   .detail-kite-header h1 {
-    width: 540px;
+    width: 524px;
   }
 }
 
@@ -46,7 +46,11 @@
 
 @media (max-width: 767px) {
   .detail-kite-header {
-    width: 538px;
+    width: 100%;
+  }
+
+  .detail-kite-header h1 {
+      max-width: 55%;
   }
 
   .detail-kite-header.static {
@@ -123,8 +127,8 @@
 #kite-details-frame {
   z-index: 50;
   background: rgba(255, 255, 255, 0.8);
-  left: 15px;
-  right: 15px;
+  left: 75px;
+  right: 75px;
   position: absolute !important;
 }
 
@@ -145,13 +149,21 @@
 }
 
 #kite-details-frame .details-section ~ .details-section {
-  margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.details-section p {
+    margin: 3px;
+}
+
+.dateline,
+.created-ago {
+  font-size: 90%;
 }
 
 /* weird stuff for inputs and text areas */
 
-#kite-details-frame input, #kite-details-frame textarea {
+#kite-details-frame input[type=text], #kite-details-frame textarea {
   border: #44878E 1px solid;
   resize: vertical;
 }
@@ -235,7 +247,8 @@
 }
 
 .privacy {
-  float: left;
+  display:inline-block;
+  clear: both;
 }
 
 .privacy .active {
@@ -295,4 +308,9 @@
 
 .comment-button {
   margin-bottom: 10px;
+}
+
+.is-public,
+.is-private {
+  border: 1px solid #EB615E;
 }

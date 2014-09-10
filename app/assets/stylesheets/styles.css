@@ -218,6 +218,10 @@ h1 {
 	background-color: #723c55;
 }
 
+.lk-btn i {
+    font-size: 16px;
+}
+
 .button-small,
 .lk-btn-sm {
     font-size: 12px;
@@ -227,6 +231,7 @@ h1 {
     transition: all .15s;
     margin: 5px;
     display: inline-block;
+    background-color: #858F9E;
 }
 
 .form .add-button {
@@ -1594,3 +1599,9 @@ a.load-more-comments {
 
 
 
+.lk-danger {
+    background-color: #8E4B43;
+}
+.lk-danger:hover {
+    background-color: #C2210E;
+}
