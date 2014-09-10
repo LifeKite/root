@@ -144,7 +144,7 @@
 }
 
 #kite-details-frame h4 p {
-  padding: 4px 0;
+  padding: 4px;
   color: white;
 }
 
@@ -286,6 +286,10 @@
 
 .lk-kite {
   margin-top: 70px;
+}
+
+.details-section .lk-danger {
+  margin-right: 10px;
 }
 
 .detail-kite-header h1, #kite-details-frame h1{
