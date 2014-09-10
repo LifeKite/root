@@ -2,11 +2,10 @@
 	<div class="name"><%=link_to(comment.user.KosherUsername,userPublicKitesIndex_kites_path(:username=>comment.user.username))%></div>
 	<div class="title"><%=comment.Title%></div>
 	<div class="comment-content"><%= auto_link(simple_format(formatless_tags(comment.content))) %></div>
-
-	<% if comment.kite.user == current_user || comment.user == current_user %>
-		<div class="hard-options">
-			<%= button_to '', comment, :confirm => 'Are you sure?', :method => :delete, :class => "smallDeleteButton button" %>
-		</div>
-	<% end %>
-	<div class="created-ago">(<%= distance_of_time_in_words_to_now(comment.created_at) %> ago)</div>
+	<div class="created-ago">
+    (<%= distance_of_time_in_words_to_now(comment.created_at) %> ago)
+    <% if comment.kite.user == current_user || comment.user == current_user %>
+      <%= link_to 'delete', comment, :confirm => 'Are you sure you want to delete this comment?', :method => :delete, :class => "smallDeleteLink" %>
+    <% end %>
+  </div>
 </div>

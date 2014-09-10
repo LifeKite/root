@@ -1342,6 +1342,13 @@ h1 {
 	top: 0;
 }
 
+.smallDeleteLink {
+    background: url('/images/small-icon-delete.png') no-repeat left;
+    border: none;
+    padding: 0 20px;
+    margin-left: 10px;
+    float: right;
+}
 
 .grid div {
 	float: left;
