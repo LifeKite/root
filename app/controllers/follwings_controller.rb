@@ -4,8 +4,7 @@ class FollwingsController < ApplicationController
   # parameters into scopes.  Eventually it turned out the best way to get this working durably was to
   # override the item retreival with our own filter.
   def get_autocomplete_items(parameters)
-    # User.where(["firstname LIKE ? or lastname LIKE ? or username LIKE ? or firstname || ' ' || lastname LIKE ?", '%'+ parameters[:term] + '%', '%'+ parameters[:term] + '%', '%'+ parameters[:term] + '%','%'+ parameters[:term] + '%' ]).select('id, firstname, lastname, email')
-    "test"
+    User.where(["firstname LIKE ? or lastname LIKE ? or username LIKE ? or firstname || ' ' || lastname LIKE ?", '%'+ parameters[:term] + '%', '%'+ parameters[:term] + '%', '%'+ parameters[:term] + '%','%'+ parameters[:term] + '%' ]).select('id, firstname, lastname, email')
   end
 
   
