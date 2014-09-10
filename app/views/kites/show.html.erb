@@ -58,13 +58,14 @@
             <p class="dateline">Completed: <%= @kite.FormattedCompletedDate %></p>
           <% end %>
           <% if @kite.user == current_user %>
+            <%= link_to edit_kite_path(@kite), :class => "lk-btn lk-btn-sm pull-left" do %>
+              <i class="fa fa-pencil"></i> Edit
+            <% end %>
+
             <% unless @kite.Completed %>
               <%= link_to complete_kite_path(@kite), :confirm => 'Are you sure you want to mark this Kite as completed?', :method => :put, :class => "lk-btn lk-btn-sm pull-left" do %>
                 <i class="fa fa-check"></i> Complete
               <% end %>
-            <% end %>
-            <%= link_to edit_kite_path(@kite), :class => "lk-btn lk-btn-sm pull-left" do %>
-              <i class="fa fa-pencil"></i> Edit
             <% end %>
 
             <%= link_to @kite, :confirm => 'Are you sure you want to delete this Kite? This cannot be undone.', :method => :delete, :class => "lk-btn lk-btn-sm lk-danger pull-right" do %>
