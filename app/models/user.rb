@@ -134,15 +134,15 @@ class User < ActiveRecord::Base
   end
 
   def KosherUsername
-    if !self.firstname.nil? && !self.lastname.nil?
-      return "#{self.firstname} #{self.lastname}"
-    else
-      return self.username
-    end
+    self.firstname.present? && self.lastname.present? ? "#{self.firstname} #{self.lastname}" : self.username
+  end
+
+  def KosherUsernameAndFullName
+    self.firstname.present? && self.lastname.present? ? "#{self.username} (#{self.firstname} #{self.lastname})" : self.username
   end
 
   def KosherUsernameAndEmail
-    return "#{self.KosherUsername} (#{self.username})"
+    "#{self.KosherUsername} (#{self.email})"
   end
 
   # Listing of most recent people commenting, following, or becomming members

@@ -318,3 +318,7 @@
 .is-private {
   border: 1px solid #EB615E;
 }
+
+.ui-autocomplete.ui-widget {
+  font-size: 0.8em;
+}

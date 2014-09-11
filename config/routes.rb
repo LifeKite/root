@@ -107,9 +107,7 @@ Rlifekite::Application.routes.draw do
   end
 
   resources :follwings do
-    collection do
-      get :autocomplete_user_name
-    end
+    get :autocomplete_user_username, :on => :collection
   end
 
   resources :kite_posts
