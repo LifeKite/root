@@ -42,6 +42,7 @@ GEM
       uuidtools (~> 2.1)
     babosa (0.2.2)
     bcrypt (3.1.7)
+    breadcrumbs_on_rails (2.3.0)
     builder (3.0.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -193,6 +194,7 @@ PLATFORMS
 DEPENDENCIES
   aws-s3
   aws-sdk
+  breadcrumbs_on_rails (~> 2.3.0)
   debugger
   devise (>= 2.0.0)
   devise_invitable (~> 1.0.0)

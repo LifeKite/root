@@ -21,6 +21,8 @@ gem 'fb_graph'
 gem 'rails3-jquery-autocomplete'
 gem 'twitter-text'
 gem 'rails_autolink'
+gem 'breadcrumbs_on_rails', '~> 2.3.0'
+
 #gem 'uglifier-rails'
 #gem 'execjs'
 # gem 'therubyracer'

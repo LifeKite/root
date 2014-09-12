@@ -15,7 +15,6 @@ class KitesController < ApplicationController
 
   helper KitesHelper
 
-
   # Show the public and shared kites of a given user
   def userPublicKitesIndex
     check_and_handle_kites_per_page_update(current_user, params)
@@ -168,6 +167,12 @@ class KitesController < ApplicationController
   # Open the view for a given kite
   def show
     @kite = Kite.find(params[:id])
+
+    add_breadcrumb "<i class='fa fa-home fa-lg'></i>".html_safe, :root_path
+    unless params[:from_search].blank?
+      add_breadcrumb "Search '#{params[:from_search]}'".html_safe, kite_general_search_kites_path(:text => params[:from_search])
+    end
+    add_breadcrumb @kite.Description.html_safe, :kite_path
 
     #Queue up a proto-comment
     @comment = Comment.new

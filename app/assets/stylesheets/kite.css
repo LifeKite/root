@@ -357,3 +357,21 @@
   color: #44878E;
   display: none;
 }
+
+.lk-breadcrumbs {
+  color: #44878E;
+  width: 790px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: .9em;
+}
+.lk-breadcrumbs a:hover {
+  color: #70A8AD;
+}
+
+@media (min-width: 1200px) {
+  .lk-breadcrumbs {
+    width: 990px;
+  }
+}

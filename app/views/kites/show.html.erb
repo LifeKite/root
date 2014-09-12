@@ -1,5 +1,6 @@
 <link type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" media="all" />
 	<div class="content details-container">
+    <p class="lk-breadcrumbs"><%= render_breadcrumbs :separator => " <i class='fa fa-caret-right'></i> ".html_safe %></p>
     <div class="detail-kite-header">
       <h1><%=formatless_tags(@kite.Description)%></h1>
       <div class="info">
