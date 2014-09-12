@@ -89,14 +89,7 @@
         <% end %>
 
         <div class="col-md-offset-1">
-          <select id="members-list" multiple="multiple" ></select>
-          <script type="text/javascript">
-            var member_list = $('#members-list');
-            member_list.tagsinput({ itemValue: "id", itemText: "value" });
-            <% @kite.follwings.where(:Type => "member").each do |following| %>
-            member_list.tagsinput('add', { id: "<%= following.follower.id %>", value: "<%= following.follower.KosherUsernameAndFullName %>" });
-            <% end %>
-          </script>
+          <%= render 'members_list', kite: @kite %>
         </div>
       </div>
 

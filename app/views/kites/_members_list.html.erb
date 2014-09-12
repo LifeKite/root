@@ -1,0 +1,13 @@
+<select id="members-list" multiple="multiple" ></select>
+<script type="text/javascript">
+  var members_list = $('#members-list');
+
+  members_list.tagsinput({
+    itemValue: "id",
+    itemText: "value"
+  });
+
+  <% @kite.follwings.where(:Type => "member").each do |following| %>
+  members_list.tagsinput('add', { id: "<%= following.follower.id %>", value: "<%= following.follower.KosherUsernameAndFullName %>" });
+  <% end %>
+</script>
