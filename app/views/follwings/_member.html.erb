@@ -13,24 +13,28 @@
   $('.membername-input').on('railsAutocomplete.select', function(event, data) {
     var item = data.item;
 
-    $.ajax({
-      type: 'PUT',
-      url: '<%= join_kite_path %>',
-      dataType: 'json',
-      data: {
-        follwing: {
-          user_id: item.id
+    if (item.id === '') {
+      //happens when user selects the 'no matches found' option
+      $('.membername-input').val('');
+    } else {
+      $.ajax({
+        type: 'PUT',
+        url: '<%= join_kite_path %>',
+        dataType: 'json',
+        data: {
+          follwing: {
+            user_id: item.id
+          }
+        },
+        beforeSend: function() {
+          $('.membername-input').attr('disabled', 'disabled');
+          $('.lk-kite-member-spinner').show();
         }
-      },
-      beforeSend: function() {
-        $('.membername-input').attr('disabled', 'disabled');
-        $('.lk-kite-member-spinner').show();
-      }
-    }).always(function() {
-      $('#members-list').tagsinput('add', item);
-      $('.membername-input').removeAttr('disabled').val('').focus();
-      $('.lk-kite-member-spinner').hide();
-    });
-
+      }).always(function() {
+        $('#members-list').tagsinput('add', item);
+        $('.membername-input').removeAttr('disabled').val('').focus();
+        $('.lk-kite-member-spinner').hide();
+      });
+    }
   });
 </script>

@@ -7,6 +7,29 @@
     itemText: "value"
   });
 
+  members_list.on('beforeItemAdd', function(event) {
+    if (event.item.value === 'no existing match') {
+      event.cancel = true;
+    }
+  });
+
+  members_list.on('beforeItemRemove', function(event) {
+    $.ajax({
+      type: 'PUT',
+      url: '<%= unjoin_kite_path %>',
+      dataType: 'json',
+      data: {
+        user_id: event.item.id
+      },
+      beforeSend: function() {
+        $('.lk-kite-member-spinner').show();
+      },
+      complete: function() {
+        $('.lk-kite-member-spinner').hide();
+      }
+    });
+  });
+
   <% @kite.follwings.where(:Type => "member").each do |following| %>
   members_list.tagsinput('add', { id: "<%= following.follower.id %>", value: "<%= following.follower.KosherUsernameAndFullName %>" });
   <% end %>

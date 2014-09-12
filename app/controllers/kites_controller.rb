@@ -11,7 +11,7 @@ require 'will_paginate/array'
 class KitesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :kite_general_search, :userPublicKitesIndex]
   before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
-  before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia, :join, :Unjoin]
+  before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia, :join, :unjoin]
 
   helper KitesHelper
 
@@ -300,23 +300,26 @@ class KitesController < ApplicationController
     end
   end
 
-  def Unjoin
+  def unjoin
     @kite = Kite.find(params[:id])
-    if(@kite && @kite.follwings.any?)
-      @following = @kite.follwings.where(:Type => "member").first
+    @user = User.find(params[:user_id])
+
+    if @kite && @kite.follwings.any?
+      @following = @kite.follwings.where(:Type => "member", :user_id => params[:user_id]).first
     end
 
     respond_to do |format|
       if @following && @following.destroy
+        send_kite_update_notification("You have been removed as a member of a kite.", @kite, @user)
         format.html { redirect_to(@kite, :notice => 'Kite has been unfollowed.')}
         format.xml  { render :xml => @kite, :status => :created, :location => @kite }
         format.js {}
-        format.json { render :json => @following, :status => :success }
+        format.json { render :json => @following, :status => :ok }
       else
         format.html { render :action => "owner_show" }
         format.xml  { render :status => :failure }
         format.js {}
-        format.json { render :status => :unprocessable_entity }
+        format.json { render :json => "", :status => :unprocessable_entity }
       end
     end
   end
@@ -344,7 +347,7 @@ class KitesController < ApplicationController
         format.html { redirect_to(@kite, :notice => 'Kite has been followed.')}
         format.xml  { render :xml => @kites, :status => :created, :location => @kites }
         format.js {}
-        format.json { render :json => @following, :status => :created}
+        format.json { render :json => @following, :status => :ok}
       else
         format.html { render :action => "owner_show" }
         format.xml  { render :status => :failure }
@@ -603,13 +606,14 @@ class KitesController < ApplicationController
        @popularKites = current_user.RecentActivity
     end
 
-    def send_kite_update_notification(message, kite, user, showLikes = false, suppressSelfCheck = false)
-      if kite.user != user || suppressSelfCheck
+    def send_kite_update_notification(message, kite, user, show_likes = false, suppress_self_check = false)
+      if kite.user != user || suppress_self_check
         @notification = Notification.new(
           :message => message,
           :user => user,
-          :link => showLikes ? kite_url(kite, :showFollowings => true) : kite_url(kite, :showPosts => true),
+          :link => show_likes ? kite_url(kite, :showFollowings => true) : kite_url(kite, :showPosts => true),
           :flavor => "kite")
+
         if user && kite.user.sendEmailNotifications
           NotificationMailer.notification_email(@notification).deliver
         end
