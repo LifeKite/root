@@ -87,9 +87,17 @@
         <% if current_user == @kite.user %>
           <%= render 'follwings/member', :title => "Add a new member"%>
         <% end %>
-        <ul id="memberslist" class="members-list user-list col-md-offset-1">
-          <%= render @kite.follwings.where(:Type => "member")%>
-        </ul>
+
+        <div class="col-md-offset-1">
+          <select id="members-list" multiple="multiple" ></select>
+          <script type="text/javascript">
+            var member_list = $('#members-list');
+            member_list.tagsinput({ itemValue: "id", itemText: "value" });
+            <% @kite.follwings.where(:Type => "member").each do |following| %>
+            member_list.tagsinput('add', { id: "<%= following.follower.id %>", value: "<%= following.follower.KosherUsernameAndFullName %>" });
+            <% end %>
+          </script>
+        </div>
       </div>
 
       <div class="col-md-12 details-section">

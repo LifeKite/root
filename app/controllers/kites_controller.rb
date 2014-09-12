@@ -11,7 +11,7 @@ require 'will_paginate/array'
 class KitesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :kite_general_search, :userPublicKitesIndex]
   before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
-  before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia, :Join, :Unjoin]
+  before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia, :join, :Unjoin]
 
   helper KitesHelper
 
@@ -271,21 +271,19 @@ class KitesController < ApplicationController
      end
   end
 
-  def Join
+  def join
     @kite = Kite.find(params[:id])
     @userID = params[:follwing][:user_id]
 
-    if(@kite.follwings.empty? || !@kite.follwings.exists?(:user_id => @userID, :Type => "member"))
+    if @kite.follwings.empty? || !@kite.follwings.exists?(:user_id => @userID, :Type => "member")
       @following = Follwing.new
       @following.user_id = @userID
       @following.Type = "member"
       @following.kite = @kite
-    else
-      @following = @kite.follwings.where(:user_id => @user.id, :Type => "member").first()
-    end
 
-    user = User.find(@userID)
-    send_kite_update_notification("You have been added as a member of a kite.", @kite, user)
+      user = User.find(@userID)
+      send_kite_update_notification("You have been added as a member of a kite.", @kite, user)
+    end
 
     respond_to do |format|
       if @following && @following.save()
@@ -297,7 +295,7 @@ class KitesController < ApplicationController
         format.html { redirect_to(@kite, :notice => 'Could not create following.')}
         format.xml  { render :status => :failure }
         format.js {}
-        format.json { render :status => :unprocessable_entity }
+        format.json { render :json => "{msg: 'Member already joined'}", :status => :unprocessable_entity }
       end
     end
   end

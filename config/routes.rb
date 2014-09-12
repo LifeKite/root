@@ -87,7 +87,7 @@ Rlifekite::Application.routes.draw do
       put 'Follow'
       put 'Unfollow'
       put 'ShareKiteToSocialMedia'
-      put 'Join'
+      put :join
       put 'Unjoin'
     end
   end

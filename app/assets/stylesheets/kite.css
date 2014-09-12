@@ -249,6 +249,7 @@
 .privacy {
   display:inline-block;
   clear: both;
+  margin-bottom: 13px;
 }
 
 .privacy .active {
@@ -321,4 +322,36 @@
 
 .ui-autocomplete.ui-widget {
   font-size: 0.8em;
+}
+
+.details-section .bootstrap-tagsinput {
+  border: 0 none;
+  background: none;
+  box-shadow: none;
+  cursor: default;
+  margin-bottom: 0;
+}
+.bootstrap-tagsinput input {
+  display: none !important;
+}
+.bootstrap-tagsinput .tag.label {
+  text-transform: none;
+  background-color: #44878E;
+  margin-top: 3px;
+  font-weight: normal;
+  font-size: 80%;
+}
+
+.membername-input {
+  margin-left: 3px;
+}
+
+.details-section .fa-spin {
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  -ms-animation-duration: 1s;
+  animation-duration: 1s;
+  color: #44878E;
+  display: none;
 }

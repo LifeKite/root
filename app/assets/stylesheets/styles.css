@@ -1605,3 +1605,9 @@ a.load-more-comments {
 .lk-danger:hover {
     background-color: #C2210E;
 }
+
+h5 {
+  font-weight: bold;
+  margin-bottom: 3px;
+  font-size: 1em;
+}
