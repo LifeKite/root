@@ -53,8 +53,6 @@
         <div class="col-md-offset-1">
           <%= format_tags(@kite.Details, :class => 'col-md-offset-1') %>
 
-          <% #hacky, I know... %>
-          <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" >
           <% if @kite.Completed %>
             <p class="dateline">Completed: <%= @kite.FormattedCompletedDate %></p>
           <% end %>

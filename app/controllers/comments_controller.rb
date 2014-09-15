@@ -163,9 +163,9 @@ class CommentsController < ApplicationController
   private
   def send_comment_update_notification(message, comment, user)
     
-    if(comment.user != user)
+    if comment.user != user
       @notification = Notification.new(
-        :message => "#{message} : #{comment.content}".truncate(255),
+        :message => "#{message}: #{comment.content}".truncate(255),
         :user => user,
         :link => kite_url(comment.kite, :showComments=>true),
         :flavor => "comment") 

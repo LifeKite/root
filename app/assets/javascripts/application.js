@@ -16,3 +16,4 @@
 //= require autocomplete-rails
 //= require kites.js
 //= require kite.js
+//= require lk-scripts.js

@@ -552,9 +552,10 @@ h1 {
 }
 
 .kite-feed-item .headline {
-	color: #fff;
+	color: #44878E;
 	font-weight: 300;
-	font-size: 16px;
+	font-size: 1.1em;
+  display: inline-block;
 }
 
 .kite-feed-item {
@@ -564,9 +565,8 @@ h1 {
 }
 
 .kite-feed-item {
-	padding: 13px 0;
-	border-top: 1px solid #808080;
-	border-bottom: 1px solid #808080;
+  padding: 5px 0 20px;
+  border-bottom: 1px solid #CFCFCF;
 }
 
 .kite-feed .kite-feed-item:first-child {
@@ -1508,9 +1508,7 @@ a.load-more-comments {
 .delete-link {
 	font-size: 12px;
 	color: #F1837C;
-	padding-left: 10px;
-	position: absolute;
-	right: 5px;
+  float: right;
 }
 .notification-nav {
 	background: none repeat scroll 0 0 #4F4F4F;
@@ -1593,7 +1591,7 @@ a.load-more-comments {
 /* Tablet styles */
 @media screen and (min-width:501px) and (max-width:1024px) {
  .site-logo {
-    left: 5px;;
+    left: 5px;
   }
 }
 
@@ -1610,4 +1608,34 @@ h5 {
   font-weight: bold;
   margin-bottom: 3px;
   font-size: 1em;
+}
+
+.lk-badge {
+  font-size: 11px;
+  background: #EB615E;
+  padding: 1px 2px;
+  border-radius: 40%;
+  border: 1px solid #FF9D9D;
+}
+
+.popover-content {
+  color: #44878E;
+  max-height: 400px;
+  overflow: scroll;
+}
+
+.popover-content a:hover {
+  color: inherit;
+}
+
+.lk-notifications:focus {
+  outline: none;
+}
+
+.kite-feed-item .details {
+  float: left;
+}
+
+.nav-item .fa-house {
+  font-size: 1.4666em;
 }
