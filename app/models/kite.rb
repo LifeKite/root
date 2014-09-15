@@ -170,13 +170,17 @@ class Kite < ActiveRecord::Base
     # Test if this kite is shared
     # on a kitestring that this user is a
     # member of
-    for str in sharedpurposes
-      if str.UserCanView(testuser)
-        return true
-      end
+    # for str in sharedpurposes
+    #   if str.UserCanView(testuser)
+    #     return true
+    #   end
+    # end
+
+    if self.follwings.exists?(:user_id => testuser, :Type => "member")
+      return true
     end
 
-    return false
+    false
   end
 
   def FormattedCreateDate

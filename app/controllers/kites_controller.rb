@@ -187,10 +187,8 @@ class KitesController < ApplicationController
     @showFollowings = params.has_key?(:showFollowings)
 
 
-    if @kite.UserCanView(current_user)
-
-    else
-     redirect_to(current_user, :error => "The kite you have selected is private and cannot be viewed.")
+    unless @kite.UserCanView(current_user)
+      redirect_to(current_user, :error => "The kite you have selected is private and cannot be viewed.")
     end
 
 
