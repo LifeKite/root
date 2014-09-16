@@ -74,23 +74,21 @@
         </div>
       </div>
 
-      <div class="col-md-12 details-section">
-        <h4><p class="col-md-offset-1">Members</p></h4>
-
+      <% if current_user == @kite.user %>
         <div class="col-md-12 details-section">
-          <% if current_user == @kite.user %>
+          <h4><p class="col-md-offset-1">Members</p></h4>
+
+          <div class="col-md-12 details-section">
             <%= render 'privacyButtons', kite: @kite %>
-          <% end %>
-        </div>
+          </div>
 
-        <% if current_user == @kite.user %>
-          <%= render 'follwings/member', :title => "Add a new member"%>
-        <% end %>
+          <%= render 'follwings/member', :title => "Add a new member" %>
 
-        <div class="col-md-offset-1">
-          <%= render 'members_list', kite: @kite %>
+          <div class="col-md-offset-1">
+            <%= render 'members_list', kite: @kite %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <div class="col-md-12 details-section">
         <h4><p class="col-md-offset-1">Progress</p></h4>
