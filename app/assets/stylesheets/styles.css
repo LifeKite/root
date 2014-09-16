@@ -1614,9 +1614,13 @@ h5 {
 .lk-badge {
   font-size: 11px;
   background: #EB615E;
-  padding: 1px 2px;
-  border-radius: 40%;
+  padding: 0px 1px;
+  border-radius: 30%;
   border: 1px solid #FF9D9D;
+  position: absolute;
+  right: -3px;
+  top: -6px;
+  box-shadow: -1px 1px 1px rgba(0,0,0,.5);
 }
 
 .popover-content {
@@ -1627,6 +1631,10 @@ h5 {
 
 .popover-content a:hover {
   color: inherit;
+}
+
+.lk-notifications {
+  position: relative;
 }
 
 .lk-notifications:focus {
