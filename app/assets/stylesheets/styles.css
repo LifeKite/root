@@ -315,7 +315,7 @@ h1 {
 .nav-item {
 	float: left;
 	list-style-type: none;
-	margin-right: 22px;
+	margin-left: 22px;
 	color: #fff;
 	margin-top: 4px;
 }
@@ -349,6 +349,7 @@ h1 {
 .user-control {
 	float: left;
 	list-style-type: none;
+  margin-top: 4px;
 }
 
 .user-control a {
