@@ -51,10 +51,10 @@ class KitesController < ApplicationController
   def index
     time_range = (1.week.ago..Time.now)
 
-    get_common_stats()
+    get_common_stats
 
     if current_user
-      @function = "Welcome #{current_user.KosherUsername}"
+      @function = "Welcome, #{current_user.KosherUsername}"
       kiteIDs = current_user.follwing.collect{|a| a.kite_id}.flatten
       @tied_kites = Kite.find(kiteIDs).paginate(:page => params[:page], :per_page => KITES_PER_PAGE * 3)
 
@@ -617,7 +617,7 @@ class KitesController < ApplicationController
           :link => show_likes ? kite_url(kite, :showFollowings => true) : kite_url(kite, :showPosts => true),
           :flavor => "kite")
 
-        if user && kite.user.sendEmailNotifications
+        if user && user.sendEmailNotifications
           NotificationMailer.notification_email(@notification).deliver
         end
         @notification.save
