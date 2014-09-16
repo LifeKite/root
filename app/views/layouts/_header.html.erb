@@ -12,23 +12,19 @@
           <li class="nav-item">
             <%= link_to '#', :title => "Notifications", :class => "lk-notifications", :tabindex => "0",
                         'data-toggle' => "popover", 'data-placement' => "bottom" do %>
-              <i class='fa fa-bullhorn fa-lg'></i><span class='lk-badge <%= current_user.Notifications.count>0 ? '' : ' hide ' %>'><%= current_user.Notifications.count %></span>
+              <i class='fa fa-bell-o fa-lg'></i><span class='lk-badge <%= current_user.Notifications.count>0 ? '' : ' hide ' %>'><%= current_user.Notifications.count %></span>
             <% end %>
           </li>
-          <li class="nav-item">
-            <%= link_to "My Kites", root_path %>
-          </li>
-					<li class="nav-item"><%= link_to 'Add a Kite', new_kite_path %></li>
+          <li class="nav-item"><%= link_to "Home", root_path %></li>
+          <li class="nav-item"><%= link_to 'Add a Kite', new_kite_path %></li>
 					<li class="nav-item"><%= link_to 'My Profile', edit_user_registration_path %></li>
 					<li class="nav-item"><%= link_to 'Help', "https://lifekite.wufoo.com/forms/lifekite-support/" %></li>
 					<li class="nav-item"><%= link_to 'Invite a Friend', showInvite_user_path(current_user.id) %></li>
 					<li class="nav-item"><%= link_to 'Log Out', destroy_user_session_path, :method => :delete %></li>
 				<%else%>
-          <li class="nav-item">
-            <%= link_to root_path do %>
-              <i class='fa fa-home fa-lg'></i>
-            <% end %>
-          </li>
+          <% unless current_page?(root_url) %>
+            <li class="nav-item"><%= link_to "Home", root_path %></li>
+          <% end %>
 					<li class="user-control log-in-button"><%= link_to 'Log In', new_session_path(resource_name) %></li>
 					<li class="user-control log-in-button"><%= link_to "Log In with Facebook", user_omniauth_authorize_path(:facebook) %></li>
 					<li class="user-control sign-up-button"><%= link_to 'Sign Up', new_registration_path(resource_name) %></li>
