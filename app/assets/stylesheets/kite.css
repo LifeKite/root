@@ -152,6 +152,10 @@
   margin-bottom: 15px;
 }
 
+.details-section {
+  clear: both;
+}
+
 .details-section p {
     margin: 3px;
 }
