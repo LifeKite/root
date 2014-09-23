@@ -8,6 +8,7 @@ class FollwingsController < ApplicationController
   def get_autocomplete_items(parameters)
     User.select("id, username, firstname, lastname")
         .where(["LOWER(CONCAT_WS('|', firstname, lastname, username)) ILIKE ?", "%#{parameters[:term].downcase}%"])
+        .where(["id <> ?", current_user.id])
   end
 
   def new
