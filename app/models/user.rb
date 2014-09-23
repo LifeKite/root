@@ -68,10 +68,12 @@ class User < ActiveRecord::Base
       user.save!
     else
       user = User.create(:name => auth.credentials.token,
-                           :username => auth.extra.raw_info.name,
+                           :username => auth.info.email,
                            :provider => auth.provider,
                            :uid => auth.uid,
                            :email => auth.info.email,
+                           :firstname => auth.info.first_name,
+                           :lastname => auth.info.last_name,
                            :password => Devise.friendly_token[0,20]
                         )
     end
