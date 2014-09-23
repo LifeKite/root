@@ -350,12 +350,12 @@ h1 {
 	float: left;
 	list-style-type: none;
   margin-top: 4px;
+  margin-left: 10px;
 }
 
 .user-control a {
 	display: block;
 	padding: 2px 10px 0 10px;
-	margin-right: 10px;
 	text-transform: uppercase;
 	color: #fff;
 	font-size: 1em;
