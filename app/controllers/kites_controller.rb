@@ -172,7 +172,7 @@ class KitesController < ApplicationController
     unless params[:from_search].blank?
       add_breadcrumb "Search '#{params[:from_search]}'".html_safe, kite_general_search_kites_path(:text => params[:from_search])
     end
-    add_breadcrumb (@kite.user.id == current_user.id) ? "My Kites" : "#{@kite.user.KosherUsername}'s Kites", userPublicKitesIndex_kites_path(:username => @kite.user.username)
+    add_breadcrumb (current_user && (@kite.user.id == current_user.id)) ? "My Kites" : "#{@kite.user.KosherUsername}'s Kites", userPublicKitesIndex_kites_path(:username => @kite.user.username)
     add_breadcrumb @kite.Description.html_safe, :kite_path
 
     #Queue up a proto-comment
