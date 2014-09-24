@@ -14,24 +14,28 @@
         </div>
         <div class="heart">
           <% if current_user %>
-            <%= link_to image_tag('landing-heart-open.png'),
-              Follow_kite_path(@kite, type:'like'),
-              :method => :put,
-              :remote => true,
-              :class => "not-following #{'hidden' if current_user.is_following?(@kite.id)}"
-            %>
-            <%= link_to image_tag('landing-heart-closed.png'),
-              Unfollow_kite_path(@kite, type:'like'),
-              :method => :put,
-              :remote => true,
-              :class => "following #{'hidden' unless current_user.is_following?(@kite.id)}"
-            %>
+            <% if current_user.id == @kite.user.id %>
+              <%= image_tag('landing-heart-disabled.png') %>
+            <% else %>
+              <%= link_to image_tag('landing-heart-open.png'),
+                          Follow_kite_path(@kite, type: 'like'),
+                          :method => :put,
+                          :remote => true,
+                          :class => "not-following #{'hidden' if current_user.is_following?(@kite.id)}"
+              %>
+              <%= link_to image_tag('landing-heart-closed.png'),
+                          Unfollow_kite_path(@kite, type: 'like'),
+                          :method => :put,
+                          :remote => true,
+                          :class => "following #{'hidden' unless current_user.is_following?(@kite.id)}"
+              %>
+            <% end %>
           <% else %>
-           <%= image_tag('landing-heart-open.png') %>
+            <%= image_tag('landing-heart-disabled.png') %>
           <% end %>
 
         </div>
-<!--         <% if @kite.Completed %>
+        <!--         <% if @kite.Completed %>
           <div class="dateline">
             <%= raw(kite_date_formated(@kite.CompleteDate, 'Completed')) %>
           </div>
