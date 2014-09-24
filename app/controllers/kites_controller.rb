@@ -20,10 +20,10 @@ class KitesController < ApplicationController
   def userPublicKitesIndex
     check_and_handle_kites_per_page_update(current_user, params)
 
-    @username = params[:username]
-    @function = "#{params[:username]}'s kites"
+    @user = User.where(:username => params[:username]).first
+    @function = "#{@user.KosherUsername}'s Kites"
     @kites = Kite.public_kites.joins(:user).where("users.username" => params[:username]).paginate(:page => params[:page], :per_page => @kitesPerPage)
-    get_common_stats()
+    get_common_stats
 
     respond_to do |format|
       format.html { render :template => 'kites/index' }# indexPublic.html.erb
