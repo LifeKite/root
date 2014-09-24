@@ -1156,6 +1156,10 @@ h1 {
 	height: 50px;
 }
 
+.form .invite-button {
+  float: right;
+}
+
 .make-private {
 	float: left;
 }
