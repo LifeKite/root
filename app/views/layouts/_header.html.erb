@@ -17,7 +17,10 @@
           </li>
           <li class="nav-item"><%= link_to "Home", root_path %></li>
           <li class="nav-item"><%= link_to 'Add a Kite', new_kite_path %></li>
-					<li class="nav-item"><%= link_to 'My Profile', edit_user_registration_path %></li>
+          <li class="nav-item"><%= link_to edit_user_registration_path do %>
+              <i class="fa fa-lg fa-user"></i>&nbsp;<%= current_user.firstname %>
+            <% end %>
+          </li>
 					<li class="nav-item"><%= link_to 'Help', "https://lifekite.wufoo.com/forms/lifekite-support/" %></li>
 					<li class="nav-item"><%= link_to 'Invite a Friend', showInvite_user_path(current_user.id) %></li>
 					<li class="nav-item"><%= link_to 'Log Out', destroy_user_session_path, :method => :delete %></li>
