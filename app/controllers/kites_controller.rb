@@ -144,11 +144,11 @@ class KitesController < ApplicationController
     @text = params[:text]
     found_kites = []
     #do a more general search of kite names, descriptions and details
-    found_kites = (found_kites + Kite.where(Kite.arel_table[:Description].matches("%#{@text}%").or(Kite.arel_table[:Details].matches("%#{@text}%"))).where(:sharelevel => "public" ))
+    found_kites = found_kites + Kite.where(Kite.arel_table[:Description].matches("%#{@text}%").or(Kite.arel_table[:Details].matches("%#{@text}%"))).where(:sharelevel => "public" )
 
     found_users = User.where(User.arel_table[:username].matches("%#{@text}%").or(User.arel_table[:firstname].matches("%#{@text}%")).or(User.arel_table[:lastname].matches("%#{@text}%")))
     found_users.each do |found_user|
-      found_kites = (found_kites + found_user.kites)
+      found_kites = (found_kites + found_user.kites.where(:sharelevel => "public" ))
     end
 
     found_kites = found_kites.uniq
