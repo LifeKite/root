@@ -12,6 +12,7 @@ class KitesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :kite_general_search, :userPublicKitesIndex]
   before_filter :verify_is_admin_or_owner, :only => [:delete, :destroy]
   before_filter :verify_is_owner, :only => [:edit, :update, :complete, :ShareKiteToSocialMedia, :join, :unjoin]
+  before_filter :find_kite_or_redirect, :only => [:show]
 
   helper KitesHelper
 
@@ -166,8 +167,6 @@ class KitesController < ApplicationController
 
   # Open the view for a given kite
   def show
-    @kite = Kite.find(params[:id])
-
     add_breadcrumb "<i class='fa fa-home fa-lg'></i>".html_safe, :root_path
     unless params[:from_search].blank?
       add_breadcrumb "Search '#{params[:from_search]}'".html_safe, kite_general_search_kites_path(:text => params[:from_search])
@@ -635,4 +634,10 @@ class KitesController < ApplicationController
       @kitesPerPage = current_user && current_user.kitesperpage ? current_user.kitesperpage : KITES_PER_PAGE
 
     end
+
+  def find_kite_or_redirect
+    unless @kite = Kite.find_by_id(params[:id])
+      redirect_to root_path, :alert => 'Kite not found.'
+    end
+  end
 end
