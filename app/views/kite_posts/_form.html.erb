@@ -26,6 +26,6 @@
   </div>
   <%= f.file_field :image, :class=>"image-upload-field upload-actual hidden" %>
   <div class="actions">
-    <%= f.submit "Post", {:class => "create-button button"}%>
+    <%= f.submit "Post", {:class => "create-button button", :data => {disable_with: "Please wait..."}}%>
   </div>
 <% end %>
