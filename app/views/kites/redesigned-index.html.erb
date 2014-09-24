@@ -9,6 +9,11 @@
       <div class="main-kites col-xs-8">
         <h3 class="title">My Kites</h3>
         <div class="dashed-separator-light my-kites-separator"></div>
+        <div class="col-xs-3">
+          <%= link_to new_kite_path do %>
+            <div class="kite fake-kite"><p><i class="fa fa-plus-circle fa-2x"></i><br />Add a Kite</p></div>
+          <% end %>
+        </div>
         <div class="my-kitescontainer">
           <%= render @my_kites, size: :thumb %>
           <% if @my_kites.next_page %>
@@ -16,9 +21,6 @@
               <%= will_paginate @my_kites %>
             </div>
           <% end %>
-        </div>
-        <div class="col-xs-3">
-          <%= link_to content_tag(:div, content_tag(:p, raw('Click here <br/>to add a kite')), class: "kite fake-kite" ), new_kite_path %>
         </div>
       </div>
 
