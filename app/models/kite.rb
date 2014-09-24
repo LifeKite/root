@@ -161,6 +161,10 @@ class Kite < ActiveRecord::Base
   def UserCanView(testuser)
     if sharelevel == "public"
       return true
+    else
+      unless testuser
+        return false
+      end
     end
 
     if user.id == testuser.id

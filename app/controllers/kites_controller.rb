@@ -635,9 +635,13 @@ class KitesController < ApplicationController
 
     end
 
-  def find_kite_or_redirect
-    unless @kite = Kite.find_by_id(params[:id])
-      redirect_to root_path, :alert => 'Kite not found.'
+    def find_kite_or_redirect
+      unless @kite = Kite.find_by_id(params[:id])
+        redirect_to root_path, :alert => 'Kite could not be found' and return
+      end
+
+      unless @kite.UserCanView(current_user)
+        redirect_to root_path, :alert => "This Kite is private and cannot be viewed"
+      end
     end
-  end
 end
