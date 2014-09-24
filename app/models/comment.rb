@@ -4,7 +4,7 @@
 # This class represents a comment on a kite
 class Comment < ActiveRecord::Base
   belongs_to :user
-  has_one :kite
+  belongs_to :kite
   validates_presence_of :user
   validates_presence_of :kite
 
@@ -33,9 +33,4 @@ class Comment < ActiveRecord::Base
   def unmarkHelpful
     update_attribute(:isHelpful, false)
   end
-
-  def kite
-    return Kite.find(kite_id)
-  end
-
 end

@@ -16,12 +16,13 @@ class User < ActiveRecord::Base
 
          # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :notifyOnKiteComment, :notifyOnKitePromote, :sendEmailNotifications, :provider, :uid, :name
-  has_many :kites, :dependent => :delete_all
-  has_many :assignments, :dependent => :delete_all
+  has_many :kites, :dependent => :destroy
+  has_many :assignments, :dependent => :destroy
   has_many :groups, :through => :assignments
   has_many :Invites
-  has_many :Notifications, :dependent => :delete_all
-  has_many :follwing, :dependent => :delete_all
+  has_many :Notifications, :dependent => :destroy
+  has_many :follwing, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 
   scope :search_by_fullname_or_username, lambda { |name|
     (name ? where(["lower(firstname) LIKE ? or lower(lastname) LIKE ? or lower(username) LIKE ? or lower(firstname) || ' ' || lower(lastname) LIKE ?", '%'+ name.downcase + '%', '%'+ name.downcase + '%', '%'+ name.downcase + '%','%'+ name.downcase + '%' ])  : {})
