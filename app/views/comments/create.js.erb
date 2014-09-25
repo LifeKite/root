@@ -1,3 +1,11 @@
+<%
+  if @comment.errors.any?
+    @comment.errors.full_messages.each do |msg| %>
+      $('ul.comment-errors').empty().append('<li><%= msg %></li>');
+    <% end %>
+<% else %>
+$('ul.comment-errors').empty();
 $("#commentslist").prepend("<%= escape_javascript(render @comment)%>");
 $(".comment-field").val("");
 $('.kite-nav-content').jScrollPane();
+<% end %>

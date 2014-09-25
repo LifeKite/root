@@ -1,5 +1,6 @@
 class KitePost < ActiveRecord::Base
   attr_accessible :text, :image
+  validates_presence_of :text
   belongs_to :kite
 
   require 'aws/s3'

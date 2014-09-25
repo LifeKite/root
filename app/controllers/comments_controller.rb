@@ -53,29 +53,31 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.tag = @comment.content.scan(HASHTAG_REGEX).join(",")
     @kite = Kite.find(@comment.kite_id)
-    targetUsers = @comment.content.scan(USERTAG_REGEX)
-    
-    send_comment_update_notification("Someone has commented on your kite", @comment, @kite.user)
-    
-    # Also, anyone who was specifically mentioned should be notified
-    targetUsers.each do |tu|
-      user = User.where(:username => tu.strip[1..-1]).first
-      send_comment_update_notification("Someone has mentioned you in their kite status.", @comment, user)
-    end
-      
-    # Also, let those following the kite know
-    @comment.kite.followers.each do |member|
-      send_comment_update_notification("A comment has been made on one of the kites you follow.",
-      @comment, member)
-    end
 
-    respond_to do |format|
-      if @comment.save
+    if @comment.save
+      send_comment_update_notification("Someone has commented on your kite", @comment, @kite.user)
+
+      # Also, anyone who was specifically mentioned should be notified
+      @target_users = @comment.content.scan(USERTAG_REGEX)
+      @target_users.each do |tu|
+        user = User.where(:username => tu.strip[1..-1]).first
+        send_comment_update_notification("Someone has mentioned you in their kite status.", @comment, user)
+      end
+
+      # Also, let those following the kite know
+      @comment.kite.followers.each do |member|
+        send_comment_update_notification("A comment has been made on one of the kites you follow.",
+        @comment, member)
+      end
+
+      respond_to do |format|
         format.html { redirect_to(@kite, :notice => 'Comment was successfully created.') }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
         format.js {}
         format.json { render :json => @comment, :status => :created}
-      else
+      end
+    else
+      respond_to do |format|
         format.html { render :action => "new", :notice => params[:kite_id] }
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
         format.js {}

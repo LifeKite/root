@@ -7,6 +7,7 @@ class Comment < ActiveRecord::Base
   belongs_to :kite
   validates_presence_of :user
   validates_presence_of :kite
+  validates_presence_of :content
 
   require 'aws/s3'
   require 'rails_autolink'

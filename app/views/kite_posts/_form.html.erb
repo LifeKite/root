@@ -11,9 +11,10 @@
     </div>
   <% end %>
 
+  <ul class="errors kite-post-errors"></ul>
   <div class="row">
     <div class="col-md-11">
-      <%= f.text_area :text, :rows => 2, :placeholder => "What's new?", :class => "comment-field" %>
+      <%= f.text_area :text, :rows => 2, :placeholder => "What's new?", :class => "comment-field", :required => ""  %>
     </div>
   </div>
   <div class="row">

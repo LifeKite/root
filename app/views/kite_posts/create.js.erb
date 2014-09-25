@@ -1,5 +1,13 @@
+<%
+  if @kitePost.errors.any?
+    @kitePost.errors.full_messages.each do |msg| %>
+$('ul.kite-post-errors').empty().append('<li><%= msg %></li>');
+<% end %>
+<% else %>
+$('ul.kite-post-errors').empty();
 $("#postlist").prepend("<%= escape_javascript(render @kitePost)%>");
 $(".comment-field").val("");
 $(".upload-actual").val("");
 $(".surrogate").val("");
 $('.kite-nav-content').jScrollPane();
+<% end %>

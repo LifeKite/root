@@ -1652,3 +1652,8 @@ h5 {
 .nav-item .fa-house {
   font-size: 1.4666em;
 }
+
+ul.errors {
+  color: red;
+  padding-left: 15px;
+}
