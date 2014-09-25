@@ -56,7 +56,7 @@
         <h4><p class="col-md-offset-1">Overview</p></h4>
         <div class="col-md-offset-1">
           <%= format_tags(@kite.Details, :class => 'col-md-offset-1') %>
-
+          <p class="dateline">Visibility: <%= @kite.private? ? "Private" : "Public" %></p>
           <% if @kite.Completed %>
             <p class="dateline">Completed: <%= @kite.FormattedCompletedDate %></p>
           <% end %>
@@ -81,10 +81,6 @@
       <% if current_user == @kite.user %>
         <div class="col-md-12 details-section">
           <h4><p class="col-md-offset-1">Members</p></h4>
-
-          <div class="col-md-12 details-section">
-            <%= render 'privacyButtons', kite: @kite %>
-          </div>
 
           <%= render 'follwings/member', :title => "Add a new member" %>
 

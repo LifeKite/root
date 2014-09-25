@@ -1,9 +1,5 @@
-<% if !current_user.nil? %>
-<div class="wrapper create has-sidebar has-navigation">
-<% else %>
-<div class="wrapper create has-navigation">
-<%end%>
-<h2 class="page-title">Modify Kite</h2><br />
+<div class="wrapper create <%= current_user ? 'has-sidebar':'' %> has-navigation">
+<h1 class="page-title">Edit Kite</h1>
 <%= form_for(@kite, :html => {:class => "form padded-form signup-form", :multipart => true}) do |f| %>
 		  <% if @kite.errors.any? %>
 		    <div id="error_explanation">
@@ -42,7 +38,7 @@
 			</div>
 
 			<!-- <div class="button add-button add-members">+ Add Members</div> -->
-			<%= f.submit "Update", {:class => "create-button button", :disable_with => "Loading..."} %>
+			<%= f.submit "Update", {:class => "create-button button button-autowidth", :disable_with => "Loading..."} %>
 			<%= link_to 'Cancel', :back, :class => "create-button button"%>
 			<%= f.file_field :kiteimage, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
 		<% end %>

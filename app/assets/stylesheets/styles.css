@@ -1165,9 +1165,13 @@ h1 {
 }
 
 .make-private label {
-	color: #64667b;
-	margin-left: 10px;
-	font-size: 13px;
+  color: #64667b;
+  line-height: 2.3em;
+  margin-left: 5px;
+}
+
+.button-autowidth {
+  width: auto !important;
 }
 
 /* Groups Page
