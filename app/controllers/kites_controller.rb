@@ -22,7 +22,14 @@ class KitesController < ApplicationController
 
     @user = User.where(:username => params[:username]).first
     @function = "#{@user.KosherUsername}'s Kites"
-    @kites = Kite.public_kites.joins(:user).where("users.username" => params[:username]).paginate(:page => params[:page], :per_page => @kitesPerPage)
+
+    @kites = []
+    if current_user
+      @kites = Kite.joins(:user).where("users.username" => params[:username]).kites_visible_to_me(current_user.id).paginate(:page => params[:page], :per_page => @kitesPerPage)
+    else
+      @kites = Kite.public_kites.joins(:user).where("users.username" => params[:username]).paginate(:page => params[:page], :per_page => @kitesPerPage)
+    end
+
     get_common_stats
 
     respond_to do |format|
@@ -143,21 +150,35 @@ class KitesController < ApplicationController
 
     @text = params[:text]
     found_kites = []
-    #do a more general search of kite names, descriptions and details
-    found_kites = found_kites + Kite.where(Kite.arel_table[:Description].matches("%#{@text}%").or(Kite.arel_table[:Details].matches("%#{@text}%"))).where(:sharelevel => "public" )
 
-    found_users = User.where(User.arel_table[:username].matches("%#{@text}%").or(User.arel_table[:firstname].matches("%#{@text}%")).or(User.arel_table[:lastname].matches("%#{@text}%")))
-    found_users.each do |found_user|
-      found_kites = (found_kites + found_user.kites.where(:sharelevel => "public" ))
+    if current_user
+      found_kites += Kite.where(Kite.arel_table[:Description].matches("%#{@text}%").or(Kite.arel_table[:Details].matches("%#{@text}%"))).kites_visible_to_me(current_user.id)
+    else
+      # all public kites matching search query
+      found_kites += Kite.public_kites.where(Kite.arel_table[:Description].matches("%#{@text}%").or(Kite.arel_table[:Details].matches("%#{@text}%")))
     end
 
-    found_kites = found_kites.uniq
+    #search for users
+    found_users = User.where(User.arel_table[:username].matches("%#{@text}%").or(User.arel_table[:firstname].matches("%#{@text}%")).or(User.arel_table[:lastname].matches("%#{@text}%")))
+
+    found_users.each do |found_user|
+      if current_user
+        found_kites += found_user.kites.kites_visible_to_me(current_user.id)
+      else
+        # all public kites matching search query
+        found_kites += found_user.kites.public_kites
+      end
+    end
+
+    found_kites = found_kites.uniq.sort_by { |k| k.updated_at }.reverse!
 
     @function = "Search Results"
     check_and_handle_kites_per_page_update(current_user, params)
 
     @kites = found_kites.paginate(:page => params[:page], :per_page => @kitesPerPage)
-    get_common_stats()
+
+    get_common_stats
+
     respond_to do |format|
       format.html { render :template => 'kites/index' }# index.html.erb
       format.xml  { render :xml => @kites }
