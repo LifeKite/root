@@ -1160,18 +1160,26 @@ h1 {
   float: right;
 }
 
+.button-autowidth {
+  width: auto !important;
+}
+
+.details-section .kite-description {
+  margin-bottom: 1.5em;
+}
+
+.details-section .visibility {
+  margin-bottom: 1.5em;
+}
+
 .make-private {
-	float: left;
+  float: left;
 }
 
 .make-private label {
   color: #64667b;
   line-height: 2.3em;
   margin-left: 5px;
-}
-
-.button-autowidth {
-  width: auto !important;
 }
 
 /* Groups Page

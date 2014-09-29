@@ -55,11 +55,11 @@
       <div class="col-md-12 details-section">
         <h4><p class="col-md-offset-1">Overview</p></h4>
         <div class="col-md-offset-1">
-          <%= format_tags(@kite.Details, :class => 'col-md-offset-1') %>
-          <p class="dateline">Visibility: <%= @kite.private? ? "Private" : "Public" %></p>
+          <%= format_tags(@kite.Details, :class => 'col-md-offset-1 kite-description') %>
           <% if @kite.Completed %>
-            <p class="dateline">Completed: <%= @kite.FormattedCompletedDate %></p>
+            <p class="completed-date dateline">Completed: <%= @kite.FormattedCompletedDate %></p>
           <% end %>
+          <p class="visibility dateline">Visibility: <%= @kite.private? ? "<i class='fa fa-lock'></i> <strong>Private kite</strong>".html_safe : "<i class='fa fa-unlock'></i> <strong>Public kite</strong>".html_safe %></p>
           <% if @kite.user == current_user %>
             <%= link_to edit_kite_path(@kite), :class => "lk-btn lk-btn-sm pull-left" do %>
               <i class="fa fa-pencil"></i> Edit

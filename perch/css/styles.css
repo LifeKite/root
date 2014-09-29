@@ -1155,15 +1155,6 @@ h1 {
   color: white;
   text-decoration: none;
 }
-.make-private {
-	float: left;
-}
-
-.make-private label {
-	color: #64667b;
-	margin-left: 10px;
-	font-size: 13px;
-}
 
 /* Groups Page
 *********************************/
