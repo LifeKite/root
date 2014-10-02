@@ -1,23 +1,11 @@
+<div class="content lk-new-kite">
+		<h1 class="page-title">Create a new Kite</h1><br />
 
-<% if !local_assigns.has_key? :child %>
-	
-	<% if !current_user.nil? %>
-	<div class="wrapper create has-sidebar has-navigation">
-	<% else %>
-	<div class="wrapper create has-navigation">
-	<%end%>
-		<h1 class="page-title">Create a new kite</h1><br />
-		<div class="content">
-<% else %>
-	<div>
-	<div>	
-<%end%>
-		
 		<%= form_for(@kite, :html => {:class => "form padded-form signup-form", :multipart => true}) do |f| %>
 		  <% if @kite.errors.any? %>
 		    <div id="error_explanation">
 		      <h2><%= pluralize(@kite.errors.count, "error") %> prohibited this kite from being saved:</h2>
-		
+
 		      <ul>
 		      <% @kite.errors.full_messages.each do |msg| %>
 		        <li><%= msg %></li>
@@ -27,40 +15,38 @@
 		  <% end %>
 			<div class="column-1">
 				<%= f.text_field :Description, :placeholder => "Name", :onkeyup => "CheckMaxLength(this);", :maxLength => 70 %>
-				
+
 				<div >
 					<%if @isAutoAdd %>
 						<%= f.hidden_field :ImageLocation, :class => "remote-image-field" %>
 					<% else %>
 						<input id="surrogate" type="text" class="image-upload-field surrogate" placeholder="Filename" readonly="readonly" />
 					<% end %>
-					
+
 				</div>
 			</div>
 			<div class="column-2">
 				<%= f.text_field :category, :placeholder => "Add Category"%>
-				
+
 				<% if @isAutoAdd.nil? %>
-					<div id="btnAddImage" class="button add-button add-image">+ Upload image</div>
+					<div id="btnAddImage" class="button add-button add-image no-corners">+ Upload image</div>
 				<% end %>
 			</div>
-			<%= f.text_area :Details, :placeholder => "Description", :onkeyup => "CheckMaxLenth(this);", :maxLength => 140 %> 
+			<%= f.text_area :Details, :placeholder => "Description", :onkeyup => "CheckMaxLenth(this);", :maxLength => 140 %>
 			<div class="make-private">
 				<%= f.check_box(:sharelevel, {:style => "float:left;"}, "private", "public") %>
 				<label for="kite_sharelevel" style="float: left;">Make private</label>
 			</div>
-			
+
 			<!-- <div class="button add-button add-members">+ Add Members</div> -->
-			<%= f.submit "Create", {:class => "create-button button", :disable_with => "Loading..."} %>
-			<%= link_to 'Cancel', @kites, :class => "create-button button"%> 
+			<%= f.submit "Create", {:class => "create-button button button-autowidth", :disable_with => "Loading..."} %>
+			<%= link_to 'Cancel', :back, :class => "create-button button"%>
 			<%= f.file_field :kiteimage, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
 		<% end %>
 	<% if defined? child %>
 		</div>
 	<%end%>
-</div>	
-<div id="lockpane" class="LockOff"></div> 
-<!--<%= javascript_include_tag "vendor/jquery.ui.widget.js" %>
-<%= javascript_include_tag "jquery.iframe-transport.js" %>
-<%= javascript_include_tag "jquery.fileupload.js" %>-->
+	</div>
+</div>
+<div id="lockpane" class="LockOff"></div>
 

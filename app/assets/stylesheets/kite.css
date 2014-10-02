@@ -1,0 +1,381 @@
+.font-open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.font-sofadi {
+  font-family: 'Sofadi One', cursive;
+}
+
+.font-asap {
+  font-family: 'Asap', sans-serif;
+}
+
+/* styles for kite details */
+
+.detail-kite-header {
+  border: 1px dashed #44878E;
+  display: inline-block;
+  margin-top: 0;
+}
+
+.detail-kite-header.static {
+  position: static;
+}
+
+@media (min-width: 1200px) {
+  .detail-kite-header {
+    width: 990px;
+  }
+
+  .detail-kite-header h1 {
+      width: 724px;
+  }
+}
+
+@media (min-width: 979px)  and (max-width: 1200px) {
+  .detail-kite-header h1 {
+    width: 532px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .detail-kite-header {
+    width: 1140px;
+  }
+}
+
+@media (max-width: 767px) {
+  .detail-kite-header {
+    width: 100%;
+  }
+
+  .detail-kite-header h1 {
+      max-width: 55%;
+  }
+
+  .detail-kite-header.static {
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-kite-header {
+    width: 440px;
+  }
+
+  .detail-kite-header.static {
+    margin-top: 0px;
+  }
+}
+
+.detail-kite-header h1 {
+  font-size: 2em;
+  font-weight: normal;
+  padding: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #0A3448;
+  float: left;
+}
+
+.detail-kite-header .info {
+  float: right;
+}
+
+.detail-kite-header .arrow, .detail-kite-header .heart {
+  float: left;
+}
+
+.detail-kite-header .arrow img {
+  padding: 25px;
+}
+
+.detail-kite-header .heart img {
+  padding: 10px 20px;
+}
+
+.detail-kite-header .dateline {
+  float: left;
+  color: #44878E;
+  border-left: 1px dashed #44878E;
+  border-right: 1px dashed #44878E;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+}
+
+.detail-kite-header .created-text {
+  font-size: 20px;
+  margin-bottom: -5px;
+}
+
+.detail-kite-header .created-month {
+  /*font-size: 0.5em;*/
+}
+
+.detail-kite-header .created-year {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: -8px;
+}
+
+.details-container {
+  position: relative;
+}
+
+#kite-details-frame {
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.8);
+  left: 75px;
+  right: 75px;
+  position: absolute !important;
+}
+
+.kite-full-title {
+  background-color: #44878E;
+  color: white;
+  padding: 18px;
+}
+
+#kite-details-frame h4 {
+  background-color: #EB615E;
+  margin-bottom: 15px;
+}
+
+#kite-details-frame h4 p {
+  padding: 4px;
+  color: white;
+}
+
+#kite-details-frame .details-section ~ .details-section {
+  margin-bottom: 15px;
+}
+
+.details-section {
+  clear: both;
+}
+
+.details-section p {
+    margin: 3px;
+}
+
+.dateline,
+.created-ago {
+  font-size: 90%;
+}
+
+/* weird stuff for inputs and text areas */
+
+#kite-details-frame input[type=text], #kite-details-frame textarea {
+  border: #44878E 1px solid;
+  resize: vertical;
+}
+
+#kite-details-frame .comment-field::-webkit-input-placeholder {
+  padding: 10px;
+}
+
+#kite-details-frame .comment-field:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  padding: 10px;
+}
+
+#kite-details-frame .comment-field::-moz-placeholder { /* Mozilla Firefox 19+ */
+  padding: 10px;
+}
+
+#kite-details-frame .comment-field:-ms-input-placeholder { /* Internet Explorer 10+ */
+  padding: 10px;
+}
+
+#kite-details-frame ::-webkit-input-placeholder { /* WebKit browsers */
+  color: #44878E;
+  padding-left: 10px;
+}
+
+#kite-details-frame :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #44878E;
+  padding-left: 10px;
+}
+
+#kite-details-frame ::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #44878E;
+  padding-left: 10px;
+}
+
+#kite-details-frame :-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #44878E;
+  padding-left: 10px;
+}
+
+/* end of weird stuff for inputs and text areas */
+
+#kite-details-frame p {
+  color: #44878E;
+}
+
+#kite-details-frame .remove-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#kite-details-frame .col-md-12 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.detail-kite-img img {
+  width: 100%;
+  /*width: 30%;*/
+}
+
+.kite-comments-frame {
+  border: 1px dashed #44878E;
+  margin-top: 10px;
+}
+
+.kite-details {
+  padding: 10px;
+  background-color: #EAEFED;
+}
+
+.kite-details .col-md-1 {
+  text-align: center;
+  font-style: bold;
+  padding: 5px;
+}
+
+.kite-details .vertical-dashing {
+  border-right: 1px dashed #44878E;
+}
+
+.privacy {
+  display:inline-block;
+  clear: both;
+  margin-bottom: 20px;
+}
+
+.privacy .active {
+  background-color: #EB615E;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  padding: 10px;
+}
+
+.privacy .clickable {
+  color: #44878E;
+  font-weight: bold;
+  display: inline-block;
+  padding: 10px;
+}
+
+.privacy .clickable a {
+  text-decoration: none;
+}
+
+#new_kite_post input.add-image{
+  width: 100%;
+}
+
+
+#kite_post_text {
+  margin-bottom: 20px;
+}
+
+
+.lk-new-kite {
+  margin-top: 60px;
+}
+
+.lk-kite {
+  margin-top: 70px;
+}
+
+.details-section .lk-danger {
+  margin-right: 10px;
+}
+
+.detail-kite-header h1, #kite-details-frame h1{
+  font-size: 30px;
+}
+
+.lk-comments-info-tab {
+  display: inline-block;
+  padding: 0 15px 10px 15px;
+  font-weight: bold;
+  color: #0A3448;
+
+}
+
+.lk-comments-info {
+  margin-bottom: 6px;
+  border-bottom: 1px dashed #44878E;
+}
+
+
+.comment-button {
+  margin-bottom: 10px;
+}
+
+.is-public,
+.is-private {
+  border: 1px solid #EB615E;
+}
+
+.ui-autocomplete.ui-widget {
+  font-size: 0.8em;
+}
+
+.details-section .bootstrap-tagsinput {
+  border: 0 none;
+  background: none;
+  box-shadow: none;
+  cursor: default;
+  margin-bottom: 0;
+}
+.bootstrap-tagsinput input {
+  display: none !important;
+}
+.bootstrap-tagsinput .tag.label {
+  text-transform: none;
+  background-color: #44878E;
+  margin-top: 4px;
+  font-weight: normal;
+  font-size: 90%;
+  display: inline-block;
+  padding: 5px;
+}
+
+.membername-input {
+  margin-left: 3px;
+}
+
+.details-section .fa-spin {
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  -ms-animation-duration: 1s;
+  animation-duration: 1s;
+  color: #44878E;
+  display: none;
+}
+
+.lk-breadcrumbs {
+  color: #44878E;
+  width: 790px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: .9em;
+}
+.lk-breadcrumbs a:hover {
+  color: #70A8AD;
+}
+
+@media (min-width: 1200px) {
+  .lk-breadcrumbs {
+    width: 990px;
+  }
+}

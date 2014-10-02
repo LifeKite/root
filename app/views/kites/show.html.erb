@@ -1,12 +1,133 @@
 <link type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" media="all" />
-<% if !current_user.nil? && @kite.user.id == current_user.id %>
-<div class="wrapper detail has-sidebar has-navigation">
-<% else %>
-<div class="wrapper detail has-navigation">
-<%end%>
-	<div class="content" style="background-image: url('<%= @kite.kiteimage.url %>'); position: absolute; bottom: 0; width: 94%; height: 100%; z-index:-1;">
-		<%= render :partial => 'kiteDetails', :object => @kite %>
+	<div class="content details-container">
+    <p class="lk-breadcrumbs"><%= render_breadcrumbs :separator => " <i class='fa fa-caret-right'></i> ".html_safe %></p>
+    <div class="detail-kite-header">
+      <h1><%=formatless_tags(@kite.Description)%></h1>
+      <div class="info">
+        <div class="arrow">
+          <a data-toggle="collapse" data-target="#kite-details-frame">
+            <%= image_tag('landing-arrow.png') %>
+          </a>
+        </div>
+        <div class="dateline font-asap">
+          <%= raw(kite_date_formated(@kite.CreateDate)) %>
+        </div>
+        <div class="heart">
+          <% if current_user %>
+            <% if current_user.id == @kite.user.id %>
+              <%= image_tag('landing-heart-disabled.png') %>
+            <% else %>
+              <%= link_to image_tag('landing-heart-open.png'),
+                          Follow_kite_path(@kite, type: 'like'),
+                          :method => :put,
+                          :remote => true,
+                          :class => "not-following #{'hidden' if current_user.is_following?(@kite.id)}"
+              %>
+              <%= link_to image_tag('landing-heart-closed.png'),
+                          Unfollow_kite_path(@kite, type: 'like'),
+                          :method => :put,
+                          :remote => true,
+                          :class => "following #{'hidden' unless current_user.is_following?(@kite.id)}"
+              %>
+            <% end %>
+          <% else %>
+            <%= image_tag('landing-heart-disabled.png') %>
+          <% end %>
+
+        </div>
+        <!--         <% if @kite.Completed %>
+          <div class="dateline">
+            <%= raw(kite_date_formated(@kite.CompleteDate, 'Completed')) %>
+          </div>
+        <%end%> -->
+      </div>
+    </div>
+
+    <div id="kite-details-frame" class="collapse">
+      <h1 class="kite-full-title">
+        <a data-toggle="collapse" data-target="#kite-details-frame">
+          <%= image_tag('remove-icon.png', :class => 'remove-icon' ) %>
+        </a>
+        <%= @kite.Description %>
+      </h1>
+
+
+      <div class="col-md-12 details-section">
+        <h4><p class="col-md-offset-1">Overview</p></h4>
+        <div class="col-md-offset-1">
+          <%= format_tags(@kite.Details, :class => 'col-md-offset-1 kite-description') %>
+          <% if @kite.Completed %>
+            <p class="completed-date dateline">Completed: <%= @kite.FormattedCompletedDate %></p>
+          <% end %>
+          <p class="visibility dateline">Visibility: <%= @kite.private? ? "<i class='fa fa-lock'></i> <strong>Private kite</strong>".html_safe : "<i class='fa fa-unlock'></i> <strong>Public kite</strong>".html_safe %></p>
+          <% if @kite.user == current_user %>
+            <%= link_to edit_kite_path(@kite), :class => "lk-btn lk-btn-sm pull-left" do %>
+              <i class="fa fa-pencil"></i> Edit
+            <% end %>
+
+            <% unless @kite.Completed %>
+              <%= link_to complete_kite_path(@kite), :confirm => 'Are you sure you want to mark this Kite as completed?', :method => :put, :class => "lk-btn lk-btn-sm pull-left" do %>
+                <i class="fa fa-check"></i> Complete
+              <% end %>
+            <% end %>
+
+            <%= link_to @kite, :confirm => 'Are you sure you want to delete this Kite? This cannot be undone.', :method => :delete, :class => "lk-btn lk-btn-sm lk-danger pull-right" do %>
+              <i class="fa fa-trash-o"></i> Delete
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <% if current_user == @kite.user %>
+        <div class="col-md-12 details-section">
+          <h4><p class="col-md-offset-1">Members</p></h4>
+
+          <%= render 'follwings/member', :title => "Add a new member" %>
+
+          <div class="col-md-offset-1">
+            <%= render 'members_list', kite: @kite %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="col-md-12 details-section">
+        <h4><p class="col-md-offset-1">Progress</p></h4>
+        <% if current_user == @kite.user %>
+          <%= render 'kite_posts/form'%>
+        <% end %>
+
+        <div id="postlist" class="additional-images col-md-offset-1">
+          <%= render partial: "kite_posts/kite_post", collection: @kitePosts %>
+        </div>
+        <%= link_to 'Load More', kite_path(@kite, :postpage => @kitePosts.next_page), :class => 'load-more load-more-posts', :remote => true if @kitePosts.next_page %>
+      </div>
+
+      <% if !@kite.ImageLocation.nil? && valid_json?(@kite.ImageLocation) %>
+        <p class="dateline">Image original source: <a hef='<%= JSON.parse(@kite.ImageLocation)['site'] %>'>
+          <%= JSON.parse(@kite.ImageLocation)['site'] %>
+        </a></p>
+      <% end %>
+    </div>
+    <div class="detail-kite-img">
+      <%= image_tag(@kite.kiteimage) %>
+    </div>
+    <div class="kite-comments-frame">
+      <div class="kite-details">
+        <div class="lk-comments-info">
+          <div class="lk-comments-info-tab vertical-dashing">Comments</div>
+          <div class="lk-comments-info-tab vertical-dashing"><%=pluralize(@kite.supporters_count, 'supporter') %></div>
+          <div class="lk-comments-info-tab">Add category</div>
+        </div>
+
+        <% if current_user %>
+          <%= render 'comments/form'%>
+        <% end %>
+
+        <div id="commentslist">
+          <%= render @comments %>
+        </div>
+      </div>
+    </div>
 	</div>
-</div>
 
 

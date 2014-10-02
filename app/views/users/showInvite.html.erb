@@ -1,10 +1,10 @@
 <div class="wrapper has-navigation <%if current_user %>has-sidebar<%end%>">
 	<div class="content">
-		<%= form_for(@user, url: {action: "invite"}) do %>
-		  <p>Who would you like to invite?</p>
-		  <%= label_tag :email, "Email:"%>
-		  <%= email_field_tag :email %>
-		  <%= submit_tag "Send an Invitation" %>
+    <h1 class="page-title">Invite a Friend</h1>
+    <br />
+    <%= form_for(@user, url: {action: "invite"}, html: {class: "form padded-form"}) do %>
+		  <%= email_field_tag :email, "", :placeholder => "Email", :required => "" %>
+      <%= submit_tag "Send an Invitation", {:class => "button invite-button", :disable_with => "Sending..."} %>
 		<% end %>
 	</div>
 </div>

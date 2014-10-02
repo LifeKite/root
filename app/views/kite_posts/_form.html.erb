@@ -1,4 +1,4 @@
-<%= form_for(@kitePost, :remote => true) do |f| %>
+<%= form_for(@kitePost, :remote => true, :html => {:class => "col-md-offset-1"}) do |f| %>
   <% if @kitePost.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@kitePost.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -11,20 +11,22 @@
     </div>
   <% end %>
 
-  <div class="comment-field-container">
-    <%= f.text_area :text, :size => "200x2", :placeholder => "What's new?", :class => "comment-field" %>
+  <ul class="errors kite-post-errors"></ul>
+  <div class="row">
+    <div class="col-md-11">
+      <%= f.text_area :text, :rows => 2, :placeholder => "What's new?", :class => "comment-field", :required => ""  %>
+    </div>
   </div>
-  <div class="field">
+  <div class="row">
   	<%= f.hidden_field "kite_id", :value => @kite.id %>
   </div>
-  <div class="field">
-  	<div >
-  		<input type="text" class="image-upload-field surrogate", placeholder="Upload an image..." />
-  		<div class="button add-button add-image" style="display: inline-block; height:35px; padding-top: 2px;">...</div>
-  	</div>
+  <div class="row">
+    <div class="col-md-11">
+      <input type="text" class="add-image image-upload-field surrogate" placeholder="Upload an image..." />
+    </div>
   </div>
-  <%= f.file_field :image, :class=>"image-upload-field upload-actual", :style=>"visibility: hidden;" %>
+  <%= f.file_field :image, :class=>"image-upload-field upload-actual hidden" %>
   <div class="actions">
-    <%= f.submit "Post", {:class => "create-button button"}%>
+    <%= f.submit "Post", {:class => "create-button button", :data => {disable_with: "Please wait..."}}%>
   </div>
 <% end %>

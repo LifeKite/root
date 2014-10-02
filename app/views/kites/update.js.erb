@@ -1,0 +1,7 @@
+<% if @kite.public? %>
+  $('.privacy .is-public').removeClass('hidden');
+  $('.privacy .is-private').addClass('hidden');
+<% else %>
+  $('.privacy .is-public').addClass('hidden');
+  $('.privacy .is-private').removeClass('hidden');
+<% end %>

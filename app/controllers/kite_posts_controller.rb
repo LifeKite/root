@@ -13,27 +13,29 @@ class KitePostsController < ApplicationController
     @kitePost = KitePost.new(params["kite_post"])
     @kitePost.kite = Kite.find(params[:kite_post][:kite_id])    
     @kitePost.tag = @kitePost.text.scan(HASHTAG_REGEX).join(",")
-    targetUsers = @kitePost.text.scan(USERTAG_REGEX)
-    
-    # Notify all subscribers
-    @kitePost.kite.followers.each do |member|
-      send_kite_post_update_notification("One of the kites that you follow has been updated.", 
-        @kitePost.kite, member)
-    end
-    
-    # Notify anyone who has been specifically mentioned as well
-    targetUsers.each do |tu|
-      user = User.first(:username => tu..strip[1..-1])
-      send_kite_update_notification("Someone has mentioned you in their kite status.", @kitePost.kite, user)
-    end
-          
-    respond_to do |format|
-      if @kitePost.save()
+
+    if @kitePost.save
+      # Notify all subscribers
+      @kitePost.kite.followers.each do |member|
+        send_kite_post_update_notification("One of the kites that you follow has been updated.",
+          @kitePost.kite, member)
+      end
+
+      # Notify anyone who has been specifically mentioned as well
+      @target_users = @kitePost.text.scan(USERTAG_REGEX)
+      @target_users.each do |tu|
+        user = User.first(:username => tu..strip[1..-1])
+        send_kite_update_notification("Someone has mentioned you in their kite status.", @kitePost.kite, user)
+      end
+
+      respond_to do |format|
         format.html { redirect_to(@kitePost.kite, :notice => "Post was created successfully") }
         format.xml  { render :xml => @kitePost, :status => :created, :location => @kitePost }
         format.js {}
         format.json { render :json => @kitePost, :status => :created}
-      else
+      end
+    else
+      respond_to do |format|
         format.html { render :action => "new" }
         format.xml  { render :xml => @kitePost.errors, :status => :unprocessable_entity }
         format.js {}

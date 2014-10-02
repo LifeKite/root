@@ -1,1 +1,9 @@
-$("li#notification-<%=@Notification.id %>").remove();
+$(".notification-<%=@Notification.id %>").remove();
+var notifications_count = $("[class*='notification-']", "#lk-notifications-content").length;
+var badge = $(".lk-notifications .lk-badge");
+badge.html(notifications_count);
+if (notifications_count === 0) {
+  $(".lk-notifications").popover('hide');
+  $(".fa-bell").removeClass('fa-bell').addClass('fa-bell-o');
+  badge.hide();
+}

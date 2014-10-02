@@ -1,53 +1,13 @@
-<div class="wrapper home has-navigation has-footer <%if current_user %>has-sidebar<%end%>">
-	<div class="content">
-		<div class="content-header">
-			<h1 class="page-title"><Explore Kites><%= @function%></h1>
-			<div id="filter" class="filter" style="display: none;">
-				<div id="filter-button" class="filter-button">Filter By</div>
-				<ul id="filter-list" class="filter-list" style="display:none;">
-					<!-- Begin kite categories -->
-					<li>Filter Type 1</li>
-					<li>Filter Type 2</li>
-					<li>Filter Type 3</li>
-					<li>Filter Type 4</li>
-					<!-- End kite categories -->
-				</ul>
-			</div>
-			
-			<%= render "layouts/search"%>
+<div class="content lk-index">
+	<div class="lk-header">
+		<h1><%= @function%></h1>
+	</div>
+	<div class="lk-kites">
+		<!-- Begin kite -->
+		<%= render @kites, size: :thumb %>
+		<!-- End kite -->
+		<div class="hidden">
+			<%= will_paginate @kites %>
 		</div>
-		<div class="kitescontainer">
-			<!-- Begin kite -->
-			<%= render @kites %>
-			<!-- End kite -->			
-		</div>
-		<% if @kites.next_page %>
-		<div class="kite fake-kite">
-			<%= link_to 'Load More Kites', true_kites_path(:page => @kites.next_page), :class => 'load-more', :remote => true if @kites.next_page %>
-		</div>
-		<% end %>
-		<% if current_user %>
-		<div class="kitesPerPage">
-			<span>Show 
-				<ol id="kitesPerPage">
-					<% ALLOWABLE_KITES_PER_PAGE.each do |kpp| %>
-						<% if kpp == @kitesPerPage %>
-							<li class="kitesperpage-active"><%=kpp%></option>
-						<% else %>
-							<li><%= link_to "[#{kpp}]", true_kites_path(:page => @kites.current_page, :kpp => kpp) %></li>
-						<% end %>
-					<% end %>
-				</ol>
-				kites per page.
-			 </span>
-		</div>
-		<% end %>
-		<% if @function == "My Kites" || @function == "Member Kites"%>
-			<%= render "personalIndexFooter" %>
-		<% else %>
-			<%= render "indexFooter"%>
-		<% end %>
-		
-		
 	</div>
 </div>
