@@ -12,12 +12,13 @@
   <% end %>
 
   <div class="comment-field-container">
-    <%= f.text_area :content, :size => "200x2", :placeholder => "Comment on this kite...", :class => "comment-field" %>
+    <ul class="errors comment-errors"></ul>
+    <%= f.text_area :content, :size => "200x2", :placeholder => "Comment on this kite...", :class => "comment-field", :required => "" %>
   </div>
   <div class="field">
   	<%= f.hidden_field "kite_id", :value => @kite.id %>
   </div>
   <div class="actions">
-    <%= f.submit "Comment", {:class => "create-button button comment-button"}%>
+    <%= f.submit "Comment", {:class => "create-button button comment-button", :data => {disable_with: "Please wait..."}}%>
   </div>
 <% end %>

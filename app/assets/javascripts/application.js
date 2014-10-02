@@ -8,6 +8,12 @@
 //= require jquery.mousewheel.js
 //= require jquery.inview.min.js
 //= require jquery.ui.widget.js
+//= require bootstrap.js
+//= require vendor/bootstrap-tagsinput.min
+//= require vendor/imagesloaded.pkgd.min
 //= require scripts.js
 //= require script.js
 //= require autocomplete-rails
+//= require kites.js
+//= require kite.js
+//= require lk-scripts.js

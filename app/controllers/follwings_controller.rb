@@ -1,14 +1,16 @@
 class FollwingsController < ApplicationController
-  
-  # Tried this first using scopes, but autocomplete gem doesn't give you the capability to pass
-  # parameters into scopes.  Eventually it turned out the best way to get this working durably was to
-  # override the item retreival with our own filter.
+
+  autocomplete :user, :username,
+               :display_value => :KosherUsernameAndFullName,
+               :extra_data => [:firstname, :lastname]
+
+  # custom query for the above autocompletion, to search in multiple columns
   def get_autocomplete_items(parameters)
-    User.where(["firstname LIKE ? or lastname LIKE ? or username LIKE ? or firstname || ' ' || lastname LIKE ?", '%'+ parameters[:term] + '%', '%'+ parameters[:term] + '%', '%'+ parameters[:term] + '%','%'+ parameters[:term] + '%' ]).select('id, firstname, lastname, email')
+    User.select("id, username, firstname, lastname")
+        .where(["LOWER(CONCAT_WS('|', firstname, lastname, username)) ILIKE ?", "%#{parameters[:term].downcase}%"])
+        .where(["id <> ?", current_user.id])
   end
 
-  
-  autocomplete :user, :name, :display_value => :KosherUsername
   def new
   end
 

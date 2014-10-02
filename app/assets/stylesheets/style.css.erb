@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-    
+
     color: #333;
     padding: 0;
 }
@@ -16,7 +16,7 @@ body * {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Trebuchet MS", Trebuchet, Tahoma, Verdana, Arial, sans-serif;
-    color:#4088b8;
+    color:#44878E;
     clear: both;
 }
 
@@ -53,7 +53,7 @@ ul ul {
 }
 
 a {
-    color: #4088b8;
+    color: #44878E;
 }
 
 table {
@@ -116,8 +116,28 @@ td pre {
      padding-top: 20%;
      filter: alpha(opacity=75);
      opacity: 0.75;
-  } 
-  
+  }
+
 .comment-field {
-	width: 90%;
+	width: 100%;
 }
+
+.hidden {
+    display: none;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+    width: 55px;
+    background: url(<%= asset_path('back-to-top.png')%>);
+    color: white;
+    text-align: center;
+    padding-top: 18px;
+}
+
+.back-to-top a {
+    text-decoration: none;
+}
+

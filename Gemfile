@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 ruby "1.9.3"
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.17'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -21,7 +21,8 @@ gem 'fb_graph'
 gem 'rails3-jquery-autocomplete'
 gem 'twitter-text'
 gem 'rails_autolink'
-gem 'seed_dump'
+gem 'breadcrumbs_on_rails', '~> 2.3.0'
+
 #gem 'uglifier-rails'
 #gem 'execjs'
 # gem 'therubyracer'

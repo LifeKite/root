@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
-
-gem 'rails', '3.2.11'
+ruby "1.9.3"
+gem 'rails', '3.2.17'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -8,11 +8,28 @@ gem 'rails', '3.2.11'
 gem 'railties'
 gem 'devise', '>= 2.0.0'
 gem 'friendly_id', '3.2.1'
-gem 'jquery-rails'
-gem 'paperclip'
+gem 'jquery-rails', '>= 1.0.3'
+gem 'paperclip', "~> 3.0"
+gem 'aws-sdk'
 gem 'aws-s3'
 gem 'devise_invitable', '~> 1.0.0'
 gem 'will_paginate', '~> 3.0.0'
+gem 'fastimage'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'fb_graph'
+gem 'rails3-jquery-autocomplete'
+gem 'twitter-text'
+gem 'rails_autolink'
+<<<<<<< HEAD
+gem 'seed_dump'
+=======
+gem 'breadcrumbs_on_rails', '~> 2.3.0'
+
+>>>>>>> f24fea9999f9b8dfc46b3f45e80b5a2fc5efd9d1
+#gem 'uglifier-rails'
+#gem 'execjs'
+# gem 'therubyracer'
 
 # Use unicorn as the web server
 # gem 'unicorn'

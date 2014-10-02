@@ -1,5 +1,2 @@
-<%if @following[:Type] == "member"%>
-$("<%= escape_javascript(render @following)%>").appendTo("#memberslist");
-<%else%>
-$("<%= escape_javascript(render @following)%>").appendTo("#likelist");
-<%end%>
+$('.heart .not-following').addClass('hidden');
+$('.heart .following').removeClass('hidden');

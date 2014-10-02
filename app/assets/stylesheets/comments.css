@@ -1,0 +1,146 @@
+.comment {
+  border-top: 1px dashed #44878E;
+}
+
+.comment .name, .comment .title, .comment .content {
+  float: left;
+  padding-right: 10px;
+}
+
+.comment .comment-content, .comment .created-ago {
+  color: #44878E;
+}
+
+.comment .name {
+  font-weight: bold;
+  color: #0A3448;
+}
+
+
+
+/* Comments - previous styles */
+.comment {
+  padding-top: 19px;
+  padding-bottom: 15px;
+  /*border-bottom: 1px solid #cccccc;*/
+}
+
+.comments .comment:last-child {
+  border: none;
+}
+
+/*.comment-content {
+  position: relative;
+  background: url('/images/small-icon-comment.png') 5px 5px no-repeat;
+  padding-left: 42px;
+  -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0px 0px 4px #222;
+    -webkit-box-shadow: 0px 0px 4px #222;
+    box-shadow: 0px 0px 4px #222;
+}*/
+
+.comment .hard-options {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.comment .hard-options .button {
+  margin-top: 0;
+}
+
+.comment .options {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.comment .options .option-arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px 8px 6px;
+  margin: 1px;
+  z-index: 20;
+}
+
+.comment .options .the-options {
+  position: absolute;
+  top: 26px;
+  right: 0;
+  width: 128px;
+  padding: 3px 5px;
+  border: 1px solid #cecece;
+  display: none;
+  background-color: #fff;
+  z-index: 10;
+
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.comment .options .the-options ul {
+  padding: 0;
+}
+
+.comment .options .the-options li {
+  padding: 5px 8px;
+  list-style-type: none;
+  font-size: 10px;
+  color: #444444;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.comment .options .the-options li:last-child {
+  border-bottom: none;
+}
+
+.comment .options.active .option-arrow {
+  background-color: #fff;
+  border-width: 1px 1px 0;
+  border-color: #cecece;
+  border-style: solid;
+  margin: 0;
+}
+
+.comment .options.active .the-options {
+  display: block;
+}
+
+.comment .title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.comment .date {
+  font-size: 11px;
+  font-weight: 300;
+}
+
+.comment .the-comment {
+  padding-bottom: 18px;
+  margin-top: 14px;
+
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.author-info {
+
+}
+
+.author-info li {
+  position: relative;
+
+}
+
+.author-info .reply {
+  position: absolute;
+  bottom: 5px;
+  right: 16px;
+}

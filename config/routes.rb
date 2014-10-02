@@ -20,13 +20,13 @@ Rlifekite::Application.routes.draw do
   resources :comments
 
   resources :groups
-  
+
   resources :home
-  
+
   resources :notifications
-  
+
   resources :sharedpurposes
-  
+
   resources :sharedpurposekites
 
   get "friend/create"
@@ -40,25 +40,25 @@ Rlifekite::Application.routes.draw do
   get "home/index"
 
   # resources :kites
-  
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   #resources :users, :only => [:index, :show, :edit]
   resources :friendships
-  
-  # root :to => redirect('/splash/index.html')  
+
+  # root :to => redirect('/splash/index.html')
   # root :to => "home#index"
-  # 
+  #
   # map.home ':page', :controller => 'home', :action => 'show', :page => /about|help|contact/
   root :to => "kites#index"
   # match '/' => "users#show", :as => :user_root
-  
+
   resources :comments do
     member do
       put 'markHelpful'
       put 'unmarkHelpful'
     end
   end
-  
+
   resources :users do
       member do
         put 'update'
@@ -68,7 +68,7 @@ Rlifekite::Application.routes.draw do
         put :ForcePasswordReset
       end
     end
-  
+
   resources :kites do
     collection do
       get :newIndex
@@ -87,33 +87,31 @@ Rlifekite::Application.routes.draw do
       put 'Follow'
       put 'Unfollow'
       put 'ShareKiteToSocialMedia'
-      put 'Join'
-      put 'Unjoin'
+      put :join
+      put :unjoin
     end
   end
-  
+
   resources :invites do
     member do
       put 'accept'
     end
   end
-  
-    
+
+
   resources :sharedpurpose do
     member do
       put 'promote'
       put 'demote'
     end
   end
-  
+
   resources :follwings do
-    collection do
-      get :autocomplete_user_name
-    end
+    get :autocomplete_user_username, :on => :collection
   end
-  
+
   resources :kite_posts
-  
+
   #match "/kites/:id/complete" => "kites#complete"
   #match "/kites/:id/promote" => "kites#promote"
   #match "/kites/:id/demote" => "kites#demote"
@@ -131,13 +129,12 @@ Rlifekite::Application.routes.draw do
   #match "/kites/:id/follow" => "kites#Follow"
   #match "/kites/:id/unfollow" => "kites#Unfollow"
   #match "/kites/:id/ShareKiteToSocialMedia" => "kites#ShareKiteToSocialMedia"
-  
+
   devise_scope :user do
     get "/login" => "devise/sessions#new"
     get "/edit" => "devise/registrations#edit"
   end
 
-  
-  
+
   #match ':page' => 'kites#index'
 end
