@@ -1081,14 +1081,9 @@ h1 {
 }
 
 .facebook-this-kite {
-	display: inline-block;
-	padding: 10px 10px 10px 45px;
-	margin-top: 20px;
-	border: 1px solid #e4e4e4;
-	background: #fff url('/images/FB-f-Logo__blue_29.png') no-repeat 10px center;
-	cursor: pointer;
-	width: 100%;
-	text-align: left;
+	content: url('/images/FB-f-Logo__blue_29.png') no-repeat 10px center;
+	height: 16px;
+	vertical-align: text-bottom;
 }
 
 /* Login
