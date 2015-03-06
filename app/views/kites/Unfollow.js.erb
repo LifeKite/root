@@ -1,2 +1,5 @@
 $('.heart .following').addClass('hidden');
 $('.heart .not-following').removeClass('hidden');
+$('img[name=<%=@kite.id %>].kite-unlike').addClass('hidden');
+$('img[name=<%=@kite.id %>].kite-like').removeClass('hidden');
+$('span[name=<%=@kite.id %>].like-count').text('<%=@kite.LikeCount%>');

@@ -24,8 +24,8 @@
 				</div>
 
         <div class="userSettingsBlock">
-          <h2 class="create-your-account">Password change</h2>
           <% unless current_user.provider %>
+          <h2 class="create-your-account">Password change</h2>
             <%= f.password_field :current_password, :placeholder=>"Current Password", :AutoComplete=>"off" %>
             <%= f.password_field :password, :placeholder=>"New Password", :AutoComplete=>"off" %>
             <%= f.password_field :password_confirmation, :placeholder=>"New Password Again", :AutoComplete=>"off" %>
@@ -51,7 +51,7 @@
 				<span><%= button_to "Link to Facebook Account", user_omniauth_authorize_path(:facebook), :class => "button uwidth-button" %></span>
 				<% end %>
 			<br/>
-			<div style="border: 1px solid black;">
+			<div style="border: 1px solid black; display: none;">
 			<h3>Get the LifeKite kite button</h3>
 			<p>Drag the Kite button into your browser's bookmark bar then click whenever you want to add
 				a kite image from a page</p>
